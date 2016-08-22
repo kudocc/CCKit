@@ -137,6 +137,12 @@
         UIColor *color = colors[i];
         BOOL res = [color getRed:pos green:pos+1 blue:pos+2 alpha:pos+3];
         NSAssert(res, @"fetch color from UIColor error");
+        if (!res) {
+            *pos = 0;
+            *(pos+1) = 0;
+            *(pos+2) = 0;
+            *(pos+3) = 1;
+        }
     }
     myColorspace = CGColorSpaceCreateDeviceRGB();
     CGGradientRef gradient = CGGradientCreateWithColorComponents (myColorspace, components, locations, num_locations);
