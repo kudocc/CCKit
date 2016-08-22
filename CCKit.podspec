@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 
-  s.name         = "CCKit"
+  s.name         = "KudoCCKit"
   s.version      = "0.0.1"
   s.summary      = "My Kit for iOS."
   s.homepage     = "https://github.com/kudocc/CCKit"

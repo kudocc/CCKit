@@ -5,4 +5,4 @@ My iOS Kit
 
 ### From CocoaPods
 
-pod 'CCKit', '~> 0.0.1'
+pod 'KudoCCKit', '~> 0.0.1'
