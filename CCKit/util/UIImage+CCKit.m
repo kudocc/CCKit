@@ -117,6 +117,50 @@
     return image;
 }
 
++ (UIImage *)cc_gradientImageWithSize:(CGSize)size colors:(NSArray *)colors axisX:(BOOL)axisX {
+    if (size.width == 0 || size.height == 0) {
+        return nil;
+    }
+    
+    NSAssert([colors count] > 1, @"at least two colors");
+    CGColorSpaceRef myColorspace;
+    size_t num_locations = (size_t)colors.count;
+    CGFloat *locations = (CGFloat *)malloc(sizeof(CGFloat) * num_locations);
+    CGFloat *components = (CGFloat *)malloc(sizeof(CGFloat) * 4 * num_locations);
+    for (NSUInteger i = 0; i < colors.count; ++i) {
+        if (i == 0) {
+            *(locations+i) = 0;
+        } else {
+            *(locations+i) = *(locations+i-1) + 1.0/(num_locations-1);
+        }
+        CGFloat *pos = components + 4 * i;
+        UIColor *color = colors[i];
+        BOOL res = [color getRed:pos green:pos+1 blue:pos+2 alpha:pos+3];
+        NSAssert(res, @"fetch color from UIColor error");
+    }
+    myColorspace = CGColorSpaceCreateDeviceRGB();
+    CGGradientRef gradient = CGGradientCreateWithColorComponents (myColorspace, components, locations, num_locations);
+    CGColorSpaceRelease(myColorspace);
+    free(locations);
+    free(components);
+    
+    UIGraphicsBeginImageContextWithOptions(size, NO, 0.0);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGPoint startPoint = CGPointMake(0.0, 0.0);
+    CGPoint endPoint = CGPointMake(0.0, size.height);
+    if (axisX) {
+        endPoint = CGPointMake(size.width, 0.0);
+    } else {
+        endPoint = CGPointMake(0.0, size.height);
+    }
+    CGContextDrawLinearGradient (context, gradient, startPoint, endPoint, 0);
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    CGGradientRelease(gradient);
+    return image;
+}
+
+
 + (UIImage *)cc_imageWithQRCodeString:(NSString *)qrCode imageSize:(CGSize)size {
     NSData *stringData = [qrCode dataUsingEncoding:NSUTF8StringEncoding];
     CIFilter *qrFilter = [CIFilter filterWithName:@"CIQRCodeGenerator"];

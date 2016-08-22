@@ -43,6 +43,12 @@
 - (UIImage *)cc_imageWithSize:(CGSize)size cornerRadius:(CGFloat)radius borderWidth:(CGFloat)borderWidth borderColor:(UIColor *)borderColor contentMode:(UIViewContentMode)contentMode;
 
 ///---------------------
+/// @name Create a gradient image
+///---------------------
+
++ (UIImage *)cc_gradientImageWithSize:(CGSize)size colors:(NSArray *)colors axisX:(BOOL)axisX;
+
+///---------------------
 /// @name Others
 ///---------------------
 
