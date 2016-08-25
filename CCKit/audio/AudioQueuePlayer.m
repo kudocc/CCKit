@@ -126,7 +126,8 @@ static void AudioQueueIsRunningPropertyChange(void *inUserData, AudioQueueRef in
         AudioQueueAddPropertyListener(_audioQueue, kAudioQueueProperty_IsRunning, AudioQueueIsRunningPropertyChange, (__bridge void *)self);
         
         // get max buffer size and packet to read
-        [_delegate audioQueuePlayer:self getBufferByteSize:&_bufferByteSize packetToReadNumber:&_numPacketRead];
+        UInt32 maxPacketSize = [_delegate audioQueuePlayerMaxPacketSize:self];
+        [self deriveBufferSize:maxPacketSize seconds:1 outBufferSize:&_bufferByteSize outNumPacketsToRead:&_numPacketRead];
         
         bool isFormatVBR = (_basicDescription.mBytesPerPacket == 0 ||
                             _basicDescription.mFramesPerPacket == 0);
@@ -169,6 +170,30 @@ static void AudioQueueIsRunningPropertyChange(void *inUserData, AudioQueueRef in
         free(_packetDescription);
         _packetDescription = NULL;
     }
+}
+
+- (void)deriveBufferSize:(UInt32)maxPacketSize seconds:(Float64)seconds outBufferSize:(UInt32 *)outBufferSize outNumPacketsToRead:(UInt32 *)outNumPacketsToRead {
+    static const int maxBufferSize = 0x10000;
+    static const int minBufferSize = 0x4000;
+    
+    int maxBuffer = maxBufferSize;
+    // minBuffer size can't less than one packet size
+    int minBuffer = minBufferSize > maxPacketSize ? minBufferSize : maxPacketSize;
+    
+    if (_basicDescription.mFramesPerPacket != 0) {
+        Float64 numPacketsForTime = _basicDescription.mSampleRate / _basicDescription.mFramesPerPacket * seconds;
+        *outBufferSize = numPacketsForTime * maxPacketSize;
+    } else {
+        *outBufferSize = maxBufferSize > maxPacketSize ? maxBufferSize : maxPacketSize;
+    }
+    
+    if (*outBufferSize > maxBuffer &&
+        *outBufferSize > maxBuffer)
+        *outBufferSize = maxBuffer;
+    else if (*outBufferSize < minBuffer) {
+        *outBufferSize = minBuffer;
+    }
+    *outNumPacketsToRead = *outBufferSize / maxPacketSize;
 }
 
 - (BOOL)play {

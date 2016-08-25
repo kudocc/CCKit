@@ -33,7 +33,7 @@
     
     [self reloadData];
     
-    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithTitle:@"Remote audio files" style:UIBarButtonItemStylePlain target:self action:@selector(removeAudioFile)];
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithTitle:@"Remove audio files" style:UIBarButtonItemStylePlain target:self action:@selector(removeAudioFile)];
     self.navigationItem.rightBarButtonItem = rightItem;
 }
 

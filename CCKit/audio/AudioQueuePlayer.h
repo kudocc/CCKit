@@ -36,9 +36,7 @@
 
 - (AudioStreamBasicDescription)audioStreamBasicDescriptionOfPlayer:(AudioQueuePlayer *)player;
 
-- (void)audioQueuePlayer:(AudioQueuePlayer *)player
-       getBufferByteSize:(UInt32 *)outBufferSize
-      packetToReadNumber:(UInt32 *)outPacketToReadNumber;
+- (UInt32)audioQueuePlayerMaxPacketSize:(AudioQueuePlayer *)player;
 
 - (void)audioQueuePlayer:(AudioQueuePlayer *)player
              primeBuffer:(AudioQueueBufferRef)inAudioQueueBuffer

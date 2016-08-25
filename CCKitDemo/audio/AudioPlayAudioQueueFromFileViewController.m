@@ -16,8 +16,7 @@
     NSString *_oldAudioSessionCategory;
     
     AudioStreamBasicDescription _basicDescription;
-    UInt32 _bufferByteSize;
-    UInt32 _numPacketRead;
+    UInt32 _maxPacketSize;
     SInt64 _currentPacket;
 }
 
@@ -112,10 +111,8 @@
         UInt32 dataFormatSize = sizeof (_basicDescription);
         status = AudioFileGetProperty(_audioFileID, kAudioFilePropertyDataFormat, &dataFormatSize, &_basicDescription);
         if (status == noErr) {
-            UInt32 maxPacketSize;
-            UInt32 propertySize = sizeof(maxPacketSize);
-            AudioFileGetProperty(_audioFileID, kAudioFilePropertyPacketSizeUpperBound, &propertySize, &maxPacketSize);
-            [self deriveBufferSize:maxPacketSize seconds:1 outBufferSize:&_bufferByteSize outNumPacketsToRead:&_numPacketRead];
+            UInt32 propertySize = sizeof(_maxPacketSize);
+            AudioFileGetProperty(_audioFileID, kAudioFilePropertyPacketSizeUpperBound, &propertySize, &_maxPacketSize);
             
             _player = [[AudioQueuePlayer alloc] initWithDelegate:self];
             
@@ -157,30 +154,6 @@
     return 0;
 }
 
-- (void)deriveBufferSize:(UInt32)maxPacketSize seconds:(Float64)seconds outBufferSize:(UInt32 *)outBufferSize outNumPacketsToRead:(UInt32 *)outNumPacketsToRead {
-    static const int maxBufferSize = 0x10000;
-    static const int minBufferSize = 0x4000;
-    
-    int maxBuffer = maxBufferSize;
-    // minBuffer size can't less than one packet size
-    int minBuffer = minBufferSize > maxPacketSize ? minBufferSize : maxPacketSize;
-    
-    if (_basicDescription.mFramesPerPacket != 0) {
-        Float64 numPacketsForTime = _basicDescription.mSampleRate / _basicDescription.mFramesPerPacket * seconds;
-        *outBufferSize = numPacketsForTime * maxPacketSize;
-    } else {
-        *outBufferSize = maxBufferSize > maxPacketSize ? maxBufferSize : maxPacketSize;
-    }
-    
-    if (*outBufferSize > maxBuffer &&
-        *outBufferSize > maxBuffer)
-        *outBufferSize = maxBuffer;
-    else if (*outBufferSize < minBuffer) {
-        *outBufferSize = minBuffer;
-    }
-    *outNumPacketsToRead = *outBufferSize / maxPacketSize;
-}
-
 - (void)playButtonPressed:(UIButton *)button {
     if (_player.playing) {
         [_player pause];
@@ -217,11 +190,8 @@
     return _basicDescription;
 }
 
-- (void)audioQueuePlayer:(AudioQueuePlayer *)player
-       getBufferByteSize:(UInt32 *)outBufferSize
-      packetToReadNumber:(UInt32 *)outPacketToReadNumber {
-    *outBufferSize = _bufferByteSize;
-    *outPacketToReadNumber = _numPacketRead;
+- (UInt32)audioQueuePlayerMaxPacketSize:(AudioQueuePlayer *)player {
+    return _maxPacketSize;
 }
 
 - (void)audioQueuePlayer:(AudioQueuePlayer *)player
