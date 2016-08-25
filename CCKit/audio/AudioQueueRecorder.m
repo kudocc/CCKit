@@ -43,6 +43,11 @@ static void HandleInputBuffer (void *aqData,
                                UInt32 inNumPackets,
                                const AudioStreamPacketDescription *inPacketDesc) {
     AudioQueueRecorder *recorder = (__bridge AudioQueueRecorder *)aqData;
+    if (!recorder->_starting &&
+        !recorder->_started &&
+        !recorder->_stopping) {
+        return;
+    }
     
     // call delegate
     [recorder.delegate audioQueueRecorder:recorder recordBuffer:inBuffer streamPacketDescList:inPacketDesc numberOfPacketDescription:inNumPackets];
