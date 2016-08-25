@@ -7,7 +7,7 @@
 //
 
 #import "ShadowGradientsViewController.h"
-#import <CCLinearGradientView.h>
+#import "CCLinearGradientView.h"
 
 @implementation ShadowGradientsViewController
 

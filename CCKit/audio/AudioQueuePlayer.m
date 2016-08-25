@@ -67,18 +67,18 @@ static void HandleOutputBuffer (void *aqData, AudioQueueRef inAQ, AudioQueueBuff
         OSStatus status = AudioQueueEnqueueBuffer(inAQ, inBuffer, (player->_packetDescription ? readPacketNumber : 0), player->_packetDescription);
         if (status != noErr) {
 #ifdef DEBUG
-            NSLog(@"AudioQueueEnqueueBuffer error:%d", status);
+            NSLog(@"AudioQueueEnqueueBuffer error:%d", (int)status);
 #endif
         }
     } else {
 #ifdef DEBUG
-        NSLog(@"AudioQueueStop");
+        NSLog(@"readPacketNumber == 0, stop the queue");
 #endif
         [player stopImmediately:NO];
     }
 }
 
-void AudioQueueIsRunningPropertyChange(void *inUserData, AudioQueueRef inAQ, AudioQueuePropertyID inID) {
+static void AudioQueueIsRunningPropertyChange(void *inUserData, AudioQueueRef inAQ, AudioQueuePropertyID inID) {
     AudioQueuePlayer *player = (__bridge AudioQueuePlayer *)inUserData;
     
     UInt32 isRunning = 0;
@@ -206,19 +206,17 @@ void AudioQueueIsRunningPropertyChange(void *inUserData, AudioQueueRef inAQ, Aud
     status = AudioQueueSetParameter(_audioQueue, kAudioQueueParam_Volume, gain);
     if (status != noErr) {
 #ifdef DEBUG
-        NSLog(@"Set Audio Queue Volume error:%d", status);
+        NSLog(@"Set Audio Queue Volume error:%d", (int)status);
 #endif
     }
     
     // The second parameter
     // The time at which the audio queue should start.
     // To specify a start time relative to the timeline of the associated audio device, use the mSampleTime field of the AudioTimeStamp structure. Use NULL to indicate that the audio queue should start as soon as possible.
-    NSLog(@"begin start");
     status = AudioQueueStart(_audioQueue, NULL);
-    NSLog(@"end start");
     if (status != noErr) {
 #ifdef DEBUG
-        NSLog(@"AudioQueueStart failed:%d", status);
+        NSLog(@"AudioQueueStart failed:%d", (int)status);
 #endif
         // -50 其中一个原因查看AVAudioSession的category是否正确设置
         goto Failed_label;

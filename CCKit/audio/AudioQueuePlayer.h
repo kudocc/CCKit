@@ -9,6 +9,12 @@
 #import <Foundation/Foundation.h>
 #import <AudioToolbox/AudioToolbox.h>
 
+/*
+                                                |--playing--|
+ |--starting--|--playing--|--pause--|--playing--|--stoping--|--stoped--|
+              |---------started-----------------|
+ */
+
 @protocol AudioQueuePlayerDelegate;
 @interface AudioQueuePlayer : NSObject
 

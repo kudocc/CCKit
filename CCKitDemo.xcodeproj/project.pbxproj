@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9FAEE000131F1A6425550530 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 087E8EDC81868FC6861AF677 /* libPods.a */; };
 		A70562DA1D6EBA7000652E03 /* AnimationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A70562161D6EBA7000652E03 /* AnimationViewController.m */; };
 		A70562DB1D6EBA7000652E03 /* CAActionTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A70562181D6EBA7000652E03 /* CAActionTestViewController.m */; };
 		A70562DC1D6EBA7000652E03 /* CABasicAnimationTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A705621A1D6EBA7000652E03 /* CABasicAnimationTestViewController.m */; };
@@ -24,11 +25,6 @@
 		A70562E81D6EBA7000652E03 /* ImagePickerViewControllerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = A70562371D6EBA7000652E03 /* ImagePickerViewControllerHelper.m */; };
 		A70562E91D6EBA7000652E03 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A705623A1D6EBA7000652E03 /* BaseViewController.m */; };
 		A70562EA1D6EBA7000652E03 /* HomeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A705623C1D6EBA7000652E03 /* HomeTableViewController.m */; };
-		A70562EB1D6EBA7000652E03 /* CaptureObjectBlock.c in Sources */ = {isa = PBXBuildFile; fileRef = A705623E1D6EBA7000652E03 /* CaptureObjectBlock.c */; };
-		A70562EC1D6EBA7000652E03 /* CaptureObjectBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = A705623F1D6EBA7000652E03 /* CaptureObjectBlock.m */; };
-		A70562ED1D6EBA7000652E03 /* CaptureScalarBlock.c in Sources */ = {isa = PBXBuildFile; fileRef = A70562401D6EBA7000652E03 /* CaptureScalarBlock.c */; };
-		A70562EE1D6EBA7000652E03 /* CaptureScalarBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = A70562411D6EBA7000652E03 /* CaptureScalarBlock.m */; };
-		A70562EF1D6EBA7000652E03 /* CaptureWeakObjectBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = A70562421D6EBA7000652E03 /* CaptureWeakObjectBlock.m */; };
 		A70562F01D6EBA7000652E03 /* BuiltinFilterChainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A70562451D6EBA7000652E03 /* BuiltinFilterChainViewController.m */; };
 		A70562F11D6EBA7000652E03 /* BuiltinFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A70562471D6EBA7000652E03 /* BuiltinFilterViewController.m */; };
 		A70562F21D6EBA7000652E03 /* CoreImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A70562491D6EBA7000652E03 /* CoreImageViewController.m */; };
@@ -100,6 +96,7 @@
 		A70563341D6EBA7000652E03 /* WKWebViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A70562D91D6EBA7000652E03 /* WKWebViewViewController.m */; };
 		A70563371D6EBA9100652E03 /* chat.plist in Resources */ = {isa = PBXBuildFile; fileRef = A70563351D6EBA9100652E03 /* chat.plist */; };
 		A70563381D6EBA9100652E03 /* test.html in Resources */ = {isa = PBXBuildFile; fileRef = A70563361D6EBA9100652E03 /* test.html */; };
+		A705633A1D6EBE8300652E03 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A70563391D6EBE8300652E03 /* WebKit.framework */; };
 		A773BD761D671395008E53C1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A773BD751D671395008E53C1 /* main.m */; };
 		A773BD791D671395008E53C1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A773BD781D671395008E53C1 /* AppDelegate.m */; };
 		A773BD7F1D671395008E53C1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A773BD7D1D671395008E53C1 /* Main.storyboard */; };
@@ -151,6 +148,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		087E8EDC81868FC6861AF677 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0B277119606C63C9D25F2A92 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		8EB5C3BD85E1B7CBFF43F457 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		A70562151D6EBA7000652E03 /* AnimationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationViewController.h; sourceTree = "<group>"; };
 		A70562161D6EBA7000652E03 /* AnimationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimationViewController.m; sourceTree = "<group>"; };
 		A70562171D6EBA7000652E03 /* CAActionTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAActionTestViewController.h; sourceTree = "<group>"; };
@@ -328,6 +328,7 @@
 		A70562D91D6EBA7000652E03 /* WKWebViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKWebViewViewController.m; sourceTree = "<group>"; };
 		A70563351D6EBA9100652E03 /* chat.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = chat.plist; sourceTree = "<group>"; };
 		A70563361D6EBA9100652E03 /* test.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = test.html; sourceTree = "<group>"; };
+		A70563391D6EBE8300652E03 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		A773BD711D671395008E53C1 /* CCKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CCKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A773BD751D671395008E53C1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A773BD771D671395008E53C1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -399,6 +400,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A705633A1D6EBE8300652E03 /* WebKit.framework in Frameworks */,
+				9FAEE000131F1A6425550530 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,6 +422,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3C2BA1524C0A2534FD00DD3E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0B277119606C63C9D25F2A92 /* Pods.debug.xcconfig */,
+				8EB5C3BD85E1B7CBFF43F457 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		A70562141D6EBA7000652E03 /* animation */ = {
 			isa = PBXGroup;
 			children = (
@@ -441,18 +453,18 @@
 		A70562211D6EBA7000652E03 /* audio */ = {
 			isa = PBXGroup;
 			children = (
-				A70562221D6EBA7000652E03 /* AudioListViewController.h */,
-				A70562231D6EBA7000652E03 /* AudioListViewController.m */,
-				A70562241D6EBA7000652E03 /* AudioPlayAudioQueueFromFileViewController.h */,
-				A70562251D6EBA7000652E03 /* AudioPlayAudioQueueFromFileViewController.m */,
-				A70562261D6EBA7000652E03 /* AudioPlaybackViewController.h */,
-				A70562271D6EBA7000652E03 /* AudioPlaybackViewController.m */,
-				A70562281D6EBA7000652E03 /* AudioRecordAudioQueueToFileViewController.h */,
-				A70562291D6EBA7000652E03 /* AudioRecordAudioQueueToFileViewController.m */,
-				A705622A1D6EBA7000652E03 /* AudioRecordViewController.h */,
-				A705622B1D6EBA7000652E03 /* AudioRecordViewController.m */,
 				A705622C1D6EBA7000652E03 /* AudioViewController.h */,
 				A705622D1D6EBA7000652E03 /* AudioViewController.m */,
+				A705622A1D6EBA7000652E03 /* AudioRecordViewController.h */,
+				A705622B1D6EBA7000652E03 /* AudioRecordViewController.m */,
+				A70562281D6EBA7000652E03 /* AudioRecordAudioQueueToFileViewController.h */,
+				A70562291D6EBA7000652E03 /* AudioRecordAudioQueueToFileViewController.m */,
+				A70562221D6EBA7000652E03 /* AudioListViewController.h */,
+				A70562231D6EBA7000652E03 /* AudioListViewController.m */,
+				A70562261D6EBA7000652E03 /* AudioPlaybackViewController.h */,
+				A70562271D6EBA7000652E03 /* AudioPlaybackViewController.m */,
+				A70562241D6EBA7000652E03 /* AudioPlayAudioQueueFromFileViewController.h */,
+				A70562251D6EBA7000652E03 /* AudioPlayAudioQueueFromFileViewController.m */,
 			);
 			path = audio;
 			sourceTree = "<group>";
@@ -761,6 +773,8 @@
 				A773BD8D1D671395008E53C1 /* CCKitDemoTests */,
 				A773BD981D671395008E53C1 /* CCKitDemoUITests */,
 				A773BD721D671395008E53C1 /* Products */,
+				3C2BA1524C0A2534FD00DD3E /* Pods */,
+				CEC423076637D83C671E6BF0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -930,6 +944,15 @@
 			path = view;
 			sourceTree = "<group>";
 		};
+		CEC423076637D83C671E6BF0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A70563391D6EBE8300652E03 /* WebKit.framework */,
+				087E8EDC81868FC6861AF677 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -937,9 +960,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A773BD9E1D671395008E53C1 /* Build configuration list for PBXNativeTarget "CCKitDemo" */;
 			buildPhases = (
+				C2766B960B913DCC493181EE /* Check Pods Manifest.lock */,
 				A773BD6D1D671395008E53C1 /* Sources */,
 				A773BD6E1D671395008E53C1 /* Frameworks */,
 				A773BD6F1D671395008E53C1 /* Resources */,
+				8ABFF58E91577E8D97E39591 /* Embed Pods Frameworks */,
+				AE5A7621662DF3075205FA5B /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1059,6 +1085,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		8ABFF58E91577E8D97E39591 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AE5A7621662DF3075205FA5B /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C2766B960B913DCC493181EE /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		A773BD6D1D671395008E53C1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -1112,7 +1186,6 @@
 				A70563101D6EBA7000652E03 /* OtherViewController.m in Sources */,
 				A70563111D6EBA7000652E03 /* DrawImagePerformanceViewController.m in Sources */,
 				A773BDDF1D671475008E53C1 /* AudioQueuePlayer.m in Sources */,
-				A70562EB1D6EBA7000652E03 /* CaptureObjectBlock.c in Sources */,
 				A70562E91D6EBA7000652E03 /* BaseViewController.m in Sources */,
 				A773BDF01D671475008E53C1 /* UIColor+CCKit.m in Sources */,
 				A70563061D6EBA7000652E03 /* CCHttpTaskGroup.m in Sources */,
@@ -1127,7 +1200,6 @@
 				A70563041D6EBA7000652E03 /* ModelViewController.m in Sources */,
 				A70562FB1D6EBA7000652E03 /* HTMLParserViewController.m in Sources */,
 				A70562DB1D6EBA7000652E03 /* CAActionTestViewController.m in Sources */,
-				A70562ED1D6EBA7000652E03 /* CaptureScalarBlock.c in Sources */,
 				A70562F11D6EBA7000652E03 /* BuiltinFilterViewController.m in Sources */,
 				A773BDE81D671475008E53C1 /* CCTextDefine.m in Sources */,
 				A70562F31D6EBA7000652E03 /* FaceDetectorViewController.m in Sources */,
@@ -1142,10 +1214,8 @@
 				A773BDEA1D671475008E53C1 /* CCTextLine.m in Sources */,
 				A70562F61D6EBA7000652E03 /* ChatViewController.m in Sources */,
 				A773BDE21D671475008E53C1 /* NSObject+CCModel.m in Sources */,
-				A70562EF1D6EBA7000652E03 /* CaptureWeakObjectBlock.m in Sources */,
 				A70563271D6EBA7000652E03 /* UIDownloadTaskViewController.m in Sources */,
 				A773BDF31D671475008E53C1 /* UIView+CCKit.m in Sources */,
-				A70562EC1D6EBA7000652E03 /* CaptureObjectBlock.m in Sources */,
 				A773BDF21D671475008E53C1 /* UIImage+CCKit.m in Sources */,
 				A70562E31D6EBA7000652E03 /* AudioRecordAudioQueueToFileViewController.m in Sources */,
 				A70563281D6EBA7000652E03 /* UrlSessionViewController.m in Sources */,
@@ -1177,7 +1247,6 @@
 				A705632E1D6EBA7000652E03 /* SimpleNavigationDelegate.m in Sources */,
 				A70563091D6EBA7000652E03 /* HttpComplexRequestsViewController.m in Sources */,
 				A705631A1D6EBA7000652E03 /* CornerRadiusView.m in Sources */,
-				A70562EE1D6EBA7000652E03 /* CaptureScalarBlock.m in Sources */,
 				A773BDEC1D671475008E53C1 /* NSAttributedString+CCKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1317,9 +1386,11 @@
 		};
 		A773BD9F1D671395008E53C1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0B277119606C63C9D25F2A92 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = CCKitDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kudocc.CCKitDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1328,9 +1399,11 @@
 		};
 		A773BDA01D671395008E53C1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8EB5C3BD85E1B7CBFF43F457 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = CCKitDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kudocc.CCKitDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";

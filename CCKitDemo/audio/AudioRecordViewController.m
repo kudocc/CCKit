@@ -34,7 +34,8 @@ typedef NS_ENUM(NSUInteger, RecordStatus) {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
     if (_recorder.isRecording) {
-        [_recorder stop];
+        // pause can happen immediately, stop can't, so we use pause intead of stop
+        [_recorder pause];
     }
     
     if (_oldAudioSessionCategory) {

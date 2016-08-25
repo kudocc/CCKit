@@ -26,7 +26,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
     if (_player.isPlaying) {
-        [_player stop];
+        [_player pause];
     }
     
     if (_oldAudioSessionCategory) {

@@ -43,6 +43,10 @@
         }
     }
     
+    if (_player.playing) {
+        [_player pause];
+    }
+    
     // When passed in the flags parameter of the setActive:withOptions:error: instance method, indicates that when your audio session deactivates, other audio sessions that had been interrupted by your session can return to their active state
     NSError *error = nil;
     [[AVAudioSession sharedInstance] setActive:NO
@@ -123,13 +127,13 @@
                 OSStatus status = AudioFileGetProperty(_audioFileID, kAudioFilePropertyMagicCookieData, &cookieSize, magicCookie);
 #ifdef DEBUG
                 if (status != noErr) {
-                    NSLog(@"Audio File Get Magic Cookie data fail:%d", status);
+                    NSLog(@"Audio File Get Magic Cookie data fail:%d", (int)status);
                 }
 #endif
                 status = AudioQueueSetProperty(_player.audioQueue, kAudioQueueProperty_MagicCookie, magicCookie, cookieSize);
 #ifdef DEBUG
                 if (status != noErr) {
-                    NSLog(@"Audio Queue set Magic Cookie data fail:%d", status);
+                    NSLog(@"Audio Queue set Magic Cookie data fail:%d", (int)status);
                 }
 #endif
                 free(magicCookie);
@@ -232,7 +236,7 @@
                                            _currentPacket, &numPackets, inAudioQueueBuffer->mAudioData);
     *outReadPacketNumber = numPackets;
     if (status != noErr) {
-        NSLog(@"read packets error:%d", status);
+        NSLog(@"read packets error:%d", (int)status);
     } else if (numPackets == 0) {
         NSLog(@"read file end");
     }

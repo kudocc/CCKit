@@ -18,7 +18,21 @@
     UInt32 _bufferByteSize;
     
     BOOL _finished;
+    
+    // audio queue need some time to start, so during we call AudioQueueStart and it really starts, _starting is YES
+    BOOL _starting;
+    // audio queue is started
+    BOOL _started;
+    
+    // audio device may not finish immediately after call AudioQueueStop, if you pass false as its second paramter.
+    // during we call AudioQueueStop to it really finishs, _stopping is YES
+    BOOL _stopping;
+    // YES means finished, NO means started
+    BOOL _stopped;
 }
+
+- (void)audioQueueStartedCallback;
+- (void)audioQueueStoppedCallback;
 
 @end
 
@@ -28,22 +42,37 @@ static void HandleInputBuffer (void *aqData,
                                const AudioTimeStamp *inStartTime,
                                UInt32 inNumPackets,
                                const AudioStreamPacketDescription *inPacketDesc) {
-    AudioQueueRecorder *sself = (__bridge AudioQueueRecorder *)aqData;
+    AudioQueueRecorder *recorder = (__bridge AudioQueueRecorder *)aqData;
     
     // call delegate
-    [sself.delegate recorder:sself recordBuffer:inBuffer streamPacketDescList:inPacketDesc numberOfPacketDescription:inNumPackets];
+    [recorder.delegate audioQueueRecorder:recorder recordBuffer:inBuffer streamPacketDescList:inPacketDesc numberOfPacketDescription:inNumPackets];
     
     // enqueue buffer
-    AudioQueueEnqueueBuffer(sself->_audioQueue, inBuffer, 0, NULL);
+    AudioQueueEnqueueBuffer(recorder->_audioQueue, inBuffer, 0, NULL);
     
-    printf("IN HANDLE INPUT BUFFER\n");
+#ifdef DEBUG
+    printf("In audio queue record callback\n");
+#endif
+}
+
+static void AudioQueueIsRunningPropertyChange(void *inUserData, AudioQueueRef inAQ, AudioQueuePropertyID inID) {
+    AudioQueueRecorder *recorder = (__bridge AudioQueueRecorder *)inUserData;
+    
+    UInt32 isRunning = 0;
+    UInt32 size = sizeof(isRunning);
+    AudioQueueGetProperty(inAQ, kAudioQueueProperty_IsRunning, &isRunning, &size);
+    if (isRunning) {
+        [recorder audioQueueStartedCallback];
+    } else {
+        [recorder audioQueueStoppedCallback];
+    }
 }
 
 @implementation AudioQueueRecorder
 
 - (UInt32)deriveAudioBufferWithSeconds:(Float64)seconds {
-    // 0x10000 = 1*16*16*16*16 ~ 64k
-    static const int maxBufferSize = 0x10000;
+    // 0x10000 = 5*16*16*16*16 ~ 320k
+    static const int maxBufferSize = 0x50000;
     
     int maxPacketSize = _basicDescription.mBytesPerPacket;
     if (maxPacketSize == 0) {
@@ -54,8 +83,16 @@ static void HandleInputBuffer (void *aqData,
                                &maxVBRPacketSize);
     }
     
-    Float64 numBytesForTime = _basicDescription.mSampleRate * maxPacketSize * seconds;
+    Float64 numBytesForTime = 0;
+    if (_basicDescription.mFramesPerPacket > 0) {
+        numBytesForTime = (_basicDescription.mSampleRate / _basicDescription.mFramesPerPacket) * maxPacketSize * seconds;
+    } else {
+        numBytesForTime = _basicDescription.mSampleRate * maxPacketSize * seconds;
+    }
+    
+    // don't exceed maxBufferSize
     numBytesForTime = numBytesForTime < maxBufferSize ? numBytesForTime : maxBufferSize;
+    // don't less than maxPacketSize
     return numBytesForTime < maxPacketSize ? maxPacketSize : numBytesForTime;
 }
 
@@ -63,7 +100,11 @@ static void HandleInputBuffer (void *aqData,
     self = [super init];
     if (self) {
         _delegate = delegate;
-        _finished = YES;
+        _starting = NO;
+        _started = NO;
+        _recording = NO;
+        _stopping = NO;
+        _stopped = YES;
         
         // set up `AudioStreamBasicDescription`
         _basicDescription = [_delegate audioStreamBasicDescriptionOfRecorder:self];
@@ -77,6 +118,8 @@ static void HandleInputBuffer (void *aqData,
             return self;
         }
         
+        AudioQueueAddPropertyListener(_audioQueue, kAudioQueueProperty_IsRunning, AudioQueueIsRunningPropertyChange, (__bridge void *)self);
+        
         UInt32 basicDescriptionSize = sizeof(_basicDescription);
         status = AudioQueueGetProperty(_audioQueue, kAudioQueueProperty_StreamDescription, &_basicDescription, &basicDescriptionSize);
         NSAssert(status == noErr, @"get stream description error");
@@ -86,8 +129,9 @@ static void HandleInputBuffer (void *aqData,
 
 - (void)dealloc {
     if (_audioQueue) {
-        // if audio queue doesn't finish, stop it
-        if (!_finished) {
+        AudioQueueRemovePropertyListener(_audioQueue, kAudioQueueProperty_IsRunning, AudioQueueIsRunningPropertyChange, (__bridge void *)self);
+        
+        if (_started) {
             AudioQueueStop(_audioQueue, true);
         }
         AudioQueueDispose(_audioQueue, true);
@@ -97,17 +141,28 @@ static void HandleInputBuffer (void *aqData,
 }
 
 - (BOOL)record {
-    // aq is recording
+    // already recording
     if (_recording) {
         return YES;
     }
     
-    if (!_finished) {
+    // during starting
+    if (_starting) {
+        return NO;
+    }
+    
+    // during stopping, we can't start it
+    if (_stopping) {
+        return NO;
+    }
+    
+    // now audio queue is paused, resume play
+    if (_started) {
         return [self resume];
     }
     
     OSStatus status = noErr;
-    _bufferByteSize = [self deriveAudioBufferWithSeconds:0.2];
+    _bufferByteSize = [self deriveAudioBufferWithSeconds:0.1];
     for (NSInteger i = 0; i < kNumberBuffers; ++i) {
         status = AudioQueueAllocateBuffer(_audioQueue, _bufferByteSize, &_audioQueueBuffer[i]);
         if (status != noErr) {
@@ -120,10 +175,12 @@ static void HandleInputBuffer (void *aqData,
     }
     if (status != noErr) {
 #ifdef DEBUG
-        NSLog(@"Allocate Buffer or Enqueue Buffer error:%d", status);
+        NSLog(@"Allocate Buffer or Enqueue Buffer error:%d", (int)status);
 #endif
         goto Failed_label;
     }
+    
+    _starting = YES;
     
     // The second parameter
     // The time at which the audio queue should start.
@@ -132,13 +189,11 @@ static void HandleInputBuffer (void *aqData,
     if (status != noErr) {
         goto Failed_label;
     }
-    
-    _recording = YES;
-    _finished = NO;
-    
     return YES;
     
 Failed_label:
+    _starting = NO;
+    
     if (_audioQueue) {
         AudioQueueDispose(_audioQueue, false);
         _audioQueue = NULL;
@@ -155,26 +210,30 @@ Failed_label:
 }
 
 - (void)stopImmediately:(BOOL)immediate {
-    // aq is already finished
-    if (_finished) {
-        return;
-    }
-    
-    if (_audioQueue) {
+    if (_started) {
         Boolean imme = immediate ? true : false;
+        /*
+         we don't get the result of AudioQueueStop because I think it would fail if audio queue is already stopped or audio queue is invalid, no matter what it is, the queue would be stopped
+         */
+        _started = NO;
+        
+        // audio queue begin to stop
+        _stopping = YES;
+        
         AudioQueueStop(_audioQueue, imme);
     }
-    _recording = NO;
-    _finished = YES;
 }
 
 - (BOOL)pause {
-    // aq is already paused
-    if (!_recording) {
-        return YES;
-    }
-    
-    if (_audioQueue) {
+    if (_recording) {
+        // if audio queue is in stopping status, we omit the pause operation and return NO
+        if (_stopping) {
+#ifdef DEBUG
+            NSLog(@"audio queue is in stopping status");
+#endif
+            return NO;
+        }
+        
         OSStatus status = AudioQueuePause(_audioQueue);
         if (status == noErr) {
             _recording = NO;
@@ -185,19 +244,34 @@ Failed_label:
 }
 
 - (BOOL)resume {
-    // aq is recording
-    if (_recording) {
-        return YES;
-    }
-    
-    if (_audioQueue) {
+    if (_started && !_recording) {
         OSStatus status = AudioQueueStart(_audioQueue, NULL);
         if (status == noErr) {
             _recording = YES;
         }
-        return status != noErr;
+        return status == noErr;
     }
     return NO;
+}
+
+#pragma mark -
+
+- (void)audioQueueStartedCallback {
+    NSLog(@"%@", NSStringFromSelector(_cmd));
+    
+    _starting = NO;
+    _started = YES;
+    _recording = YES;
+}
+
+- (void)audioQueueStoppedCallback {
+    NSLog(@"%@", NSStringFromSelector(_cmd));
+    
+    _recording = NO;
+    _stopping = NO;
+    _stopped = YES;
+    
+    [_delegate audioQueueRecorderDidFinishRecord:self];
 }
 
 @end
