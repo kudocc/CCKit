@@ -1,5 +1,5 @@
 # CCKit
-My iOS Kit
+My iOS Kit, this [demo](https://github.com/kudocc/DemoKit) use CCKit in many places.
 
 ## Installation
 
