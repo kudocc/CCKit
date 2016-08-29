@@ -97,6 +97,7 @@
 		A70563371D6EBA9100652E03 /* chat.plist in Resources */ = {isa = PBXBuildFile; fileRef = A70563351D6EBA9100652E03 /* chat.plist */; };
 		A70563381D6EBA9100652E03 /* test.html in Resources */ = {isa = PBXBuildFile; fileRef = A70563361D6EBA9100652E03 /* test.html */; };
 		A705633A1D6EBE8300652E03 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A70563391D6EBE8300652E03 /* WebKit.framework */; };
+		A75B10EE1D743EF5003F4242 /* CoreImageSubclassCIFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A75B10ED1D743EF5003F4242 /* CoreImageSubclassCIFilterViewController.m */; };
 		A773BD761D671395008E53C1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A773BD751D671395008E53C1 /* main.m */; };
 		A773BD791D671395008E53C1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A773BD781D671395008E53C1 /* AppDelegate.m */; };
 		A773BD7F1D671395008E53C1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A773BD7D1D671395008E53C1 /* Main.storyboard */; };
@@ -329,6 +330,8 @@
 		A70563351D6EBA9100652E03 /* chat.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = chat.plist; sourceTree = "<group>"; };
 		A70563361D6EBA9100652E03 /* test.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = test.html; sourceTree = "<group>"; };
 		A70563391D6EBE8300652E03 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		A75B10EC1D743EF5003F4242 /* CoreImageSubclassCIFilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreImageSubclassCIFilterViewController.h; sourceTree = "<group>"; };
+		A75B10ED1D743EF5003F4242 /* CoreImageSubclassCIFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreImageSubclassCIFilterViewController.m; sourceTree = "<group>"; };
 		A773BD711D671395008E53C1 /* CCKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CCKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A773BD751D671395008E53C1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A773BD771D671395008E53C1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -524,14 +527,16 @@
 		A70562431D6EBA7000652E03 /* coreImage */ = {
 			isa = PBXGroup;
 			children = (
+				A70562481D6EBA7000652E03 /* CoreImageViewController.h */,
+				A70562491D6EBA7000652E03 /* CoreImageViewController.m */,
 				A70562441D6EBA7000652E03 /* BuiltinFilterChainViewController.h */,
 				A70562451D6EBA7000652E03 /* BuiltinFilterChainViewController.m */,
 				A70562461D6EBA7000652E03 /* BuiltinFilterViewController.h */,
 				A70562471D6EBA7000652E03 /* BuiltinFilterViewController.m */,
-				A70562481D6EBA7000652E03 /* CoreImageViewController.h */,
-				A70562491D6EBA7000652E03 /* CoreImageViewController.m */,
 				A705624A1D6EBA7000652E03 /* FaceDetectorViewController.h */,
 				A705624B1D6EBA7000652E03 /* FaceDetectorViewController.m */,
+				A75B10EC1D743EF5003F4242 /* CoreImageSubclassCIFilterViewController.h */,
+				A75B10ED1D743EF5003F4242 /* CoreImageSubclassCIFilterViewController.m */,
 				A705624C1D6EBA7000652E03 /* QRCodeViewController.h */,
 				A705624D1D6EBA7000652E03 /* QRCodeViewController.m */,
 			);
@@ -1239,6 +1244,7 @@
 				A70563021D6EBA7000652E03 /* IncrementalImageSourceViewController.m in Sources */,
 				A70562EA1D6EBA7000652E03 /* HomeTableViewController.m in Sources */,
 				A70562F91D6EBA7000652E03 /* CoreTextHelper.m in Sources */,
+				A75B10EE1D743EF5003F4242 /* CoreImageSubclassCIFilterViewController.m in Sources */,
 				A70563011D6EBA7000652E03 /* ImageSourceViewController.m in Sources */,
 				A70563141D6EBA7000652E03 /* ImageViewPerformanceViewController.m in Sources */,
 				A705631F1D6EBA7000652E03 /* PathViewController.m in Sources */,
