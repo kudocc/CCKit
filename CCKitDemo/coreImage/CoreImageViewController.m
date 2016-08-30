@@ -12,22 +12,25 @@
 #import "BuiltinFilterChainViewController.h"
 #import "FaceDetectorViewController.h"
 #import "QRCodeViewController.h"
+#import "CoreImageFilterOnCameralViewController.h"
 
 @implementation CoreImageViewController
 
 - (void)initView {
     [super initView];
     
-    self.arrayTitle = @[@"builtin filter",
+    self.arrayTitle = @[@"qr code",
+                        @"builtin filter",
                         @"builtin chained filter",
-                        @"subclass filter",
                         @"face detector",
-                        @"qr code"];
-    self.arrayClass = @[[BuiltinFilterViewController class],
+                        @"subclass filter",
+                        @"apply filter on camera output (very poor performance)"];
+    self.arrayClass = @[[QRCodeViewController class],
+                        [BuiltinFilterViewController class],
                         [BuiltinFilterChainViewController class],
-                        [CoreImageSubclassCIFilterViewController class],
                         [FaceDetectorViewController class],
-                        [QRCodeViewController class]];
+                        [CoreImageSubclassCIFilterViewController class],
+                        [CoreImageFilterOnCameralViewController class]];
     
 //    [self logAllFilters];
     [self checkLimits];

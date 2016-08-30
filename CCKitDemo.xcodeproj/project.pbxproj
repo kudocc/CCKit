@@ -99,6 +99,7 @@
 		A705633A1D6EBE8300652E03 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A70563391D6EBE8300652E03 /* WebKit.framework */; };
 		A75B10EE1D743EF5003F4242 /* CoreImageSubclassCIFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A75B10ED1D743EF5003F4242 /* CoreImageSubclassCIFilterViewController.m */; };
 		A75B10F41D744487003F4242 /* CIFacePixelFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = A75B10F31D744487003F4242 /* CIFacePixelFilter.m */; };
+		A75B10F81D754E66003F4242 /* CoreImageFilterOnCameralViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A75B10F71D754E66003F4242 /* CoreImageFilterOnCameralViewController.m */; };
 		A773BD761D671395008E53C1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A773BD751D671395008E53C1 /* main.m */; };
 		A773BD791D671395008E53C1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A773BD781D671395008E53C1 /* AppDelegate.m */; };
 		A773BD7F1D671395008E53C1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A773BD7D1D671395008E53C1 /* Main.storyboard */; };
@@ -335,6 +336,8 @@
 		A75B10ED1D743EF5003F4242 /* CoreImageSubclassCIFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreImageSubclassCIFilterViewController.m; sourceTree = "<group>"; };
 		A75B10F21D744487003F4242 /* CIFacePixelFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIFacePixelFilter.h; sourceTree = "<group>"; };
 		A75B10F31D744487003F4242 /* CIFacePixelFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIFacePixelFilter.m; sourceTree = "<group>"; };
+		A75B10F61D754E66003F4242 /* CoreImageFilterOnCameralViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreImageFilterOnCameralViewController.h; sourceTree = "<group>"; };
+		A75B10F71D754E66003F4242 /* CoreImageFilterOnCameralViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreImageFilterOnCameralViewController.m; sourceTree = "<group>"; };
 		A773BD711D671395008E53C1 /* CCKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CCKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A773BD751D671395008E53C1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A773BD771D671395008E53C1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -532,6 +535,8 @@
 			children = (
 				A70562481D6EBA7000652E03 /* CoreImageViewController.h */,
 				A70562491D6EBA7000652E03 /* CoreImageViewController.m */,
+				A705624C1D6EBA7000652E03 /* QRCodeViewController.h */,
+				A705624D1D6EBA7000652E03 /* QRCodeViewController.m */,
 				A70562441D6EBA7000652E03 /* BuiltinFilterChainViewController.h */,
 				A70562451D6EBA7000652E03 /* BuiltinFilterChainViewController.m */,
 				A70562461D6EBA7000652E03 /* BuiltinFilterViewController.h */,
@@ -542,8 +547,8 @@
 				A75B10F31D744487003F4242 /* CIFacePixelFilter.m */,
 				A75B10EC1D743EF5003F4242 /* CoreImageSubclassCIFilterViewController.h */,
 				A75B10ED1D743EF5003F4242 /* CoreImageSubclassCIFilterViewController.m */,
-				A705624C1D6EBA7000652E03 /* QRCodeViewController.h */,
-				A705624D1D6EBA7000652E03 /* QRCodeViewController.m */,
+				A75B10F61D754E66003F4242 /* CoreImageFilterOnCameralViewController.h */,
+				A75B10F71D754E66003F4242 /* CoreImageFilterOnCameralViewController.m */,
 			);
 			path = coreImage;
 			sourceTree = "<group>";
@@ -1238,6 +1243,7 @@
 				A773BD761D671395008E53C1 /* main.m in Sources */,
 				A70563311D6EBA7000652E03 /* UIWebViewViewController.m in Sources */,
 				A70562F51D6EBA7000652E03 /* CCLabelDemoViewController.m in Sources */,
+				A75B10F81D754E66003F4242 /* CoreImageFilterOnCameralViewController.m in Sources */,
 				A70563211D6EBA7000652E03 /* Quartz2DViewController.m in Sources */,
 				A705632A1D6EBA7000652E03 /* CustomNavigationChildViewController.m in Sources */,
 				A70563201D6EBA7000652E03 /* PatternViewController.m in Sources */,
