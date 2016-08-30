@@ -10,6 +10,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import "UIImage+CCKit.h"
 #import "CIFacePixelFilter.h"
+#import "UIView+CCKit.h"
 
 typedef NS_ENUM(NSInteger, AVCamSetupResult) {
     AVCamSetupResultSuccess,
@@ -32,6 +33,7 @@ typedef NS_ENUM(NSInteger, AVCamSetupResult) {
 
 @property (strong, nonatomic) dispatch_queue_t sessionQueue;
 @property (nonatomic) AVCamSetupResult setupResult;
+@property (nonatomic) CALayer *contentLayer;
 
 @end
 
@@ -70,6 +72,10 @@ typedef NS_ENUM(NSInteger, AVCamSetupResult) {
     
     _ciContext = [CIContext contextWithOptions:NULL];
     _ciFilter = [[CIFacePixelFilter alloc] init];
+    
+    _contentLayer = [[CALayer alloc] init];
+    [self.view.layer addSublayer:_contentLayer];
+    _contentLayer.frame = self.view.layer.bounds;
 }
 
 - (void)sessionDidStart:(id)notify {
@@ -170,10 +176,6 @@ typedef NS_ENUM(NSInteger, AVCamSetupResult) {
         }
         
         [_session commitConfiguration];
-        
-        if (_setupResult != AVCamSetupResultSuccess) {
-            
-        }
     });
 }
 
@@ -254,14 +256,26 @@ typedef NS_ENUM(NSInteger, AVCamSetupResult) {
 }
 
 - (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection {
+    static int i = 0;
+    if (++i < 24) {
+        return;
+    }
+    i = 0;
+    
     UIImage *image = [self imageFromSampleBuffer:sampleBuffer];
     CIImage *ciImage = [[CIImage alloc] initWithImage:image];
     [_ciFilter setValue:ciImage forKey:kCIInputImageKey];
     CIImage *ciOutputImage = [_ciFilter outputImage];
     CGImageRef cgImage = [_ciContext createCGImage:ciOutputImage fromRect:[ciOutputImage extent]];
     UIImage *newImage = [UIImage imageWithCGImage:cgImage scale:[UIScreen mainScreen].scale orientation:image.imageOrientation];
+    NSLog(@"%@, orientation:%@", NSStringFromCGSize(newImage.size), @(image.imageOrientation));
     dispatch_async(dispatch_get_main_queue(), ^{
-        self.view.layer.contents = (__bridge id)newImage.CGImage;
+        CGSize sizeImage = newImage.size;
+        CGRect frame = [UIView cc_frameOfContentWithContentSize:sizeImage
+                                                  containerSize:self.view.bounds.size
+                                                    contentMode:UIViewContentModeScaleAspectFit];
+        self.contentLayer.contents = (__bridge id)newImage.CGImage;
+        self.contentLayer.frame = frame;
     });
 }
 
