@@ -34,8 +34,14 @@
 - (void)addImage {
     [[ImagePickerViewControllerHelper sharedHelper] presentImagePickerWithBlock:^(NSDictionary<NSString *,id> *info) {
         UIImage *image = info[UIImagePickerControllerOriginalImage];
+        NSDictionary *meta = info[UIImagePickerControllerMediaMetadata];
+        
         _orientation = image.imageOrientation;
-        _ciImage = [CIImage imageWithCGImage:image.CGImage];
+        NSDictionary *options = nil;
+        if (info && meta) {
+            options = @{kCIImageProperties:meta};
+        }
+        _ciImage = [CIImage imageWithCGImage:image.CGImage options:options];
         [_ciFilter setValue:_ciImage forKey:kCIInputImageKey];
         [self valueChanged:nil];
     } viewController:self];
