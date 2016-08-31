@@ -18,9 +18,11 @@
     
     CGGradientRef myGradient;
     CGColorSpaceRef myColorspace;
-    size_t num_locations = 2;
-    CGFloat locations[2] = { 0.0, 1.0 };
-    CGFloat components[8] = { 1.0, 1.0, 1.0, 1.0, 0, 0, 0, 1.0};
+    size_t num_locations = 3;
+    CGFloat locations[3] = { 0.0, 0.4, 1.0 };
+    CGFloat components[12] = { 1.0, 1.0, 1.0, 1.0, 1.0, 0, 0, 1, 0, 0, 0, 1.0};
+//    CGFloat components[8] = { 0.95, 0.3, 0.4, 1.0,
+//        0.95, 0.3, 0.4, 0.1 };
     
     myColorspace = CGColorSpaceCreateWithName(kCGColorSpaceGenericRGB);
     myGradient = CGGradientCreateWithColorComponents (myColorspace, components,
@@ -29,12 +31,12 @@
     
     CGPoint myStartPoint, myEndPoint;
     CGFloat myStartRadius, myEndRadius;
-    myStartPoint.x = 0.15;
-    myStartPoint.y = 0.15;
-    myEndPoint.x = 0.5;
-    myEndPoint.y = 0.5;
-    myStartRadius = 0.1;
-    myEndRadius = 0.25;
+    myStartPoint.x = floor(0.15 * size.width);
+    myStartPoint.y = floor(0.15 * size.height);
+    myEndPoint.x = floor(0.5 * size.width);
+    myEndPoint.y = floor(0.5 * size.height);
+    myStartRadius = floor(0.1 * size.width);
+    myEndRadius = floor(0.25 * size.width);
     CGContextDrawRadialGradient (context, myGradient, myStartPoint,
                                  myStartRadius, myEndPoint, myEndRadius, 0);
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();

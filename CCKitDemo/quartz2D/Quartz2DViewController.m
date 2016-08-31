@@ -25,7 +25,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    self.arrayTitle = @[@"Line", @"ImageMask", @"Path", @"Colored & Stencil Pattern", @"Coordinate Test", @"Shadow", @"Image Blend"];
+    self.arrayTitle = @[@"Line", @"ImageMask", @"Path", @"Colored & Stencil Pattern", @"Coordinate Test", @"Shadow & Gradient", @"Image Blend"];
     self.arrayClass = @[[LineViewController class],
                         [ImageMaskViewController class],
                         [PathViewController class],

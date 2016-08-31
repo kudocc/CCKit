@@ -706,6 +706,8 @@
 		A70562A41D6EBA7000652E03 /* quartz2D */ = {
 			isa = PBXGroup;
 			children = (
+				A70562B11D6EBA7000652E03 /* Quartz2DViewController.h */,
+				A70562B21D6EBA7000652E03 /* Quartz2DViewController.m */,
 				A70562A51D6EBA7000652E03 /* CoordinateViewController.h */,
 				A70562A61D6EBA7000652E03 /* CoordinateViewController.m */,
 				A70562A71D6EBA7000652E03 /* ImageBlendViewController.h */,
@@ -718,8 +720,6 @@
 				A70562AE1D6EBA7000652E03 /* PathViewController.m */,
 				A70562AF1D6EBA7000652E03 /* PatternViewController.h */,
 				A70562B01D6EBA7000652E03 /* PatternViewController.m */,
-				A70562B11D6EBA7000652E03 /* Quartz2DViewController.h */,
-				A70562B21D6EBA7000652E03 /* Quartz2DViewController.m */,
 				A70562B31D6EBA7000652E03 /* ShadowGradientsViewController.h */,
 				A70562B41D6EBA7000652E03 /* ShadowGradientsViewController.m */,
 			);
@@ -767,14 +767,14 @@
 		A70562CF1D6EBA7000652E03 /* webView */ = {
 			isa = PBXGroup;
 			children = (
+				A70562D61D6EBA7000652E03 /* WebViewController.h */,
+				A70562D71D6EBA7000652E03 /* WebViewController.m */,
 				A70562D01D6EBA7000652E03 /* UIWebViewCacheViewController.h */,
 				A70562D11D6EBA7000652E03 /* UIWebViewCacheViewController.m */,
 				A70562D21D6EBA7000652E03 /* UIWebViewViewController.h */,
 				A70562D31D6EBA7000652E03 /* UIWebViewViewController.m */,
 				A70562D41D6EBA7000652E03 /* URLSessionCacheViewController.h */,
 				A70562D51D6EBA7000652E03 /* URLSessionCacheViewController.m */,
-				A70562D61D6EBA7000652E03 /* WebViewController.h */,
-				A70562D71D6EBA7000652E03 /* WebViewController.m */,
 				A70562D81D6EBA7000652E03 /* WKWebViewViewController.h */,
 				A70562D91D6EBA7000652E03 /* WKWebViewViewController.m */,
 			);
@@ -811,18 +811,18 @@
 				A70562141D6EBA7000652E03 /* animation */,
 				A70562211D6EBA7000652E03 /* audio */,
 				A705622F1D6EBA7000652E03 /* autoLayout */,
-				A705623D1D6EBA7000652E03 /* block */,
 				A70562431D6EBA7000652E03 /* coreImage */,
 				A705624E1D6EBA7000652E03 /* coreText */,
 				A70562611D6EBA7000652E03 /* imageIO */,
 				A705626D1D6EBA7000652E03 /* model */,
 				A70562721D6EBA7000652E03 /* network */,
-				A70562821D6EBA7000652E03 /* other */,
 				A705628E1D6EBA7000652E03 /* performance */,
 				A70562A41D6EBA7000652E03 /* quartz2D */,
 				A70562B51D6EBA7000652E03 /* urlSession */,
 				A70562C01D6EBA7000652E03 /* view_controller_transition */,
 				A70562CF1D6EBA7000652E03 /* webView */,
+				A705623D1D6EBA7000652E03 /* block */,
+				A70562821D6EBA7000652E03 /* other */,
 				A773BD771D671395008E53C1 /* AppDelegate.h */,
 				A773BD781D671395008E53C1 /* AppDelegate.m */,
 				A70563351D6EBA9100652E03 /* chat.plist */,
