@@ -11,6 +11,7 @@
 #import "UIImage+CCKit.h"
 #import "CIFacePixelFilter.h"
 #import "UIView+CCKit.h"
+#import <GLKit/GLKit.h>
 
 typedef NS_ENUM(NSInteger, AVCamSetupResult) {
     AVCamSetupResultSuccess,
@@ -18,22 +19,58 @@ typedef NS_ENUM(NSInteger, AVCamSetupResult) {
     AVCamSetupResultSessionConfigurationFailed
 };
 
+@interface CoreImageView : GLKView {
+    CIContext *_context;
+}
+
+@property (nonatomic) CIImage *image;
+
+@end
+
+@implementation CoreImageView
+
+- (id)initWithFrame:(CGRect)frame {
+    EAGLContext *eaglContext = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
+    self = [self initWithFrame:frame context:eaglContext];
+    return self;
+}
+
+- (instancetype)initWithFrame:(CGRect)frame context:(EAGLContext *)context {
+    _context = [CIContext contextWithEAGLContext:context];
+    self = [super initWithFrame:frame context:context];
+    if (self) {
+        self.enableSetNeedsDisplay = NO;
+    }
+    return self;
+}
+
+- (void)setImage:(CIImage *)image {
+    _image = image;
+    [self display];
+}
+
+- (void)drawRect:(CGRect)rect {
+    if (_image) {
+        CGFloat scale = [UIScreen mainScreen].scale;
+        CGRect destRect = CGRectApplyAffineTransform(self.bounds, CGAffineTransformMakeScale(scale, scale));
+        [_context drawImage:_image inRect:destRect fromRect:_image.extent];
+    }
+}
+
+@end
+
 @interface CoreImageFilterOnCameralViewController () <AVCaptureVideoDataOutputSampleBufferDelegate> {
-    UIImageOrientation _orientation;
-    CIImage *_ciImage;
     CIFilter *_ciFilter;
-    CIContext *_ciContext;
 }
 
 @property (strong, nonatomic) AVCaptureDevice *device;
 @property (strong, nonatomic) AVCaptureDeviceInput *input;
 @property (strong, nonatomic) AVCaptureVideoDataOutput *output;
 @property (strong, nonatomic) AVCaptureSession *session;
-@property (strong, nonatomic) AVCaptureVideoPreviewLayer *preview;
 
 @property (strong, nonatomic) dispatch_queue_t sessionQueue;
 @property (nonatomic) AVCamSetupResult setupResult;
-@property (nonatomic) CALayer *contentLayer;
+@property (nonatomic) CoreImageView *coreImageView;
 
 @end
 
@@ -70,12 +107,17 @@ typedef NS_ENUM(NSInteger, AVCamSetupResult) {
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sessionDidStart:) name:AVCaptureSessionDidStartRunningNotification object:nil];
     
-    _ciContext = [CIContext contextWithOptions:NULL];
-    _ciFilter = [[CIFacePixelFilter alloc] init];
+
+//    CIFacePixelFilter *faceFilter = [[CIFacePixelFilter alloc] init];
+//    faceFilter.context = _ciContext;
+//    _ciFilter = faceFilter;
     
-    _contentLayer = [[CALayer alloc] init];
-    [self.view.layer addSublayer:_contentLayer];
-    _contentLayer.frame = self.view.layer.bounds;
+    _ciFilter = [CIFilter filterWithName:@"CIHueAdjust"];
+    CGFloat f = M_PI * 3/4;
+    [_ciFilter setValue:@(f) forKey:kCIInputAngleKey];
+    
+    _coreImageView = [[CoreImageView alloc] initWithFrame:self.view.bounds];
+    [self.view addSubview:_coreImageView];
 }
 
 - (void)sessionDidStart:(id)notify {
@@ -87,11 +129,6 @@ typedef NS_ENUM(NSInteger, AVCamSetupResult) {
 - (void)configCaptureSession {
     // Create the AVCaptureSession.
     self.session = [[AVCaptureSession alloc] init];
-    
-//    _preview = [AVCaptureVideoPreviewLayer layerWithSession:self.session];
-//    _preview.videoGravity = AVLayerVideoGravityResizeAspectFill;
-//    _preview.frame = [UIScreen mainScreen].bounds;
-//    [self.view.layer insertSublayer:self.preview atIndex:0];
     
     // Communicate with the session and other session objects on this queue.
     self.sessionQueue = dispatch_queue_create("AVCaptureSession.queue", DISPATCH_QUEUE_SERIAL);
@@ -151,8 +188,10 @@ typedef NS_ENUM(NSInteger, AVCamSetupResult) {
         }
         
         _output = [[AVCaptureVideoDataOutput alloc] init];
-        [_output setSampleBufferDelegate:self queue:self.sessionQueue];
-        _output.videoSettings = @{(__bridge id)kCVPixelBufferPixelFormatTypeKey:@(kCVPixelFormatType_32BGRA)};
+        [_output setSampleBufferDelegate:self queue:dispatch_get_main_queue()];
+        _output.alwaysDiscardsLateVideoFrames = YES;
+        _output.videoSettings = @{(__bridge id)kCVPixelBufferPixelFormatTypeKey:@(kCVPixelFormatType_420YpCbCr8BiPlanarFullRange)};
+//        _output.videoSettings = @{(__bridge id)kCVPixelBufferPixelFormatTypeKey:@(kCVPixelFormatType_32BGRA)};
         
         [_session beginConfiguration];
         
@@ -166,10 +205,10 @@ typedef NS_ENUM(NSInteger, AVCamSetupResult) {
         if ([_session canAddOutput:_output]) {
             [_session addOutput:_output];
             
-            AVCaptureConnection *connection = [_output connectionWithMediaType:AVMediaTypeVideo];
-            if ([connection isVideoOrientationSupported]) {
-                [connection setVideoOrientation:AVCaptureVideoOrientationPortrait];
-            }
+//            AVCaptureConnection *connection = [_output connectionWithMediaType:AVMediaTypeVideo];
+//            if ([connection isVideoOrientationSupported]) {
+//                [connection setVideoOrientation:AVCaptureVideoOrientationPortrait];
+//            }
         } else {
             NSLog( @"Could not add video device output to the session" );
             _setupResult = AVCamSetupResultSessionConfigurationFailed;
@@ -214,73 +253,18 @@ typedef NS_ENUM(NSInteger, AVCamSetupResult) {
 
 #pragma mark - AVCaptureVideoDataOutputSampleBufferDelegate
 
-// Create a UIImage from sample buffer data
-- (UIImage *) imageFromSampleBuffer:(CMSampleBufferRef) sampleBuffer
-{
-    // Get a CMSampleBuffer's Core Video image buffer for the media data
-    CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
-    // Lock the base address of the pixel buffer
-    CVPixelBufferLockBaseAddress(imageBuffer, 0);
-    
-    // Get the number of bytes per row for the pixel buffer
-    void *baseAddress = CVPixelBufferGetBaseAddress(imageBuffer);
-    
-    // Get the number of bytes per row for the pixel buffer
-    size_t bytesPerRow = CVPixelBufferGetBytesPerRow(imageBuffer);
-    // Get the pixel buffer width and height
-    size_t width = CVPixelBufferGetWidth(imageBuffer);
-    size_t height = CVPixelBufferGetHeight(imageBuffer);
-    
-    // Create a device-dependent RGB color space
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    
-    // Create a bitmap graphics context with the sample buffer data
-    CGContextRef context = CGBitmapContextCreate(baseAddress, width, height, 8,
-                                                 bytesPerRow, colorSpace, kCGBitmapByteOrder32Little | kCGImageAlphaPremultipliedFirst);
-    // Create a Quartz image from the pixel data in the bitmap graphics context
-    CGImageRef quartzImage = CGBitmapContextCreateImage(context);
-    // Unlock the pixel buffer
-    CVPixelBufferUnlockBaseAddress(imageBuffer,0);
-    
-    // Free up the context and color space
-    CGContextRelease(context);
-    CGColorSpaceRelease(colorSpace);
-    
-    // Create an image object from the Quartz image
-    UIImage *image = [UIImage imageWithCGImage:quartzImage];
-    
-    // Release the Quartz image
-    CGImageRelease(quartzImage);
-    
-    return (image);
-}
-
 - (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection {
-    static int i = 0;
-    if (++i < 24) {
-        return;
-    }
-    i = 0;
-    
-    UIImage *image = [self imageFromSampleBuffer:sampleBuffer];
-    CIImage *ciImage = [[CIImage alloc] initWithImage:image];
+    CVImageBufferRef imageBufferRef = CMSampleBufferGetImageBuffer(sampleBuffer);
+    CIImage *ciImage = [CIImage imageWithCVPixelBuffer:imageBufferRef];
+    ciImage = [ciImage imageByApplyingTransform:CGAffineTransformMakeRotation(-M_PI/2)];
+#if 1
     [_ciFilter setValue:ciImage forKey:kCIInputImageKey];
     CIImage *ciOutputImage = [_ciFilter outputImage];
-    CGImageRef cgImage = [_ciContext createCGImage:ciOutputImage fromRect:[ciOutputImage extent]];
-    UIImage *newImage = [UIImage imageWithCGImage:cgImage scale:[UIScreen mainScreen].scale orientation:image.imageOrientation];
-    NSLog(@"%@, orientation:%@", NSStringFromCGSize(newImage.size), @(image.imageOrientation));
-    dispatch_async(dispatch_get_main_queue(), ^{
-        CGSize sizeImage = newImage.size;
-        CGRect frame = [UIView cc_frameOfContentWithContentSize:sizeImage
-                                                  containerSize:self.view.bounds.size
-                                                    contentMode:UIViewContentModeScaleAspectFit];
-        self.contentLayer.contents = (__bridge id)newImage.CGImage;
-        self.contentLayer.frame = frame;
-    });
-}
-
-- (void)captureOutput:(AVCaptureOutput *)captureOutput didDropSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection {
-    NSLog(@"%@", NSStringFromSelector(_cmd));
+    _coreImageView.image = ciOutputImage;
+#else
+    // no filter used
+    _coreImageView.image = ciImage;
+#endif
 }
 
 @end

@@ -11,5 +11,5 @@
 @interface CIFacePixelFilter : CIFilter
 
 @property (nonatomic) CIImage *inputImage;
-
+@property (nonatomic, weak) CIContext *context;
 @end

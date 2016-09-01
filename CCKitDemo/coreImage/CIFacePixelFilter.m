@@ -12,9 +12,9 @@
 @implementation CIFacePixelFilter
 
 - (CIImage *)outputImage {
-    NSDictionary *detectorOptions = @{CIDetectorAccuracy:CIDetectorAccuracyHigh};
+    NSDictionary *detectorOptions = @{CIDetectorAccuracy:CIDetectorAccuracyLow};
     CIDetector *detector = [CIDetector detectorOfType:CIDetectorTypeFace
-                                              context:nil
+                                              context:_context
                                               options:detectorOptions];
     NSDictionary *opts = nil;
     if ([[self.inputImage properties] valueForKey:(__bridge id)kCGImagePropertyOrientation]) {
