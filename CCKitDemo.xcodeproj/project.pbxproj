@@ -97,6 +97,7 @@
 		A70563371D6EBA9100652E03 /* chat.plist in Resources */ = {isa = PBXBuildFile; fileRef = A70563351D6EBA9100652E03 /* chat.plist */; };
 		A70563381D6EBA9100652E03 /* test.html in Resources */ = {isa = PBXBuildFile; fileRef = A70563361D6EBA9100652E03 /* test.html */; };
 		A705633A1D6EBE8300652E03 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A70563391D6EBE8300652E03 /* WebKit.framework */; };
+		A73B52261D79618C0035D336 /* CIFaceAnimateFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = A73B52251D79618C0035D336 /* CIFaceAnimateFilter.m */; };
 		A75B10EE1D743EF5003F4242 /* CoreImageSubclassCIFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A75B10ED1D743EF5003F4242 /* CoreImageSubclassCIFilterViewController.m */; };
 		A75B10F41D744487003F4242 /* CIFacePixelFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = A75B10F31D744487003F4242 /* CIFacePixelFilter.m */; };
 		A75B10F81D754E66003F4242 /* CoreImageFilterOnCameralViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A75B10F71D754E66003F4242 /* CoreImageFilterOnCameralViewController.m */; };
@@ -332,6 +333,8 @@
 		A70563351D6EBA9100652E03 /* chat.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = chat.plist; sourceTree = "<group>"; };
 		A70563361D6EBA9100652E03 /* test.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = test.html; sourceTree = "<group>"; };
 		A70563391D6EBE8300652E03 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		A73B52241D79618C0035D336 /* CIFaceAnimateFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIFaceAnimateFilter.h; sourceTree = "<group>"; };
+		A73B52251D79618C0035D336 /* CIFaceAnimateFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIFaceAnimateFilter.m; sourceTree = "<group>"; };
 		A75B10EC1D743EF5003F4242 /* CoreImageSubclassCIFilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreImageSubclassCIFilterViewController.h; sourceTree = "<group>"; };
 		A75B10ED1D743EF5003F4242 /* CoreImageSubclassCIFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreImageSubclassCIFilterViewController.m; sourceTree = "<group>"; };
 		A75B10F21D744487003F4242 /* CIFacePixelFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIFacePixelFilter.h; sourceTree = "<group>"; };
@@ -547,6 +550,8 @@
 				A75B10F31D744487003F4242 /* CIFacePixelFilter.m */,
 				A75B10EC1D743EF5003F4242 /* CoreImageSubclassCIFilterViewController.h */,
 				A75B10ED1D743EF5003F4242 /* CoreImageSubclassCIFilterViewController.m */,
+				A73B52241D79618C0035D336 /* CIFaceAnimateFilter.h */,
+				A73B52251D79618C0035D336 /* CIFaceAnimateFilter.m */,
 				A75B10F61D754E66003F4242 /* CoreImageFilterOnCameralViewController.h */,
 				A75B10F71D754E66003F4242 /* CoreImageFilterOnCameralViewController.m */,
 			);
@@ -1163,6 +1168,7 @@
 				A773BDE91D671475008E53C1 /* CCTextLayout.m in Sources */,
 				A70563321D6EBA7000652E03 /* URLSessionCacheViewController.m in Sources */,
 				A70563221D6EBA7000652E03 /* ShadowGradientsViewController.m in Sources */,
+				A73B52261D79618C0035D336 /* CIFaceAnimateFilter.m in Sources */,
 				A70562F01D6EBA7000652E03 /* BuiltinFilterChainViewController.m in Sources */,
 				A773BDE61D671475008E53C1 /* CCLabel.m in Sources */,
 				A70562F71D6EBA7000652E03 /* CoreTextChatViewController.m in Sources */,

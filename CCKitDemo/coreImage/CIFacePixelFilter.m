@@ -9,9 +9,15 @@
 #import "CIFacePixelFilter.h"
 #import <ImageIO/ImageIO.h>
 
-@implementation CIFacePixelFilter
+@implementation CIFacePixelFilter {
+    CIContext *_context;
+}
 
 - (CIImage *)outputImage {
+    if (!_context) {
+        _context = [CIContext contextWithOptions:nil];
+    }
+    
     NSDictionary *detectorOptions = @{CIDetectorAccuracy:CIDetectorAccuracyLow};
     CIDetector *detector = [CIDetector detectorOfType:CIDetectorTypeFace
                                               context:_context

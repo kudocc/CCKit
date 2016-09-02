@@ -9,7 +9,7 @@
 #import "CoreImageFilterOnCameralViewController.h"
 #import <AVFoundation/AVFoundation.h>
 #import "UIImage+CCKit.h"
-#import "CIFacePixelFilter.h"
+#import "CIFaceAnimateFilter.h"
 #import "UIView+CCKit.h"
 #import <GLKit/GLKit.h>
 
@@ -107,15 +107,16 @@ typedef NS_ENUM(NSInteger, AVCamSetupResult) {
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sessionDidStart:) name:AVCaptureSessionDidStartRunningNotification object:nil];
     
+#define USE_FACE_A_FILTER
 
-//    CIFacePixelFilter *faceFilter = [[CIFacePixelFilter alloc] init];
-//    faceFilter.context = _ciContext;
-//    _ciFilter = faceFilter;
-    
+#ifdef USE_FACE_A_FILTER
+    CIFaceAnimateFilter *faceFilter = [[CIFaceAnimateFilter alloc] init];
+    _ciFilter = faceFilter;
+#else
     _ciFilter = [CIFilter filterWithName:@"CIHueAdjust"];
     CGFloat f = M_PI * 3/4;
     [_ciFilter setValue:@(f) forKey:kCIInputAngleKey];
-    
+#endif
     _coreImageView = [[CoreImageView alloc] initWithFrame:self.view.bounds];
     [self.view addSubview:_coreImageView];
 }

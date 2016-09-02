@@ -24,7 +24,7 @@
                         @"builtin chained filter",
                         @"face detector",
                         @"subclass filter",
-                        @"apply filter on camera output (very poor performance)"];
+                        @"apply filter on camera output"];
     self.arrayClass = @[[QRCodeViewController class],
                         [BuiltinFilterViewController class],
                         [BuiltinFilterChainViewController class],

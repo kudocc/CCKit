@@ -1,14 +1,14 @@
 //
-//  CIFacePixelFilter.h
+//  CIFaceAnimateFilter.h
 //  CCKitDemo
 //
-//  Created by KudoCC on 16/8/29.
+//  Created by KudoCC on 16/9/2.
 //  Copyright © 2016年 KudoCC. All rights reserved.
 //
 
 #import <CoreImage/CoreImage.h>
 
-@interface CIFacePixelFilter : CIFilter
+@interface CIFaceAnimateFilter : CIFilter
 
 @property (nonatomic) CIImage *inputImage;
 
