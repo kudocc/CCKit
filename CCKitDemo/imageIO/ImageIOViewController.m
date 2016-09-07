@@ -21,6 +21,7 @@
     self.arrayTitle = @[@"Image Source", @"Increamental Image Source", @"Image Destination"];
     self.arrayClass = @[[ImageSourceViewController class], [IncrementalImageSourceViewController class], [ImageDestinationViewController class]];
     
+    /*
     CFArrayRef mySourceTypes = CGImageSourceCopyTypeIdentifiers();
     CFShow(mySourceTypes);
     CFArrayRef myDestinationTypes = CGImageDestinationCopyTypeIdentifiers();
@@ -28,6 +29,7 @@
     
     CFRelease(mySourceTypes);
     CFRelease(myDestinationTypes);
+     */
 }
 
 

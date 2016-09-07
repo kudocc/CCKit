@@ -561,24 +561,24 @@
 		A705624E1D6EBA7000652E03 /* coreText */ = {
 			isa = PBXGroup;
 			children = (
-				A705624F1D6EBA7000652E03 /* CCLabelDemoViewController.h */,
-				A70562501D6EBA7000652E03 /* CCLabelDemoViewController.m */,
-				A70562511D6EBA7000652E03 /* ChatViewController.h */,
-				A70562521D6EBA7000652E03 /* ChatViewController.m */,
+				A70562591D6EBA7000652E03 /* CoreTextViewController.h */,
+				A705625A1D6EBA7000652E03 /* CoreTextViewController.m */,
+				A705625F1D6EBA7000652E03 /* SimpleChatViewController.h */,
+				A70562601D6EBA7000652E03 /* SimpleChatViewController.m */,
 				A70562531D6EBA7000652E03 /* CoreTextChatViewController.h */,
 				A70562541D6EBA7000652E03 /* CoreTextChatViewController.m */,
+				A70562511D6EBA7000652E03 /* ChatViewController.h */,
+				A70562521D6EBA7000652E03 /* ChatViewController.m */,
 				A70562551D6EBA7000652E03 /* CoreTextExclusivePathViewController.h */,
 				A70562561D6EBA7000652E03 /* CoreTextExclusivePathViewController.m */,
 				A70562571D6EBA7000652E03 /* CoreTextHelper.h */,
 				A70562581D6EBA7000652E03 /* CoreTextHelper.m */,
-				A70562591D6EBA7000652E03 /* CoreTextViewController.h */,
-				A705625A1D6EBA7000652E03 /* CoreTextViewController.m */,
+				A705624F1D6EBA7000652E03 /* CCLabelDemoViewController.h */,
+				A70562501D6EBA7000652E03 /* CCLabelDemoViewController.m */,
 				A705625B1D6EBA7000652E03 /* HTMLParserViewController.h */,
 				A705625C1D6EBA7000652E03 /* HTMLParserViewController.m */,
 				A705625D1D6EBA7000652E03 /* HTMLWebViewController.h */,
 				A705625E1D6EBA7000652E03 /* HTMLWebViewController.m */,
-				A705625F1D6EBA7000652E03 /* SimpleChatViewController.h */,
-				A70562601D6EBA7000652E03 /* SimpleChatViewController.m */,
 			);
 			path = coreText;
 			sourceTree = "<group>";
@@ -586,7 +586,6 @@
 		A70562611D6EBA7000652E03 /* imageIO */ = {
 			isa = PBXGroup;
 			children = (
-				A70562621D6EBA7000652E03 /* coreImage */,
 				A70562631D6EBA7000652E03 /* ImageDestinationViewController.h */,
 				A70562641D6EBA7000652E03 /* ImageDestinationViewController.m */,
 				A70562651D6EBA7000652E03 /* ImageIO.h */,
@@ -599,13 +598,6 @@
 				A705626C1D6EBA7000652E03 /* IncrementalImageSourceViewController.m */,
 			);
 			path = imageIO;
-			sourceTree = "<group>";
-		};
-		A70562621D6EBA7000652E03 /* coreImage */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = coreImage;
 			sourceTree = "<group>";
 		};
 		A705626D1D6EBA7000652E03 /* model */ = {

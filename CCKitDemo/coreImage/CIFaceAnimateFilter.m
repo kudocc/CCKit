@@ -12,7 +12,8 @@
 
 @implementation CIFaceAnimateFilter {
     CIContext *_context;
-    NSArray *_arrayFire;
+    NSArray *_arrayFireImage;
+    NSArray *_arrayFireImageRelativePos;
     NSInteger _indexFire;
     dispatch_queue_t _queue;
     CGPoint _mouthPosition;
@@ -23,13 +24,18 @@
     if (self) {
         
         NSMutableArray *mutableArray = [NSMutableArray array];
-        for (NSInteger i = 0; i < 10; ++i) {
+        NSMutableArray *mutablePos = [NSMutableArray array];
+        for (NSInteger i = 0; i < 20; ++i) {
             UIColor *color = [UIColor colorWithRed:(i+1)/10.0 green:0 blue:0 alpha:1];
-            UIImage *image = [UIImage cc_imageWithColor:color size:CGSizeMake(60.0, 30.0 + 10*i)];
+            CGSize size = CGSizeMake(30.0 + 2*i, 30.0 + 2*i);
+            UIImage *image = [UIImage cc_imageWithColor:color size:size borderWidth:0 borderColor:nil cornerRadius:size.width/2];
             CIImage *ciImage = [CIImage imageWithCGImage:image.CGImage options:nil];
             [mutableArray addObject:ciImage];
+            [mutablePos addObject:[NSValue valueWithCGPoint:CGPointMake(i+2, i+2)]];
         }
-        _arrayFire = [mutableArray copy];
+        _arrayFireImage = [mutableArray copy];
+        _arrayFireImageRelativePos = [mutablePos copy];
+        
         _indexFire = 0;
         
         _queue = dispatch_queue_create("face.detector.queue", 0);
@@ -68,11 +74,12 @@
     });
     
     if (!CGPointEqualToPoint(_mouthPosition, CGPointZero)) {
-        _indexFire = ++_indexFire % _arrayFire.count;
-        CIImage *imageFire = _arrayFire[_indexFire];
+        _indexFire = ++_indexFire % _arrayFireImage.count;
+        CIImage *imageFire = _arrayFireImage[_indexFire];
+        CGPoint relativePos = [_arrayFireImageRelativePos[_indexFire] CGPointValue];
         
         CIFilter *filter = [CIFilter filterWithName:@"CISourceOverCompositing"];
-        CIImage *img = [imageFire imageByApplyingTransform:CGAffineTransformMakeTranslation(_mouthPosition.x - imageFire.extent.size.width/2, _mouthPosition.y - imageFire.extent.size.height/2)];
+        CIImage *img = [imageFire imageByApplyingTransform:CGAffineTransformMakeTranslation(_mouthPosition.x - imageFire.extent.size.width/2 + relativePos.x, _mouthPosition.y - imageFire.extent.size.height/2 - relativePos.y)];
         [filter setValue:img forKey:kCIInputImageKey];
         [filter setValue:self.inputImage forKey:kCIInputBackgroundImageKey];
         return filter.outputImage;
