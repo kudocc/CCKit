@@ -22,7 +22,15 @@
 /// if you don't implement this method, we use the address of Model as hash and `ccmodel_isEqual:` will always returns NO if two objects are not the same object.
 + (NSSet<NSString *> *)propertyNameCalculateHash;
 
-/// property name to container value type description
+/**
+ *  @return a dictionary map from property name to container type object which describes the property's type
+ *  Example:
+ *  @property NSArray<NSNumber> *students;
+ 
+ *  + (NSDictionary<NSString *, ContainerTypeObject *> *)propertyNameToContainerTypeObjectMap {
+ *      return @{@"students":[ContainerTypeObject arrayContainerTypeObjectWithValueClass:[NSNumber class]]};
+ *  }
+ */
 + (NSDictionary<NSString *, ContainerTypeObject *> *)propertyNameToContainerTypeObjectMap;
 
 @optional
