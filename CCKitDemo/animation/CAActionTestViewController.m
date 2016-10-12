@@ -30,7 +30,7 @@
     UIImage *image = [UIImage imageNamed:@"conan1.png"] ;
     _layer.frame = CGRectMake(10.0, 64.0, image.size.width, image.size.height);
     _layer.contents = (__bridge id)image.CGImage ;
-    _layer.delegate = self ;
+    _layer.delegate = (id <CALayerDelegate>)self ;
     [self.view.layer addSublayer:_layer] ;
 }
 

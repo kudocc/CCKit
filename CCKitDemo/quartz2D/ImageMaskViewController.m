@@ -284,7 +284,7 @@
     }
     
     _scrollView.contentSize = CGSizeMake(ScreenWidth, y);
-    _scrollView.delegate = self;
+    _scrollView.delegate = (id <UIScrollViewDelegate>)self;
 //    _scrollView.bounds = CGRectMake(0, 0, 100, 100);
 //    _scrollView.contentInset = UIEdgeInsetsMake(100, 100, 0, 0);
     [self showRightBarButtonItemWithName:@"right"];

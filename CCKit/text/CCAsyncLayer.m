@@ -36,7 +36,7 @@
 }
 
 - (void)display {
-    id<CCAsyncLayerDelegate> asyncDelegate = self.delegate;
+    id<CCAsyncLayerDelegate> asyncDelegate = (id<CCAsyncLayerDelegate>)self.delegate;
     CCAsyncLayerDisplayTask *task = [asyncDelegate newAsyncDisplayTask];
     if (!task) {
         return;
