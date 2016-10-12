@@ -203,7 +203,7 @@
                  view:(UIView *)view layer:(CALayer *)layer
              position:(CGPoint)position size:(CGSize)size
            isCanceled:(BOOL(^)(void))isCanceled {
-    
+    /*
     if (context) {
         CGContextSaveGState(context);
         CGContextSetTextMatrix(context, CGAffineTransformIdentity);
@@ -216,7 +216,7 @@
         CGContextStrokeRect(context, frame);
         
         CGContextRestoreGState(context);
-    }
+    }*/
     
     if (context) {
         [self drawTextInContext:context position:position size:size isCanceled:isCanceled];

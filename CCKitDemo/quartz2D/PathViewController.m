@@ -7,7 +7,7 @@
 //
 
 #import "PathViewController.h"
-
+#import <math.h>
 
 @implementation PathViewController
 
@@ -91,6 +91,52 @@
     return image;
 }
 
+- (UIImage *)imagePieChartWithPercentArray:(NSArray *)percents colors:(NSArray *)colors imageSize:(CGSize)size {
+    UIGraphicsBeginImageContextWithOptions(size, NO, 0);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+//    CGContextTranslateCTM(context, 0, size.height);
+//    CGContextScaleCTM(context, 1.0, -1.0);
+    
+    CGFloat radius = MIN(size.width, size.height) / 4;
+    CGPoint center = CGPointMake(size.width/2, size.height/2);
+    CGFloat start = 0;
+    __block CGFloat currentAngle = start;
+    [percents enumerateObjectsUsingBlock:^(NSNumber *percent, NSUInteger idx, BOOL * _Nonnull stop) {
+        CGContextMoveToPoint(context, center.x, center.y);
+        CGFloat angle = percent.floatValue / 100 * 2 * M_PI;
+        UIColor *color = colors[idx];
+        CGContextSetFillColorWithColor(context, color.CGColor);
+        CGFloat endAngle = currentAngle+angle;
+        CGContextAddArc(context, center.x, center.y, radius, currentAngle, endAngle, 0);
+        CGContextFillPath(context);
+        
+        CGFloat midAngle = (currentAngle + endAngle) / 2;
+        CGFloat midY = radius*sin(midAngle) + center.y;
+        CGFloat midX = radius*cos(midAngle) + center.x;
+        CGFloat odd = 20.0;
+        CGContextMoveToPoint(context, midX, midY);
+        CGPoint moveTo = CGPointMake((radius+odd)*cos(midAngle) + center.x, (radius+odd)*sin(midAngle) + center.y);
+        CGContextAddLineToPoint(context, moveTo.x, moveTo.y);
+        BOOL leftSide = moveTo.x < center.x ;
+        moveTo.x += odd * (leftSide ? -1 : 1);
+        CGContextAddLineToPoint(context, moveTo.x, moveTo.y);
+        CGContextSetStrokeColorWithColor(context, [UIColor redColor].CGColor);
+        CGContextStrokePath(context);
+        
+        CGPoint drawPoint = moveTo;
+        drawPoint.x += leftSide ? -50 : 0;
+        drawPoint.y -= 10.0;
+        NSString *string = [NSString stringWithFormat:@"%.2f%%", percent.floatValue];
+        [string drawAtPoint:drawPoint withAttributes:@{}];
+        
+        currentAngle = endAngle;
+    }];
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -101,8 +147,20 @@
     [self.view addSubview:_scrollView];
     
     CGFloat y = 0;
-    UIImage *image = [self imageTest1WithSize:size];
+    NSArray *percents = @[@10, @20, @30, @40];
+    NSArray *colors = @[[UIColor redColor], [UIColor greenColor], [UIColor blueColor], [UIColor yellowColor]];
+//    NSArray *percents = @[@10];
+//    NSArray *colors = @[[UIColor redColor], [UIColor greenColor]];
+    UIImage *image = [self imagePieChartWithPercentArray:percents colors:colors imageSize:size];
     UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+    [_scrollView addSubview:imageView];
+    imageView.frame = CGRectMake(0, y, imageView.width, imageView.height);
+    imageView.layer.borderWidth = 1;
+    imageView.layer.borderColor = [UIColor redColor].CGColor;
+    y = imageView.bottom + 10;
+    
+    image = [self imageTest1WithSize:size];
+    imageView = [[UIImageView alloc] initWithImage:image];
     [_scrollView addSubview:imageView];
     imageView.frame = CGRectMake(0, y, imageView.width, imageView.height);
     imageView.layer.borderWidth = 1;
