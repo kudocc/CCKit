@@ -20,6 +20,38 @@
 }
 
 
++ (instancetype)cc_attributedStringWithString:(NSString *)string textColor:(UIColor *)color {
+    return [self cc_attributedStringWithString:string textColor:color font:nil];
+}
+
++ (instancetype)cc_attributedStringWithString:(NSString *)string font:(UIFont *)font {
+    return [self cc_attributedStringWithString:string textColor:nil font:font];
+}
+
++ (instancetype)cc_attributedStringWithString:(NSString *)string textColor:(UIColor *)color font:(UIFont *)font {
+    NSMutableDictionary *attributes = [[NSMutableDictionary alloc] init];
+    if (color) {
+        attributes[NSForegroundColorAttributeName] = color;
+    }
+    if (font) {
+        attributes[NSFontAttributeName] = font;
+    }
+    return [self cc_attributedStringWithString:string attributes:attributes];
+}
+
+
++ (instancetype)cc_attributedStringWithImage:(UIImage *)image bounds:(CGRect)bounds {
+    if (!image) {
+        return nil;
+    }
+    NSTextAttachment *attachment = [[NSTextAttachment alloc] init];
+    attachment.image = image;
+    attachment.bounds = bounds;
+    NSAttributedString *attrString = [NSAttributedString attributedStringWithAttachment:attachment];
+    return attrString;
+}
+
+
 - (NSDictionary *)cc_attributes {
     return [self cc_attributesAtIndex:0];
 }

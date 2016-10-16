@@ -15,6 +15,13 @@
 + (instancetype)cc_attributedStringWithString:(NSString *)string;
 + (instancetype)cc_attributedStringWithString:(NSString *)string attributes:(NSDictionary<NSString *,id> *)attributes;
 
+/// convenient methods to initialize NSAttributedString with textColor and font
++ (instancetype)cc_attributedStringWithString:(NSString *)string textColor:(UIColor *)color;
++ (instancetype)cc_attributedStringWithString:(NSString *)string font:(UIFont *)font;
++ (instancetype)cc_attributedStringWithString:(NSString *)string textColor:(UIColor *)color font:(UIFont *)font;
+
++ (instancetype)cc_attributedStringWithImage:(UIImage *)image bounds:(CGRect)bounds;
+
 /// get the attributes of the first character
 - (NSDictionary *)cc_attributes;
 - (NSDictionary *)cc_attributesAtIndex:(NSUInteger)index;
