@@ -97,6 +97,10 @@
 		A70563371D6EBA9100652E03 /* chat.plist in Resources */ = {isa = PBXBuildFile; fileRef = A70563351D6EBA9100652E03 /* chat.plist */; };
 		A70563381D6EBA9100652E03 /* test.html in Resources */ = {isa = PBXBuildFile; fileRef = A70563361D6EBA9100652E03 /* test.html */; };
 		A705633A1D6EBE8300652E03 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A70563391D6EBE8300652E03 /* WebKit.framework */; };
+		A7073E191DC059BB0049175A /* People.m in Sources */ = {isa = PBXBuildFile; fileRef = A7073E181DC059BB0049175A /* People.m */; };
+		A7073E1C1DC059F10049175A /* Student.m in Sources */ = {isa = PBXBuildFile; fileRef = A7073E1B1DC059F10049175A /* Student.m */; };
+		A7073E1F1DC05A230049175A /* Teacher.m in Sources */ = {isa = PBXBuildFile; fileRef = A7073E1E1DC05A230049175A /* Teacher.m */; };
+		A7073E221DC05A4D0049175A /* School.m in Sources */ = {isa = PBXBuildFile; fileRef = A7073E211DC05A4D0049175A /* School.m */; };
 		A73B52261D79618C0035D336 /* CIFaceAnimateFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = A73B52251D79618C0035D336 /* CIFaceAnimateFilter.m */; };
 		A75B10EE1D743EF5003F4242 /* CoreImageSubclassCIFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A75B10ED1D743EF5003F4242 /* CoreImageSubclassCIFilterViewController.m */; };
 		A75B10F41D744487003F4242 /* CIFacePixelFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = A75B10F31D744487003F4242 /* CIFacePixelFilter.m */; };
@@ -333,6 +337,14 @@
 		A70563351D6EBA9100652E03 /* chat.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = chat.plist; sourceTree = "<group>"; };
 		A70563361D6EBA9100652E03 /* test.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = test.html; sourceTree = "<group>"; };
 		A70563391D6EBE8300652E03 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		A7073E171DC059BA0049175A /* People.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = People.h; sourceTree = "<group>"; };
+		A7073E181DC059BB0049175A /* People.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = People.m; sourceTree = "<group>"; };
+		A7073E1A1DC059F10049175A /* Student.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Student.h; sourceTree = "<group>"; };
+		A7073E1B1DC059F10049175A /* Student.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Student.m; sourceTree = "<group>"; };
+		A7073E1D1DC05A230049175A /* Teacher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Teacher.h; sourceTree = "<group>"; };
+		A7073E1E1DC05A230049175A /* Teacher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Teacher.m; sourceTree = "<group>"; };
+		A7073E201DC05A4D0049175A /* School.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = School.h; sourceTree = "<group>"; };
+		A7073E211DC05A4D0049175A /* School.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = School.m; sourceTree = "<group>"; };
 		A73B52241D79618C0035D336 /* CIFaceAnimateFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIFaceAnimateFilter.h; sourceTree = "<group>"; };
 		A73B52251D79618C0035D336 /* CIFaceAnimateFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIFaceAnimateFilter.m; sourceTree = "<group>"; };
 		A75B10EC1D743EF5003F4242 /* CoreImageSubclassCIFilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreImageSubclassCIFilterViewController.h; sourceTree = "<group>"; };
@@ -603,6 +615,14 @@
 		A705626D1D6EBA7000652E03 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				A7073E171DC059BA0049175A /* People.h */,
+				A7073E181DC059BB0049175A /* People.m */,
+				A7073E1A1DC059F10049175A /* Student.h */,
+				A7073E1B1DC059F10049175A /* Student.m */,
+				A7073E1D1DC05A230049175A /* Teacher.h */,
+				A7073E1E1DC05A230049175A /* Teacher.m */,
+				A7073E201DC05A4D0049175A /* School.h */,
+				A7073E211DC05A4D0049175A /* School.m */,
 				A705626E1D6EBA7000652E03 /* JsonObjectAndModelViewController.h */,
 				A705626F1D6EBA7000652E03 /* JsonObjectAndModelViewController.m */,
 				A70562701D6EBA7000652E03 /* ModelViewController.h */,
@@ -1157,6 +1177,7 @@
 				A70563031D6EBA7000652E03 /* JsonObjectAndModelViewController.m in Sources */,
 				A70563121D6EBA7000652E03 /* DrawViewContainer.m in Sources */,
 				A705631C1D6EBA7000652E03 /* ImageBlendViewController.m in Sources */,
+				A7073E221DC05A4D0049175A /* School.m in Sources */,
 				A773BDE91D671475008E53C1 /* CCTextLayout.m in Sources */,
 				A70563321D6EBA7000652E03 /* URLSessionCacheViewController.m in Sources */,
 				A70563221D6EBA7000652E03 /* ShadowGradientsViewController.m in Sources */,
@@ -1172,6 +1193,7 @@
 				A773BDF11D671475008E53C1 /* UIFont+CCKit.m in Sources */,
 				A70563171D6EBA7000652E03 /* TestDrawScaleViewController.m in Sources */,
 				A70562E11D6EBA7000652E03 /* AudioPlayAudioQueueFromFileViewController.m in Sources */,
+				A7073E191DC059BB0049175A /* People.m in Sources */,
 				A705631B1D6EBA7000652E03 /* CoordinateViewController.m in Sources */,
 				A773BDE41D671475008E53C1 /* CCHTMLConfig.m in Sources */,
 				A773BDF51D671475008E53C1 /* CCLinearGradientView.m in Sources */,
@@ -1209,6 +1231,7 @@
 				A70562DF1D6EBA7000652E03 /* ImplicityAnimationViewController.m in Sources */,
 				A70562FF1D6EBA7000652E03 /* ImageIO.m in Sources */,
 				A705630D1D6EBA7000652E03 /* KVOPeople.m in Sources */,
+				A7073E1F1DC05A230049175A /* Teacher.m in Sources */,
 				A70563161D6EBA7000652E03 /* TestBlendViewController.m in Sources */,
 				A773BDEF1D671475008E53C1 /* NSString+CCKit.m in Sources */,
 				A70563041D6EBA7000652E03 /* ModelViewController.m in Sources */,
@@ -1232,6 +1255,7 @@
 				A773BDF31D671475008E53C1 /* UIView+CCKit.m in Sources */,
 				A773BDF21D671475008E53C1 /* UIImage+CCKit.m in Sources */,
 				A70562E31D6EBA7000652E03 /* AudioRecordAudioQueueToFileViewController.m in Sources */,
+				A7073E1C1DC059F10049175A /* Student.m in Sources */,
 				A70563281D6EBA7000652E03 /* UrlSessionViewController.m in Sources */,
 				A70562F81D6EBA7000652E03 /* CoreTextExclusivePathViewController.m in Sources */,
 				A705630B1D6EBA7000652E03 /* NetworkViewController.m in Sources */,

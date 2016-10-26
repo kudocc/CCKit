@@ -17,10 +17,10 @@
 - (id)cc_objectForKeyPath:(NSString *)keyPath separator:(NSString *)separator {
     NSArray *array = [keyPath componentsSeparatedByString:separator];
     if ([array count] == 0) return nil;
-    id value = self;
+    NSDictionary *value = self;
     for (NSString *key in array) {
         value = value[key];
-        if (!value) {
+        if (!value || ![value isKindOfClass:[NSDictionary class]]) {
             break;
         }
     }

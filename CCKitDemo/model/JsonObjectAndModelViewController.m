@@ -8,6 +8,10 @@
 
 #import "JsonObjectAndModelViewController.h"
 #import "NSObject+CCModel.h"
+#import "People.h"
+#import "Student.h"
+#import "Teacher.h"
+#import "School.h"
 
 @interface ScalarNumberModel : NSObject <NSCopying>
 @property char charTest;
@@ -31,157 +35,16 @@
 }
 @end
 
-
-@interface People : NSObject <CCModel>
-@property NSString *name;
-@property int age;
-@end
-@implementation People
-+ (NSSet<NSString *> *)propertyNameCalculateHash {
-    return [NSSet setWithObject:@"name"];
-}
+@interface KeypathPropertyModel : NSObject <CCModel>
+@property (nonatomic) NSString *name;
+@property (nonatomic) int age;
 @end
 
-@interface Student : People <CCModel, NSCopying, NSCoding>
-@property int grade;
-@end
-@implementation Student
-+ (NSDictionary<NSString *, NSString *> *)propertyNameToJsonKeyMap {
-    return @{@"grade":@"g"};
-}
-- (void)modelFinishConstructFromJSONObject:(NSDictionary *)jsonObject {
-    NSLog(@"%@", NSStringFromSelector(_cmd));
-}
-- (void)JSONObjectFinishConstructFromModel:(NSMutableDictionary *)jsonObject {
-    NSLog(@"%@", NSStringFromSelector(_cmd));
-}
+@implementation KeypathPropertyModel
 
-#pragma mark - NSObject
-
-- (BOOL)isEqual:(id)object {
-    return [self ccmodel_isEqual:object];
-}
-
-- (NSUInteger)hash {
-    return [self ccmodel_hash];
-}
-
-#pragma mark - NSCopying
-
-- (id)copyWithZone:(NSZone *)zone {
-    return [self ccmodel_copyWithZone:zone];
-}
-
-#pragma mark - NSCoding
-
-- (void)encodeWithCoder:(NSCoder *)aCoder {
-    [self ccmodel_encodeWithCoder:aCoder];
-}
-
-- (instancetype)initWithCoder:(NSCoder *)coder {
-    return [self ccmodel_initWithCoder:coder];
-}
-
-@end
-
-@interface Teacher : People <NSCopying, NSCoding>
-@property int subject;
-@end
-@implementation Teacher
-
-#pragma mark - NSObject
-
-- (BOOL)isEqual:(id)object {
-    return [self ccmodel_isEqual:object];
-}
-
-- (NSUInteger)hash {
-    return [self ccmodel_hash];
-}
-
-#pragma mark - NSCopying
-
-- (id)copyWithZone:(NSZone *)zone {
-    return [self ccmodel_copyWithZone:zone];
-}
-
-#pragma mark - NSCoding
-
-- (void)encodeWithCoder:(NSCoder *)aCoder {
-    [self ccmodel_encodeWithCoder:aCoder];
-}
-
-- (instancetype)initWithCoder:(NSCoder *)coder {
-    return [self ccmodel_initWithCoder:coder];
-}
-
-@end
-
-@interface School : NSObject <CCModel, NSCoding, NSCopying>
-
-@property NSString *schoolId;
-
-/// the first key @"student", value is a NSDictionary-> {@"count":@1, @"value":@[]} "value" is array of Student
-/// the second key @"teacher", value is a NSDictionary-> {@"count":@1, @"value":@[]} the value of the key "value" is array of Teacher
-@property NSDictionary *people;
-
-@property NSURL *homePageURL;
-
-@property NSInteger studentCount;
-@property NSInteger teacherCount;
-
-@end
-@implementation School
-
-#pragma mark - CCModel
-
-+ (NSDictionary<NSString *, NSString *> *)propertyNameToJsonKeyMap {
-    return @{@"studentCount":@"people.student.count",
-             @"teacherCount":@"people.teacher.count"};
-}
-
-+ (NSDictionary<NSString *, ContainerTypeObject *> *)propertyNameToContainerTypeObjectMap {
-    ContainerTypeObject *countObj = [[ContainerTypeObject alloc] initWithClass:[NSNumber class]];
-    
-    ContainerTypeObject *arrayStudent = [ContainerTypeObject arrayContainerTypeObjectWithValueClass:[Student class]];
-    ContainerTypeObject *arrayTeacher = [ContainerTypeObject arrayContainerTypeObjectWithValueClass:[Teacher class]];
-    
-    ContainerTypeObject *dictStudent = [ContainerTypeObject dictionaryContainerTypeObjectWithKeyToValueClass:@{@"count":countObj, @"value":arrayStudent}];
-    ContainerTypeObject *dictTeacher = [ContainerTypeObject dictionaryContainerTypeObjectWithKeyToValueClass:@{@"count":countObj, @"value":arrayTeacher}];
-    
-    ContainerTypeObject *dictPeople = [ContainerTypeObject dictionaryContainerTypeObjectWithKeyToValueClass:@{@"student":dictStudent, @"teacher":dictTeacher}];
-    
-    return @{@"people": dictPeople};
-}
-
-+ (NSSet<NSString *> *)propertyNameCalculateHash {
-    return [NSSet setWithObjects:@"schoolId", nil];
-}
-
-#pragma mark - NSObject
-
-- (BOOL)isEqual:(id)object {
-    return [self ccmodel_isEqual:object];
-}
-
-- (NSUInteger)hash {
-    return [self ccmodel_hash];
-}
-
-#pragma mark - NSCopying
-
-- (id)copyWithZone:(NSZone *)zone {
-    return [self ccmodel_copyWithZone:zone];
-}
-
-#pragma mark - NSCoding
-
-- (void)encodeWithCoder:(NSCoder *)aCoder {
-    [self ccmodel_encodeWithCoder:aCoder];
-}
-
-- (instancetype)initWithCoder:(NSCoder *)coder {
-    return [self ccmodel_initWithCoder:coder];
++ (NSDictionary *)propertyNameToJsonKeyMap {
+    return @{@"name":@"cname",
+             @"age":@"object.age"};
 }
 
 @end
@@ -380,6 +243,17 @@
     }
 }
 
+- (void)testNSNull {
+    NSString *string = @"{\"cname\":\"kudo\", \"object\":{\"age\":10}}";
+    NSString *stringException = @"{\"cname\":\"kudo\", \"object\":null}";
+    KeypathPropertyModel *model1 = [KeypathPropertyModel ccmodel_modelWithJSON:string];
+    KeypathPropertyModel *model2 = [KeypathPropertyModel ccmodel_modelWithJSON:stringException];
+    NSString *str1 = [model1 ccmodel_jsonObjectString];
+    NSString *str2 = [model2 ccmodel_jsonObjectString];
+    NSLog(@"%@", str1);
+    NSLog(@"%@", str2);
+}
+
 - (void)initView {
     [self testScalarNumberModel];
     
@@ -399,6 +273,8 @@
     [self testPeople];
     
     [self testNSCopying_NSCoding];
+    
+    [self testNSNull];
 }
 
 @end
