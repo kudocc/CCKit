@@ -21,7 +21,7 @@
     for (NSString *key in array) {
         value = value[key];
         if (!value || ![value isKindOfClass:[NSDictionary class]]) {
-            break;
+            return nil;
         }
     }
     return value;
