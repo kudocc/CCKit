@@ -1055,6 +1055,12 @@
 				TargetAttributes = {
 					A773BD701D671395008E53C1 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = VM764RFM6S;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
+						};
 					};
 					A773BD891D671395008E53C1 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -1433,6 +1439,7 @@
 			baseConfigurationReference = 0B277119606C63C9D25F2A92 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = VM764RFM6S;
 				INFOPLIST_FILE = CCKitDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1446,6 +1453,7 @@
 			baseConfigurationReference = 8EB5C3BD85E1B7CBFF43F457 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = VM764RFM6S;
 				INFOPLIST_FILE = CCKitDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
