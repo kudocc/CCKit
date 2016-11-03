@@ -15,7 +15,7 @@
     _webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 64, ScreenWidth, ScreenHeight-64) configuration:configuration];
     [self.view addSubview:_webView];
     
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"html"];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"html_parser" ofType:@"html"];
     NSString *htmlString = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     [_webView loadHTMLString:htmlString baseURL:nil];
 }

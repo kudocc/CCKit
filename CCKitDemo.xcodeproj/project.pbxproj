@@ -95,7 +95,7 @@
 		A70563331D6EBA7000652E03 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A70562D71D6EBA7000652E03 /* WebViewController.m */; };
 		A70563341D6EBA7000652E03 /* WKWebViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A70562D91D6EBA7000652E03 /* WKWebViewViewController.m */; };
 		A70563371D6EBA9100652E03 /* chat.plist in Resources */ = {isa = PBXBuildFile; fileRef = A70563351D6EBA9100652E03 /* chat.plist */; };
-		A70563381D6EBA9100652E03 /* test.html in Resources */ = {isa = PBXBuildFile; fileRef = A70563361D6EBA9100652E03 /* test.html */; };
+		A70563381D6EBA9100652E03 /* html_parser.html in Resources */ = {isa = PBXBuildFile; fileRef = A70563361D6EBA9100652E03 /* html_parser.html */; };
 		A705633A1D6EBE8300652E03 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A70563391D6EBE8300652E03 /* WebKit.framework */; };
 		A7073E191DC059BB0049175A /* People.m in Sources */ = {isa = PBXBuildFile; fileRef = A7073E181DC059BB0049175A /* People.m */; };
 		A7073E1C1DC059F10049175A /* Student.m in Sources */ = {isa = PBXBuildFile; fileRef = A7073E1B1DC059F10049175A /* Student.m */; };
@@ -335,7 +335,7 @@
 		A70562D81D6EBA7000652E03 /* WKWebViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKWebViewViewController.h; sourceTree = "<group>"; };
 		A70562D91D6EBA7000652E03 /* WKWebViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKWebViewViewController.m; sourceTree = "<group>"; };
 		A70563351D6EBA9100652E03 /* chat.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = chat.plist; sourceTree = "<group>"; };
-		A70563361D6EBA9100652E03 /* test.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = test.html; sourceTree = "<group>"; };
+		A70563361D6EBA9100652E03 /* html_parser.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = html_parser.html; sourceTree = "<group>"; };
 		A70563391D6EBE8300652E03 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		A7073E171DC059BA0049175A /* People.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = People.h; sourceTree = "<group>"; };
 		A7073E181DC059BB0049175A /* People.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = People.m; sourceTree = "<group>"; };
@@ -573,6 +573,8 @@
 		A705624E1D6EBA7000652E03 /* coreText */ = {
 			isa = PBXGroup;
 			children = (
+				A70562571D6EBA7000652E03 /* CoreTextHelper.h */,
+				A70562581D6EBA7000652E03 /* CoreTextHelper.m */,
 				A70562591D6EBA7000652E03 /* CoreTextViewController.h */,
 				A705625A1D6EBA7000652E03 /* CoreTextViewController.m */,
 				A705625F1D6EBA7000652E03 /* SimpleChatViewController.h */,
@@ -583,8 +585,6 @@
 				A70562521D6EBA7000652E03 /* ChatViewController.m */,
 				A70562551D6EBA7000652E03 /* CoreTextExclusivePathViewController.h */,
 				A70562561D6EBA7000652E03 /* CoreTextExclusivePathViewController.m */,
-				A70562571D6EBA7000652E03 /* CoreTextHelper.h */,
-				A70562581D6EBA7000652E03 /* CoreTextHelper.m */,
 				A705624F1D6EBA7000652E03 /* CCLabelDemoViewController.h */,
 				A70562501D6EBA7000652E03 /* CCLabelDemoViewController.m */,
 				A705625B1D6EBA7000652E03 /* HTMLParserViewController.h */,
@@ -843,7 +843,7 @@
 				A773BD771D671395008E53C1 /* AppDelegate.h */,
 				A773BD781D671395008E53C1 /* AppDelegate.m */,
 				A70563351D6EBA9100652E03 /* chat.plist */,
-				A70563361D6EBA9100652E03 /* test.html */,
+				A70563361D6EBA9100652E03 /* html_parser.html */,
 				A773BD7D1D671395008E53C1 /* Main.storyboard */,
 				A773BD801D671395008E53C1 /* Assets.xcassets */,
 				A773BD821D671395008E53C1 /* LaunchScreen.storyboard */,
@@ -1097,7 +1097,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A70563381D6EBA9100652E03 /* test.html in Resources */,
+				A70563381D6EBA9100652E03 /* html_parser.html in Resources */,
 				A70563371D6EBA9100652E03 /* chat.plist in Resources */,
 				A773BD841D671395008E53C1 /* LaunchScreen.storyboard in Resources */,
 				A70563251D6EBA7000652E03 /* server.cer in Resources */,

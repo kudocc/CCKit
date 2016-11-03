@@ -16,6 +16,7 @@
 }
 
 + (instancetype)cc_attributedStringWithString:(NSString *)string attributes:(NSDictionary<NSString *,id> *)attributes {
+    // 使用self.class保证NSMutableAttributedString继承其可以使用
     return [[self.class alloc] initWithString:string attributes:attributes];
 }
 
@@ -47,7 +48,7 @@
     NSTextAttachment *attachment = [[NSTextAttachment alloc] init];
     attachment.image = image;
     attachment.bounds = bounds;
-    NSAttributedString *attrString = [NSAttributedString attributedStringWithAttachment:attachment];
+    id attrString = [self.class attributedStringWithAttachment:attachment];
     return attrString;
 }
 
@@ -161,7 +162,10 @@
 
 #pragma mark - attachment
 
-+ (NSAttributedString *)cc_attachmentStringWithContent:(id)content contentMode:(UIViewContentMode)contentMode contentSize:(CGSize)contentSize alignToFont:(UIFont *)font attachmentPosition:(CCTextAttachmentPosition)position {
++ (instancetype)cc_attachmentStringWithContent:(id)content
+                                   contentMode:(UIViewContentMode)contentMode
+                                   contentSize:(CGSize)contentSize alignToFont:(UIFont *)font
+                            attachmentPosition:(CCTextAttachmentPosition)position {
     CGFloat ascent, descent, width;
     width = contentSize.width;
     CGSize size = contentSize;
@@ -183,7 +187,9 @@
     return [self cc_attachmentStringWithContent:content contentMode:contentMode width:width ascent:ascent descent:descent];
 }
 
-+ (NSAttributedString *)cc_attachmentStringWithContent:(id)content contentMode:(UIViewContentMode)contentMode width:(CGFloat)width ascent:(CGFloat)ascent descent:(CGFloat)descent {
++ (instancetype)cc_attachmentStringWithContent:(id)content
+                                   contentMode:(UIViewContentMode)contentMode
+                                         width:(CGFloat)width ascent:(CGFloat)ascent descent:(CGFloat)descent {
     NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:CCAttachmentCharacter];
     
     CCTextAttachment *attachment = [CCTextAttachment textAttachmentWithContent:content];
@@ -197,7 +203,11 @@
     CTRunDelegateRef ctRunDelegate = [runDelegate createCTRunDelegateRef];
     [attrString addAttributes:@{CCAttachmentAttributeName:attachment, (__bridge id)kCTRunDelegateAttributeName: (__bridge id)ctRunDelegate} range:NSMakeRange(0, [attrString length])];
     CFRelease(ctRunDelegate);
-    return attrString;
+    if (self.class == [NSMutableAttributedString class]) {
+        return [attrString mutableCopy];
+    } else {
+        return [attrString copy];
+    }
 }
 
 @end

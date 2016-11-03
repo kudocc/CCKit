@@ -155,9 +155,9 @@
     NSLog(@"%@, %@", NSForegroundColorAttributeName, (id)kCTForegroundColorAttributeName);
     NSLog(@"%@, %@", NSParagraphStyleAttributeName, (id)kCTParagraphStyleAttributeName);
     
-    self.arrayTitle = @[@"Simple Chat",
-                        @"Core Text Chat",
-                        @"Asynchonized Text",
+    self.arrayTitle = @[@"Simple Chat - draw text directory with UIKit",
+                        @"Core Text Chat - using Core Text",
+                        @"Asynchonized Text Chat - using CCLabel",
                         @"CCLabel demo",
                         @"HTML parser",
                         @"WebView represents the same HTML content of HTML parser",
@@ -170,17 +170,6 @@
                         [HTMLParserViewController class],
                         [HTMLWebViewController class],
                         [CoreTextExclusivePathViewController class]];
-    
-    
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 100, ScreenWidth, 100)];
-    UIImage *image = [UIImage imageNamed:@"avatar"];
-    NSAttributedString *attrText = [NSAttributedString cc_attributedStringWithImage:image bounds:CGRectMake(10, -10, image.size.width, image.size.height)];
-    NSAttributedString *attrImg = [NSAttributedString cc_attributedStringWithString:@"测试一下attachment" textColor:[UIColor blackColor] font:[UIFont systemFontOfSize:15]];
-    NSMutableAttributedString *m = [attrText mutableCopy];
-    [m appendAttributedString:attrImg];
-    label.attributedText = [m copy];
-    
-    [self.view addSubview:label];
     
 //    CoreView *v = [[CoreView alloc] initWithFrame:CGRectMake(0, 84, 100, 100)];
 //    v.backgroundColor = [UIColor greenColor];

@@ -59,14 +59,14 @@
 - (NSParagraphStyle *)cc_paragraphStyleAtIndex:(NSUInteger)index;
 
 
-+ (NSAttributedString *)cc_attachmentStringWithContent:(id)content
-                                           contentMode:(UIViewContentMode)contentMode
-                                           contentSize:(CGSize)contentSize alignToFont:(UIFont *)font
-                                    attachmentPosition:(CCTextAttachmentPosition)position;
++ (instancetype)cc_attachmentStringWithContent:(id)content
+                                   contentMode:(UIViewContentMode)contentMode
+                                   contentSize:(CGSize)contentSize alignToFont:(UIFont *)font
+                            attachmentPosition:(CCTextAttachmentPosition)position;
 
-+ (NSAttributedString *)cc_attachmentStringWithContent:(id)content
-                                           contentMode:(UIViewContentMode)contentMode
-                                                 width:(CGFloat)width ascent:(CGFloat)ascent descent:(CGFloat)descent;
++ (instancetype)cc_attachmentStringWithContent:(id)content
+                                   contentMode:(UIViewContentMode)contentMode
+                                         width:(CGFloat)width ascent:(CGFloat)ascent descent:(CGFloat)descent;
 
 @end
 

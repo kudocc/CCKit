@@ -26,7 +26,7 @@
 
 @interface NSMutableDictionary (CCKit)
 
-/// it calls `- (void)cc_setObject:(id)object forKeyPath:(NSString *)keyPath separator:(NSString *)separator` with separator '.'
+/// it calls `- (void)cc_setObject:forKeyPath:separator:` with '.' as separator
 - (void)cc_setObject:(id)object forKeyPath:(NSString *)keyPath;
 - (void)cc_setObject:(id)object forKeyPath:(NSString *)keyPath separator:(NSString *)separator;
 

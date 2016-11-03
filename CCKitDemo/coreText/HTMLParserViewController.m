@@ -23,7 +23,7 @@
     [super initView];
     
     // test UIFont+CCKit
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"html"];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"html_parser" ofType:@"html"];
     NSString *htmlString = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     CCHTMLConfig *config = [CCHTMLConfig defaultConfig];
     config.colorHyperlinkNormal = [UIColor blueColor];

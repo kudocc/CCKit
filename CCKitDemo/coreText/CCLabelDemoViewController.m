@@ -33,15 +33,14 @@
     }
     
     {
-        NSMutableAttributedString *simpleText = [[NSMutableAttributedString alloc] initWithString:@"Good to see you again. Well 你奶奶的顿的。哼哼，呵呵o(￣ヘ￣o#)"];
-        [simpleText cc_setFont:[UIFont systemFontOfSize:16.0]];
+        NSAttributedString *simpleText = [NSAttributedString cc_attributedStringWithString:@"Good to see you again. System font with 16 point size and #cecece color" textColor:[UIColor cc_opaqueColorWithHexString:@"#cecece"] font:[UIFont systemFontOfSize:16.0]];
         [mutableAttrString appendAttributedString:simpleText];
     }
     
     {// <a href=''><image src=''></image></a>
         NSMutableAttributedString *mutable = [[NSMutableAttributedString alloc] init];
         UIImage *imageName = [UIImage imageNamed:@"avatar_ori"];
-        NSAttributedString *attachment = [NSAttributedString cc_attachmentStringWithContent:imageName contentMode:UIViewContentModeScaleToFill contentSize:CGSizeMake(100, 80) alignToFont:[UIFont systemFontOfSize:16] attachmentPosition:CCTextAttachmentPositionTop];
+        NSAttributedString *attachment = [NSAttributedString cc_attachmentStringWithContent:imageName contentMode:UIViewContentModeScaleToFill contentSize:CGSizeMake(100, 80) alignToFont:[UIFont systemFontOfSize:16] attachmentPosition:CCTextAttachmentPositionBottom];
         [mutable appendAttributedString:attachment];
         
         NSMutableAttributedString *highlightedText = [[NSMutableAttributedString alloc] initWithString:@"g.cn"];
@@ -70,8 +69,8 @@
     }
     
     {
-        NSMutableAttributedString *simpleText = [[NSMutableAttributedString alloc] initWithString:@"对了，弄好之后可以看小说了，又找到了一本东野圭吾的小说，叫红手指，一会查查豆瓣评分看看怎么样"];
-        [simpleText cc_setFont:[UIFont systemFontOfSize:16.0]];
+        NSMutableAttributedString *simpleText = [NSMutableAttributedString cc_attributedStringWithString:@"System font with 18 point size and blue color" textColor:[UIColor blueColor]];
+        [simpleText cc_setFont:[UIFont systemFontOfSize:18.0]];
         [mutableAttrString appendAttributedString:simpleText];
     }
     
@@ -101,7 +100,5 @@
         }
     }
 }
-
-#pragma mark - UIGestureRecognizerDelegate
 
 @end
