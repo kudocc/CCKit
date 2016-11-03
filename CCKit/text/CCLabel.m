@@ -39,7 +39,7 @@
         self.backgroundColor = [UIColor clearColor];
         
         CCAsyncLayer *layer = (CCAsyncLayer *)self.layer;
-        layer.asyncDisplay = YES;
+        layer.asyncDisplay = NO;
         
         [self commonInit];
     }
@@ -71,6 +71,10 @@
 
 - (CCAsyncLayer *)asyncLayer {
     return (CCAsyncLayer *)self.layer;
+}
+
+- (BOOL)asyncDisplay {
+    return [self asyncLayer].asyncDisplay;
 }
 
 - (void)setAsyncDisplay:(BOOL)asyncDisplay {
@@ -269,13 +273,17 @@
     [super touchesBegan:touches withEvent:event];
     
     CGPoint position = [[touches anyObject] locationInView:self];
-    NSLog(@"ori pos:%@", NSStringFromCGPoint(position));
+//    NSLog(@"ori pos:%@", NSStringFromCGPoint(position));
     position = [self convertPoint:position toTextLayout:_textLayout];
-    NSLog(@"text layout pos:%@", NSStringFromCGPoint(position));
+//    NSLog(@"text layout pos:%@", NSStringFromCGPoint(position));
     NSInteger index = [_textLayout stringIndexAtPosition:position];
-    NSLog(@"index:%@", @(index));
+//    NSLog(@"index:%@", @(index));
     if (index == NSNotFound) {
         return;
+    }
+    // see doc of `stringIndexAtPosition:`.
+    if (index == _innerAttributedString.length) {
+        index -= 1;
     }
     CCTextHighlighted *textHighlighted = [_innerAttributedString attribute:CCHighlightedAttributeName
                                                                    atIndex:index longestEffectiveRange:&_effectiveRangeTextHighlighted

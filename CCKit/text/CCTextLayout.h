@@ -40,7 +40,16 @@
              position:(CGPoint)position size:(CGSize)size
            isCanceled:(BOOL(^)(void))isCanceled;
 
-/// position is in Core Text coordinate
+/**
+ @discuss   I employ `CTLineGetStringIndexForPosition` to do the job. It seems that if the position locates at the left part of a character, it returns index, if the position locates at the right part of the character, it returns index+1.
+ 
+ @param     position is in Core Text coordinate
+ 
+ @return    The string index for the position. Relative to the line's string
+            range, this value will be no less than the first string index and
+            no greater than one plus the last string index. In the event of
+            failure, this function will return kCFNotFound.
+ */
 - (NSInteger)stringIndexAtPosition:(CGPoint)position;
 
 @end

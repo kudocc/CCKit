@@ -37,8 +37,7 @@
     static CGFloat width = 0;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        width = ScreenWidth * 2 / 3;
-        width = ceill(width);
+        width = ceill(ScreenWidth * 2 / 3);
     });
     return width;
 }

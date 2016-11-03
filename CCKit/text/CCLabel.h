@@ -14,6 +14,7 @@
 
 @interface CCLabel : UIView
 
+// default is NO
 @property (nonatomic) BOOL asyncDisplay;
 
 @property (nonatomic) UIFont *font;

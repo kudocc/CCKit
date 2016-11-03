@@ -275,13 +275,20 @@
             CGRect frame = [line.attachmentFrames[i] CGRectValue];
             CGRect frameContainer = CGRectOffset(frame, position.x, position.y);
             frameContainer = UIEdgeInsetsInsetRect(frameContainer, attachment.contentInsets);
-            CGRect frameInside = [UIView cc_frameOfContentWithContentSize:attachment.contentSize containerSize:frameContainer.size contentMode:attachment.contentMode];
-            frame = CGRectMake(frameContainer.origin.x+frameInside.origin.x, frameContainer.origin.y+frameInside.origin.y, frameInside.size.width, frameInside.size.height);
             if ([attachment.content isKindOfClass:[UIImage class]]) {
                 CGContextSaveGState(context);
                 CGContextClipToRect(context, frameContainer);
+                
                 UIImage *image = (UIImage *)attachment.content;
-                CGContextDrawImage(context, frame, image.CGImage);
+                // apply UIKit CTM
+                CGContextScaleCTM(context, 1, -1);
+                CGContextTranslateCTM(context, 0, -size.height);
+                CGAffineTransform transform = transform = CGAffineTransformMakeScale(1, -1);
+                transform = CGAffineTransformTranslate(transform, 0, -size.height);
+                frameContainer = CGRectApplyAffineTransform(frameContainer, transform);
+                CGRect frameInside = [UIView cc_frameOfContentWithContentSize:attachment.contentSize containerSize:frameContainer.size contentMode:attachment.contentMode];
+                frame = CGRectMake(frameContainer.origin.x+frameInside.origin.x, frameContainer.origin.y+frameInside.origin.y, frameInside.size.width, frameInside.size.height);
+                [image drawInRect:frame];
                 CGContextRestoreGState(context);
             }
         }
@@ -419,7 +426,7 @@
     }
 }
 
-// TODO:when the last run is a image, position is the end + 1. why???
+
 - (NSInteger)stringIndexAtPosition:(CGPoint)position {
     for (CCTextLine *line in _textLines) {
         if (CGRectContainsPoint(line.frame, position)) {
