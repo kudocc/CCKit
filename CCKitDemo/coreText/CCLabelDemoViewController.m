@@ -34,9 +34,9 @@
     
     {// <a href=''><image src=''></image></a>
         NSMutableAttributedString *mutable = [[NSMutableAttributedString alloc] init];
-//        UIImage *imageName = [UIImage imageNamed:@"avatar_ori"];
-//        NSAttributedString *attachment = [NSAttributedString cc_attachmentStringWithContent:imageName contentMode:UIViewContentModeScaleToFill contentSize:CGSizeMake(100, 80) alignToFont:[UIFont systemFontOfSize:16] attachmentPosition:CCTextAttachmentPositionBottom];
-//        [mutable appendAttributedString:attachment];
+        UIImage *imageName = [UIImage imageNamed:@"avatar_ori"];
+        NSAttributedString *attachment = [NSAttributedString cc_attachmentStringWithContent:imageName contentMode:UIViewContentModeScaleToFill contentSize:CGSizeMake(50, 45) alignToFont:[UIFont systemFontOfSize:16] attachmentPosition:CCTextAttachmentPositionBottom];
+        [mutable appendAttributedString:attachment];
         
         NSMutableAttributedString *highlightedText = [[NSMutableAttributedString alloc] initWithString:@"GOOGLE"];
         [highlightedText cc_setFont:[UIFont systemFontOfSize:16.0]];
@@ -76,7 +76,22 @@
     
     {
         UIImage *imageName = [UIImage imageNamed:@"avatar_ori"];
-        NSAttributedString *attachment = [NSAttributedString cc_attachmentStringWithContent:imageName contentMode:UIViewContentModeBottom contentSize:CGSizeMake(100, 90) alignToFont:[UIFont systemFontOfSize:16] attachmentPosition:CCTextAttachmentPositionBottom];
+        NSAttributedString *attachment = [NSAttributedString cc_attachmentStringWithContent:imageName contentMode:UIViewContentModeTop contentSize:CGSizeMake(100, 90) alignToFont:[UIFont systemFontOfSize:16] attachmentPosition:CCTextAttachmentPositionBottom];
+        [mutableAttrString appendAttributedString:attachment];
+        
+        attachment = [NSAttributedString cc_attachmentStringWithContent:imageName contentMode:UIViewContentModeBottom contentSize:CGSizeMake(100, 90) alignToFont:[UIFont systemFontOfSize:16] attachmentPosition:CCTextAttachmentPositionBottom];
+        [mutableAttrString appendAttributedString:attachment];
+        
+        attachment = [NSAttributedString cc_attachmentStringWithContent:imageName contentMode:UIViewContentModeLeft contentSize:CGSizeMake(100, 90) alignToFont:[UIFont systemFontOfSize:16] attachmentPosition:CCTextAttachmentPositionBottom];
+        [mutableAttrString appendAttributedString:attachment];
+        
+        attachment = [NSAttributedString cc_attachmentStringWithContent:imageName contentMode:UIViewContentModeRight contentSize:CGSizeMake(100, 90) alignToFont:[UIFont systemFontOfSize:16] attachmentPosition:CCTextAttachmentPositionBottom];
+        [mutableAttrString appendAttributedString:attachment];
+        
+        attachment = [NSAttributedString cc_attachmentStringWithContent:imageName contentMode:UIViewContentModeScaleToFill contentSize:CGSizeMake(100, 90) alignToFont:[UIFont systemFontOfSize:16] attachmentPosition:CCTextAttachmentPositionBottom];
+        [mutableAttrString appendAttributedString:attachment];
+        
+        attachment = [NSAttributedString cc_attachmentStringWithContent:imageName contentMode:UIViewContentModeScaleAspectFit contentSize:CGSizeMake(100, 90) alignToFont:[UIFont systemFontOfSize:16] attachmentPosition:CCTextAttachmentPositionBottom];
         [mutableAttrString appendAttributedString:attachment];
     }
     

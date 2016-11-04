@@ -280,11 +280,12 @@
                 CGContextClipToRect(context, frameContainer);
                 
                 UIImage *image = (UIImage *)attachment.content;
-                // apply UIKit CTM
+                // retore to UIKit CTM
+                CGContextTranslateCTM(context, 0, size.height);
                 CGContextScaleCTM(context, 1, -1);
-                CGContextTranslateCTM(context, 0, -size.height);
-                CGAffineTransform transform = transform = CGAffineTransformMakeScale(1, -1);
-                transform = CGAffineTransformTranslate(transform, 0, -size.height);
+                // convert Core Text frame to UIKit frame
+                CGAffineTransform transform = CGAffineTransformMakeTranslation(0, size.height);
+                transform = CGAffineTransformScale(transform, 1, -1);
                 frameContainer = CGRectApplyAffineTransform(frameContainer, transform);
                 CGRect frameInside = [UIView cc_frameOfContentWithContentSize:attachment.contentSize containerSize:frameContainer.size contentMode:attachment.contentMode];
                 frame = CGRectMake(frameContainer.origin.x+frameInside.origin.x, frameContainer.origin.y+frameInside.origin.y, frameInside.size.width, frameInside.size.height);

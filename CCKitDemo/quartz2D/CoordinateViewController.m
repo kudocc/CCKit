@@ -82,8 +82,36 @@
 }
 
 - (void)drawRect:(CGRect)rect {
-    // 使用UIBezierPath和使用其path直接用CGContextDrawPath效果是一样的
     CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    {
+        CGContextSaveGState(context);
+        CGAffineTransform transform = CGContextGetCTM(context);
+        NSLog(@"s:%@", NSStringFromCGAffineTransform(transform));
+        transform = CGAffineTransformTranslate(transform, 0, rect.size.height);
+        transform = CGAffineTransformScale(transform, 1, -1);
+        NSLog(@"m:%@", NSStringFromCGAffineTransform(transform));
+        transform = CGAffineTransformTranslate(transform, 0, rect.size.height);
+        transform = CGAffineTransformScale(transform, 1, -1);
+        NSLog(@"e:%@", NSStringFromCGAffineTransform(transform));
+        CGContextRestoreGState(context);
+        
+        transform = CGAffineTransformIdentity;
+        NSLog(@"x0:%@", NSStringFromCGAffineTransform(transform));
+        transform = CGAffineTransformTranslate(transform, 0, rect.size.height);
+        NSLog(@"x1:%@", NSStringFromCGAffineTransform(transform));
+        transform = CGAffineTransformScale(transform, 1, -1);
+        NSLog(@"x2:%@", NSStringFromCGAffineTransform(transform));
+        
+        transform = CGAffineTransformIdentity;
+        NSLog(@"y0:%@", NSStringFromCGAffineTransform(transform));
+        transform = CGAffineTransformScale(transform, 1, -1);
+        NSLog(@"y1:%@", NSStringFromCGAffineTransform(transform));
+        transform = CGAffineTransformTranslate(transform, 0, rect.size.height);
+        NSLog(@"y2:%@", NSStringFromCGAffineTransform(transform));
+    }
+    
+    // 使用UIBezierPath和使用其path直接用CGContextDrawPath效果是一样的
     CGContextSetStrokeColorWithColor(context, [UIColor redColor].CGColor);
     CGContextAddPath(context, path);
     CGContextDrawPath(context, kCGPathStroke);
@@ -92,7 +120,6 @@
     
     // 使用CGContextDrawImage正确绘制图片
     CGFloat y = 200.0;
-    NSLog(@"%@", NSStringFromCGAffineTransform(CGContextGetCTM(context)));
     CGContextSaveGState(context);
     CGContextTranslateCTM(context, 0, y+image.size.height);
     CGContextScaleCTM(context, 1.0, -1.0);
