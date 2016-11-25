@@ -27,6 +27,8 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>We need your authorization to use camera</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>I need your microphone to record</string>
 	<key>UILaunchStoryboardName</key>
