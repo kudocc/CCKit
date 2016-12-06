@@ -11,6 +11,7 @@
 @interface ImplicityAnimationViewController : BaseViewController
 
 @property (nonatomic, strong) CALayer *layer;
+@property (nonatomic, strong) CALayer *layer1;
 @property (nonatomic, strong) UIView *viewTest;
 
 @end

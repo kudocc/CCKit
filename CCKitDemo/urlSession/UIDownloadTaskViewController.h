@@ -6,8 +6,8 @@
 //  Copyright © 2016年 KudoCC. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@interface UIDownloadTaskViewController : UIViewController
+@interface UIDownloadTaskViewController : BaseViewController
 
 @end

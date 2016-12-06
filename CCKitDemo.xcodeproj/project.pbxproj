@@ -78,8 +78,6 @@
 		A70563221D6EBA7000652E03 /* ShadowGradientsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A70562B41D6EBA7000652E03 /* ShadowGradientsViewController.m */; };
 		A70563231D6EBA7000652E03 /* DataTaskBasicAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A70562B71D6EBA7000652E03 /* DataTaskBasicAuthViewController.m */; };
 		A70563241D6EBA7000652E03 /* DataTaskHttpsServerAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A70562B91D6EBA7000652E03 /* DataTaskHttpsServerAuthViewController.m */; };
-		A70563251D6EBA7000652E03 /* server.cer in Resources */ = {isa = PBXBuildFile; fileRef = A70562BA1D6EBA7000652E03 /* server.cer */; };
-		A70563261D6EBA7000652E03 /* servvv.cer in Resources */ = {isa = PBXBuildFile; fileRef = A70562BB1D6EBA7000652E03 /* servvv.cer */; };
 		A70563271D6EBA7000652E03 /* UIDownloadTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A70562BD1D6EBA7000652E03 /* UIDownloadTaskViewController.m */; };
 		A70563281D6EBA7000652E03 /* UrlSessionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A70562BF1D6EBA7000652E03 /* UrlSessionViewController.m */; };
 		A70563291D6EBA7000652E03 /* CustomAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = A70562C21D6EBA7000652E03 /* CustomAnimator.m */; };
@@ -136,6 +134,7 @@
 		A773BDF41D671475008E53C1 /* CCFPSLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A773BDDA1D671475008E53C1 /* CCFPSLabel.m */; };
 		A773BDF51D671475008E53C1 /* CCLinearGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = A773BDDC1D671475008E53C1 /* CCLinearGradientView.m */; };
 		A773BDF61D671475008E53C1 /* CCStack.m in Sources */ = {isa = PBXBuildFile; fileRef = A773BDDE1D671475008E53C1 /* CCStack.m */; };
+		A7DAFF9E1DDB0CEB002DE7CC /* AnimationKeyboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7DAFF9D1DDB0CEB002DE7CC /* AnimationKeyboardViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -417,6 +416,8 @@
 		A773BDDC1D671475008E53C1 /* CCLinearGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCLinearGradientView.m; sourceTree = "<group>"; };
 		A773BDDD1D671475008E53C1 /* CCStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCStack.h; sourceTree = "<group>"; };
 		A773BDDE1D671475008E53C1 /* CCStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCStack.m; sourceTree = "<group>"; };
+		A7DAFF9C1DDB0CEB002DE7CC /* AnimationKeyboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationKeyboardViewController.h; sourceTree = "<group>"; };
+		A7DAFF9D1DDB0CEB002DE7CC /* AnimationKeyboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimationKeyboardViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -460,6 +461,8 @@
 			children = (
 				A70562151D6EBA7000652E03 /* AnimationViewController.h */,
 				A70562161D6EBA7000652E03 /* AnimationViewController.m */,
+				A705621F1D6EBA7000652E03 /* ImplicityAnimationViewController.h */,
+				A70562201D6EBA7000652E03 /* ImplicityAnimationViewController.m */,
 				A70562171D6EBA7000652E03 /* CAActionTestViewController.h */,
 				A70562181D6EBA7000652E03 /* CAActionTestViewController.m */,
 				A70562191D6EBA7000652E03 /* CABasicAnimationTestViewController.h */,
@@ -468,8 +471,8 @@
 				A705621C1D6EBA7000652E03 /* CAKeyframeViewController.m */,
 				A705621D1D6EBA7000652E03 /* CAShapeLayerTestViewController.h */,
 				A705621E1D6EBA7000652E03 /* CAShapeLayerTestViewController.m */,
-				A705621F1D6EBA7000652E03 /* ImplicityAnimationViewController.h */,
-				A70562201D6EBA7000652E03 /* ImplicityAnimationViewController.m */,
+				A7DAFF9C1DDB0CEB002DE7CC /* AnimationKeyboardViewController.h */,
+				A7DAFF9D1DDB0CEB002DE7CC /* AnimationKeyboardViewController.m */,
 			);
 			path = animation;
 			sourceTree = "<group>";
@@ -746,6 +749,8 @@
 		A70562B51D6EBA7000652E03 /* urlSession */ = {
 			isa = PBXGroup;
 			children = (
+				A70562BE1D6EBA7000652E03 /* UrlSessionViewController.h */,
+				A70562BF1D6EBA7000652E03 /* UrlSessionViewController.m */,
 				A70562B61D6EBA7000652E03 /* DataTaskBasicAuthViewController.h */,
 				A70562B71D6EBA7000652E03 /* DataTaskBasicAuthViewController.m */,
 				A70562B81D6EBA7000652E03 /* DataTaskHttpsServerAuthViewController.h */,
@@ -754,8 +759,6 @@
 				A70562BB1D6EBA7000652E03 /* servvv.cer */,
 				A70562BC1D6EBA7000652E03 /* UIDownloadTaskViewController.h */,
 				A70562BD1D6EBA7000652E03 /* UIDownloadTaskViewController.m */,
-				A70562BE1D6EBA7000652E03 /* UrlSessionViewController.h */,
-				A70562BF1D6EBA7000652E03 /* UrlSessionViewController.m */,
 			);
 			path = urlSession;
 			sourceTree = "<group>";
@@ -1100,9 +1103,7 @@
 				A70563381D6EBA9100652E03 /* html_parser.html in Resources */,
 				A70563371D6EBA9100652E03 /* chat.plist in Resources */,
 				A773BD841D671395008E53C1 /* LaunchScreen.storyboard in Resources */,
-				A70563251D6EBA7000652E03 /* server.cer in Resources */,
 				A773BD811D671395008E53C1 /* Assets.xcassets in Resources */,
-				A70563261D6EBA7000652E03 /* servvv.cer in Resources */,
 				A773BD7F1D671395008E53C1 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1202,6 +1203,7 @@
 				A7073E191DC059BB0049175A /* People.m in Sources */,
 				A705631B1D6EBA7000652E03 /* CoordinateViewController.m in Sources */,
 				A773BDE41D671475008E53C1 /* CCHTMLConfig.m in Sources */,
+				A7DAFF9E1DDB0CEB002DE7CC /* AnimationKeyboardViewController.m in Sources */,
 				A773BDF51D671475008E53C1 /* CCLinearGradientView.m in Sources */,
 				A705632C1D6EBA7000652E03 /* ImageTransitionViewController.m in Sources */,
 				A773BDE51D671475008E53C1 /* CCHTMLParser.m in Sources */,

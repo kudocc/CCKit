@@ -28,7 +28,9 @@
     self.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeCertificate];
     
     // you can replace it with https://github.com and so on.
-    NSString *strURL = @"https://localhost";
+//    NSString *strURL = @"https://localhost";
+//    NSString *strURL = @"https://github.com";
+    NSString *strURL = @"https://www.baidu.com/";
     NSMutableURLRequest *req = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:strURL]];
     
     _operationQueue = [[NSOperationQueue alloc] init];
