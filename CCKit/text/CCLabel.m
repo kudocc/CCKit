@@ -394,29 +394,27 @@
     };
     
     task.didDisplay = ^(CALayer *layer, BOOL finished) {
-        CCMainThreadBlock(^() {
-            CGPoint position = CGPointZero;
-            if (verticleAlignment == CCTextVerticalAlignmentCenter) {
-                position.y = (labelSize.height - layout.contentBounds.height)/2;
-            } else if (verticleAlignment == CCTextVerticalAlignmentTop) {
-                position.y = labelSize.height - layout.contentBounds.height;
+        CGPoint position = CGPointZero;
+        if (verticleAlignment == CCTextVerticalAlignmentCenter) {
+            position.y = (labelSize.height - layout.contentBounds.height)/2;
+        } else if (verticleAlignment == CCTextVerticalAlignmentTop) {
+            position.y = labelSize.height - layout.contentBounds.height;
+        }
+        [layout drawInContext:nil view:self layer:self.layer position:position size:labelSize isCanceled:nil];
+        
+        NSMutableArray *attachViews = [NSMutableArray array];
+        NSMutableArray *attachLayers = [NSMutableArray array];
+        for (CCTextAttachment *attachment in layout.attachments) {
+            if ([attachment.content isKindOfClass:[UIView class]]) {
+                [attachViews addObject:attachment];
+            } else if ([attachment.content isKindOfClass:[CALayer class]]) {
+                [attachLayers addObject:attachment];
             }
-            [layout drawInContext:nil view:self layer:self.layer position:position size:labelSize isCanceled:nil];
-            
-            NSMutableArray *attachViews = [NSMutableArray array];
-            NSMutableArray *attachLayers = [NSMutableArray array];
-            for (CCTextAttachment *attachment in layout.attachments) {
-                if ([attachment.content isKindOfClass:[UIView class]]) {
-                    [attachViews addObject:attachment];
-                } else if ([attachment.content isKindOfClass:[CALayer class]]) {
-                    [attachLayers addObject:attachment];
-                }
-            }
-            _attachmentViews = [attachViews copy];
-            _attachmentLayers = [attachLayers copy];
-            _needUpdateLayout = NO;
-            _textLayout = layout;
-        });
+        }
+        _attachmentViews = [attachViews copy];
+        _attachmentLayers = [attachLayers copy];
+        _needUpdateLayout = NO;
+        _textLayout = layout;
     };
     return task;
 }

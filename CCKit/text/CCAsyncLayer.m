@@ -54,7 +54,9 @@
     if (_asyncDisplay) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             if (isCanceled()) {
-                task.didDisplay(self, NO);
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    task.didDisplay(self, NO);
+                });
                 return;
             }
             UIGraphicsBeginImageContextWithOptions(self.bounds.size, opaque, scale);
@@ -62,7 +64,9 @@
             task.display(context, self.bounds.size, isCanceled);
             if (isCanceled()) {
                 UIGraphicsEndImageContext();
-                task.didDisplay(self, NO);
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    task.didDisplay(self, NO);
+                });
                 return;
             }
             UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
