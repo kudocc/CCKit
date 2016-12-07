@@ -100,6 +100,7 @@
 		A7073E1F1DC05A230049175A /* Teacher.m in Sources */ = {isa = PBXBuildFile; fileRef = A7073E1E1DC05A230049175A /* Teacher.m */; };
 		A7073E221DC05A4D0049175A /* School.m in Sources */ = {isa = PBXBuildFile; fileRef = A7073E211DC05A4D0049175A /* School.m */; };
 		A73B52261D79618C0035D336 /* CIFaceAnimateFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = A73B52251D79618C0035D336 /* CIFaceAnimateFilter.m */; };
+		A73DD1BC1DF7FC1800BE797F /* CCRemoteNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A73DD1BB1DF7FC1800BE797F /* CCRemoteNotificationManager.m */; };
 		A75B10EE1D743EF5003F4242 /* CoreImageSubclassCIFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A75B10ED1D743EF5003F4242 /* CoreImageSubclassCIFilterViewController.m */; };
 		A75B10F41D744487003F4242 /* CIFacePixelFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = A75B10F31D744487003F4242 /* CIFacePixelFilter.m */; };
 		A75B10F81D754E66003F4242 /* CoreImageFilterOnCameralViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A75B10F71D754E66003F4242 /* CoreImageFilterOnCameralViewController.m */; };
@@ -346,6 +347,8 @@
 		A7073E211DC05A4D0049175A /* School.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = School.m; sourceTree = "<group>"; };
 		A73B52241D79618C0035D336 /* CIFaceAnimateFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIFaceAnimateFilter.h; sourceTree = "<group>"; };
 		A73B52251D79618C0035D336 /* CIFaceAnimateFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIFaceAnimateFilter.m; sourceTree = "<group>"; };
+		A73DD1BA1DF7FC1800BE797F /* CCRemoteNotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCRemoteNotificationManager.h; sourceTree = "<group>"; };
+		A73DD1BB1DF7FC1800BE797F /* CCRemoteNotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCRemoteNotificationManager.m; sourceTree = "<group>"; };
 		A75B10EC1D743EF5003F4242 /* CoreImageSubclassCIFilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreImageSubclassCIFilterViewController.h; sourceTree = "<group>"; };
 		A75B10ED1D743EF5003F4242 /* CoreImageSubclassCIFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreImageSubclassCIFilterViewController.m; sourceTree = "<group>"; };
 		A75B10F21D744487003F4242 /* CIFacePixelFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIFacePixelFilter.h; sourceTree = "<group>"; };
@@ -666,6 +669,8 @@
 		A70562821D6EBA7000652E03 /* other */ = {
 			isa = PBXGroup;
 			children = (
+				A73DD1BA1DF7FC1800BE797F /* CCRemoteNotificationManager.h */,
+				A73DD1BB1DF7FC1800BE797F /* CCRemoteNotificationManager.m */,
 				A70562831D6EBA7000652E03 /* kvo */,
 				A705628C1D6EBA7000652E03 /* OtherViewController.h */,
 				A705628D1D6EBA7000652E03 /* OtherViewController.m */,
@@ -1285,6 +1290,7 @@
 				A70563151D6EBA7000652E03 /* PerformanceViewController.m in Sources */,
 				A70563021D6EBA7000652E03 /* IncrementalImageSourceViewController.m in Sources */,
 				A70562EA1D6EBA7000652E03 /* HomeTableViewController.m in Sources */,
+				A73DD1BC1DF7FC1800BE797F /* CCRemoteNotificationManager.m in Sources */,
 				A70562F91D6EBA7000652E03 /* CoreTextHelper.m in Sources */,
 				A75B10EE1D743EF5003F4242 /* CoreImageSubclassCIFilterViewController.m in Sources */,
 				A70563011D6EBA7000652E03 /* ImageSourceViewController.m in Sources */,

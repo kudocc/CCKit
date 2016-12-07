@@ -25,7 +25,14 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeCertificate];
+    /*
+     使用`[AFSecurityPolicy defaultPolicy]`对服务端的证书进行最基本的认证，检测正式是否合法；
+     `AFSSLPinningModePublicKey` - 除了检测证书是否合法外还检测证书的public key是否与我们要访问的网站的证书的public key相同；
+     `AFSSLPinningModeCertificate` - 除了检测证书是否合法外还比较本地证书与服务器证书是否相同；
+     使用AFSSLPinningModePublicKey经常是因为证书有过期时间，如果过期就要升级客户端，而对于未升级的客户端就不能再访问已升级证书的网站。
+     */
+//    self.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeCertificate];
+    self.securityPolicy = [AFSecurityPolicy defaultPolicy];
     
     // you can replace it with https://github.com and so on.
 //    NSString *strURL = @"https://localhost";

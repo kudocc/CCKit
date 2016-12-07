@@ -283,7 +283,10 @@ Failed_label:
         // audio queue begin to stop
         _stopping = YES;
         
-        AudioQueueStop(_audioQueue, imme);
+        OSStatus status = AudioQueueStop(_audioQueue, imme);
+        if (status != noErr) {
+            NSLog(@"AudioQueueStop:%@", @(status));
+        }
     }
 }
 
