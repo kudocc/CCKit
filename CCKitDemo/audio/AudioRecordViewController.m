@@ -9,6 +9,7 @@
 #import "AudioRecordViewController.h"
 #import <AVFoundation/AVFoundation.h>
 #import "NSString+CCKit.h"
+#import "AudioFileManager.h"
 
 typedef NS_ENUM(NSUInteger, RecordStatus) {
     RecordStatusNone,
@@ -97,7 +98,7 @@ typedef NS_ENUM(NSUInteger, RecordStatus) {
     
     NSDate *current = [NSDate date];
     NSString *fileName = [NSString stringWithFormat:@"%ld", (long)[current timeIntervalSince1970]];
-    NSString *filePath = [[NSString cc_documentPath] stringByAppendingPathComponent:fileName];
+    NSString *filePath = [[AudioFileManager audioDirectory] stringByAppendingPathComponent:fileName];
     NSDictionary *setting = @{AVFormatIDKey:@(kAudioFormatMPEG4AAC), AVSampleRateKey:@(44100.0), AVNumberOfChannelsKey:@2};
     error = nil;
     _recorder = [[AVAudioRecorder alloc] initWithURL:[NSURL fileURLWithPath:filePath] settings:setting error:&error];

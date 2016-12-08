@@ -101,6 +101,10 @@
 		A7073E221DC05A4D0049175A /* School.m in Sources */ = {isa = PBXBuildFile; fileRef = A7073E211DC05A4D0049175A /* School.m */; };
 		A73B52261D79618C0035D336 /* CIFaceAnimateFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = A73B52251D79618C0035D336 /* CIFaceAnimateFilter.m */; };
 		A73DD1BC1DF7FC1800BE797F /* CCRemoteNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A73DD1BB1DF7FC1800BE797F /* CCRemoteNotificationManager.m */; };
+		A73DD1C01DF8F96400BE797F /* VideoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A73DD1BF1DF8F96400BE797F /* VideoTableViewController.m */; };
+		A73DD1C31DF8FAF400BE797F /* EasyVideoRecordToFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A73DD1C21DF8FAF400BE797F /* EasyVideoRecordToFileViewController.m */; };
+		A73DD1C61DF9076000BE797F /* AudioFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A73DD1C51DF9076000BE797F /* AudioFileManager.m */; };
+		A73DD1C91DF926FD00BE797F /* NSDate+CCKit.m in Sources */ = {isa = PBXBuildFile; fileRef = A73DD1C81DF926FD00BE797F /* NSDate+CCKit.m */; };
 		A75B10EE1D743EF5003F4242 /* CoreImageSubclassCIFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A75B10ED1D743EF5003F4242 /* CoreImageSubclassCIFilterViewController.m */; };
 		A75B10F41D744487003F4242 /* CIFacePixelFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = A75B10F31D744487003F4242 /* CIFacePixelFilter.m */; };
 		A75B10F81D754E66003F4242 /* CoreImageFilterOnCameralViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A75B10F71D754E66003F4242 /* CoreImageFilterOnCameralViewController.m */; };
@@ -349,6 +353,14 @@
 		A73B52251D79618C0035D336 /* CIFaceAnimateFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIFaceAnimateFilter.m; sourceTree = "<group>"; };
 		A73DD1BA1DF7FC1800BE797F /* CCRemoteNotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCRemoteNotificationManager.h; sourceTree = "<group>"; };
 		A73DD1BB1DF7FC1800BE797F /* CCRemoteNotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCRemoteNotificationManager.m; sourceTree = "<group>"; };
+		A73DD1BE1DF8F96400BE797F /* VideoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoTableViewController.h; sourceTree = "<group>"; };
+		A73DD1BF1DF8F96400BE797F /* VideoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoTableViewController.m; sourceTree = "<group>"; };
+		A73DD1C11DF8FAF400BE797F /* EasyVideoRecordToFileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyVideoRecordToFileViewController.h; sourceTree = "<group>"; };
+		A73DD1C21DF8FAF400BE797F /* EasyVideoRecordToFileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyVideoRecordToFileViewController.m; sourceTree = "<group>"; };
+		A73DD1C41DF9076000BE797F /* AudioFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioFileManager.h; sourceTree = "<group>"; };
+		A73DD1C51DF9076000BE797F /* AudioFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioFileManager.m; sourceTree = "<group>"; };
+		A73DD1C71DF926FD00BE797F /* NSDate+CCKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+CCKit.h"; sourceTree = "<group>"; };
+		A73DD1C81DF926FD00BE797F /* NSDate+CCKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+CCKit.m"; sourceTree = "<group>"; };
 		A75B10EC1D743EF5003F4242 /* CoreImageSubclassCIFilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreImageSubclassCIFilterViewController.h; sourceTree = "<group>"; };
 		A75B10ED1D743EF5003F4242 /* CoreImageSubclassCIFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreImageSubclassCIFilterViewController.m; sourceTree = "<group>"; };
 		A75B10F21D744487003F4242 /* CIFacePixelFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIFacePixelFilter.h; sourceTree = "<group>"; };
@@ -483,6 +495,8 @@
 		A70562211D6EBA7000652E03 /* audio */ = {
 			isa = PBXGroup;
 			children = (
+				A73DD1C41DF9076000BE797F /* AudioFileManager.h */,
+				A73DD1C51DF9076000BE797F /* AudioFileManager.m */,
 				A705622C1D6EBA7000652E03 /* AudioViewController.h */,
 				A705622D1D6EBA7000652E03 /* AudioViewController.m */,
 				A705622A1D6EBA7000652E03 /* AudioRecordViewController.h */,
@@ -806,6 +820,17 @@
 			path = webView;
 			sourceTree = "<group>";
 		};
+		A73DD1BD1DF8F93100BE797F /* video */ = {
+			isa = PBXGroup;
+			children = (
+				A73DD1BE1DF8F96400BE797F /* VideoTableViewController.h */,
+				A73DD1BF1DF8F96400BE797F /* VideoTableViewController.m */,
+				A73DD1C11DF8FAF400BE797F /* EasyVideoRecordToFileViewController.h */,
+				A73DD1C21DF8FAF400BE797F /* EasyVideoRecordToFileViewController.m */,
+			);
+			path = video;
+			sourceTree = "<group>";
+		};
 		A773BD681D671395008E53C1 = {
 			isa = PBXGroup;
 			children = (
@@ -835,6 +860,7 @@
 				A70562341D6EBA7000652E03 /* base */,
 				A70562141D6EBA7000652E03 /* animation */,
 				A70562211D6EBA7000652E03 /* audio */,
+				A73DD1BD1DF8F93100BE797F /* video */,
 				A705622F1D6EBA7000652E03 /* autoLayout */,
 				A70562431D6EBA7000652E03 /* coreImage */,
 				A705624E1D6EBA7000652E03 /* coreText */,
@@ -957,6 +983,8 @@
 				A773BDCB1D671475008E53C1 /* NSDictionary+CCKit.m */,
 				A773BDCC1D671475008E53C1 /* NSObject+CCKit.h */,
 				A773BDCD1D671475008E53C1 /* NSObject+CCKit.m */,
+				A73DD1C71DF926FD00BE797F /* NSDate+CCKit.h */,
+				A73DD1C81DF926FD00BE797F /* NSDate+CCKit.m */,
 				A773BDCE1D671475008E53C1 /* NSString+CCKit.h */,
 				A773BDCF1D671475008E53C1 /* NSString+CCKit.m */,
 				A773BDD01D671475008E53C1 /* UIColor+CCKit.h */,
@@ -1183,6 +1211,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A705632B1D6EBA7000652E03 /* ImagePickerViewController.m in Sources */,
+				A73DD1C61DF9076000BE797F /* AudioFileManager.m in Sources */,
 				A70563131D6EBA7000652E03 /* ImageViewContainer.m in Sources */,
 				A70563191D6EBA7000652E03 /* CornerRadiusView+WebCache.m in Sources */,
 				A70562E81D6EBA7000652E03 /* ImagePickerViewControllerHelper.m in Sources */,
@@ -1190,6 +1219,7 @@
 				A70563121D6EBA7000652E03 /* DrawViewContainer.m in Sources */,
 				A705631C1D6EBA7000652E03 /* ImageBlendViewController.m in Sources */,
 				A7073E221DC05A4D0049175A /* School.m in Sources */,
+				A73DD1C91DF926FD00BE797F /* NSDate+CCKit.m in Sources */,
 				A773BDE91D671475008E53C1 /* CCTextLayout.m in Sources */,
 				A70563321D6EBA7000652E03 /* URLSessionCacheViewController.m in Sources */,
 				A70563221D6EBA7000652E03 /* ShadowGradientsViewController.m in Sources */,
@@ -1254,6 +1284,7 @@
 				A773BDE81D671475008E53C1 /* CCTextDefine.m in Sources */,
 				A70562F31D6EBA7000652E03 /* FaceDetectorViewController.m in Sources */,
 				A773BDF41D671475008E53C1 /* CCFPSLabel.m in Sources */,
+				A73DD1C01DF8F96400BE797F /* VideoTableViewController.m in Sources */,
 				A70563241D6EBA7000652E03 /* DataTaskHttpsServerAuthViewController.m in Sources */,
 				A70563051D6EBA7000652E03 /* CCHttpSessionManager.m in Sources */,
 				A70563001D6EBA7000652E03 /* ImageIOViewController.m in Sources */,
@@ -1277,6 +1308,7 @@
 				A70562DE1D6EBA7000652E03 /* CAShapeLayerTestViewController.m in Sources */,
 				A773BD761D671395008E53C1 /* main.m in Sources */,
 				A70563311D6EBA7000652E03 /* UIWebViewViewController.m in Sources */,
+				A73DD1C31DF8FAF400BE797F /* EasyVideoRecordToFileViewController.m in Sources */,
 				A70562F51D6EBA7000652E03 /* CCLabelDemoViewController.m in Sources */,
 				A75B10F81D754E66003F4242 /* CoreImageFilterOnCameralViewController.m in Sources */,
 				A70563211D6EBA7000652E03 /* Quartz2DViewController.m in Sources */,

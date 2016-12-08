@@ -10,6 +10,7 @@
 #import "NSString+CCKit.h"
 #import "AudioPlaybackViewController.h"
 #import "AudioPlayAudioQueueFromFileViewController.h"
+#import "AudioFileManager.h"
 
 @interface AudioListViewController () <UITableViewDataSource, UITableViewDelegate> {
     NSInteger pageSize;
@@ -38,13 +39,11 @@
 }
 
 - (void)reloadData {
-    NSString *path = [NSString cc_documentPath];
-    NSArray *files = [self listFileAtPath:path];
+    NSArray *files = [AudioFileManager audioFilePathInAudioDirectory];
     
     NSMutableArray *mFilePaths = [NSMutableArray array];
     NSMutableArray *mFileSizes = [NSMutableArray array];
-    for (NSString *file in files) {
-        NSString *filePath = [path stringByAppendingPathComponent:file];
+    for (NSString *filePath in files) {
         unsigned long long fileSize = [[[NSFileManager defaultManager] attributesOfItemAtPath:filePath error:nil] fileSize];
         [mFilePaths addObject:filePath];
         [mFileSizes addObject:@(fileSize)];
@@ -60,10 +59,8 @@
 
 - (void)removeAudioFile {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSString *path = [NSString cc_documentPath];
-        NSArray *list = [self listFileAtPath:path];
-        for (NSString *file in list) {
-            NSString *filePath = [path stringByAppendingPathComponent:file];
+        NSArray *files = [AudioFileManager audioFilePathInAudioDirectory];
+        for (NSString *filePath in files) {
             NSError *error = nil;
             [[NSFileManager defaultManager] removeItemAtPath:filePath error:&error];
             if (error) {
@@ -74,10 +71,6 @@
             [self reloadData];
         });
     });
-}
-
-- (NSArray *)listFileAtPath:(NSString *)path {
-    return [[NSFileManager defaultManager] contentsOfDirectoryAtPath:path error:NULL];
 }
 
 #pragma mark - UITableViewDelegate

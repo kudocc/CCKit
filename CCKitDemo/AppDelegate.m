@@ -18,10 +18,13 @@
 #import "ModelViewController.h"
 #import "UrlSessionViewController.h"
 #import "AudioViewController.h"
+#import "VideoTableViewController.h"
 #import "WebViewController.h"
 #import "NetworkViewController.h"
 #import "OtherViewController.h"
 #import "PerformanceViewController.h"
+
+#import "AudioFileManager.h"
 
 @interface AppDelegate ()
 
@@ -36,6 +39,7 @@
                       @"Animation",
                       @"Custom Transition",
                       @"Audio",
+                      @"Video",
                       @"AutoLayout",
                       @"Quartz 2D",
                       @"Image I/O",
@@ -50,6 +54,7 @@
                       [AnimationViewController class],
                       [VCTransitionViewController class],
                       [AudioViewController class],
+                      [VideoTableViewController class],
                       [AutoLayoutViewController class],
                       [Quartz2DViewController class],
                       [ImageIOViewController class],
@@ -61,6 +66,9 @@
                       [WebViewController class],
                       [OtherViewController class]];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    
+    [AudioFileManager createAudioDirectory];
+    [AudioFileManager createVideoDirectory];
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.rootViewController = nav;

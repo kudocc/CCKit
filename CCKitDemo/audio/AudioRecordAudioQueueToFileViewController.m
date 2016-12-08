@@ -10,6 +10,7 @@
 #import "AudioQueueRecorder.h"
 #import <AVFoundation/AVFoundation.h>
 #import "NSString+CCKit.h"
+#import "AudioFileManager.h"
 
 @interface RecordObject : NSObject {
     @public AudioFileID _audioFileID;
@@ -181,7 +182,7 @@
     // create audio queue file
     NSDate *current = [NSDate date];
     NSString *fileName = [NSString stringWithFormat:@"%ld", (long)[current timeIntervalSince1970]];
-    obj.currentAudioFilePath = [[NSString cc_documentPath] stringByAppendingPathComponent:fileName];
+    obj.currentAudioFilePath = [[AudioFileManager audioDirectory] stringByAppendingPathComponent:fileName];
     const char *pFilePath = [obj.currentAudioFilePath UTF8String];
     CFURLRef audioFileURL = CFURLCreateFromFileSystemRepresentation(NULL, (const UInt8 *)pFilePath, strlen(pFilePath), false);
     OSStatus status = AudioFileCreateWithURL(audioFileURL, kAudioFileCAFType, &_basicDescription, kAudioFileFlags_EraseFile, &obj->_audioFileID);
