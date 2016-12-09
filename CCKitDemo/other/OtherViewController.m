@@ -8,14 +8,16 @@
 
 #import "OtherViewController.h"
 #import "KVOViewController.h"
+#import "NSUserDefaultsViewController.h"
 
 @implementation OtherViewController
 
 - (void)initView {
     [super initView];
     
-    self.arrayTitle = @[@"KVO"];
-    self.arrayClass = @[[KVOViewController class]];
+    self.arrayTitle = @[@"KVO", @"UserDefaults"];
+    self.arrayClass = @[[KVOViewController class],
+                        [NSUserDefaultsViewController class]];
 }
 
 @end

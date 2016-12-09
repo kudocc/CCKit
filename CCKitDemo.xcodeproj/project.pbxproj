@@ -58,16 +58,7 @@
 		A705630E1D6EBA7000652E03 /* KVOSubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A70562891D6EBA7000652E03 /* KVOSubViewController.m */; };
 		A705630F1D6EBA7000652E03 /* KVOViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A705628B1D6EBA7000652E03 /* KVOViewController.m */; };
 		A70563101D6EBA7000652E03 /* OtherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A705628D1D6EBA7000652E03 /* OtherViewController.m */; };
-		A70563111D6EBA7000652E03 /* DrawImagePerformanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A70562901D6EBA7000652E03 /* DrawImagePerformanceViewController.m */; };
-		A70563121D6EBA7000652E03 /* DrawViewContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = A70562921D6EBA7000652E03 /* DrawViewContainer.m */; };
-		A70563131D6EBA7000652E03 /* ImageViewContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = A70562941D6EBA7000652E03 /* ImageViewContainer.m */; };
-		A70563141D6EBA7000652E03 /* ImageViewPerformanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A70562961D6EBA7000652E03 /* ImageViewPerformanceViewController.m */; };
 		A70563151D6EBA7000652E03 /* PerformanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A70562981D6EBA7000652E03 /* PerformanceViewController.m */; };
-		A70563161D6EBA7000652E03 /* TestBlendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A705629A1D6EBA7000652E03 /* TestBlendViewController.m */; };
-		A70563171D6EBA7000652E03 /* TestDrawScaleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A705629C1D6EBA7000652E03 /* TestDrawScaleViewController.m */; };
-		A70563181D6EBA7000652E03 /* TestMissalignedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A705629E1D6EBA7000652E03 /* TestMissalignedViewController.m */; };
-		A70563191D6EBA7000652E03 /* CornerRadiusView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A70562A11D6EBA7000652E03 /* CornerRadiusView+WebCache.m */; };
-		A705631A1D6EBA7000652E03 /* CornerRadiusView.m in Sources */ = {isa = PBXBuildFile; fileRef = A70562A31D6EBA7000652E03 /* CornerRadiusView.m */; };
 		A705631B1D6EBA7000652E03 /* CoordinateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A70562A61D6EBA7000652E03 /* CoordinateViewController.m */; };
 		A705631C1D6EBA7000652E03 /* ImageBlendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A70562A81D6EBA7000652E03 /* ImageBlendViewController.m */; };
 		A705631D1D6EBA7000652E03 /* ImageMaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A70562AA1D6EBA7000652E03 /* ImageMaskViewController.m */; };
@@ -105,9 +96,21 @@
 		A73DD1C31DF8FAF400BE797F /* EasyVideoRecordToFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A73DD1C21DF8FAF400BE797F /* EasyVideoRecordToFileViewController.m */; };
 		A73DD1C61DF9076000BE797F /* AudioFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A73DD1C51DF9076000BE797F /* AudioFileManager.m */; };
 		A73DD1C91DF926FD00BE797F /* NSDate+CCKit.m in Sources */ = {isa = PBXBuildFile; fileRef = A73DD1C81DF926FD00BE797F /* NSDate+CCKit.m */; };
+		A73DD1CC1DF934A100BE797F /* AVFoundationVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A73DD1CB1DF934A100BE797F /* AVFoundationVideoViewController.m */; };
 		A75B10EE1D743EF5003F4242 /* CoreImageSubclassCIFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A75B10ED1D743EF5003F4242 /* CoreImageSubclassCIFilterViewController.m */; };
 		A75B10F41D744487003F4242 /* CIFacePixelFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = A75B10F31D744487003F4242 /* CIFacePixelFilter.m */; };
 		A75B10F81D754E66003F4242 /* CoreImageFilterOnCameralViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A75B10F71D754E66003F4242 /* CoreImageFilterOnCameralViewController.m */; };
+		A76038181DFA4EED00205E1B /* NSUserDefaultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A76038171DFA4EED00205E1B /* NSUserDefaultsViewController.m */; };
+		A760382F1DFA9A6500205E1B /* DrawImagePerformanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A760381B1DFA9A6500205E1B /* DrawImagePerformanceViewController.m */; };
+		A76038301DFA9A6500205E1B /* DrawViewContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = A760381D1DFA9A6500205E1B /* DrawViewContainer.m */; };
+		A76038311DFA9A6500205E1B /* ImageViewContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = A760381F1DFA9A6500205E1B /* ImageViewContainer.m */; };
+		A76038321DFA9A6500205E1B /* ImageViewPerformanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A76038211DFA9A6500205E1B /* ImageViewPerformanceViewController.m */; };
+		A76038331DFA9A6500205E1B /* TestBlendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A76038241DFA9A6500205E1B /* TestBlendViewController.m */; };
+		A76038341DFA9A6500205E1B /* TestDrawScaleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A76038261DFA9A6500205E1B /* TestDrawScaleViewController.m */; };
+		A76038351DFA9A6500205E1B /* TestMissalignedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A76038281DFA9A6500205E1B /* TestMissalignedViewController.m */; };
+		A76038361DFA9A6500205E1B /* CornerRadiusView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A760382C1DFA9A6500205E1B /* CornerRadiusView+WebCache.m */; };
+		A76038371DFA9A6500205E1B /* CornerRadiusView.m in Sources */ = {isa = PBXBuildFile; fileRef = A760382E1DFA9A6500205E1B /* CornerRadiusView.m */; };
+		A760383A1DFA9A9E00205E1B /* PerformanceStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A76038391DFA9A9E00205E1B /* PerformanceStoreViewController.m */; };
 		A773BD761D671395008E53C1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A773BD751D671395008E53C1 /* main.m */; };
 		A773BD791D671395008E53C1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A773BD781D671395008E53C1 /* AppDelegate.m */; };
 		A773BD7F1D671395008E53C1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A773BD7D1D671395008E53C1 /* Main.storyboard */; };
@@ -268,26 +271,8 @@
 		A705628B1D6EBA7000652E03 /* KVOViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KVOViewController.m; sourceTree = "<group>"; };
 		A705628C1D6EBA7000652E03 /* OtherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OtherViewController.h; sourceTree = "<group>"; };
 		A705628D1D6EBA7000652E03 /* OtherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OtherViewController.m; sourceTree = "<group>"; };
-		A705628F1D6EBA7000652E03 /* DrawImagePerformanceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawImagePerformanceViewController.h; sourceTree = "<group>"; };
-		A70562901D6EBA7000652E03 /* DrawImagePerformanceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawImagePerformanceViewController.m; sourceTree = "<group>"; };
-		A70562911D6EBA7000652E03 /* DrawViewContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawViewContainer.h; sourceTree = "<group>"; };
-		A70562921D6EBA7000652E03 /* DrawViewContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawViewContainer.m; sourceTree = "<group>"; };
-		A70562931D6EBA7000652E03 /* ImageViewContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageViewContainer.h; sourceTree = "<group>"; };
-		A70562941D6EBA7000652E03 /* ImageViewContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageViewContainer.m; sourceTree = "<group>"; };
-		A70562951D6EBA7000652E03 /* ImageViewPerformanceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageViewPerformanceViewController.h; sourceTree = "<group>"; };
-		A70562961D6EBA7000652E03 /* ImageViewPerformanceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageViewPerformanceViewController.m; sourceTree = "<group>"; };
 		A70562971D6EBA7000652E03 /* PerformanceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerformanceViewController.h; sourceTree = "<group>"; };
 		A70562981D6EBA7000652E03 /* PerformanceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PerformanceViewController.m; sourceTree = "<group>"; };
-		A70562991D6EBA7000652E03 /* TestBlendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestBlendViewController.h; sourceTree = "<group>"; };
-		A705629A1D6EBA7000652E03 /* TestBlendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestBlendViewController.m; sourceTree = "<group>"; };
-		A705629B1D6EBA7000652E03 /* TestDrawScaleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestDrawScaleViewController.h; sourceTree = "<group>"; };
-		A705629C1D6EBA7000652E03 /* TestDrawScaleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestDrawScaleViewController.m; sourceTree = "<group>"; };
-		A705629D1D6EBA7000652E03 /* TestMissalignedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestMissalignedViewController.h; sourceTree = "<group>"; };
-		A705629E1D6EBA7000652E03 /* TestMissalignedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestMissalignedViewController.m; sourceTree = "<group>"; };
-		A70562A01D6EBA7000652E03 /* CornerRadiusView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CornerRadiusView+WebCache.h"; sourceTree = "<group>"; };
-		A70562A11D6EBA7000652E03 /* CornerRadiusView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CornerRadiusView+WebCache.m"; sourceTree = "<group>"; };
-		A70562A21D6EBA7000652E03 /* CornerRadiusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CornerRadiusView.h; sourceTree = "<group>"; };
-		A70562A31D6EBA7000652E03 /* CornerRadiusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CornerRadiusView.m; sourceTree = "<group>"; };
 		A70562A51D6EBA7000652E03 /* CoordinateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoordinateViewController.h; sourceTree = "<group>"; };
 		A70562A61D6EBA7000652E03 /* CoordinateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoordinateViewController.m; sourceTree = "<group>"; };
 		A70562A71D6EBA7000652E03 /* ImageBlendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageBlendViewController.h; sourceTree = "<group>"; };
@@ -361,12 +346,36 @@
 		A73DD1C51DF9076000BE797F /* AudioFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioFileManager.m; sourceTree = "<group>"; };
 		A73DD1C71DF926FD00BE797F /* NSDate+CCKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+CCKit.h"; sourceTree = "<group>"; };
 		A73DD1C81DF926FD00BE797F /* NSDate+CCKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+CCKit.m"; sourceTree = "<group>"; };
+		A73DD1CA1DF934A100BE797F /* AVFoundationVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVFoundationVideoViewController.h; sourceTree = "<group>"; };
+		A73DD1CB1DF934A100BE797F /* AVFoundationVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVFoundationVideoViewController.m; sourceTree = "<group>"; };
 		A75B10EC1D743EF5003F4242 /* CoreImageSubclassCIFilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreImageSubclassCIFilterViewController.h; sourceTree = "<group>"; };
 		A75B10ED1D743EF5003F4242 /* CoreImageSubclassCIFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreImageSubclassCIFilterViewController.m; sourceTree = "<group>"; };
 		A75B10F21D744487003F4242 /* CIFacePixelFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIFacePixelFilter.h; sourceTree = "<group>"; };
 		A75B10F31D744487003F4242 /* CIFacePixelFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIFacePixelFilter.m; sourceTree = "<group>"; };
 		A75B10F61D754E66003F4242 /* CoreImageFilterOnCameralViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreImageFilterOnCameralViewController.h; sourceTree = "<group>"; };
 		A75B10F71D754E66003F4242 /* CoreImageFilterOnCameralViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreImageFilterOnCameralViewController.m; sourceTree = "<group>"; };
+		A76038161DFA4EED00205E1B /* NSUserDefaultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSUserDefaultsViewController.h; sourceTree = "<group>"; };
+		A76038171DFA4EED00205E1B /* NSUserDefaultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSUserDefaultsViewController.m; sourceTree = "<group>"; };
+		A760381A1DFA9A6500205E1B /* DrawImagePerformanceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawImagePerformanceViewController.h; sourceTree = "<group>"; };
+		A760381B1DFA9A6500205E1B /* DrawImagePerformanceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawImagePerformanceViewController.m; sourceTree = "<group>"; };
+		A760381C1DFA9A6500205E1B /* DrawViewContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawViewContainer.h; sourceTree = "<group>"; };
+		A760381D1DFA9A6500205E1B /* DrawViewContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawViewContainer.m; sourceTree = "<group>"; };
+		A760381E1DFA9A6500205E1B /* ImageViewContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageViewContainer.h; sourceTree = "<group>"; };
+		A760381F1DFA9A6500205E1B /* ImageViewContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageViewContainer.m; sourceTree = "<group>"; };
+		A76038201DFA9A6500205E1B /* ImageViewPerformanceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageViewPerformanceViewController.h; sourceTree = "<group>"; };
+		A76038211DFA9A6500205E1B /* ImageViewPerformanceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageViewPerformanceViewController.m; sourceTree = "<group>"; };
+		A76038231DFA9A6500205E1B /* TestBlendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestBlendViewController.h; sourceTree = "<group>"; };
+		A76038241DFA9A6500205E1B /* TestBlendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestBlendViewController.m; sourceTree = "<group>"; };
+		A76038251DFA9A6500205E1B /* TestDrawScaleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestDrawScaleViewController.h; sourceTree = "<group>"; };
+		A76038261DFA9A6500205E1B /* TestDrawScaleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestDrawScaleViewController.m; sourceTree = "<group>"; };
+		A76038271DFA9A6500205E1B /* TestMissalignedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestMissalignedViewController.h; sourceTree = "<group>"; };
+		A76038281DFA9A6500205E1B /* TestMissalignedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestMissalignedViewController.m; sourceTree = "<group>"; };
+		A760382B1DFA9A6500205E1B /* CornerRadiusView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CornerRadiusView+WebCache.h"; sourceTree = "<group>"; };
+		A760382C1DFA9A6500205E1B /* CornerRadiusView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CornerRadiusView+WebCache.m"; sourceTree = "<group>"; };
+		A760382D1DFA9A6500205E1B /* CornerRadiusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CornerRadiusView.h; sourceTree = "<group>"; };
+		A760382E1DFA9A6500205E1B /* CornerRadiusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CornerRadiusView.m; sourceTree = "<group>"; };
+		A76038381DFA9A9E00205E1B /* PerformanceStoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerformanceStoreViewController.h; sourceTree = "<group>"; };
+		A76038391DFA9A9E00205E1B /* PerformanceStoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PerformanceStoreViewController.m; sourceTree = "<group>"; };
 		A773BD711D671395008E53C1 /* CCKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CCKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A773BD751D671395008E53C1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A773BD771D671395008E53C1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -683,11 +692,12 @@
 		A70562821D6EBA7000652E03 /* other */ = {
 			isa = PBXGroup;
 			children = (
-				A73DD1BA1DF7FC1800BE797F /* CCRemoteNotificationManager.h */,
-				A73DD1BB1DF7FC1800BE797F /* CCRemoteNotificationManager.m */,
+				A76038151DFA4EDD00205E1B /* NSUserDefaults */,
 				A70562831D6EBA7000652E03 /* kvo */,
 				A705628C1D6EBA7000652E03 /* OtherViewController.h */,
 				A705628D1D6EBA7000652E03 /* OtherViewController.m */,
+				A73DD1BA1DF7FC1800BE797F /* CCRemoteNotificationManager.h */,
+				A73DD1BB1DF7FC1800BE797F /* CCRemoteNotificationManager.m */,
 			);
 			path = other;
 			sourceTree = "<group>";
@@ -710,36 +720,14 @@
 		A705628E1D6EBA7000652E03 /* performance */ = {
 			isa = PBXGroup;
 			children = (
-				A705628F1D6EBA7000652E03 /* DrawImagePerformanceViewController.h */,
-				A70562901D6EBA7000652E03 /* DrawImagePerformanceViewController.m */,
-				A70562911D6EBA7000652E03 /* DrawViewContainer.h */,
-				A70562921D6EBA7000652E03 /* DrawViewContainer.m */,
-				A70562931D6EBA7000652E03 /* ImageViewContainer.h */,
-				A70562941D6EBA7000652E03 /* ImageViewContainer.m */,
-				A70562951D6EBA7000652E03 /* ImageViewPerformanceViewController.h */,
-				A70562961D6EBA7000652E03 /* ImageViewPerformanceViewController.m */,
+				A76038191DFA9A6500205E1B /* image */,
+				A76038291DFA9A6500205E1B /* store */,
+				A76038221DFA9A6500205E1B /* old */,
+				A760382A1DFA9A6500205E1B /* tools */,
 				A70562971D6EBA7000652E03 /* PerformanceViewController.h */,
 				A70562981D6EBA7000652E03 /* PerformanceViewController.m */,
-				A70562991D6EBA7000652E03 /* TestBlendViewController.h */,
-				A705629A1D6EBA7000652E03 /* TestBlendViewController.m */,
-				A705629B1D6EBA7000652E03 /* TestDrawScaleViewController.h */,
-				A705629C1D6EBA7000652E03 /* TestDrawScaleViewController.m */,
-				A705629D1D6EBA7000652E03 /* TestMissalignedViewController.h */,
-				A705629E1D6EBA7000652E03 /* TestMissalignedViewController.m */,
-				A705629F1D6EBA7000652E03 /* tools */,
 			);
 			path = performance;
-			sourceTree = "<group>";
-		};
-		A705629F1D6EBA7000652E03 /* tools */ = {
-			isa = PBXGroup;
-			children = (
-				A70562A01D6EBA7000652E03 /* CornerRadiusView+WebCache.h */,
-				A70562A11D6EBA7000652E03 /* CornerRadiusView+WebCache.m */,
-				A70562A21D6EBA7000652E03 /* CornerRadiusView.h */,
-				A70562A31D6EBA7000652E03 /* CornerRadiusView.m */,
-			);
-			path = tools;
 			sourceTree = "<group>";
 		};
 		A70562A41D6EBA7000652E03 /* quartz2D */ = {
@@ -827,8 +815,67 @@
 				A73DD1BF1DF8F96400BE797F /* VideoTableViewController.m */,
 				A73DD1C11DF8FAF400BE797F /* EasyVideoRecordToFileViewController.h */,
 				A73DD1C21DF8FAF400BE797F /* EasyVideoRecordToFileViewController.m */,
+				A73DD1CA1DF934A100BE797F /* AVFoundationVideoViewController.h */,
+				A73DD1CB1DF934A100BE797F /* AVFoundationVideoViewController.m */,
 			);
 			path = video;
+			sourceTree = "<group>";
+		};
+		A76038151DFA4EDD00205E1B /* NSUserDefaults */ = {
+			isa = PBXGroup;
+			children = (
+				A76038161DFA4EED00205E1B /* NSUserDefaultsViewController.h */,
+				A76038171DFA4EED00205E1B /* NSUserDefaultsViewController.m */,
+			);
+			path = NSUserDefaults;
+			sourceTree = "<group>";
+		};
+		A76038191DFA9A6500205E1B /* image */ = {
+			isa = PBXGroup;
+			children = (
+				A760381A1DFA9A6500205E1B /* DrawImagePerformanceViewController.h */,
+				A760381B1DFA9A6500205E1B /* DrawImagePerformanceViewController.m */,
+				A760381C1DFA9A6500205E1B /* DrawViewContainer.h */,
+				A760381D1DFA9A6500205E1B /* DrawViewContainer.m */,
+				A760381E1DFA9A6500205E1B /* ImageViewContainer.h */,
+				A760381F1DFA9A6500205E1B /* ImageViewContainer.m */,
+				A76038201DFA9A6500205E1B /* ImageViewPerformanceViewController.h */,
+				A76038211DFA9A6500205E1B /* ImageViewPerformanceViewController.m */,
+			);
+			path = image;
+			sourceTree = "<group>";
+		};
+		A76038221DFA9A6500205E1B /* old */ = {
+			isa = PBXGroup;
+			children = (
+				A76038231DFA9A6500205E1B /* TestBlendViewController.h */,
+				A76038241DFA9A6500205E1B /* TestBlendViewController.m */,
+				A76038251DFA9A6500205E1B /* TestDrawScaleViewController.h */,
+				A76038261DFA9A6500205E1B /* TestDrawScaleViewController.m */,
+				A76038271DFA9A6500205E1B /* TestMissalignedViewController.h */,
+				A76038281DFA9A6500205E1B /* TestMissalignedViewController.m */,
+			);
+			path = old;
+			sourceTree = "<group>";
+		};
+		A76038291DFA9A6500205E1B /* store */ = {
+			isa = PBXGroup;
+			children = (
+				A76038381DFA9A9E00205E1B /* PerformanceStoreViewController.h */,
+				A76038391DFA9A9E00205E1B /* PerformanceStoreViewController.m */,
+			);
+			path = store;
+			sourceTree = "<group>";
+		};
+		A760382A1DFA9A6500205E1B /* tools */ = {
+			isa = PBXGroup;
+			children = (
+				A760382B1DFA9A6500205E1B /* CornerRadiusView+WebCache.h */,
+				A760382C1DFA9A6500205E1B /* CornerRadiusView+WebCache.m */,
+				A760382D1DFA9A6500205E1B /* CornerRadiusView.h */,
+				A760382E1DFA9A6500205E1B /* CornerRadiusView.m */,
+			);
+			path = tools;
 			sourceTree = "<group>";
 		};
 		A773BD681D671395008E53C1 = {
@@ -1212,11 +1259,8 @@
 			files = (
 				A705632B1D6EBA7000652E03 /* ImagePickerViewController.m in Sources */,
 				A73DD1C61DF9076000BE797F /* AudioFileManager.m in Sources */,
-				A70563131D6EBA7000652E03 /* ImageViewContainer.m in Sources */,
-				A70563191D6EBA7000652E03 /* CornerRadiusView+WebCache.m in Sources */,
 				A70562E81D6EBA7000652E03 /* ImagePickerViewControllerHelper.m in Sources */,
 				A70563031D6EBA7000652E03 /* JsonObjectAndModelViewController.m in Sources */,
-				A70563121D6EBA7000652E03 /* DrawViewContainer.m in Sources */,
 				A705631C1D6EBA7000652E03 /* ImageBlendViewController.m in Sources */,
 				A7073E221DC05A4D0049175A /* School.m in Sources */,
 				A73DD1C91DF926FD00BE797F /* NSDate+CCKit.m in Sources */,
@@ -1233,7 +1277,6 @@
 				A773BDE11D671475008E53C1 /* ModelClass.m in Sources */,
 				A773BDE71D671475008E53C1 /* CCTextContainer.m in Sources */,
 				A773BDF11D671475008E53C1 /* UIFont+CCKit.m in Sources */,
-				A70563171D6EBA7000652E03 /* TestDrawScaleViewController.m in Sources */,
 				A70562E11D6EBA7000652E03 /* AudioPlayAudioQueueFromFileViewController.m in Sources */,
 				A7073E191DC059BB0049175A /* People.m in Sources */,
 				A705631B1D6EBA7000652E03 /* CoordinateViewController.m in Sources */,
@@ -1255,6 +1298,7 @@
 				A70562E61D6EBA7000652E03 /* AutoLayoutSimpleViewController.m in Sources */,
 				A70562F21D6EBA7000652E03 /* CoreImageViewController.m in Sources */,
 				A705631D1D6EBA7000652E03 /* ImageMaskViewController.m in Sources */,
+				A76038321DFA9A6500205E1B /* ImageViewPerformanceViewController.m in Sources */,
 				A70562FC1D6EBA7000652E03 /* HTMLWebViewController.m in Sources */,
 				A70563071D6EBA7000652E03 /* HttpAsyncRequestsViewController.m in Sources */,
 				A773BDF61D671475008E53C1 /* CCStack.m in Sources */,
@@ -1263,19 +1307,18 @@
 				A705630F1D6EBA7000652E03 /* KVOViewController.m in Sources */,
 				A70563101D6EBA7000652E03 /* OtherViewController.m in Sources */,
 				A75B10F41D744487003F4242 /* CIFacePixelFilter.m in Sources */,
-				A70563111D6EBA7000652E03 /* DrawImagePerformanceViewController.m in Sources */,
+				A76038331DFA9A6500205E1B /* TestBlendViewController.m in Sources */,
 				A773BDDF1D671475008E53C1 /* AudioQueuePlayer.m in Sources */,
 				A70562E91D6EBA7000652E03 /* BaseViewController.m in Sources */,
+				A76038341DFA9A6500205E1B /* TestDrawScaleViewController.m in Sources */,
 				A773BDF01D671475008E53C1 /* UIColor+CCKit.m in Sources */,
 				A70563061D6EBA7000652E03 /* CCHttpTaskGroup.m in Sources */,
-				A70563181D6EBA7000652E03 /* TestMissalignedViewController.m in Sources */,
 				A773BDED1D671475008E53C1 /* NSDictionary+CCKit.m in Sources */,
 				A70562FE1D6EBA7000652E03 /* ImageDestinationViewController.m in Sources */,
 				A70562DF1D6EBA7000652E03 /* ImplicityAnimationViewController.m in Sources */,
 				A70562FF1D6EBA7000652E03 /* ImageIO.m in Sources */,
 				A705630D1D6EBA7000652E03 /* KVOPeople.m in Sources */,
 				A7073E1F1DC05A230049175A /* Teacher.m in Sources */,
-				A70563161D6EBA7000652E03 /* TestBlendViewController.m in Sources */,
 				A773BDEF1D671475008E53C1 /* NSString+CCKit.m in Sources */,
 				A70563041D6EBA7000652E03 /* ModelViewController.m in Sources */,
 				A70562FB1D6EBA7000652E03 /* HTMLParserViewController.m in Sources */,
@@ -1284,15 +1327,18 @@
 				A773BDE81D671475008E53C1 /* CCTextDefine.m in Sources */,
 				A70562F31D6EBA7000652E03 /* FaceDetectorViewController.m in Sources */,
 				A773BDF41D671475008E53C1 /* CCFPSLabel.m in Sources */,
+				A76038181DFA4EED00205E1B /* NSUserDefaultsViewController.m in Sources */,
 				A73DD1C01DF8F96400BE797F /* VideoTableViewController.m in Sources */,
 				A70563241D6EBA7000652E03 /* DataTaskHttpsServerAuthViewController.m in Sources */,
 				A70563051D6EBA7000652E03 /* CCHttpSessionManager.m in Sources */,
 				A70563001D6EBA7000652E03 /* ImageIOViewController.m in Sources */,
 				A70563231D6EBA7000652E03 /* DataTaskBasicAuthViewController.m in Sources */,
+				A76038361DFA9A6500205E1B /* CornerRadiusView+WebCache.m in Sources */,
 				A70563081D6EBA7000652E03 /* HttpChainedRequestsViewController.m in Sources */,
 				A70562DA1D6EBA7000652E03 /* AnimationViewController.m in Sources */,
 				A773BD791D671395008E53C1 /* AppDelegate.m in Sources */,
 				A773BDEA1D671475008E53C1 /* CCTextLine.m in Sources */,
+				A76038371DFA9A6500205E1B /* CornerRadiusView.m in Sources */,
 				A70562F61D6EBA7000652E03 /* ChatViewController.m in Sources */,
 				A773BDE21D671475008E53C1 /* NSObject+CCModel.m in Sources */,
 				A70563271D6EBA7000652E03 /* UIDownloadTaskViewController.m in Sources */,
@@ -1311,7 +1357,10 @@
 				A73DD1C31DF8FAF400BE797F /* EasyVideoRecordToFileViewController.m in Sources */,
 				A70562F51D6EBA7000652E03 /* CCLabelDemoViewController.m in Sources */,
 				A75B10F81D754E66003F4242 /* CoreImageFilterOnCameralViewController.m in Sources */,
+				A76038301DFA9A6500205E1B /* DrawViewContainer.m in Sources */,
+				A76038311DFA9A6500205E1B /* ImageViewContainer.m in Sources */,
 				A70563211D6EBA7000652E03 /* Quartz2DViewController.m in Sources */,
+				A76038351DFA9A6500205E1B /* TestMissalignedViewController.m in Sources */,
 				A705632A1D6EBA7000652E03 /* CustomNavigationChildViewController.m in Sources */,
 				A70563201D6EBA7000652E03 /* PatternViewController.m in Sources */,
 				A70562E71D6EBA7000652E03 /* AutoLayoutViewController.m in Sources */,
@@ -1323,16 +1372,17 @@
 				A70563021D6EBA7000652E03 /* IncrementalImageSourceViewController.m in Sources */,
 				A70562EA1D6EBA7000652E03 /* HomeTableViewController.m in Sources */,
 				A73DD1BC1DF7FC1800BE797F /* CCRemoteNotificationManager.m in Sources */,
+				A760383A1DFA9A9E00205E1B /* PerformanceStoreViewController.m in Sources */,
+				A73DD1CC1DF934A100BE797F /* AVFoundationVideoViewController.m in Sources */,
 				A70562F91D6EBA7000652E03 /* CoreTextHelper.m in Sources */,
 				A75B10EE1D743EF5003F4242 /* CoreImageSubclassCIFilterViewController.m in Sources */,
 				A70563011D6EBA7000652E03 /* ImageSourceViewController.m in Sources */,
-				A70563141D6EBA7000652E03 /* ImageViewPerformanceViewController.m in Sources */,
+				A760382F1DFA9A6500205E1B /* DrawImagePerformanceViewController.m in Sources */,
 				A705631F1D6EBA7000652E03 /* PathViewController.m in Sources */,
 				A70563341D6EBA7000652E03 /* WKWebViewViewController.m in Sources */,
 				A705632D1D6EBA7000652E03 /* InteractiveNavigationDelegate.m in Sources */,
 				A705632E1D6EBA7000652E03 /* SimpleNavigationDelegate.m in Sources */,
 				A70563091D6EBA7000652E03 /* HttpComplexRequestsViewController.m in Sources */,
-				A705631A1D6EBA7000652E03 /* CornerRadiusView.m in Sources */,
 				A773BDEC1D671475008E53C1 /* NSAttributedString+CCKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
