@@ -1245,7 +1245,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CCBuildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CCBuildNumber $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\n\nbuildDate=$(/bin/date +\"%Y-%m-%d %H:%M:%S\")\n/usr/libexec/PlistBuddy -c \"Set :CCBuildDate $buildDate\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\n\ngitCommitCount=$(git rev-list --count HEAD \"${PROJECT_DIR}\")\ngitCommitCount=$(($gitCommitCount + 1))\n/usr/libexec/PlistBuddy -c \"Set :CCGIT $gitCommitCount\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\n";
+			shellScript = "buildDate=$(/bin/date +\"%Y-%m-%d %H:%M:%S\")\n/usr/libexec/PlistBuddy -c \"Set :CCBuildDate $buildDate\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\n\ngitCommitCount=$(git rev-list --count HEAD)\n/usr/libexec/PlistBuddy -c \"Set :CCGIT $gitCommitCount\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\n";
 		};
 		AE5A7621662DF3075205FA5B /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;

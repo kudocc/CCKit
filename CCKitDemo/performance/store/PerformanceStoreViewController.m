@@ -9,6 +9,7 @@
 #import "PerformanceStoreViewController.h"
 #import <FMDatabaseQueue.h>
 #import <FMDB.h>
+#import "CCUserSettings.h"
 
 @interface PerformanceStoreViewController ()
 
@@ -21,6 +22,7 @@
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"key"];
         NSDate *begin = [NSDate date];
         for (NSInteger i = 0; i < 1000; ++i) {
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"key"];
             [[NSUserDefaults standardUserDefaults] synchronize];
         }
         NSDate *end = [NSDate date];
@@ -38,6 +40,26 @@
         NSLog(@"modified synchronize seconds:%f", [end timeIntervalSinceDate:begin]);
     }
     
+    {
+        [[CCUserSettings sharedUserSettings] loadUserSettingsWithUserId:@"999"];
+        NSDate *begin = [NSDate date];
+        for (NSInteger i = 0; i < 1000; ++i) {
+            [[CCUserSettings sharedUserSettings] synchronize];
+        }
+        NSDate *end = [NSDate date];
+        NSLog(@"CCUserSettings not modified synchronize seconds:%f", [end timeIntervalSinceDate:begin]);
+    }
+    
+    {
+        [[CCUserSettings sharedUserSettings] loadUserSettingsWithUserId:@"1000"];
+        NSDate *begin = [NSDate date];
+        for (NSInteger i = 0; i < 1000; ++i) {
+            [[CCUserSettings sharedUserSettings] setBool:(i%2==1) forKey:@"_boolKey"];
+            [[CCUserSettings sharedUserSettings] synchronize];
+        }
+        NSDate *end = [NSDate date];
+        NSLog(@"CCUserSettings modified synchronize seconds:%f", [end timeIntervalSinceDate:begin]);
+    }
     
     
     {
@@ -75,10 +97,9 @@
                 }];
             }
             NSDate *end = [NSDate date];
-            NSLog(@"sqlite insert seconds:%f", [end timeIntervalSinceDate:begin]);
+            NSLog(@"sqlite insert seconds:%f with 100 inserts", [end timeIntervalSinceDate:begin]);
             
             begin = [NSDate date];
-            
             __block NSString *json = nil;
             __block NSDate *createdTime = nil;
             [dbTest inDatabase:^(FMDatabase *db) {

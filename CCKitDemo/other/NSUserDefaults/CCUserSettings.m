@@ -9,12 +9,15 @@
 #import "CCUserSettings.h"
 #import "NSString+CCKit.h"
 #import "NSDictionary+CCKit.h"
+//#include <sys/mman.h>
 
 static NSString *kUserSettingDirectoryName = @"user_setting";
 
 @interface CCUserSettings ()
 
+@property (nonatomic) BOOL changed;
 @property (nonatomic) NSString *filePath;
+@property (nonatomic) NSString *userId;
 @property (nonatomic) NSMutableDictionary *settings;
 
 @end
@@ -31,9 +34,17 @@ static NSString *kUserSettingDirectoryName = @"user_setting";
 }
 
 - (void)loadUserSettingsWithUserId:(NSString *)userId {
-    if (userId.length == 0) {
+    if (userId.length == 0 ||
+        [_userId isEqualToString:userId]) {
         return;
     }
+    
+    if (_userId && _changed) {
+        [self synchronize];
+    }
+    
+    _userId = [userId copy];
+    _changed = NO;
     
     NSString *dirPath = [NSString cc_documentPath];
     dirPath = [dirPath stringByAppendingPathComponent:kUserSettingDirectoryName];
@@ -65,6 +76,7 @@ static NSString *kUserSettingDirectoryName = @"user_setting";
     // Passing nil will cause any object corresponding to aKey to be removed from the dictionary.
     if (!value) {
         _settings[key] = nil;
+        _changed = YES;
     } else {
         if ([value isKindOfClass:NSString.class] ||
             [value isKindOfClass:NSNumber.class] ||
@@ -73,6 +85,7 @@ static NSString *kUserSettingDirectoryName = @"user_setting";
             [value isKindOfClass:NSArray.class] ||
             [value isKindOfClass:NSDictionary.class]) {
             _settings[key] = value;
+            _changed = YES;
         } else {
             NSLog(@"Not a plist value");
         }
@@ -192,7 +205,16 @@ static NSString *kUserSettingDirectoryName = @"user_setting";
 //}
 
 - (BOOL)synchronize {
-    return [_settings writeToFile:_filePath atomically:YES];
+    if (!_changed) {
+        return YES;
+    }
+    BOOL r = [_settings writeToFile:_filePath atomically:YES];
+    if (!r) {
+        NSLog(@"synchronize failed");
+    } else {
+        _changed = YES;
+    }
+    return r;
 }
 
 @end
