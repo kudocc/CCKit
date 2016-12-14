@@ -111,6 +111,7 @@
 		A76038361DFA9A6500205E1B /* CornerRadiusView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A760382C1DFA9A6500205E1B /* CornerRadiusView+WebCache.m */; };
 		A76038371DFA9A6500205E1B /* CornerRadiusView.m in Sources */ = {isa = PBXBuildFile; fileRef = A760382E1DFA9A6500205E1B /* CornerRadiusView.m */; };
 		A760383A1DFA9A9E00205E1B /* PerformanceStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A76038391DFA9A9E00205E1B /* PerformanceStoreViewController.m */; };
+		A760383D1DFAAEB000205E1B /* CCUserSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = A760383C1DFAAEB000205E1B /* CCUserSettings.m */; };
 		A773BD761D671395008E53C1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A773BD751D671395008E53C1 /* main.m */; };
 		A773BD791D671395008E53C1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A773BD781D671395008E53C1 /* AppDelegate.m */; };
 		A773BD7F1D671395008E53C1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A773BD7D1D671395008E53C1 /* Main.storyboard */; };
@@ -143,6 +144,8 @@
 		A773BDF51D671475008E53C1 /* CCLinearGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = A773BDDC1D671475008E53C1 /* CCLinearGradientView.m */; };
 		A773BDF61D671475008E53C1 /* CCStack.m in Sources */ = {isa = PBXBuildFile; fileRef = A773BDDE1D671475008E53C1 /* CCStack.m */; };
 		A7DAFF9E1DDB0CEB002DE7CC /* AnimationKeyboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7DAFF9D1DDB0CEB002DE7CC /* AnimationKeyboardViewController.m */; };
+		A7F807DB1E00DFE300219F91 /* JJViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7F807DA1E00DFE300219F91 /* JJViewController.m */; };
+		A7F807DD1E0119C300219F91 /* CCUserSettingsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A7F807DC1E0119C300219F91 /* CCUserSettingsTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -376,6 +379,8 @@
 		A760382E1DFA9A6500205E1B /* CornerRadiusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CornerRadiusView.m; sourceTree = "<group>"; };
 		A76038381DFA9A9E00205E1B /* PerformanceStoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerformanceStoreViewController.h; sourceTree = "<group>"; };
 		A76038391DFA9A9E00205E1B /* PerformanceStoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PerformanceStoreViewController.m; sourceTree = "<group>"; };
+		A760383B1DFAAEB000205E1B /* CCUserSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCUserSettings.h; sourceTree = "<group>"; };
+		A760383C1DFAAEB000205E1B /* CCUserSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCUserSettings.m; sourceTree = "<group>"; };
 		A773BD711D671395008E53C1 /* CCKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CCKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A773BD751D671395008E53C1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A773BD771D671395008E53C1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -442,6 +447,9 @@
 		A773BDDE1D671475008E53C1 /* CCStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCStack.m; sourceTree = "<group>"; };
 		A7DAFF9C1DDB0CEB002DE7CC /* AnimationKeyboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationKeyboardViewController.h; sourceTree = "<group>"; };
 		A7DAFF9D1DDB0CEB002DE7CC /* AnimationKeyboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimationKeyboardViewController.m; sourceTree = "<group>"; };
+		A7F807D91E00DFE300219F91 /* JJViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJViewController.h; sourceTree = "<group>"; };
+		A7F807DA1E00DFE300219F91 /* JJViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJViewController.m; sourceTree = "<group>"; };
+		A7F807DC1E0119C300219F91 /* CCUserSettingsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCUserSettingsTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -497,6 +505,8 @@
 				A705621E1D6EBA7000652E03 /* CAShapeLayerTestViewController.m */,
 				A7DAFF9C1DDB0CEB002DE7CC /* AnimationKeyboardViewController.h */,
 				A7DAFF9D1DDB0CEB002DE7CC /* AnimationKeyboardViewController.m */,
+				A7F807D91E00DFE300219F91 /* JJViewController.h */,
+				A7F807DA1E00DFE300219F91 /* JJViewController.m */,
 			);
 			path = animation;
 			sourceTree = "<group>";
@@ -824,6 +834,8 @@
 		A76038151DFA4EDD00205E1B /* NSUserDefaults */ = {
 			isa = PBXGroup;
 			children = (
+				A760383B1DFAAEB000205E1B /* CCUserSettings.h */,
+				A760383C1DFAAEB000205E1B /* CCUserSettings.m */,
 				A76038161DFA4EED00205E1B /* NSUserDefaultsViewController.h */,
 				A76038171DFA4EED00205E1B /* NSUserDefaultsViewController.m */,
 			);
@@ -946,6 +958,7 @@
 			isa = PBXGroup;
 			children = (
 				A773BD8E1D671395008E53C1 /* CCKitDemoTests.m */,
+				A7F807DC1E0119C300219F91 /* CCUserSettingsTests.m */,
 				A773BD901D671395008E53C1 /* Info.plist */,
 			);
 			path = CCKitDemoTests;
@@ -1081,6 +1094,7 @@
 				A773BD6F1D671395008E53C1 /* Resources */,
 				8ABFF58E91577E8D97E39591 /* Embed Pods Frameworks */,
 				AE5A7621662DF3075205FA5B /* Copy Pods Resources */,
+				A7B6C6C21DFEC48400A2F1E1 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1220,6 +1234,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		A7B6C6C21DFEC48400A2F1E1 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"\n";
+		};
 		AE5A7621662DF3075205FA5B /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1290,6 +1317,7 @@
 				A773BDE31D671475008E53C1 /* CCAsyncLayer.m in Sources */,
 				A70563291D6EBA7000652E03 /* CustomAnimator.m in Sources */,
 				A705632F1D6EBA7000652E03 /* VCTransitionViewController.m in Sources */,
+				A760383D1DFAAEB000205E1B /* CCUserSettings.m in Sources */,
 				A70562E41D6EBA7000652E03 /* AudioRecordViewController.m in Sources */,
 				A773BDE01D671475008E53C1 /* AudioQueueRecorder.m in Sources */,
 				A70562E51D6EBA7000652E03 /* AudioViewController.m in Sources */,
@@ -1323,6 +1351,7 @@
 				A70563041D6EBA7000652E03 /* ModelViewController.m in Sources */,
 				A70562FB1D6EBA7000652E03 /* HTMLParserViewController.m in Sources */,
 				A70562DB1D6EBA7000652E03 /* CAActionTestViewController.m in Sources */,
+				A7F807DB1E00DFE300219F91 /* JJViewController.m in Sources */,
 				A70562F11D6EBA7000652E03 /* BuiltinFilterViewController.m in Sources */,
 				A773BDE81D671475008E53C1 /* CCTextDefine.m in Sources */,
 				A70562F31D6EBA7000652E03 /* FaceDetectorViewController.m in Sources */,
@@ -1392,6 +1421,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A773BD8F1D671395008E53C1 /* CCKitDemoTests.m in Sources */,
+				A7F807DD1E0119C300219F91 /* CCUserSettingsTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

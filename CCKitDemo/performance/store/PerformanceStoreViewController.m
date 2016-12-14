@@ -18,6 +18,29 @@
 
 - (void)initView {
     {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"key"];
+        NSDate *begin = [NSDate date];
+        for (NSInteger i = 0; i < 1000; ++i) {
+            [[NSUserDefaults standardUserDefaults] synchronize];
+        }
+        NSDate *end = [NSDate date];
+        NSLog(@"not modified synchronize seconds:%f", [end timeIntervalSinceDate:begin]);
+    }
+    
+    
+    {
+        NSDate *begin = [NSDate date];
+        for (NSInteger i = 0; i < 1000; ++i) {
+            [[NSUserDefaults standardUserDefaults] setBool:(i%2==1) forKey:@"key"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+        }
+        NSDate *end = [NSDate date];
+        NSLog(@"modified synchronize seconds:%f", [end timeIntervalSinceDate:begin]);
+    }
+    
+    
+    
+    {
         // fmdb
         
         NSArray *array = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -72,6 +95,7 @@
         });
     }
 
+    // why `[[NSUserDefaults standardUserDefaults] synchronize]` runs so fast!!!!
     {
         // NSUserDefaults
         // 0.096837s    100 times

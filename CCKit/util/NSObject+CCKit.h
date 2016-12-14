@@ -12,4 +12,6 @@
 
 - (id)cc_deepCopy;
 
++ (void)logMethodNames;
+
 @end

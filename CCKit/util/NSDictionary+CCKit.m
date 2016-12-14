@@ -28,44 +28,31 @@
 }
 
 - (NSString *)cc_stringForKey:(NSString *)key {
-    id obj = self[key];
-    if (![obj isKindOfClass:[NSString class]]) {
-        return nil;
-    }
-    return obj;
+    return [self cc_objectForKey:key allowClassArray:@[NSString.class]];
 }
 
 - (NSNumber *)cc_numberForKey:(NSString *)key {
-    id obj = self[key];
-    if (![obj isKindOfClass:[NSNumber class]]) {
-        return nil;
-    }
-    return obj;
+    return [self cc_objectForKey:key allowClassArray:@[NSNumber.class]];
 }
 
 - (NSArray *)cc_arrayForKey:(NSString *)key {
-    id obj = self[key];
-    if (![obj isKindOfClass:[NSArray class]]) {
-        return nil;
-    }
-    return obj;
+    return [self cc_objectForKey:key allowClassArray:@[NSArray.class]];
 }
 
 - (NSDictionary *)cc_dictionaryForKey:(NSString *)key {
-    id obj = self[key];
-    if (![obj isKindOfClass:[NSDictionary class]]) {
-        return nil;
-    }
-    return obj;
+    return [self cc_objectForKey:key allowClassArray:@[NSDictionary.class]];
 }
 
 - (NSString *)cc_stringAllowNSNumberForKey:(NSString *)key {
+    return [self cc_objectForKey:key allowClassArray:@[NSString.class, NSNumber.class]];
+}
+
+- (id)cc_objectForKey:(NSString *)key allowClassArray:(NSArray<Class> *)classes {
     id obj = self[key];
-    if ([obj isKindOfClass:[NSString class]]) {
-        return obj;
-    }
-    if ([obj isKindOfClass:[NSNumber class]]) {
-        return [obj description];
+    for (Class cls in classes) {
+        if ([obj isKindOfClass:cls]) {
+            return obj;
+        }
     }
     return nil;
 }

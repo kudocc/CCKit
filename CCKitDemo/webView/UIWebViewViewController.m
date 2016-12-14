@@ -51,6 +51,16 @@
     buttonReload.backgroundColor = [UIColor yellowColor];
     [buttonReload setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [buttonReload addTarget:self action:@selector(reload:) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"back" style:UIBarButtonItemStylePlain target:self action:@selector(goBack:)];
+}
+
+- (void)goBack:(id)sender {
+    if ([_webView canGoBack]) {
+        [_webView goBack];
+    } else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 - (void)reload:(id)sender {

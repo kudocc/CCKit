@@ -20,6 +20,7 @@
 - (NSArray *)cc_arrayForKey:(NSString *)key;
 - (NSDictionary *)cc_dictionaryForKey:(NSString *)key;
 - (NSString *)cc_stringAllowNSNumberForKey:(NSString *)key;
+- (id)cc_objectForKey:(NSString *)key allowClassArray:(NSArray<Class> *)classes;
 
 @end
 

@@ -7,6 +7,32 @@
 //
 
 #import "NSUserDefaultsViewController.h"
+#import <objc/runtime.h>
+
+@interface NSUserDefaults (test)
+
+@end
+
+@implementation NSUserDefaults (test)
+
++ (void)load {
+    Method m1 = class_getInstanceMethod(self.class, NSSelectorFromString(@"synchronize"));
+    if (!m1) {
+        return;
+    }
+    Method m2 = class_getInstanceMethod(self.class, NSSelectorFromString(@"test_synchronize"));
+    if (!m2) {
+        return;
+    }
+    method_exchangeImplementations(m1, m2);
+}
+
+- (void)test_synchronize {
+    [self test_synchronize];
+    NSLog(@"call synchronize");
+}
+
+@end
 
 @interface NSUserDefaultsViewController ()
 
@@ -47,11 +73,11 @@
     
     [[NSUserDefaults standardUserDefaults] setBool:b forKey:@"boolValue"];
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        exit(0);
-    });
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        exit(0);
+//    });
     
-//    [[NSUserDefaults standardUserDefaults] synchronize];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 //    exit(0);
 }
 

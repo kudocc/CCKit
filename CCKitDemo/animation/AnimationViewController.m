@@ -14,6 +14,8 @@
 #import "CAShapeLayerTestViewController.h"
 #import "AnimationKeyboardViewController.h"
 
+#import "JJViewController.h"
+
 @implementation AnimationViewController
 
 - (void)showBinaryUnsignedChar:(unsigned char)c {
@@ -45,13 +47,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    self.arrayTitle = @[@"Implicity Animation", @"CABasicAnimation", @"CAKeyframeAnimation", @"CAAction", @"ShapeLayer Animation", @"Animation interaction with keyboard"];
+    self.arrayTitle = @[@"Implicity Animation", @"CABasicAnimation", @"CAKeyframeAnimation", @"CAAction", @"ShapeLayer Animation", @"Animation interaction with keyboard", @"JJ"];
     self.arrayClass = @[[ImplicityAnimationViewController class],
                         [CABasicAnimationTestViewController class],
                         [CAKeyframeViewController class],
                         [CAActionTestViewController class],
                         [CAShapeLayerTestViewController class],
-                        [AnimationKeyboardViewController class]];
+                        [AnimationKeyboardViewController class],
+                        [JJViewController class]];
     
     [self showBinaryUnsignedChar:1];
     printf("\n");
