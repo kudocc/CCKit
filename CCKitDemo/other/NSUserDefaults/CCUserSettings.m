@@ -9,7 +9,6 @@
 #import "CCUserSettings.h"
 #import "NSString+CCKit.h"
 #import "NSDictionary+CCKit.h"
-//#include <sys/mman.h>
 
 static NSString *kUserSettingDirectoryName = @"user_setting";
 

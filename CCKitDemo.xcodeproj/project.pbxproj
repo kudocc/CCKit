@@ -97,6 +97,8 @@
 		A73DD1C61DF9076000BE797F /* AudioFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A73DD1C51DF9076000BE797F /* AudioFileManager.m */; };
 		A73DD1C91DF926FD00BE797F /* NSDate+CCKit.m in Sources */ = {isa = PBXBuildFile; fileRef = A73DD1C81DF926FD00BE797F /* NSDate+CCKit.m */; };
 		A73DD1CC1DF934A100BE797F /* AVFoundationVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A73DD1CB1DF934A100BE797F /* AVFoundationVideoViewController.m */; };
+		A74687001E027474005A5316 /* CCUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = A74686FF1E027474005A5316 /* CCUserDefaults.m */; };
+		A74687021E028F3C005A5316 /* CCUserDefaultsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A74687011E028F3C005A5316 /* CCUserDefaultsTests.m */; };
 		A75B10EE1D743EF5003F4242 /* CoreImageSubclassCIFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A75B10ED1D743EF5003F4242 /* CoreImageSubclassCIFilterViewController.m */; };
 		A75B10F41D744487003F4242 /* CIFacePixelFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = A75B10F31D744487003F4242 /* CIFacePixelFilter.m */; };
 		A75B10F81D754E66003F4242 /* CoreImageFilterOnCameralViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A75B10F71D754E66003F4242 /* CoreImageFilterOnCameralViewController.m */; };
@@ -351,6 +353,9 @@
 		A73DD1C81DF926FD00BE797F /* NSDate+CCKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+CCKit.m"; sourceTree = "<group>"; };
 		A73DD1CA1DF934A100BE797F /* AVFoundationVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVFoundationVideoViewController.h; sourceTree = "<group>"; };
 		A73DD1CB1DF934A100BE797F /* AVFoundationVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVFoundationVideoViewController.m; sourceTree = "<group>"; };
+		A74686FE1E027474005A5316 /* CCUserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCUserDefaults.h; sourceTree = "<group>"; };
+		A74686FF1E027474005A5316 /* CCUserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCUserDefaults.m; sourceTree = "<group>"; };
+		A74687011E028F3C005A5316 /* CCUserDefaultsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCUserDefaultsTests.m; sourceTree = "<group>"; };
 		A75B10EC1D743EF5003F4242 /* CoreImageSubclassCIFilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreImageSubclassCIFilterViewController.h; sourceTree = "<group>"; };
 		A75B10ED1D743EF5003F4242 /* CoreImageSubclassCIFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreImageSubclassCIFilterViewController.m; sourceTree = "<group>"; };
 		A75B10F21D744487003F4242 /* CIFacePixelFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIFacePixelFilter.h; sourceTree = "<group>"; };
@@ -836,6 +841,8 @@
 			children = (
 				A760383B1DFAAEB000205E1B /* CCUserSettings.h */,
 				A760383C1DFAAEB000205E1B /* CCUserSettings.m */,
+				A74686FE1E027474005A5316 /* CCUserDefaults.h */,
+				A74686FF1E027474005A5316 /* CCUserDefaults.m */,
 				A76038161DFA4EED00205E1B /* NSUserDefaultsViewController.h */,
 				A76038171DFA4EED00205E1B /* NSUserDefaultsViewController.m */,
 			);
@@ -959,6 +966,7 @@
 			children = (
 				A773BD8E1D671395008E53C1 /* CCKitDemoTests.m */,
 				A7F807DC1E0119C300219F91 /* CCUserSettingsTests.m */,
+				A74687011E028F3C005A5316 /* CCUserDefaultsTests.m */,
 				A773BD901D671395008E53C1 /* Info.plist */,
 			);
 			path = CCKitDemoTests;
@@ -1382,6 +1390,7 @@
 				A70562FD1D6EBA7000652E03 /* SimpleChatViewController.m in Sources */,
 				A70562DE1D6EBA7000652E03 /* CAShapeLayerTestViewController.m in Sources */,
 				A773BD761D671395008E53C1 /* main.m in Sources */,
+				A74687001E027474005A5316 /* CCUserDefaults.m in Sources */,
 				A70563311D6EBA7000652E03 /* UIWebViewViewController.m in Sources */,
 				A73DD1C31DF8FAF400BE797F /* EasyVideoRecordToFileViewController.m in Sources */,
 				A70562F51D6EBA7000652E03 /* CCLabelDemoViewController.m in Sources */,
@@ -1421,6 +1430,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A773BD8F1D671395008E53C1 /* CCKitDemoTests.m in Sources */,
+				A74687021E028F3C005A5316 /* CCUserDefaultsTests.m in Sources */,
 				A7F807DD1E0119C300219F91 /* CCUserSettingsTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -10,6 +10,7 @@
 #import <FMDatabaseQueue.h>
 #import <FMDB.h>
 #import "CCUserSettings.h"
+#import "CCUserDefaults.h"
 
 @interface PerformanceStoreViewController ()
 
@@ -53,6 +54,16 @@
     }
     
     {
+        [[CCUserDefaults sharedUserDefaults] loadUserSettingsWithUserId:@"1000"];
+        NSDate *begin = [NSDate date];
+        for (NSInteger i = 0; i < 1000; ++i) {
+            [[CCUserDefaults sharedUserDefaults] setBool:(i%2==1) forKey:@"_boolKey"];
+        }
+        NSDate *end = [NSDate date];
+        NSLog(@"CCUserDefaults modified synchronize seconds:%f", [end timeIntervalSinceDate:begin]);
+    }
+    
+    {
         [[CCUserSettings sharedUserSettings] loadUserSettingsWithUserId:@"999"];
         NSDate *begin = [NSDate date];
         for (NSInteger i = 0; i < 1000; ++i) {
@@ -72,7 +83,6 @@
         NSDate *end = [NSDate date];
         NSLog(@"CCUserSettings modified synchronize seconds:%f", [end timeIntervalSinceDate:begin]);
     }
-    
     
     {
         // fmdb

@@ -9,19 +9,21 @@
 #import <XCTest/XCTest.h>
 #import "CCUserSettings.h"
 
-NSString *const kNumber = @"number";
-NSString *const kString = @"string";
-NSString *const kData = @"data";
-NSString *const kInteger = @"integer";
-NSString *const kBool = @"bool";
-NSString *const kArray = @"array";
-NSString *const kDictionary = @"dictionary";
+static NSString *const kNumber = @"number";
+static NSString *const kString = @"string";
+static NSString *const kData = @"data";
+static NSString *const kDate = @"date";
+static NSString *const kInteger = @"integer";
+static NSString *const kBool = @"bool";
+static NSString *const kArray = @"array";
+static NSString *const kDictionary = @"dictionary";
 
 @interface CCUserSettingsTests : XCTestCase {
     NSString *userId;
     NSNumber *number;
     NSString *string;
     NSData *data;
+    NSDate *date;
     NSInteger integerValue;
     BOOL boolValue;
     NSArray *array;
@@ -40,6 +42,7 @@ NSString *const kDictionary = @"dictionary";
     number = @1024;
     string = @"This is a test string";
     data = [string dataUsingEncoding:NSUTF8StringEncoding];
+    date = [NSDate dateWithTimeIntervalSince1970:1024];
     integerValue = 10000000;
     boolValue = NO;
     array = @[@1, @2, @3, @4];
@@ -59,6 +62,7 @@ NSString *const kDictionary = @"dictionary";
     [[CCUserSettings sharedUserSettings] setObject:number forKey:kNumber];
     [[CCUserSettings sharedUserSettings] setObject:string forKey:kString];
     [[CCUserSettings sharedUserSettings] setObject:data forKey:kData];
+    [[CCUserSettings sharedUserSettings] setObject:date forKey:kDate];
     [[CCUserSettings sharedUserSettings] setInteger:integerValue forKey:kInteger];
     [[CCUserSettings sharedUserSettings] setBool:boolValue forKey:kBool];
     [[CCUserSettings sharedUserSettings] setObject:array forKey:kArray];
@@ -66,14 +70,11 @@ NSString *const kDictionary = @"dictionary";
 }
 
 - (void)testLoadUserSettings {
-    [[CCUserSettings sharedUserSettings] loadUserSettingsWithUserId:@"1023"];
-    NSString *str = [[CCUserSettings sharedUserSettings] objectForKey:kString];
-    XCTAssertNil(str);
-    
     [[CCUserSettings sharedUserSettings] loadUserSettingsWithUserId:userId];
     XCTAssertTrue([number isEqualToNumber:[[CCUserSettings sharedUserSettings] objectForKey:kNumber]]);
     XCTAssertTrue([string isEqualToString:[[CCUserSettings sharedUserSettings] objectForKey:kString]]);
     XCTAssertTrue([data isEqualToData:[[CCUserSettings sharedUserSettings] objectForKey:kData]]);
+    XCTAssertTrue([date isEqualToDate:[[CCUserSettings sharedUserSettings] objectForKey:kDate]]);
     XCTAssertEqual(integerValue, [[CCUserSettings sharedUserSettings] integerForKey:kInteger]);
     XCTAssertEqual(boolValue, [[CCUserSettings sharedUserSettings] boolForKey:kBool]);
     XCTAssertTrue([array isEqualToArray:[[CCUserSettings sharedUserSettings] arrayForKey:kArray]]);
