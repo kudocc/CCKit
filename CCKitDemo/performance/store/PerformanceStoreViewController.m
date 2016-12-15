@@ -29,11 +29,23 @@
         NSLog(@"not modified synchronize seconds:%f", [end timeIntervalSinceDate:begin]);
     }
     
-    
     {
         NSDate *begin = [NSDate date];
         for (NSInteger i = 0; i < 1000; ++i) {
             [[NSUserDefaults standardUserDefaults] setBool:(i%2==1) forKey:@"key"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+        }
+        NSDate *end = [NSDate date];
+        NSLog(@"modified synchronize (memory not change) seconds:%f", [end timeIntervalSinceDate:begin]);
+    }
+    
+    
+    {
+        NSString *longStr = @"a long long long string";
+        NSString *shortStr = @"a";
+        NSDate *begin = [NSDate date];
+        for (NSInteger i = 0; i < 1000; ++i) {
+            [[NSUserDefaults standardUserDefaults] setObject:((i%2==1)?longStr:shortStr) forKey:@"key"];
             [[NSUserDefaults standardUserDefaults] synchronize];
         }
         NSDate *end = [NSDate date];
