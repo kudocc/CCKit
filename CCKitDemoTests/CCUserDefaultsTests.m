@@ -20,6 +20,7 @@ static NSString *const kDictionary = @"dictionary";
 
 @interface CCUserDefaultsTests : XCTestCase {
     NSString *userId;
+    NSString *anotherUserId;
     NSNumber *number;
     NSString *string;
     NSData *data;
@@ -39,6 +40,7 @@ static NSString *const kDictionary = @"dictionary";
     // Put setup code here. This method is called before the invocation of each test method in the class.
     
     userId = @"1024";
+    anotherUserId = @"1025";
     number = @1024;
     string = @"This is a test string";
     data = [string dataUsingEncoding:NSUTF8StringEncoding];
@@ -64,10 +66,32 @@ static NSString *const kDictionary = @"dictionary";
     XCTAssertTrue([[CCUserDefaults sharedUserDefaults] setBool:boolValue forKey:kBool]);
     XCTAssertTrue([[CCUserDefaults sharedUserDefaults] setObject:array forKey:kArray]);
     XCTAssertTrue([[CCUserDefaults sharedUserDefaults] setObject:dict forKey:kDictionary]);
+    
+    // load another user
+    [[CCUserDefaults sharedUserDefaults] loadUserSettingsWithUserId:anotherUserId];
+    XCTAssertTrue([[CCUserDefaults sharedUserDefaults] setObject:number forKey:kNumber]);
+    XCTAssertTrue([[CCUserDefaults sharedUserDefaults] setObject:string forKey:kString]);
+    XCTAssertTrue([[CCUserDefaults sharedUserDefaults] setObject:data forKey:kData]);
+    XCTAssertTrue([[CCUserDefaults sharedUserDefaults] setObject:date forKey:kDate]);
+    XCTAssertTrue([[CCUserDefaults sharedUserDefaults] setInteger:integerValue forKey:kInteger]);
+    XCTAssertTrue([[CCUserDefaults sharedUserDefaults] setBool:boolValue forKey:kBool]);
+    XCTAssertTrue([[CCUserDefaults sharedUserDefaults] setObject:array forKey:kArray]);
+    XCTAssertTrue([[CCUserDefaults sharedUserDefaults] setObject:dict forKey:kDictionary]);
 }
 
 - (void)testLoadUserSettings {
     [[CCUserDefaults sharedUserDefaults] loadUserSettingsWithUserId:userId];
+    XCTAssertTrue([number isEqualToNumber:[[CCUserDefaults sharedUserDefaults] numberForKey:kNumber]]);
+    XCTAssertTrue([string isEqualToString:[[CCUserDefaults sharedUserDefaults] stringForKey:kString]]);
+    XCTAssertTrue([data isEqualToData:[[CCUserDefaults sharedUserDefaults] dataForKey:kData]]);
+    XCTAssertTrue([date isEqualToDate:[[CCUserDefaults sharedUserDefaults] dateForKey:kDate]]);
+    XCTAssertEqual(integerValue, [[CCUserDefaults sharedUserDefaults] integerForKey:kInteger]);
+    XCTAssertEqual(boolValue, [[CCUserDefaults sharedUserDefaults] boolForKey:kBool]);
+    XCTAssertTrue([array isEqualToArray:[[CCUserDefaults sharedUserDefaults] arrayForKey:kArray]]);
+    XCTAssertTrue([dict isEqualToDictionary:[[CCUserDefaults sharedUserDefaults] dictionaryForKey:kDictionary]]);
+    
+    // load another user
+    [[CCUserDefaults sharedUserDefaults] loadUserSettingsWithUserId:anotherUserId];
     XCTAssertTrue([number isEqualToNumber:[[CCUserDefaults sharedUserDefaults] numberForKey:kNumber]]);
     XCTAssertTrue([string isEqualToString:[[CCUserDefaults sharedUserDefaults] stringForKey:kString]]);
     XCTAssertTrue([data isEqualToData:[[CCUserDefaults sharedUserDefaults] dataForKey:kData]]);

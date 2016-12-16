@@ -20,7 +20,9 @@ static NSString *const kDictionary = @"dictionary";
 
 @interface CCMmapUserSettingsTests : XCTestCase {
     NSString *userId;
+    NSString *anotherUserId;
     NSNumber *number;
+    NSNumber *anotherNumber;
     NSString *string;
     NSData *data;
     NSDate *date;
@@ -39,7 +41,9 @@ static NSString *const kDictionary = @"dictionary";
     // Put setup code here. This method is called before the invocation of each test method in the class.
     
     userId = @"1024";
+    anotherUserId = @"1025";
     number = @1024;
+    anotherNumber = @1025;
     string = @"This is a test string";
     data = [string dataUsingEncoding:NSUTF8StringEncoding];
     date = [NSDate dateWithTimeIntervalSince1970:1024];
@@ -67,11 +71,31 @@ static NSString *const kDictionary = @"dictionary";
     [[CCMmapUserSettings sharedUserSettings] setBool:boolValue forKey:kBool];
     [[CCMmapUserSettings sharedUserSettings] setObject:array forKey:kArray];
     [[CCMmapUserSettings sharedUserSettings] setObject:dict forKey:kDictionary];
+    
+    [[CCMmapUserSettings sharedUserSettings] loadUserSettingsWithUserId:anotherUserId];
+    [[CCMmapUserSettings sharedUserSettings] setObject:anotherNumber forKey:kNumber];
+    [[CCMmapUserSettings sharedUserSettings] setObject:string forKey:kString];
+    [[CCMmapUserSettings sharedUserSettings] setObject:data forKey:kData];
+    [[CCMmapUserSettings sharedUserSettings] setObject:date forKey:kDate];
+    [[CCMmapUserSettings sharedUserSettings] setInteger:integerValue forKey:kInteger];
+    [[CCMmapUserSettings sharedUserSettings] setBool:boolValue forKey:kBool];
+    [[CCMmapUserSettings sharedUserSettings] setObject:array forKey:kArray];
+    [[CCMmapUserSettings sharedUserSettings] setObject:dict forKey:kDictionary];
 }
 
 - (void)testLoadUserSettings {
     [[CCMmapUserSettings sharedUserSettings] loadUserSettingsWithUserId:userId];
     XCTAssertTrue([number isEqualToNumber:[[CCMmapUserSettings sharedUserSettings] objectForKey:kNumber]]);
+    XCTAssertTrue([string isEqualToString:[[CCMmapUserSettings sharedUserSettings] objectForKey:kString]]);
+    XCTAssertTrue([data isEqualToData:[[CCMmapUserSettings sharedUserSettings] objectForKey:kData]]);
+    XCTAssertTrue([date isEqualToDate:[[CCMmapUserSettings sharedUserSettings] objectForKey:kDate]]);
+    XCTAssertEqual(integerValue, [[CCMmapUserSettings sharedUserSettings] integerForKey:kInteger]);
+    XCTAssertEqual(boolValue, [[CCMmapUserSettings sharedUserSettings] boolForKey:kBool]);
+    XCTAssertTrue([array isEqualToArray:[[CCMmapUserSettings sharedUserSettings] arrayForKey:kArray]]);
+    XCTAssertTrue([dict isEqualToDictionary:[[CCMmapUserSettings sharedUserSettings] dictionaryForKey:kDictionary]]);
+    
+    [[CCMmapUserSettings sharedUserSettings] loadUserSettingsWithUserId:anotherUserId];
+    XCTAssertTrue([anotherNumber isEqualToNumber:[[CCMmapUserSettings sharedUserSettings] objectForKey:kNumber]]);
     XCTAssertTrue([string isEqualToString:[[CCMmapUserSettings sharedUserSettings] objectForKey:kString]]);
     XCTAssertTrue([data isEqualToData:[[CCMmapUserSettings sharedUserSettings] objectForKey:kData]]);
     XCTAssertTrue([date isEqualToDate:[[CCMmapUserSettings sharedUserSettings] objectForKey:kDate]]);

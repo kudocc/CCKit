@@ -57,8 +57,25 @@ static NSString *kUserSettingDirectoryName = @"mmap_user_setting";
         [self synchronize];
     }
     
+    if (_userId) {
+        if (_memory) {
+            int res = munmap(_memory, _memoryLength);
+            if (res == -1) {
+                NSLog(@"munmap error");
+            }
+            _memory = NULL;
+            _memoryLength = 0;
+        }
+        
+        if (_file) {
+            fclose(_file);
+            _file = NULL;
+        }
+    }
+    
     _userId = [userId copy];
     _changed = NO;
+    _settings = nil;
     
     NSString *dirPath = [NSString cc_documentPath];
     dirPath = [dirPath stringByAppendingPathComponent:kUserSettingDirectoryName];
