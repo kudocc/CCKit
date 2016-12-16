@@ -81,6 +81,13 @@ static NSString *const kDictionary = @"dictionary";
     [[CCMmapUserSettings sharedUserSettings] setBool:boolValue forKey:kBool];
     [[CCMmapUserSettings sharedUserSettings] setObject:array forKey:kArray];
     [[CCMmapUserSettings sharedUserSettings] setObject:dict forKey:kDictionary];
+    
+    
+    // write more data, over one memory page
+    char c[4096] = {0};
+    NSData *largeData = [NSData dataWithBytes:c length:4096];
+    [[CCMmapUserSettings sharedUserSettings] setObject:largeData forKey:kData];
+    XCTAssertTrue([[CCMmapUserSettings sharedUserSettings] synchronize]);
 }
 
 - (void)testLoadUserSettings {

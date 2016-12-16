@@ -11,7 +11,8 @@
 #import "NSDictionary+CCKit.h"
 #import <sys/mman.h>
 
-static unsigned int MEM_PAGE_SIZE = 4096;
+#define MEM_PAGE_SIZE 4096
+
 static NSString *kUserSettingDirectoryName = @"mmap_user_setting";
 
 @interface CCMmapUserSettings () {
@@ -110,8 +111,7 @@ static NSString *kUserSettingDirectoryName = @"mmap_user_setting";
         if (!res) {
             NSLog(@"Create directory:%@ failed", dirPath);
         }
-        char c[MEM_PAGE_SIZE];
-        memset(c, 0, MEM_PAGE_SIZE);
+        unsigned char c[MEM_PAGE_SIZE] = {0};
         NSData *data = [NSData dataWithBytesNoCopy:c length:MEM_PAGE_SIZE freeWhenDone:NO];
         res = [[NSFileManager defaultManager] createFileAtPath:_filePath contents:data attributes:nil];
         if (!res) {
@@ -262,9 +262,27 @@ static NSString *kUserSettingDirectoryName = @"mmap_user_setting";
             munmap(_memory, _memoryLength);
             _memory = NULL;
         }
-        unsigned int fileLength = (unsigned int)(((data.length + sizeof(unsigned int)) / MEM_PAGE_SIZE) + 1 ) * MEM_PAGE_SIZE;
-        _memory = (unsigned char *)mmap(NULL, fileLength, PROT_READ|PROT_WRITE, MAP_SHARED, fileno(_file), 0);
-        _memoryLength = (unsigned int)fileLength;
+        unsigned int pageCount = (unsigned int)(data.length + sizeof(_memoryLength)) / MEM_PAGE_SIZE + 1;
+        unsigned int expandedFileSize = pageCount * MEM_PAGE_SIZE;
+        // expand the file size to fileLength
+        unsigned int moreDataLength = expandedFileSize - _memoryLength;
+        // seek to file end and write more data
+        fseek(_file, 0, SEEK_END);
+        unsigned char buffer[MEM_PAGE_SIZE] = {0};
+        unsigned int leftDataLength = moreDataLength;
+        while (leftDataLength > 0) {
+            unsigned int writeLen = MEM_PAGE_SIZE;
+            if (leftDataLength < MEM_PAGE_SIZE) {
+                writeLen = leftDataLength;
+            }
+            size_t writtenBytes = fwrite(buffer, 1, writeLen, _file);
+            leftDataLength -= writtenBytes;
+        }
+        // may fsync(fileno(_file)); ?
+        fflush(_file);
+        // re-map the file
+        _memory = (unsigned char *)mmap(NULL, expandedFileSize, PROT_READ|PROT_WRITE, MAP_SHARED, fileno(_file), 0);
+        _memoryLength = (unsigned int)expandedFileSize;
         if (_memory == MAP_FAILED) {
             _memory = NULL;
             fclose(_file);
