@@ -39,7 +39,7 @@
             [[NSUserDefaults standardUserDefaults] synchronize];
         }
         NSDate *end = [NSDate date];
-        NSLog(@"not modified synchronize seconds:%f", [end timeIntervalSinceDate:begin]);
+        NSLog(@"NSUserDefaults not modified synchronize seconds:%f", [end timeIntervalSinceDate:begin]);
     }
     
     {
@@ -49,7 +49,7 @@
             [[NSUserDefaults standardUserDefaults] synchronize];
         }
         NSDate *end = [NSDate date];
-        NSLog(@"modified synchronize (memory not change) seconds:%f", [end timeIntervalSinceDate:begin]);
+        NSLog(@"NSUserDefaults modified synchronize (memory not change) seconds:%f", [end timeIntervalSinceDate:begin]);
     }
     
     
