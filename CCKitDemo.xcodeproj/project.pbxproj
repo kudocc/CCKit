@@ -114,6 +114,8 @@
 		A76038371DFA9A6500205E1B /* CornerRadiusView.m in Sources */ = {isa = PBXBuildFile; fileRef = A760382E1DFA9A6500205E1B /* CornerRadiusView.m */; };
 		A760383A1DFA9A9E00205E1B /* PerformanceStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A76038391DFA9A9E00205E1B /* PerformanceStoreViewController.m */; };
 		A760383D1DFAAEB000205E1B /* CCUserSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = A760383C1DFAAEB000205E1B /* CCUserSettings.m */; };
+		A76F9D881E0381C1009ACD1C /* CCMmapUserSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = A76F9D871E0381C1009ACD1C /* CCMmapUserSettings.m */; };
+		A76F9D8A1E0391A4009ACD1C /* CCMmapUserSettingsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A76F9D891E0391A4009ACD1C /* CCMmapUserSettingsTests.m */; };
 		A773BD761D671395008E53C1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A773BD751D671395008E53C1 /* main.m */; };
 		A773BD791D671395008E53C1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A773BD781D671395008E53C1 /* AppDelegate.m */; };
 		A773BD7F1D671395008E53C1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A773BD7D1D671395008E53C1 /* Main.storyboard */; };
@@ -386,6 +388,9 @@
 		A76038391DFA9A9E00205E1B /* PerformanceStoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PerformanceStoreViewController.m; sourceTree = "<group>"; };
 		A760383B1DFAAEB000205E1B /* CCUserSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCUserSettings.h; sourceTree = "<group>"; };
 		A760383C1DFAAEB000205E1B /* CCUserSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCUserSettings.m; sourceTree = "<group>"; };
+		A76F9D861E0381C1009ACD1C /* CCMmapUserSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCMmapUserSettings.h; sourceTree = "<group>"; };
+		A76F9D871E0381C1009ACD1C /* CCMmapUserSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCMmapUserSettings.m; sourceTree = "<group>"; };
+		A76F9D891E0391A4009ACD1C /* CCMmapUserSettingsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCMmapUserSettingsTests.m; sourceTree = "<group>"; };
 		A773BD711D671395008E53C1 /* CCKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CCKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A773BD751D671395008E53C1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A773BD771D671395008E53C1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -839,10 +844,12 @@
 		A76038151DFA4EDD00205E1B /* NSUserDefaults */ = {
 			isa = PBXGroup;
 			children = (
-				A760383B1DFAAEB000205E1B /* CCUserSettings.h */,
-				A760383C1DFAAEB000205E1B /* CCUserSettings.m */,
 				A74686FE1E027474005A5316 /* CCUserDefaults.h */,
 				A74686FF1E027474005A5316 /* CCUserDefaults.m */,
+				A760383B1DFAAEB000205E1B /* CCUserSettings.h */,
+				A760383C1DFAAEB000205E1B /* CCUserSettings.m */,
+				A76F9D861E0381C1009ACD1C /* CCMmapUserSettings.h */,
+				A76F9D871E0381C1009ACD1C /* CCMmapUserSettings.m */,
 				A76038161DFA4EED00205E1B /* NSUserDefaultsViewController.h */,
 				A76038171DFA4EED00205E1B /* NSUserDefaultsViewController.m */,
 			);
@@ -967,6 +974,7 @@
 				A773BD8E1D671395008E53C1 /* CCKitDemoTests.m */,
 				A7F807DC1E0119C300219F91 /* CCUserSettingsTests.m */,
 				A74687011E028F3C005A5316 /* CCUserDefaultsTests.m */,
+				A76F9D891E0391A4009ACD1C /* CCMmapUserSettingsTests.m */,
 				A773BD901D671395008E53C1 /* Info.plist */,
 			);
 			path = CCKitDemoTests;
@@ -1407,6 +1415,7 @@
 				A70562DC1D6EBA7000652E03 /* CABasicAnimationTestViewController.m in Sources */,
 				A70562E01D6EBA7000652E03 /* AudioListViewController.m in Sources */,
 				A70563151D6EBA7000652E03 /* PerformanceViewController.m in Sources */,
+				A76F9D881E0381C1009ACD1C /* CCMmapUserSettings.m in Sources */,
 				A70563021D6EBA7000652E03 /* IncrementalImageSourceViewController.m in Sources */,
 				A70562EA1D6EBA7000652E03 /* HomeTableViewController.m in Sources */,
 				A73DD1BC1DF7FC1800BE797F /* CCRemoteNotificationManager.m in Sources */,
@@ -1429,6 +1438,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A76F9D8A1E0391A4009ACD1C /* CCMmapUserSettingsTests.m in Sources */,
 				A773BD8F1D671395008E53C1 /* CCKitDemoTests.m in Sources */,
 				A74687021E028F3C005A5316 /* CCUserDefaultsTests.m in Sources */,
 				A7F807DD1E0119C300219F91 /* CCUserSettingsTests.m in Sources */,

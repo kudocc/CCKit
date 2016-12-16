@@ -11,6 +11,7 @@
 #import <FMDB.h>
 #import "CCUserSettings.h"
 #import "CCUserDefaults.h"
+#import "CCMmapUserSettings.h"
 
 @interface PerformanceStoreViewController ()
 
@@ -19,6 +20,17 @@
 @implementation PerformanceStoreViewController
 
 - (void)initView {
+    {
+        [[CCMmapUserSettings sharedUserSettings] loadUserSettingsWithUserId:@"1000"];
+        NSDate *begin = [NSDate date];
+        for (NSInteger i = 0; i < 1000; ++i) {
+            [[CCMmapUserSettings sharedUserSettings] setBool:(i%2==1) forKey:@"_boolKey"];
+            [[CCMmapUserSettings sharedUserSettings] synchronize];
+        }
+        NSDate *end = [NSDate date];
+        NSLog(@"CCMmapUserSettings modified synchronize seconds:%f", [end timeIntervalSinceDate:begin]);
+    }
+    
     {
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"key"];
         NSDate *begin = [NSDate date];
@@ -84,6 +96,8 @@
         NSLog(@"CCUserSettings modified synchronize seconds:%f", [end timeIntervalSinceDate:begin]);
     }
     
+    
+    
     {
         // fmdb
         
@@ -136,23 +150,6 @@
             NSLog(@"%@, %@", json, createdTime);
             NSLog(@"sqlite query seconds:%f", [end timeIntervalSinceDate:begin]);
         });
-    }
-
-    // why `[[NSUserDefaults standardUserDefaults] synchronize]` runs so fast!!!!
-    {
-        // NSUserDefaults
-        // 0.096837s    100 times
-        // 0.123160s    1000 times
-        // 7.789006s    10000 times
-        NSDate *begin = [NSDate date];
-        for (NSInteger i = 0; i < 1000; ++i) {
-            NSString *key = [NSString stringWithFormat:@"%ld", (long)i];
-            NSString *string = @"{\"id\":10,\"name\":\"yuanrui\",\"age\":27}, 2016-12-09 06:56:12 +0000";
-            [[NSUserDefaults standardUserDefaults] setValue:string forKey:key];
-            [[NSUserDefaults standardUserDefaults] synchronize];
-        }
-        NSDate *end = [NSDate date];
-        NSLog(@"NSUserDefaults insert seconds:%f", [end timeIntervalSinceDate:begin]);
     }
 
     {

@@ -10,6 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ Keep user setting in database, create one table for every user id
+ */
 @interface CCUserDefaults : NSObject
 
 + (instancetype)sharedUserDefaults;

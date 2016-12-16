@@ -1,8 +1,8 @@
 //
-//  CCUserSettings.h
+//  CCMmapUserSettings.h
 //  CCKitDemo
 //
-//  Created by KudoCC on 2016/12/9.
+//  Created by KudoCC on 2016/12/16.
 //  Copyright © 2016年 KudoCC. All rights reserved.
 //
 
@@ -10,10 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/**
- Save the user settings into a plist in Documents/user_setting/user_id.plist, it writes the plist file to disk every time you call `synchronize` if the setting is modified.
- */
-@interface CCUserSettings : NSObject
+@interface CCMmapUserSettings : NSObject
 
 + (instancetype)sharedUserSettings;
 
