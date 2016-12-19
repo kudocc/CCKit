@@ -14,6 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)sharedUserSettings;
 
+/// default is NO, if YES, it will call `synchronize` automatically every time you modify the settings.
+@property (nonatomic) BOOL automaticSynchronize;
+
 - (void)loadUserSettingsWithUserId:(NSString *)userId;
 
 - (nullable id)objectForKey:(NSString *)key;

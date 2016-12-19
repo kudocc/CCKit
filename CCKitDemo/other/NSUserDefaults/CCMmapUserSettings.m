@@ -100,6 +100,8 @@ static NSString *kUserSettingDirectoryName = @"mmap_user_setting";
         _memory = (unsigned char *)mmap(NULL, fileLength, PROT_READ|PROT_WRITE, MAP_SHARED, fileno(_file), 0);
         _memoryLength = (unsigned int)fileLength;
         if (_memory == MAP_FAILED) {
+            fclose(_file);
+            _file = NULL;
             return;
         }
         // 4 bytes length
@@ -176,6 +178,10 @@ static NSString *kUserSettingDirectoryName = @"mmap_user_setting";
         } else {
             NSLog(@"Not a plist value");
         }
+    }
+    
+    if (_automaticSynchronize) {
+        [self synchronize];
     }
 }
 
@@ -275,6 +281,11 @@ static NSString *kUserSettingDirectoryName = @"mmap_user_setting";
 }
 
 - (BOOL)synchronize {
+    if (!_file) {
+        // open file error
+        return NO;
+    }
+    
     if (!_changed) {
         return YES;
     }
