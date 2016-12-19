@@ -23,7 +23,7 @@
 #import "NetworkViewController.h"
 #import "OtherViewController.h"
 #import "PerformanceViewController.h"
-
+#import "PersistenceViewController.h"
 #import "AudioFileManager.h"
 
 @interface AppDelegate ()
@@ -33,8 +33,8 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
     HomeTableViewController *vc = [[HomeTableViewController alloc] init];
+    
     vc.arrayTitle = @[@"Core Text",
                       @"Animation",
                       @"Custom Transition",
@@ -46,10 +46,12 @@
                       @"Core Image",
                       @"Network - Dependency HTTP Task",
                       @"Model",
+                      @"Persistence",
                       @"Performance",
                       @"URLSession",
                       @"WebView & WebCache",
                       @"Other"];
+    
     vc.arrayClass = @[[CoreTextViewController class],
                       [AnimationViewController class],
                       [VCTransitionViewController class],
@@ -61,10 +63,12 @@
                       [CoreImageViewController class],
                       [NetworkViewController class],
                       [ModelViewController class],
+                      [PersistenceViewController class],
                       [PerformanceViewController class],
                       [UrlSessionViewController class],
                       [WebViewController class],
                       [OtherViewController class]];
+    
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
     
     [AudioFileManager createAudioDirectory];

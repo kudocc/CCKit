@@ -97,7 +97,6 @@
 		A73DD1C61DF9076000BE797F /* AudioFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A73DD1C51DF9076000BE797F /* AudioFileManager.m */; };
 		A73DD1C91DF926FD00BE797F /* NSDate+CCKit.m in Sources */ = {isa = PBXBuildFile; fileRef = A73DD1C81DF926FD00BE797F /* NSDate+CCKit.m */; };
 		A73DD1CC1DF934A100BE797F /* AVFoundationVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A73DD1CB1DF934A100BE797F /* AVFoundationVideoViewController.m */; };
-		A74687001E027474005A5316 /* CCUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = A74686FF1E027474005A5316 /* CCUserDefaults.m */; };
 		A74687021E028F3C005A5316 /* CCUserDefaultsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A74687011E028F3C005A5316 /* CCUserDefaultsTests.m */; };
 		A75B10EE1D743EF5003F4242 /* CoreImageSubclassCIFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A75B10ED1D743EF5003F4242 /* CoreImageSubclassCIFilterViewController.m */; };
 		A75B10F41D744487003F4242 /* CIFacePixelFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = A75B10F31D744487003F4242 /* CIFacePixelFilter.m */; };
@@ -113,9 +112,11 @@
 		A76038371DFA9A6500205E1B /* CornerRadiusView.m in Sources */ = {isa = PBXBuildFile; fileRef = A760382E1DFA9A6500205E1B /* CornerRadiusView.m */; };
 		A760383A1DFA9A9E00205E1B /* PerformanceStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A76038391DFA9A9E00205E1B /* PerformanceStoreViewController.m */; };
 		A76F9D8A1E0391A4009ACD1C /* CCMmapUserSettingsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A76F9D891E0391A4009ACD1C /* CCMmapUserSettingsTests.m */; };
-		A76F9D971E07B619009ACD1C /* CCMmapUserDefaultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A76F9D961E07B619009ACD1C /* CCMmapUserDefaultsViewController.m */; };
 		A76F9D9D1E07D378009ACD1C /* CCMmapUserSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = A76F9D9A1E07D378009ACD1C /* CCMmapUserSettings.m */; };
 		A76F9D9E1E07D378009ACD1C /* CCUserSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = A76F9D9C1E07D378009ACD1C /* CCUserSettings.m */; };
+		A76F9DA21E07D87A009ACD1C /* PersistenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A76F9DA11E07D87A009ACD1C /* PersistenceViewController.m */; };
+		A76F9DA51E07D8D2009ACD1C /* CCMmapUserDefaultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A76F9DA41E07D8D2009ACD1C /* CCMmapUserDefaultsViewController.m */; };
+		A76F9DA81E07D8EF009ACD1C /* CCUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = A76F9DA71E07D8EF009ACD1C /* CCUserDefaults.m */; };
 		A773BD761D671395008E53C1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A773BD751D671395008E53C1 /* main.m */; };
 		A773BD791D671395008E53C1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A773BD781D671395008E53C1 /* AppDelegate.m */; };
 		A773BD7F1D671395008E53C1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A773BD7D1D671395008E53C1 /* Main.storyboard */; };
@@ -354,8 +355,6 @@
 		A73DD1C81DF926FD00BE797F /* NSDate+CCKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+CCKit.m"; sourceTree = "<group>"; };
 		A73DD1CA1DF934A100BE797F /* AVFoundationVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVFoundationVideoViewController.h; sourceTree = "<group>"; };
 		A73DD1CB1DF934A100BE797F /* AVFoundationVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVFoundationVideoViewController.m; sourceTree = "<group>"; };
-		A74686FE1E027474005A5316 /* CCUserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCUserDefaults.h; sourceTree = "<group>"; };
-		A74686FF1E027474005A5316 /* CCUserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCUserDefaults.m; sourceTree = "<group>"; };
 		A74687011E028F3C005A5316 /* CCUserDefaultsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCUserDefaultsTests.m; sourceTree = "<group>"; };
 		A75B10EC1D743EF5003F4242 /* CoreImageSubclassCIFilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreImageSubclassCIFilterViewController.h; sourceTree = "<group>"; };
 		A75B10ED1D743EF5003F4242 /* CoreImageSubclassCIFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreImageSubclassCIFilterViewController.m; sourceTree = "<group>"; };
@@ -384,12 +383,16 @@
 		A76038381DFA9A9E00205E1B /* PerformanceStoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerformanceStoreViewController.h; sourceTree = "<group>"; };
 		A76038391DFA9A9E00205E1B /* PerformanceStoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PerformanceStoreViewController.m; sourceTree = "<group>"; };
 		A76F9D891E0391A4009ACD1C /* CCMmapUserSettingsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCMmapUserSettingsTests.m; sourceTree = "<group>"; };
-		A76F9D951E07B619009ACD1C /* CCMmapUserDefaultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCMmapUserDefaultsViewController.h; path = CCKitDemo/other/CCMmapUserDefaultsViewController.h; sourceTree = SOURCE_ROOT; };
-		A76F9D961E07B619009ACD1C /* CCMmapUserDefaultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCMmapUserDefaultsViewController.m; path = CCKitDemo/other/CCMmapUserDefaultsViewController.m; sourceTree = SOURCE_ROOT; };
 		A76F9D991E07D378009ACD1C /* CCMmapUserSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCMmapUserSettings.h; sourceTree = "<group>"; };
 		A76F9D9A1E07D378009ACD1C /* CCMmapUserSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCMmapUserSettings.m; sourceTree = "<group>"; };
 		A76F9D9B1E07D378009ACD1C /* CCUserSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCUserSettings.h; sourceTree = "<group>"; };
 		A76F9D9C1E07D378009ACD1C /* CCUserSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCUserSettings.m; sourceTree = "<group>"; };
+		A76F9DA01E07D87A009ACD1C /* PersistenceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersistenceViewController.h; sourceTree = "<group>"; };
+		A76F9DA11E07D87A009ACD1C /* PersistenceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersistenceViewController.m; sourceTree = "<group>"; };
+		A76F9DA31E07D8D2009ACD1C /* CCMmapUserDefaultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCMmapUserDefaultsViewController.h; sourceTree = "<group>"; };
+		A76F9DA41E07D8D2009ACD1C /* CCMmapUserDefaultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCMmapUserDefaultsViewController.m; sourceTree = "<group>"; };
+		A76F9DA61E07D8EF009ACD1C /* CCUserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCUserDefaults.h; sourceTree = "<group>"; };
+		A76F9DA71E07D8EF009ACD1C /* CCUserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCUserDefaults.m; sourceTree = "<group>"; };
 		A773BD711D671395008E53C1 /* CCKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CCKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A773BD751D671395008E53C1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A773BD771D671395008E53C1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -710,7 +713,6 @@
 		A70562821D6EBA7000652E03 /* other */ = {
 			isa = PBXGroup;
 			children = (
-				A76038151DFA4EDD00205E1B /* NSUserDefaults */,
 				A70562831D6EBA7000652E03 /* kvo */,
 				A705628C1D6EBA7000652E03 /* OtherViewController.h */,
 				A705628D1D6EBA7000652E03 /* OtherViewController.m */,
@@ -839,17 +841,6 @@
 			path = video;
 			sourceTree = "<group>";
 		};
-		A76038151DFA4EDD00205E1B /* NSUserDefaults */ = {
-			isa = PBXGroup;
-			children = (
-				A74686FE1E027474005A5316 /* CCUserDefaults.h */,
-				A74686FF1E027474005A5316 /* CCUserDefaults.m */,
-				A76F9D951E07B619009ACD1C /* CCMmapUserDefaultsViewController.h */,
-				A76F9D961E07B619009ACD1C /* CCMmapUserDefaultsViewController.m */,
-			);
-			path = NSUserDefaults;
-			sourceTree = "<group>";
-		};
 		A76038191DFA9A6500205E1B /* image */ = {
 			isa = PBXGroup;
 			children = (
@@ -909,6 +900,19 @@
 			path = persistence;
 			sourceTree = "<group>";
 		};
+		A76F9D9F1E07D860009ACD1C /* persistence */ = {
+			isa = PBXGroup;
+			children = (
+				A76F9DA61E07D8EF009ACD1C /* CCUserDefaults.h */,
+				A76F9DA71E07D8EF009ACD1C /* CCUserDefaults.m */,
+				A76F9DA01E07D87A009ACD1C /* PersistenceViewController.h */,
+				A76F9DA11E07D87A009ACD1C /* PersistenceViewController.m */,
+				A76F9DA31E07D8D2009ACD1C /* CCMmapUserDefaultsViewController.h */,
+				A76F9DA41E07D8D2009ACD1C /* CCMmapUserDefaultsViewController.m */,
+			);
+			path = persistence;
+			sourceTree = "<group>";
+		};
 		A773BD681D671395008E53C1 = {
 			isa = PBXGroup;
 			children = (
@@ -945,6 +949,7 @@
 				A70562611D6EBA7000652E03 /* imageIO */,
 				A705626D1D6EBA7000652E03 /* model */,
 				A70562721D6EBA7000652E03 /* network */,
+				A76F9D9F1E07D860009ACD1C /* persistence */,
 				A705628E1D6EBA7000652E03 /* performance */,
 				A70562A41D6EBA7000652E03 /* quartz2D */,
 				A70562B51D6EBA7000652E03 /* urlSession */,
@@ -1383,6 +1388,7 @@
 				A70563051D6EBA7000652E03 /* CCHttpSessionManager.m in Sources */,
 				A70563001D6EBA7000652E03 /* ImageIOViewController.m in Sources */,
 				A70563231D6EBA7000652E03 /* DataTaskBasicAuthViewController.m in Sources */,
+				A76F9DA21E07D87A009ACD1C /* PersistenceViewController.m in Sources */,
 				A76038361DFA9A6500205E1B /* CornerRadiusView+WebCache.m in Sources */,
 				A70563081D6EBA7000652E03 /* HttpChainedRequestsViewController.m in Sources */,
 				A70562DA1D6EBA7000652E03 /* AnimationViewController.m in Sources */,
@@ -1400,11 +1406,10 @@
 				A70562F81D6EBA7000652E03 /* CoreTextExclusivePathViewController.m in Sources */,
 				A705630B1D6EBA7000652E03 /* NetworkViewController.m in Sources */,
 				A773BDEE1D671475008E53C1 /* NSObject+CCKit.m in Sources */,
+				A76F9DA51E07D8D2009ACD1C /* CCMmapUserDefaultsViewController.m in Sources */,
 				A70562FD1D6EBA7000652E03 /* SimpleChatViewController.m in Sources */,
-				A76F9D971E07B619009ACD1C /* CCMmapUserDefaultsViewController.m in Sources */,
 				A70562DE1D6EBA7000652E03 /* CAShapeLayerTestViewController.m in Sources */,
 				A773BD761D671395008E53C1 /* main.m in Sources */,
-				A74687001E027474005A5316 /* CCUserDefaults.m in Sources */,
 				A70563311D6EBA7000652E03 /* UIWebViewViewController.m in Sources */,
 				A73DD1C31DF8FAF400BE797F /* EasyVideoRecordToFileViewController.m in Sources */,
 				A70562F51D6EBA7000652E03 /* CCLabelDemoViewController.m in Sources */,
@@ -1418,6 +1423,7 @@
 				A70562E71D6EBA7000652E03 /* AutoLayoutViewController.m in Sources */,
 				A70563331D6EBA7000652E03 /* WebViewController.m in Sources */,
 				A70562E21D6EBA7000652E03 /* AudioPlaybackViewController.m in Sources */,
+				A76F9DA81E07D8EF009ACD1C /* CCUserDefaults.m in Sources */,
 				A70562DC1D6EBA7000652E03 /* CABasicAnimationTestViewController.m in Sources */,
 				A70562E01D6EBA7000652E03 /* AudioListViewController.m in Sources */,
 				A70563151D6EBA7000652E03 /* PerformanceViewController.m in Sources */,
