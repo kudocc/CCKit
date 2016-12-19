@@ -10,7 +10,7 @@
 #import "NSString+CCKit.h"
 #import "NSDictionary+CCKit.h"
 
-static NSString *kUserSettingDirectoryName = @"user_setting";
+static NSString *kUserSettingDirectoryName = @"cckit_user_setting";
 
 @interface CCUserSettings ()
 
@@ -51,7 +51,12 @@ static NSString *kUserSettingDirectoryName = @"user_setting";
     BOOL dir;
     if ([[NSFileManager defaultManager] fileExistsAtPath:_filePath isDirectory:&dir] && !dir) {
         // load plist with userId
-        _settings = [[NSDictionary dictionaryWithContentsOfFile:_filePath] mutableCopy];
+        NSDictionary *settings = [NSDictionary dictionaryWithContentsOfFile:_filePath];
+        if (settings) {
+            _settings = [settings mutableCopy];
+        } else {
+            _settings = [NSMutableDictionary dictionary];
+        }
     } else {
         // the file is absent, create one
         BOOL res = [[NSFileManager defaultManager] createDirectoryAtPath:dirPath withIntermediateDirectories:YES attributes:nil error:nil];

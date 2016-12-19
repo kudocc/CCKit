@@ -112,10 +112,10 @@
 		A76038361DFA9A6500205E1B /* CornerRadiusView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A760382C1DFA9A6500205E1B /* CornerRadiusView+WebCache.m */; };
 		A76038371DFA9A6500205E1B /* CornerRadiusView.m in Sources */ = {isa = PBXBuildFile; fileRef = A760382E1DFA9A6500205E1B /* CornerRadiusView.m */; };
 		A760383A1DFA9A9E00205E1B /* PerformanceStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A76038391DFA9A9E00205E1B /* PerformanceStoreViewController.m */; };
-		A760383D1DFAAEB000205E1B /* CCUserSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = A760383C1DFAAEB000205E1B /* CCUserSettings.m */; };
-		A76F9D881E0381C1009ACD1C /* CCMmapUserSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = A76F9D871E0381C1009ACD1C /* CCMmapUserSettings.m */; };
 		A76F9D8A1E0391A4009ACD1C /* CCMmapUserSettingsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A76F9D891E0391A4009ACD1C /* CCMmapUserSettingsTests.m */; };
 		A76F9D971E07B619009ACD1C /* CCMmapUserDefaultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A76F9D961E07B619009ACD1C /* CCMmapUserDefaultsViewController.m */; };
+		A76F9D9D1E07D378009ACD1C /* CCMmapUserSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = A76F9D9A1E07D378009ACD1C /* CCMmapUserSettings.m */; };
+		A76F9D9E1E07D378009ACD1C /* CCUserSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = A76F9D9C1E07D378009ACD1C /* CCUserSettings.m */; };
 		A773BD761D671395008E53C1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A773BD751D671395008E53C1 /* main.m */; };
 		A773BD791D671395008E53C1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A773BD781D671395008E53C1 /* AppDelegate.m */; };
 		A773BD7F1D671395008E53C1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A773BD7D1D671395008E53C1 /* Main.storyboard */; };
@@ -383,13 +383,13 @@
 		A760382E1DFA9A6500205E1B /* CornerRadiusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CornerRadiusView.m; sourceTree = "<group>"; };
 		A76038381DFA9A9E00205E1B /* PerformanceStoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerformanceStoreViewController.h; sourceTree = "<group>"; };
 		A76038391DFA9A9E00205E1B /* PerformanceStoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PerformanceStoreViewController.m; sourceTree = "<group>"; };
-		A760383B1DFAAEB000205E1B /* CCUserSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCUserSettings.h; sourceTree = "<group>"; };
-		A760383C1DFAAEB000205E1B /* CCUserSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCUserSettings.m; sourceTree = "<group>"; };
-		A76F9D861E0381C1009ACD1C /* CCMmapUserSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCMmapUserSettings.h; sourceTree = "<group>"; };
-		A76F9D871E0381C1009ACD1C /* CCMmapUserSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCMmapUserSettings.m; sourceTree = "<group>"; };
 		A76F9D891E0391A4009ACD1C /* CCMmapUserSettingsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCMmapUserSettingsTests.m; sourceTree = "<group>"; };
 		A76F9D951E07B619009ACD1C /* CCMmapUserDefaultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCMmapUserDefaultsViewController.h; path = CCKitDemo/other/CCMmapUserDefaultsViewController.h; sourceTree = SOURCE_ROOT; };
 		A76F9D961E07B619009ACD1C /* CCMmapUserDefaultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCMmapUserDefaultsViewController.m; path = CCKitDemo/other/CCMmapUserDefaultsViewController.m; sourceTree = SOURCE_ROOT; };
+		A76F9D991E07D378009ACD1C /* CCMmapUserSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCMmapUserSettings.h; sourceTree = "<group>"; };
+		A76F9D9A1E07D378009ACD1C /* CCMmapUserSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCMmapUserSettings.m; sourceTree = "<group>"; };
+		A76F9D9B1E07D378009ACD1C /* CCUserSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCUserSettings.h; sourceTree = "<group>"; };
+		A76F9D9C1E07D378009ACD1C /* CCUserSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCUserSettings.m; sourceTree = "<group>"; };
 		A773BD711D671395008E53C1 /* CCKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CCKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A773BD751D671395008E53C1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A773BD771D671395008E53C1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -844,10 +844,6 @@
 			children = (
 				A74686FE1E027474005A5316 /* CCUserDefaults.h */,
 				A74686FF1E027474005A5316 /* CCUserDefaults.m */,
-				A760383B1DFAAEB000205E1B /* CCUserSettings.h */,
-				A760383C1DFAAEB000205E1B /* CCUserSettings.m */,
-				A76F9D861E0381C1009ACD1C /* CCMmapUserSettings.h */,
-				A76F9D871E0381C1009ACD1C /* CCMmapUserSettings.m */,
 				A76F9D951E07B619009ACD1C /* CCMmapUserDefaultsViewController.h */,
 				A76F9D961E07B619009ACD1C /* CCMmapUserDefaultsViewController.m */,
 			);
@@ -900,6 +896,17 @@
 				A760382E1DFA9A6500205E1B /* CornerRadiusView.m */,
 			);
 			path = tools;
+			sourceTree = "<group>";
+		};
+		A76F9D981E07D378009ACD1C /* persistence */ = {
+			isa = PBXGroup;
+			children = (
+				A76F9D991E07D378009ACD1C /* CCMmapUserSettings.h */,
+				A76F9D9A1E07D378009ACD1C /* CCMmapUserSettings.m */,
+				A76F9D9B1E07D378009ACD1C /* CCUserSettings.h */,
+				A76F9D9C1E07D378009ACD1C /* CCUserSettings.m */,
+			);
+			path = persistence;
 			sourceTree = "<group>";
 		};
 		A773BD681D671395008E53C1 = {
@@ -969,8 +976,8 @@
 		A773BD8D1D671395008E53C1 /* CCKitDemoTests */ = {
 			isa = PBXGroup;
 			children = (
-				A7F807DC1E0119C300219F91 /* CCUserSettingsTests.m */,
 				A74687011E028F3C005A5316 /* CCUserDefaultsTests.m */,
+				A7F807DC1E0119C300219F91 /* CCUserSettingsTests.m */,
 				A76F9D891E0391A4009ACD1C /* CCMmapUserSettingsTests.m */,
 				A773BD901D671395008E53C1 /* Info.plist */,
 			);
@@ -993,6 +1000,7 @@
 				A773BDA81D671475008E53C1 /* audio */,
 				A773BDAE1D671475008E53C1 /* model */,
 				A773BDB41D671475008E53C1 /* text */,
+				A76F9D981E07D378009ACD1C /* persistence */,
 				A773BDC71D671475008E53C1 /* util */,
 				A773BDD81D671475008E53C1 /* view */,
 			);
@@ -1330,7 +1338,6 @@
 				A773BDE31D671475008E53C1 /* CCAsyncLayer.m in Sources */,
 				A70563291D6EBA7000652E03 /* CustomAnimator.m in Sources */,
 				A705632F1D6EBA7000652E03 /* VCTransitionViewController.m in Sources */,
-				A760383D1DFAAEB000205E1B /* CCUserSettings.m in Sources */,
 				A70562E41D6EBA7000652E03 /* AudioRecordViewController.m in Sources */,
 				A773BDE01D671475008E53C1 /* AudioQueueRecorder.m in Sources */,
 				A70562E51D6EBA7000652E03 /* AudioViewController.m in Sources */,
@@ -1346,8 +1353,10 @@
 				A705630C1D6EBA7000652E03 /* KVOBaseViewController.m in Sources */,
 				A70562FA1D6EBA7000652E03 /* CoreTextViewController.m in Sources */,
 				A705630F1D6EBA7000652E03 /* KVOViewController.m in Sources */,
+				A76F9D9D1E07D378009ACD1C /* CCMmapUserSettings.m in Sources */,
 				A70563101D6EBA7000652E03 /* OtherViewController.m in Sources */,
 				A75B10F41D744487003F4242 /* CIFacePixelFilter.m in Sources */,
+				A76F9D9E1E07D378009ACD1C /* CCUserSettings.m in Sources */,
 				A76038331DFA9A6500205E1B /* TestBlendViewController.m in Sources */,
 				A773BDDF1D671475008E53C1 /* AudioQueuePlayer.m in Sources */,
 				A70562E91D6EBA7000652E03 /* BaseViewController.m in Sources */,
@@ -1412,7 +1421,6 @@
 				A70562DC1D6EBA7000652E03 /* CABasicAnimationTestViewController.m in Sources */,
 				A70562E01D6EBA7000652E03 /* AudioListViewController.m in Sources */,
 				A70563151D6EBA7000652E03 /* PerformanceViewController.m in Sources */,
-				A76F9D881E0381C1009ACD1C /* CCMmapUserSettings.m in Sources */,
 				A70563021D6EBA7000652E03 /* IncrementalImageSourceViewController.m in Sources */,
 				A70562EA1D6EBA7000652E03 /* HomeTableViewController.m in Sources */,
 				A73DD1BC1DF7FC1800BE797F /* CCRemoteNotificationManager.m in Sources */,

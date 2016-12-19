@@ -13,7 +13,7 @@
 
 #define MEM_PAGE_SIZE 4096
 
-static NSString *kUserSettingDirectoryName = @"mmap_user_setting";
+static NSString *kUserSettingDirectoryName = @"cckit_mmap_user_setting";
 
 @interface CCMmapUserSettings () {
     FILE *_file;
@@ -21,7 +21,6 @@ static NSString *kUserSettingDirectoryName = @"mmap_user_setting";
     unsigned char *_memory;
 }
 
-@property (nonatomic) BOOL changed;
 @property (nonatomic) NSString *filePath;
 @property (nonatomic) NSString *userId;
 @property (nonatomic) NSMutableDictionary *settings;
@@ -54,7 +53,7 @@ static NSString *kUserSettingDirectoryName = @"mmap_user_setting";
         return;
     }
     
-    if (_userId && _changed) {
+    if (_userId) {
         [self synchronize];
     }
     
@@ -75,7 +74,6 @@ static NSString *kUserSettingDirectoryName = @"mmap_user_setting";
     }
     
     _userId = [userId copy];
-    _changed = NO;
     _settings = nil;
     
     NSString *dirPath = [NSString cc_documentPath];
@@ -165,7 +163,6 @@ static NSString *kUserSettingDirectoryName = @"mmap_user_setting";
     // Passing nil will cause any object corresponding to aKey to be removed from the dictionary.
     if (!value) {
         _settings[key] = nil;
-        _changed = YES;
     } else {
         if ([value isKindOfClass:NSString.class] ||
             [value isKindOfClass:NSNumber.class] ||
@@ -174,7 +171,6 @@ static NSString *kUserSettingDirectoryName = @"mmap_user_setting";
             [value isKindOfClass:NSArray.class] ||
             [value isKindOfClass:NSDictionary.class]) {
             _settings[key] = value;
-            _changed = YES;
         } else {
             NSLog(@"Not a plist value");
         }
@@ -286,9 +282,6 @@ static NSString *kUserSettingDirectoryName = @"mmap_user_setting";
         return NO;
     }
     
-    if (!_changed) {
-        return YES;
-    }
     NSData *data = [NSPropertyListSerialization dataWithPropertyList:_settings format:NSPropertyListXMLFormat_v1_0 options:0 error:nil];
     // even if data.length + sizeof(_memoryLength) is a multiple of MEM_PAGE_SIZE, we need one more page.
     unsigned int pageCount = (unsigned int)(data.length + sizeof(_memoryLength)) / MEM_PAGE_SIZE + 1;
