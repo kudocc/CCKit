@@ -83,10 +83,17 @@ static NSString *kUserSettingDirectoryName = @"mmap_user_setting";
     _filePath = [dirPath stringByAppendingPathComponent:userId];
     BOOL dir;
     if ([[NSFileManager defaultManager] fileExistsAtPath:_filePath isDirectory:&dir] && !dir) {
+        // Open for reading and writing.  The stream is positioned at the beginning of the file.
         _file = fopen([_filePath UTF8String], "r+");
+        if (!_file) {
+            NSLog(@"open file r+ error");
+            return;
+        }
         fseek(_file, 0, SEEK_END);
         long fileLength = ftell(_file);
-        if (fileLength <= sizeof(_memoryLength)) {
+        if (fileLength <= sizeof(_memoryLength) ||
+            fileLength % MEM_PAGE_SIZE != 0) {
+            // There must be something wrong!!! Don't use the file data, next synchronize method will override file data.
             _settings = [NSMutableDictionary dictionary];
             return;
         }
@@ -99,25 +106,40 @@ static NSString *kUserSettingDirectoryName = @"mmap_user_setting";
         unsigned int dataLength = 0;
         memcpy(&dataLength, _memory, sizeof(_memoryLength));
         dataLength -= sizeof(_memoryLength);
-        unsigned char *p = _memory + sizeof(_memoryLength);
-        NSData *data = [NSData dataWithBytesNoCopy:p length:dataLength freeWhenDone:NO];
-        NSDictionary *dict = [NSPropertyListSerialization propertyListWithData:data
-                                                                       options:NSPropertyListImmutable
-                                                                        format:NULL error:nil];
-        _settings = [dict mutableCopy];
+        if (dataLength > 0) {
+            unsigned char *p = _memory + sizeof(_memoryLength);
+            NSData *data = [NSData dataWithBytesNoCopy:p length:dataLength freeWhenDone:NO];
+            NSDictionary *dict = [NSPropertyListSerialization propertyListWithData:data
+                                                                           options:NSPropertyListImmutable
+                                                                            format:NULL error:nil];
+            if (!dict) {
+                dict = @{};
+            }
+            _settings = [dict mutableCopy];
+        } else {
+            _settings = [NSMutableDictionary dictionary];
+        }
     } else {
         // the file is absent, create one and write one page size to it
-        BOOL res = [[NSFileManager defaultManager] createDirectoryAtPath:dirPath withIntermediateDirectories:YES attributes:nil error:nil];
+        BOOL res = [[NSFileManager defaultManager] createDirectoryAtPath:dirPath
+                                             withIntermediateDirectories:YES attributes:nil error:nil];
         if (!res) {
             NSLog(@"Create directory:%@ failed", dirPath);
+            return;
         }
         unsigned char c[MEM_PAGE_SIZE] = {0};
-        NSData *data = [NSData dataWithBytesNoCopy:c length:MEM_PAGE_SIZE freeWhenDone:NO];
-        res = [[NSFileManager defaultManager] createFileAtPath:_filePath contents:data attributes:nil];
-        if (!res) {
-            NSLog(@"Create file:%@ failed", _filePath);
+        _file = fopen([_filePath UTF8String], "w+");
+        if (!_file) {
+            NSLog(@"open file w+ error");
+            return;
         }
-        _file = fopen([_filePath UTF8String], "r+");
+        // The function fwrite() returns a value less than nitems only if a write error has occurred.
+        size_t nitems = fwrite(c, 1, MEM_PAGE_SIZE, _file);
+        if (nitems != MEM_PAGE_SIZE) {
+            fclose(_file);
+            _file = NULL;
+            return;
+        }
         _memory = (unsigned char *)mmap(NULL, MEM_PAGE_SIZE, PROT_READ|PROT_WRITE, MAP_SHARED, fileno(_file), 0);
         _memoryLength = MEM_PAGE_SIZE;
         if (_memory == MAP_FAILED) {
@@ -257,32 +279,26 @@ static NSString *kUserSettingDirectoryName = @"mmap_user_setting";
         return YES;
     }
     NSData *data = [NSPropertyListSerialization dataWithPropertyList:_settings format:NSPropertyListXMLFormat_v1_0 options:0 error:nil];
-    if (data.length + sizeof(unsigned int) > _memoryLength) {
+    // even if data.length + sizeof(_memoryLength) is a multiple of MEM_PAGE_SIZE, we need one more page.
+    unsigned int pageCount = (unsigned int)(data.length + sizeof(_memoryLength)) / MEM_PAGE_SIZE + 1;
+    unsigned int fileSize = pageCount * MEM_PAGE_SIZE;
+    if (fileSize != _memoryLength) {
         if (_memory) {
             munmap(_memory, _memoryLength);
             _memory = NULL;
+            _memoryLength = 0;
         }
-        unsigned int pageCount = (unsigned int)(data.length + sizeof(_memoryLength)) / MEM_PAGE_SIZE + 1;
-        unsigned int expandedFileSize = pageCount * MEM_PAGE_SIZE;
-        // expand the file size to fileLength
-        unsigned int moreDataLength = expandedFileSize - _memoryLength;
-        // seek to file end and write more data
-        fseek(_file, 0, SEEK_END);
-        unsigned char buffer[MEM_PAGE_SIZE] = {0};
-        unsigned int leftDataLength = moreDataLength;
-        while (leftDataLength > 0) {
-            unsigned int writeLen = MEM_PAGE_SIZE;
-            if (leftDataLength < MEM_PAGE_SIZE) {
-                writeLen = leftDataLength;
-            }
-            size_t writtenBytes = fwrite(buffer, 1, writeLen, _file);
-            leftDataLength -= writtenBytes;
+        
+        int res = ftruncate(fileno(_file), fileSize);
+        if (res == -1) {
+            // truncate file error
+            fclose(_file);
+            _file = NULL;
+            return NO;
         }
-        // may fsync(fileno(_file)); ?
-        fflush(_file);
         // re-map the file
-        _memory = (unsigned char *)mmap(NULL, expandedFileSize, PROT_READ|PROT_WRITE, MAP_SHARED, fileno(_file), 0);
-        _memoryLength = (unsigned int)expandedFileSize;
+        _memory = (unsigned char *)mmap(NULL, fileSize, PROT_READ|PROT_WRITE, MAP_SHARED, fileno(_file), 0);
+        _memoryLength = (unsigned int)fileSize;
         if (_memory == MAP_FAILED) {
             _memory = NULL;
             fclose(_file);
@@ -293,9 +309,12 @@ static NSString *kUserSettingDirectoryName = @"mmap_user_setting";
         NSLog(@"memory map file success, size is %@", @(_memoryLength));
 #endif
     }
+    
     if (_memory) {
-        memcpy(_memory, &_memoryLength, sizeof(_memoryLength));
-        memcpy(_memory+sizeof(_memoryLength), data.bytes, data.length);
+        unsigned int length = (unsigned int)data.length;
+        length += sizeof(length);
+        memcpy(_memory, &length, sizeof(length));
+        memcpy(_memory+sizeof(length), data.bytes, data.length);
     }
     return YES;
 }

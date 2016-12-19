@@ -102,7 +102,6 @@
 		A75B10EE1D743EF5003F4242 /* CoreImageSubclassCIFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A75B10ED1D743EF5003F4242 /* CoreImageSubclassCIFilterViewController.m */; };
 		A75B10F41D744487003F4242 /* CIFacePixelFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = A75B10F31D744487003F4242 /* CIFacePixelFilter.m */; };
 		A75B10F81D754E66003F4242 /* CoreImageFilterOnCameralViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A75B10F71D754E66003F4242 /* CoreImageFilterOnCameralViewController.m */; };
-		A76038181DFA4EED00205E1B /* NSUserDefaultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A76038171DFA4EED00205E1B /* NSUserDefaultsViewController.m */; };
 		A760382F1DFA9A6500205E1B /* DrawImagePerformanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A760381B1DFA9A6500205E1B /* DrawImagePerformanceViewController.m */; };
 		A76038301DFA9A6500205E1B /* DrawViewContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = A760381D1DFA9A6500205E1B /* DrawViewContainer.m */; };
 		A76038311DFA9A6500205E1B /* ImageViewContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = A760381F1DFA9A6500205E1B /* ImageViewContainer.m */; };
@@ -116,12 +115,12 @@
 		A760383D1DFAAEB000205E1B /* CCUserSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = A760383C1DFAAEB000205E1B /* CCUserSettings.m */; };
 		A76F9D881E0381C1009ACD1C /* CCMmapUserSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = A76F9D871E0381C1009ACD1C /* CCMmapUserSettings.m */; };
 		A76F9D8A1E0391A4009ACD1C /* CCMmapUserSettingsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A76F9D891E0391A4009ACD1C /* CCMmapUserSettingsTests.m */; };
+		A76F9D971E07B619009ACD1C /* CCMmapUserDefaultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A76F9D961E07B619009ACD1C /* CCMmapUserDefaultsViewController.m */; };
 		A773BD761D671395008E53C1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A773BD751D671395008E53C1 /* main.m */; };
 		A773BD791D671395008E53C1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A773BD781D671395008E53C1 /* AppDelegate.m */; };
 		A773BD7F1D671395008E53C1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A773BD7D1D671395008E53C1 /* Main.storyboard */; };
 		A773BD811D671395008E53C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A773BD801D671395008E53C1 /* Assets.xcassets */; };
 		A773BD841D671395008E53C1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A773BD821D671395008E53C1 /* LaunchScreen.storyboard */; };
-		A773BD8F1D671395008E53C1 /* CCKitDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A773BD8E1D671395008E53C1 /* CCKitDemoTests.m */; };
 		A773BD9A1D671395008E53C1 /* CCKitDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = A773BD991D671395008E53C1 /* CCKitDemoUITests.m */; };
 		A773BDDF1D671475008E53C1 /* AudioQueuePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A773BDAA1D671475008E53C1 /* AudioQueuePlayer.m */; };
 		A773BDE01D671475008E53C1 /* AudioQueueRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = A773BDAC1D671475008E53C1 /* AudioQueueRecorder.m */; };
@@ -364,8 +363,6 @@
 		A75B10F31D744487003F4242 /* CIFacePixelFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIFacePixelFilter.m; sourceTree = "<group>"; };
 		A75B10F61D754E66003F4242 /* CoreImageFilterOnCameralViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreImageFilterOnCameralViewController.h; sourceTree = "<group>"; };
 		A75B10F71D754E66003F4242 /* CoreImageFilterOnCameralViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreImageFilterOnCameralViewController.m; sourceTree = "<group>"; };
-		A76038161DFA4EED00205E1B /* NSUserDefaultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSUserDefaultsViewController.h; sourceTree = "<group>"; };
-		A76038171DFA4EED00205E1B /* NSUserDefaultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSUserDefaultsViewController.m; sourceTree = "<group>"; };
 		A760381A1DFA9A6500205E1B /* DrawImagePerformanceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawImagePerformanceViewController.h; sourceTree = "<group>"; };
 		A760381B1DFA9A6500205E1B /* DrawImagePerformanceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawImagePerformanceViewController.m; sourceTree = "<group>"; };
 		A760381C1DFA9A6500205E1B /* DrawViewContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawViewContainer.h; sourceTree = "<group>"; };
@@ -391,6 +388,8 @@
 		A76F9D861E0381C1009ACD1C /* CCMmapUserSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCMmapUserSettings.h; sourceTree = "<group>"; };
 		A76F9D871E0381C1009ACD1C /* CCMmapUserSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCMmapUserSettings.m; sourceTree = "<group>"; };
 		A76F9D891E0391A4009ACD1C /* CCMmapUserSettingsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCMmapUserSettingsTests.m; sourceTree = "<group>"; };
+		A76F9D951E07B619009ACD1C /* CCMmapUserDefaultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCMmapUserDefaultsViewController.h; path = CCKitDemo/other/CCMmapUserDefaultsViewController.h; sourceTree = SOURCE_ROOT; };
+		A76F9D961E07B619009ACD1C /* CCMmapUserDefaultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCMmapUserDefaultsViewController.m; path = CCKitDemo/other/CCMmapUserDefaultsViewController.m; sourceTree = SOURCE_ROOT; };
 		A773BD711D671395008E53C1 /* CCKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CCKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A773BD751D671395008E53C1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A773BD771D671395008E53C1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -400,7 +399,6 @@
 		A773BD831D671395008E53C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A773BD851D671395008E53C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A773BD8A1D671395008E53C1 /* CCKitDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CCKitDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A773BD8E1D671395008E53C1 /* CCKitDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCKitDemoTests.m; sourceTree = "<group>"; };
 		A773BD901D671395008E53C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A773BD951D671395008E53C1 /* CCKitDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CCKitDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A773BD991D671395008E53C1 /* CCKitDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCKitDemoUITests.m; sourceTree = "<group>"; };
@@ -850,8 +848,8 @@
 				A760383C1DFAAEB000205E1B /* CCUserSettings.m */,
 				A76F9D861E0381C1009ACD1C /* CCMmapUserSettings.h */,
 				A76F9D871E0381C1009ACD1C /* CCMmapUserSettings.m */,
-				A76038161DFA4EED00205E1B /* NSUserDefaultsViewController.h */,
-				A76038171DFA4EED00205E1B /* NSUserDefaultsViewController.m */,
+				A76F9D951E07B619009ACD1C /* CCMmapUserDefaultsViewController.h */,
+				A76F9D961E07B619009ACD1C /* CCMmapUserDefaultsViewController.m */,
 			);
 			path = NSUserDefaults;
 			sourceTree = "<group>";
@@ -971,7 +969,6 @@
 		A773BD8D1D671395008E53C1 /* CCKitDemoTests */ = {
 			isa = PBXGroup;
 			children = (
-				A773BD8E1D671395008E53C1 /* CCKitDemoTests.m */,
 				A7F807DC1E0119C300219F91 /* CCUserSettingsTests.m */,
 				A74687011E028F3C005A5316 /* CCUserDefaultsTests.m */,
 				A76F9D891E0391A4009ACD1C /* CCMmapUserSettingsTests.m */,
@@ -1372,7 +1369,6 @@
 				A773BDE81D671475008E53C1 /* CCTextDefine.m in Sources */,
 				A70562F31D6EBA7000652E03 /* FaceDetectorViewController.m in Sources */,
 				A773BDF41D671475008E53C1 /* CCFPSLabel.m in Sources */,
-				A76038181DFA4EED00205E1B /* NSUserDefaultsViewController.m in Sources */,
 				A73DD1C01DF8F96400BE797F /* VideoTableViewController.m in Sources */,
 				A70563241D6EBA7000652E03 /* DataTaskHttpsServerAuthViewController.m in Sources */,
 				A70563051D6EBA7000652E03 /* CCHttpSessionManager.m in Sources */,
@@ -1396,6 +1392,7 @@
 				A705630B1D6EBA7000652E03 /* NetworkViewController.m in Sources */,
 				A773BDEE1D671475008E53C1 /* NSObject+CCKit.m in Sources */,
 				A70562FD1D6EBA7000652E03 /* SimpleChatViewController.m in Sources */,
+				A76F9D971E07B619009ACD1C /* CCMmapUserDefaultsViewController.m in Sources */,
 				A70562DE1D6EBA7000652E03 /* CAShapeLayerTestViewController.m in Sources */,
 				A773BD761D671395008E53C1 /* main.m in Sources */,
 				A74687001E027474005A5316 /* CCUserDefaults.m in Sources */,
@@ -1439,7 +1436,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A76F9D8A1E0391A4009ACD1C /* CCMmapUserSettingsTests.m in Sources */,
-				A773BD8F1D671395008E53C1 /* CCKitDemoTests.m in Sources */,
 				A74687021E028F3C005A5316 /* CCUserDefaultsTests.m in Sources */,
 				A7F807DD1E0119C300219F91 /* CCUserSettingsTests.m in Sources */,
 			);

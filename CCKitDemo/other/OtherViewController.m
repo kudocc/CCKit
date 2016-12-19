@@ -8,16 +8,16 @@
 
 #import "OtherViewController.h"
 #import "KVOViewController.h"
-#import "NSUserDefaultsViewController.h"
+#import "CCMmapUserDefaultsViewController.h"
 
 @implementation OtherViewController
 
 - (void)initView {
     [super initView];
     
-    self.arrayTitle = @[@"KVO", @"UserDefaults"];
+    self.arrayTitle = @[@"KVO", @"CCMmapUserSettings test"];
     self.arrayClass = @[[KVOViewController class],
-                        [NSUserDefaultsViewController class]];
+                        [CCMmapUserDefaultsViewController class]];
 }
 
 @end
