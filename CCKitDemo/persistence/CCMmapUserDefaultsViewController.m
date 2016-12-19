@@ -24,6 +24,7 @@
 - (void)initView {
     [self showRightBarButtonItemWithName:@"exit"];
     
+    [CCMmapUserSettings sharedUserSettings].automaticSynchronize = YES;
     [[CCMmapUserSettings sharedUserSettings] loadUserSettingsWithUserId:@"999"];
     
     UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 64, ScreenWidth, ScreenHeightNoTop)];
@@ -80,10 +81,8 @@
 }
 
 - (void)setUserBoolValue:(BOOL)b forIndex:(NSInteger)index {
-    NSLog(@"%@, %@", NSStringFromSelector(_cmd), @(b));
     NSString *key = [NSString stringWithFormat:@"bool%@", @(index)];
     [[CCMmapUserSettings sharedUserSettings] setBool:b forKey:key];
-    [[CCMmapUserSettings sharedUserSettings] synchronize];
 }
 
 #pragma mark - UITextFieldDelegate
@@ -91,7 +90,6 @@
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     NSLog(@"%@", NSStringFromSelector(_cmd));
     [[CCMmapUserSettings sharedUserSettings] setObject:textField.text forKey:@"text"];
-    [[CCMmapUserSettings sharedUserSettings] synchronize];
 }
 
 @end

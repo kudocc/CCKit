@@ -10,6 +10,16 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ The synchronize in CCUserSettings or NSUserDefaults method writes the plist file back to the disk, it costs notable time, but we must call it in some situations like when app goes into background. Even so we take the risk of losing the settings: we apps may be killed by system because it runs out of memory or accesses a address which it hasn't permission to, at that time the settings we set after the latest synchronize may lose.
+ 
+ If there is a way that we can write the file to the disk when the process exits, we can modify the settings in memory all the time, it's pretty fast. But is there a way to achieve that ?
+ 
+ Well, I find one, it is mmap, mmap maps a file to a region of memory. When this is done, the file can be accessed just like an array in the program. So we can modify the memory as if we write the file. When process exits, the memory will write back to the file.
+ 
+ CCMmapUserSettings passes the unit settings on my iPhone6 (iOS 10.1.1), but I really not sure if it works on all iOS versions because I haven't gotten a official document to make sure the memory used to map the file will be written back to disk immediately when the process exits, if it's not, will it be written to disk before the device shuts down ?
+ 
+ */
 @interface CCMmapUserSettings : NSObject
 
 + (instancetype)sharedUserSettings;
