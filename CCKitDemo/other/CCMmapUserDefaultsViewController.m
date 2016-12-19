@@ -37,6 +37,10 @@
     [scrollView addSubview:_textField];
     _textField.text = [[CCMmapUserSettings sharedUserSettings] stringForKey:@"text"];
     _textField.delegate = self;
+    _textField.layer.borderColor = [UIColor blueColor].CGColor;
+    _textField.layer.borderWidth = 1.0;
+    
+    y = _textField.bottom + 20.0;
     
     _sc0 = [[UISwitch alloc] initWithFrame:CGRectMake(x, y, 100, 100)];
     _sc0.tag = 0;
@@ -57,6 +61,9 @@
     _sc2.on = [self getUserBoolValue:_sc2.tag];
     [_sc2 addTarget:self action:@selector(switchControlValueChanged:) forControlEvents:UIControlEventValueChanged];
     [scrollView addSubview:_sc2];
+    
+    scrollView.contentSize = CGSizeMake(ScreenWidth, _sc2.bottom);
+    scrollView.alwaysBounceVertical = YES;
 }
 
 - (void)rightBarButtonItemClick:(UIBarButtonItem *)rightBarButtonItem {
