@@ -8,14 +8,15 @@
 
 #import "OtherViewController.h"
 #import "KVOViewController.h"
+#import "ScaleScrollViewController.h"
 
 @implementation OtherViewController
 
 - (void)initView {
     [super initView];
     
-    self.arrayTitle = @[@"KVO"];
-    self.arrayClass = @[[KVOViewController class]];
+    self.arrayTitle = @[@"KVO", @"Scroll"];
+    self.arrayClass = @[[KVOViewController class], [ScaleScrollViewController class]];
 }
 
 @end

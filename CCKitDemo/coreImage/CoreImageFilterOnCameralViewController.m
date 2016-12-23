@@ -255,10 +255,12 @@ typedef NS_ENUM(NSInteger, AVCamSetupResult) {
 #pragma mark - AVCaptureVideoDataOutputSampleBufferDelegate
 
 - (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection {
+    NSLog(@"number of media samples:%ld", CMSampleBufferGetNumSamples(sampleBuffer));
+    
     CVImageBufferRef imageBufferRef = CMSampleBufferGetImageBuffer(sampleBuffer);
     CIImage *ciImage = [CIImage imageWithCVPixelBuffer:imageBufferRef];
     ciImage = [ciImage imageByApplyingTransform:CGAffineTransformMakeRotation(-M_PI/2)];
-#if 1
+#if 0
     [_ciFilter setValue:ciImage forKey:kCIInputImageKey];
     CIImage *ciOutputImage = [_ciFilter outputImage];
     _coreImageView.image = ciOutputImage;

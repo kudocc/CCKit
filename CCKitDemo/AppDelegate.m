@@ -25,6 +25,7 @@
 #import "PerformanceViewController.h"
 #import "PersistenceViewController.h"
 #import "AudioFileManager.h"
+#import <AFNetworking/AFNetworkReachabilityManager.h>
 
 @interface AppDelegate ()
 
@@ -77,6 +78,23 @@
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.rootViewController = nav;
     [self.window makeKeyAndVisible];
+    
+    [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        if (status == AFNetworkReachabilityStatusUnknown) {
+            NSLog(@"AFNetworkReachabilityStatusUnknown");
+        } else if (status == AFNetworkReachabilityStatusNotReachable) {
+            NSLog(@"AFNetworkReachabilityStatusNotReachable");
+        } else if (status == AFNetworkReachabilityStatusReachableViaWWAN) {
+            NSLog(@"AFNetworkReachabilityStatusReachableViaWWAN");
+        } else if (status == AFNetworkReachabilityStatusReachableViaWiFi) {
+            NSLog(@"AFNetworkReachabilityStatusReachableViaWiFi");
+        } else {
+            NSLog(@"what the fuck????");
+        }
+        
+    }];
+    [[AFNetworkReachabilityManager sharedManager] startMonitoring];
+    
     return YES;
 }
 

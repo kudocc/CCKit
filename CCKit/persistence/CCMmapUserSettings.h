@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  Well, I find one, it is mmap, mmap maps a file to a region of memory. When this is done, the file can be accessed just like an array in the program. So we can modify the memory as if we write the file. When process exits, the memory will write back to the file.
  
- CCMmapUserSettings passes the unit settings on my iPhone6 (iOS 10.1.1), but I really not sure if it works on all iOS versions because I haven't gotten a official document to make sure the memory used to map the file will be written back to disk immediately when the process exits, if it's not, will it be written to disk before the device shuts down ?
+ CCMmapUserSettings passes the unit settings on my iPhone6 (iOS 10.1.1) and iPhone4 (iOS 7.1.2), but I really not sure if it works on all iOS versions because I haven't gotten a official document to make sure the memory used to map the file will be written back to disk immediately when the process exits, if it's not, will it be written to disk before the device shuts down ?
  
  */
 @interface CCMmapUserSettings : NSObject

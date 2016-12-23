@@ -115,6 +115,8 @@
 		A76F9DA21E07D87A009ACD1C /* PersistenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A76F9DA11E07D87A009ACD1C /* PersistenceViewController.m */; };
 		A76F9DA51E07D8D2009ACD1C /* CCMmapUserDefaultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A76F9DA41E07D8D2009ACD1C /* CCMmapUserDefaultsViewController.m */; };
 		A76F9DA81E07D8EF009ACD1C /* CCUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = A76F9DA71E07D8EF009ACD1C /* CCUserDefaults.m */; };
+		A76F9E3C1E0CB691009ACD1C /* ScaleScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A76F9E3B1E0CB691009ACD1C /* ScaleScrollViewController.m */; };
+		A76F9E3E1E0CB7D8009ACD1C /* 3264_2448.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A76F9E3D1E0CB7D8009ACD1C /* 3264_2448.jpg */; };
 		A773BD761D671395008E53C1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A773BD751D671395008E53C1 /* main.m */; };
 		A773BD791D671395008E53C1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A773BD781D671395008E53C1 /* AppDelegate.m */; };
 		A773BD7F1D671395008E53C1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A773BD7D1D671395008E53C1 /* Main.storyboard */; };
@@ -387,6 +389,9 @@
 		A76F9DA41E07D8D2009ACD1C /* CCMmapUserDefaultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCMmapUserDefaultsViewController.m; sourceTree = "<group>"; };
 		A76F9DA61E07D8EF009ACD1C /* CCUserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCUserDefaults.h; sourceTree = "<group>"; };
 		A76F9DA71E07D8EF009ACD1C /* CCUserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCUserDefaults.m; sourceTree = "<group>"; };
+		A76F9E3A1E0CB691009ACD1C /* ScaleScrollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScaleScrollViewController.h; sourceTree = "<group>"; };
+		A76F9E3B1E0CB691009ACD1C /* ScaleScrollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScaleScrollViewController.m; sourceTree = "<group>"; };
+		A76F9E3D1E0CB7D8009ACD1C /* 3264_2448.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3264_2448.jpg; sourceTree = "<group>"; };
 		A773BD711D671395008E53C1 /* CCKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CCKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A773BD751D671395008E53C1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A773BD771D671395008E53C1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -710,6 +715,8 @@
 				A70562831D6EBA7000652E03 /* kvo */,
 				A705628C1D6EBA7000652E03 /* OtherViewController.h */,
 				A705628D1D6EBA7000652E03 /* OtherViewController.m */,
+				A76F9E3A1E0CB691009ACD1C /* ScaleScrollViewController.h */,
+				A76F9E3B1E0CB691009ACD1C /* ScaleScrollViewController.m */,
 				A73DD1BA1DF7FC1800BE797F /* CCRemoteNotificationManager.h */,
 				A73DD1BB1DF7FC1800BE797F /* CCRemoteNotificationManager.m */,
 			);
@@ -945,6 +952,7 @@
 				A70563361D6EBA9100652E03 /* html_parser.html */,
 				A773BD7D1D671395008E53C1 /* Main.storyboard */,
 				A773BD801D671395008E53C1 /* Assets.xcassets */,
+				A76F9E3D1E0CB7D8009ACD1C /* 3264_2448.jpg */,
 				A773BD821D671395008E53C1 /* LaunchScreen.storyboard */,
 				A773BD851D671395008E53C1 /* Info.plist */,
 				A773BD741D671395008E53C1 /* Supporting Files */,
@@ -1206,6 +1214,7 @@
 				A70563371D6EBA9100652E03 /* chat.plist in Resources */,
 				A773BD841D671395008E53C1 /* LaunchScreen.storyboard in Resources */,
 				A773BD811D671395008E53C1 /* Assets.xcassets in Resources */,
+				A76F9E3E1E0CB7D8009ACD1C /* 3264_2448.jpg in Resources */,
 				A773BD7F1D671395008E53C1 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1323,6 +1332,7 @@
 				A705631E1D6EBA7000652E03 /* LineViewController.m in Sources */,
 				A705630E1D6EBA7000652E03 /* KVOSubViewController.m in Sources */,
 				A773BDE31D671475008E53C1 /* CCAsyncLayer.m in Sources */,
+				A76F9E3C1E0CB691009ACD1C /* ScaleScrollViewController.m in Sources */,
 				A70563291D6EBA7000652E03 /* CustomAnimator.m in Sources */,
 				A705632F1D6EBA7000652E03 /* VCTransitionViewController.m in Sources */,
 				A70562E41D6EBA7000652E03 /* AudioRecordViewController.m in Sources */,
