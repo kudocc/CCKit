@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment version="2304" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Text Kit Construct View Controller-->
+        <scene sceneID="IKE-yR-DgC">
+            <objects>
+                <viewController storyboardIdentifier="TextKit_ConstructViewController" id="Dbs-PE-9dZ" customClass="TextKit_ConstructViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Flp-ZZ-pw9">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Uho-KR-eHr">
+                                <rect key="frame" x="16" y="80" width="343" height="200"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="HIk-SZ-vVE"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IpC-Ax-tHl">
+                                <rect key="frame" x="0.0" y="288" width="160" height="200"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="N4r-wL-TaW"/>
+                                    <constraint firstAttribute="width" constant="160" id="mc4-ga-HhZ"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fa2-tc-3P7">
+                                <rect key="frame" x="183" y="288" width="160" height="200"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="ZFC-Q9-8BQ"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Just do it Hello worldJust do it Hello worldJust do it Hello end" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="90" translatesAutoresizingMaskIntoConstraints="NO" id="uxD-rU-IHB">
+                                <rect key="frame" x="95" y="498" width="81.5" height="142.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Uho-KR-eHr" firstAttribute="bottom" secondItem="vm3-bO-fdf" secondAttribute="top" constant="260" id="Glf-fG-LhS"/>
+                            <constraint firstItem="uxD-rU-IHB" firstAttribute="leading" secondItem="vm3-bO-fdf" secondAttribute="leading" constant="95" id="RoM-wy-nnb"/>
+                            <constraint firstItem="uxD-rU-IHB" firstAttribute="top" secondItem="IpC-Ax-tHl" secondAttribute="bottom" constant="10" id="eot-Ou-hU7"/>
+                            <constraint firstItem="IpC-Ax-tHl" firstAttribute="leading" secondItem="vm3-bO-fdf" secondAttribute="leading" id="gAO-xD-V42"/>
+                            <constraint firstItem="Uho-KR-eHr" firstAttribute="leading" secondItem="vm3-bO-fdf" secondAttribute="leading" constant="16" id="jSi-9o-Hns"/>
+                            <constraint firstItem="IpC-Ax-tHl" firstAttribute="top" secondItem="Uho-KR-eHr" secondAttribute="bottom" constant="8" id="wZ5-dK-c1E"/>
+                            <constraint firstItem="Fa2-tc-3P7" firstAttribute="leading" secondItem="IpC-Ax-tHl" secondAttribute="trailing" constant="23" id="x9s-dO-NFD"/>
+                            <constraint firstItem="IpC-Ax-tHl" firstAttribute="width" secondItem="Fa2-tc-3P7" secondAttribute="width" id="xNW-Bn-fdQ"/>
+                            <constraint firstItem="Fa2-tc-3P7" firstAttribute="top" secondItem="IpC-Ax-tHl" secondAttribute="top" id="xtI-SS-ZC2"/>
+                            <constraint firstItem="vm3-bO-fdf" firstAttribute="trailing" secondItem="Uho-KR-eHr" secondAttribute="trailing" constant="16" id="yTI-hi-J2h"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="vm3-bO-fdf"/>
+                    </view>
+                    <connections>
+                        <outlet property="container1" destination="IpC-Ax-tHl" id="3WL-ZE-1YT"/>
+                        <outlet property="container2" destination="Fa2-tc-3P7" id="cSs-ym-orh"/>
+                        <outlet property="textView" destination="Uho-KR-eHr" id="lHy-Ej-kWR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gYj-6k-HCL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-218.40000000000001" y="169.56521739130437"/>
+        </scene>
+    </scenes>
+</document>

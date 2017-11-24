@@ -46,15 +46,12 @@
         [mAttrString appendAttributedString:subAttrString];
     }
     
-    NSRange range = NSMakeRange(mAttrString.length, 0);
-    NSString *str = @"123456";
-    range.length = str.length;
-    [mAttrString appendAttributedString:[[NSAttributedString alloc] initWithString:str]];
     [mAttrString cc_setColor:[UIColor blackColor]];
     [mAttrString cc_setFont:[UIFont systemFontOfSize:14]];
+    [mAttrString cc_setLineSpacing:1];
 //    [mAttrString cc_setSuperscript:1 range:NSMakeRange(mAttrString.length-3, 1)];
 //    [mAttrString cc_setHyphenationFactor:0.99];
-    [mAttrString cc_setFirstLineHeadIndent:10];
+//    [mAttrString cc_setFirstLineHeadIndent:10];
     
     return [mAttrString copy];
 }

@@ -25,7 +25,7 @@ NSString *const CCBackgroundColorAttributeName = @"CCKit_BackgroundColorAttribut
 - (id)init {
     self = [super init];
     if (self) {
-        _content = UIViewContentModeScaleToFill;
+        _content = nil;
         _contentInsets = UIEdgeInsetsZero;
     }
     return self;

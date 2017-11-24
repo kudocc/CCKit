@@ -7,8 +7,12 @@
 //
 
 #import "AppDelegate.h"
+
+#import "UIImage+CCKit.h"
+
 #import "HomeTableViewController.h"
 #import "CoreTextViewController.h"
+#import "TextKitViewController.h"
 #import "AnimationViewController.h"
 #import "VCTransitionViewController.h"
 #import "AutoLayoutViewController.h"
@@ -26,6 +30,7 @@
 #import "PersistenceViewController.h"
 #import "AudioFileManager.h"
 #import <AFNetworking/AFNetworkReachabilityManager.h>
+#import "iOS11ViewController.h"
 
 @interface AppDelegate ()
 
@@ -33,14 +38,63 @@
 
 @implementation AppDelegate
 
+- (CGSize)mediaSize {
+    NSString *text = nil;
+    NSDictionary *contentDict = [NSJSONSerialization JSONObjectWithData:[text dataUsingEncoding:NSUTF8StringEncoding] ?: [NSData data] options:0 error:nil];
+    
+    NSDictionary *images = contentDict[@"images"];
+    NSDictionary *regularImageInfo = images[@"regular"];
+    CGSize size;
+    if (!(regularImageInfo[@"width"] && regularImageInfo[@"height"])) {
+        return CGSizeMake(250, 130);
+    }
+    size.width = [regularImageInfo[@"width"] doubleValue];
+    size.height = [regularImageInfo[@"height"] doubleValue];
+    
+    size.width = 130 * size.width / size.height;
+    size.height = 130;
+    if (size.width > 250) {
+        size.width = [regularImageInfo[@"width"] doubleValue];
+        size.height = [regularImageInfo[@"height"] doubleValue];
+        
+        size.height = 250 * size.height / size.width;
+        size.width = 250;
+        
+        if (size.height < 20) {
+            size.height = 20;
+        }
+    }
+    
+    size.height += 24;
+    return size;
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    NSString *str = @"s-1000000";
+    NSString *str1 = @"s1000000";
+    NSString *str2 = @"s:123455";
+    NSLog(@"%lld, %lld, %lld", str.longLongValue, str1.longLongValue, str2.longLongValue);
+    
+    CGSize size = [self mediaSize];
+    NSLog(@"%@", NSStringFromCGSize(size));
+    
+    /*
+    NSSelectorFromString(@"prepareDebuggingOverlay");
+    id obj = NSClassFromString(@"UIDebuggingInformationOverlay");
+    SEL sel = NSSelectorFromString(@"prepareDebuggingOverlay");
+    if ([obj respondsToSelector:sel]) {
+        [obj performSelector:sel withObject:nil];
+    }*/
+    
     HomeTableViewController *vc = [[HomeTableViewController alloc] init];
     
     vc.arrayTitle = @[@"Core Text",
+                      @"Text Kit",
                       @"Animation",
                       @"Custom Transition",
                       @"Audio",
                       @"Video",
+                      @"iOS11",
                       @"AutoLayout",
                       @"Quartz 2D",
                       @"Image I/O",
@@ -54,10 +108,12 @@
                       @"Other"];
     
     vc.arrayClass = @[[CoreTextViewController class],
+                      [TextKitViewController class],
                       [AnimationViewController class],
                       [VCTransitionViewController class],
                       [AudioViewController class],
                       [VideoTableViewController class],
+                      [iOS11ViewController class],
                       [AutoLayoutViewController class],
                       [Quartz2DViewController class],
                       [ImageIOViewController class],
@@ -71,6 +127,8 @@
                       [OtherViewController class]];
     
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    UIImage *image = [UIImage cc_imageWithColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:0.5] size:CGSizeMake(1, 1)];
+    [nav.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
     
     [AudioFileManager createAudioDirectory];
     [AudioFileManager createVideoDirectory];
@@ -120,6 +178,11 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     
     NSLog(@"%@", NSStringFromSelector(_cmd));
+}
+
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey, id> *)options {
+    NSLog(@"%@, %@, options:%@", NSStringFromSelector(_cmd), url, options);
+    return YES;
 }
 
 @end

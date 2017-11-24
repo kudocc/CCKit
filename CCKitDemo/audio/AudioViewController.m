@@ -10,6 +10,7 @@
 #import "AudioRecordViewController.h"
 #import "AudioListViewController.h"
 #import "AudioRecordAudioQueueToFileViewController.h"
+#import "AudioConvertListViewController.h"
 #import <AVFoundation/AVFoundation.h>
 
 @interface AudioViewController ()
@@ -20,10 +21,11 @@
 - (void)initView {
     [super initView];
     
-    self.arrayTitle = @[@"Record", @"Record with audio queue to file", @"Playback-Audio list"];
+    self.arrayTitle = @[@"Record", @"Record with audio queue to file", @"Playback-Audio list", @"Convert Audio"];
     self.arrayClass = @[[AudioRecordViewController class],
                         [AudioRecordAudioQueueToFileViewController class],
-                        [AudioListViewController class]];
+                        [AudioListViewController class],
+                        [AudioConvertListViewController class]];
     
     [self checkAudioCodeC];
 }

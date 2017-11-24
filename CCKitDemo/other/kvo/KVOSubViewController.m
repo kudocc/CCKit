@@ -24,10 +24,13 @@
     _student = [[KVOStudent alloc] init];
     [_student addObserver:self forKeyPath:@"grade" options:NSKeyValueObservingOptionNew context:nil];
     [_student addObserver:self forKeyPath:@"age" options:NSKeyValueObservingOptionNew context:nil];
+    [_student addObserver:self forKeyPath:@"valueNotBackedByVariable" options:NSKeyValueObservingOptionNew context:nil];
     
     _student.age = 10;
     _student.grade = 2;
     _student.grade = 2;
+    
+    [_student triggerTestKVO];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context {
@@ -36,6 +39,8 @@
             NSLog(@"grade changed to %@", change[NSKeyValueChangeNewKey]);
         } else if ([keyPath isEqualToString:@"age"]) {
             NSLog(@"age changed to %@", change[NSKeyValueChangeNewKey]);
+        } else if ([keyPath isEqualToString:@"valueNotBackedByVariable"]) {
+            NSLog(@"valueNotBackedByVariable changed to %@", change[NSKeyValueChangeNewKey]);
         }
     } else {
         // we must call super, or KVOBaseViewController's observeValueForKeyPath:... won't get called.

@@ -15,7 +15,13 @@
 @implementation HomeTableViewController
 
 - (void)initView {
-    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, ScreenHeight, ScreenHeight-64)];
+    
+    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
+    if (@available(iOS 11, *)) {
+    } else {
+        CGFloat height = [UIApplication sharedApplication].statusBarFrame.size.height + self.navigationController.navigationBar.bounds.size.height;
+        tableView.contentInset = UIEdgeInsetsMake(height, 0, 0, 0);
+    }
     [self.view addSubview:tableView];
     tableView.tableFooterView = [UIView new];
     tableView.backgroundColor = [UIColor whiteColor];
@@ -37,7 +43,23 @@
         _cellSelectedBlock(indexPath);
     } else {
         Class class = _arrayClass[indexPath.row];
-        UIViewController *vc = (UIViewController *)[[class alloc] init];
+        NSString *className = NSStringFromClass(class);
+        UIViewController *vc = nil;
+        
+        NSString *prefix = nil;
+        if ([className containsString:@"_"]) {
+            prefix = [[className componentsSeparatedByString:@"_"] firstObject];
+        }
+        if (prefix.length > 0) {
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:prefix bundle:nil];
+            if (storyboard) {
+                vc = [storyboard instantiateViewControllerWithIdentifier:className];
+            }
+        }
+        
+        if (!vc) {
+            vc = (UIViewController *)[[class alloc] init];
+        }
         vc.title = _arrayTitle[indexPath.row];
         id property = _arraySetProperty[indexPath.row];
         if (property != [NSNull null]) {

@@ -14,6 +14,7 @@
 #import "ShadowGradientsViewController.h"
 #import "ImageBlendViewController.h"
 #import "LineViewController.h"
+#import "BezierPathVSCGPathViewController.h"
 
 @interface Quartz2DViewController ()
 
@@ -25,14 +26,15 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    self.arrayTitle = @[@"Line", @"ImageMask", @"Path", @"Colored & Stencil Pattern", @"Coordinate Test", @"Shadow & Gradient", @"Image Blend"];
+    self.arrayTitle = @[@"Line", @"ImageMask", @"Path", @"Colored & Stencil Pattern", @"Coordinate Test", @"Shadow & Gradient", @"Image Blend", @"Bezier Path vs CGPath"];
     self.arrayClass = @[[LineViewController class],
                         [ImageMaskViewController class],
                         [PathViewController class],
                         [PatternViewController class],
                         [CoordinateViewController class],
                         [ShadowGradientsViewController class],
-                        [ImageBlendViewController class]];
+                        [ImageBlendViewController class],
+                        [BezierPathVSCGPathViewController class]];
 }
 
 @end

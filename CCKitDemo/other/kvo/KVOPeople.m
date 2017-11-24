@@ -41,4 +41,16 @@
     }
 }
 
+- (void)triggerTestKVO {
+    NSLog(@"1");
+    [self willChangeValueForKey:@"valueNotBackedByVariable"];
+    NSLog(@"2");
+    [self didChangeValueForKey:@"valueNotBackedByVariable"];
+    NSLog(@"3");
+}
+
+- (NSString *)valueNotBackedByVariable {
+    return @"value not backed by variable";
+}
+
 @end

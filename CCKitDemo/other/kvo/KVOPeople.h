@@ -21,4 +21,8 @@
 
 @property (nonatomic) NSUInteger grade;
 
+@property (nonatomic, readonly) NSString *valueNotBackedByVariable;
+
+- (void)triggerTestKVO;
+
 @end
