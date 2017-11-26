@@ -29,12 +29,13 @@
     UIFont *f3 = [UIFont fontWithName:@"Avenir Next" size:20];
     NSLog(@"%f, %f, %f, %f", f0.leading, f1.leading, f2.leading, f3.leading);
     
-    self.arrayTitle = @[@"Construct TextKit", @"One storage with 2 layout manager", @"One storage with 2 container", @"LayoutManager", @"TextKit label"];
-    self.arrayClass = @[[TextKit_ConstructViewController class],
+    self.arrayTitle = @[@"TextKit label", @"Construct TextKit", @"One storage with 2 layout manager", @"One storage with 2 container", @"LayoutManager"];
+    self.arrayClass = @[[TextKitLabelDemoViewController class],
+                        [TextKit_ConstructViewController class],
                         [TextKit1Storage2LayoutManagerViewController class],
                         [TextKit1Storage2ContainerViewController class],
                         [TextKitLayoutManagerViewController class],
-                        [TextKitLabelDemoViewController class]];
+                        ];
 }
 
 @end

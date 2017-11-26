@@ -14,6 +14,8 @@
 #import "CCFPSLabel.h"
 #import "CoreTextHelper.h"
 
+#import <YYLabel.h>
+
 @interface ChatMessage : NSObject
 
 + (CGFloat)constraintWidth;
@@ -28,6 +30,7 @@
 @property (nonatomic) BOOL left;
 
 @property (nonatomic) CCTextLayout *textLayout;
+@property (nonatomic) YYTextLayout *yytextLayout;
 
 @end
 
@@ -38,6 +41,7 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         width = 186;
+        width = [UIScreen mainScreen].bounds.size.width * 0.675 - 20;
     });
     return width;
 }
@@ -54,9 +58,14 @@
         
         CGSize constraint = CGSizeMake([self.class constraintWidth], CGFLOAT_MAX);
         _textLayout = [CCTextLayout textLayoutWithSize:constraint attributedText:_content];
+        _yytextLayout = [YYTextLayout layoutWithContainerSize:constraint text:_content];
         
         _contentWidth = _textLayout.textBounds.width;
         _contentHeight = _textLayout.textBounds.height;
+        _cellHeight = _contentHeight + [self.class paddingY];
+        
+        _contentWidth = _yytextLayout.textBoundingSize.width;
+        _contentHeight = _yytextLayout.textBoundingSize.height;
         _cellHeight = _contentHeight + [self.class paddingY];
     }
     return self;
@@ -69,6 +78,7 @@
 
 @property (nonatomic) ChatMessage *chatMessage;
 @property (nonatomic) CCLabel *label;
+@property (nonatomic) YYLabel *yylabel;
 
 @end
 
@@ -77,8 +87,11 @@
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        _label = [[CCLabel alloc] init];
-        [self.contentView addSubview:_label];
+//        _label = [[CCLabel alloc] init];
+//        [self.contentView addSubview:_label];
+        
+        _yylabel = [[YYLabel alloc] init];
+        [self.contentView addSubview:_yylabel];
     }
     return self;
 }
@@ -88,11 +101,14 @@
     
     _chatMessage = chatMessage;
     if (_chatMessage.left) {
-        _label.backgroundColor = [UIColor whiteColor];
+//        _label.backgroundColor = [UIColor whiteColor];
+        _yylabel.backgroundColor = [UIColor whiteColor];
     } else {
-        _label.backgroundColor = [UIColor greenColor];
+//        _label.backgroundColor = [UIColor greenColor];
+        _yylabel.backgroundColor = [UIColor greenColor];
     }
-    _label.textLayout = chatMessage.textLayout;
+//    _label.textLayout = chatMessage.textLayout;
+    _yylabel.textLayout = chatMessage.yytextLayout;
     
     [self setNeedsLayout];
 }
@@ -104,7 +120,8 @@
     if (!_chatMessage.left) {
         frame = CGRectOffset(frame, self.contentView.width-frame.size.width, 0);
     }
-    _label.frame = frame;
+//    _label.frame = frame;
+    _yylabel.frame = frame;
 }
 
 @end

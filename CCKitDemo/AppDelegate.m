@@ -38,46 +38,7 @@
 
 @implementation AppDelegate
 
-- (CGSize)mediaSize {
-    NSString *text = nil;
-    NSDictionary *contentDict = [NSJSONSerialization JSONObjectWithData:[text dataUsingEncoding:NSUTF8StringEncoding] ?: [NSData data] options:0 error:nil];
-    
-    NSDictionary *images = contentDict[@"images"];
-    NSDictionary *regularImageInfo = images[@"regular"];
-    CGSize size;
-    if (!(regularImageInfo[@"width"] && regularImageInfo[@"height"])) {
-        return CGSizeMake(250, 130);
-    }
-    size.width = [regularImageInfo[@"width"] doubleValue];
-    size.height = [regularImageInfo[@"height"] doubleValue];
-    
-    size.width = 130 * size.width / size.height;
-    size.height = 130;
-    if (size.width > 250) {
-        size.width = [regularImageInfo[@"width"] doubleValue];
-        size.height = [regularImageInfo[@"height"] doubleValue];
-        
-        size.height = 250 * size.height / size.width;
-        size.width = 250;
-        
-        if (size.height < 20) {
-            size.height = 20;
-        }
-    }
-    
-    size.height += 24;
-    return size;
-}
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    NSString *str = @"s-1000000";
-    NSString *str1 = @"s1000000";
-    NSString *str2 = @"s:123455";
-    NSLog(@"%lld, %lld, %lld", str.longLongValue, str1.longLongValue, str2.longLongValue);
-    
-    CGSize size = [self mediaSize];
-    NSLog(@"%@", NSStringFromCGSize(size));
-    
     /*
     NSSelectorFromString(@"prepareDebuggingOverlay");
     id obj = NSClassFromString(@"UIDebuggingInformationOverlay");

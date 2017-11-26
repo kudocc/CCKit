@@ -10,7 +10,7 @@
 
 UIKIT_EXTERN NSAttributedStringKey MDLHighlightAttributeName;
 
-@interface MDLHighlightAttributeValue : NSObject
+@interface MDLHighlightAttributeValue : NSObject <NSCopying>
 
 @property (nonatomic) UIColor *highlightTextColor;
 @property (nonatomic) UIColor *highlightBackgroundColor;
@@ -37,16 +37,12 @@ UIKIT_EXTERN NSAttributedStringKey MDLHighlightAttributeName;
 
 
 /**
- 坑爹1 text中存在\n，NSTextContainer的maximumNumberOfLines设置1，那么你传给它的size的width是多大，它就用多大(如果设置过大的width，比如9999，用模拟器iPhoneX跑时，绘制时啥都看不到，原因不明，真机是好的iPhone6, iOS11)
- 
- 2 shadow没有为offset留出空间，考虑要不要支持shadow
+ shadow没有为offset.x留出空间，考虑要不要支持shadow
  */
 
 @protocol MDLLabelDelegate;
 
 @interface MDLLabel : UIView
-
-@property (nonatomic, weak) id<MDLLabelDelegate> delegate;
 
 @property (nonatomic, copy) NSString *text;
 
@@ -64,11 +60,20 @@ UIKIT_EXTERN NSAttributedStringKey MDLHighlightAttributeName;
 
 @property (nonatomic, copy) NSAttributedString *attributedText;
 
+@property (nonatomic) NSInteger numberOfLines;
+
+
+// By default, we detect dataDetectorTypes synchronize on main thread, if this property is YES, we do it in background
+@property (nonatomic) BOOL asyncDataDetector;
+
+// Default is `UIDataDetectorTypeNone`
 @property (nonatomic) UIDataDetectorTypes dataDetectorTypes;
+
 /// Attributes which apply to link string
 @property (nonatomic, strong) NSDictionary<NSString *, id> *linkTextAttributes;
 
-@property (nonatomic) NSInteger numberOfLines;
+
+@property (nonatomic, weak) id<MDLLabelDelegate> delegate;
 
 
 /*
