@@ -32,7 +32,7 @@
     // Do any additional setup after loading the view.
     
 //    NSString *str = @"02345678901234\n567890123456789012345678901234567890123456789001234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345";
-    NSString *str = @"Hello everyone, this label is enhancement of UILabe. It can detect url and email. For example: This link is https://www.baidu.com, try to email me at rui.yuan@musical.ly.";
+    NSString *str = @"Hello everyone, this label is enhancement of UILabe. It can also detect url and email. For example: This link is https://www.baidu.com, try to email me at rui.yuan@musical.ly. Join two http://www.google.comhttps://www.github.com";
 //    NSString *str = @"👩‍👧‍👦🎒👖🎒🎒👔🎒🎒🎒🎒👔👩‍👧‍👦🎒🎒🎒👔👨‍👧‍👦🎒🎒🎒👔👨‍👧‍👦🎒🎒🎒🎒👨‍👦‍👦🎒🎒🎒🎒🎒🎒👔👨‍👧‍👦🐌🐌🙊🐌🐌🐌🙊🐌🙉🐌🐌🐌🐌🐷🐌🙉🐌🐌🐌🐌🐷🐌🙊🐌🐂🐁🐁🐄🐇🐇🐂🐇🐄🐁🐋🐁🐁🐄🐂🐂🦏🐁🐂🐁🐋🐁🐁🐂🐄🌗🎍🌗🌖🌖🎋🎋🌘🌗🌴🌗🌗";
     NSMutableAttributedString *mAttr = [[NSMutableAttributedString alloc] initWithString:str];
     [mAttr cc_setColor:[UIColor blackColor]];
@@ -55,14 +55,6 @@
 //        imageAttachment.bounds = CGRectMake(0, [UIFont systemFontOfSize:14].descender, 50, 50);
 //        NSAttributedString *attachment = [NSAttributedString attributedStringWithAttachment:imageAttachment];
 //        [mAttr insertAttributedString:attachment atIndex:1];
-    }
-    
-    {// highlight
-//        MDLHighlightAttributeValue *highlightValue = [MDLHighlightAttributeValue new];
-//        highlightValue.effectRange = NSMakeRange(30, 10);
-//        highlightValue.highlightTextColor = [UIColor blueColor];
-//        highlightValue.highlightBackgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
-//        [mAttr mdl_addHighlightAttributeValue:highlightValue range:highlightValue.effectRange];
     }
     
     self.mString = mAttr;
@@ -108,6 +100,7 @@
     self.label.attributedText = mAttr;
     self.label.numberOfLines = 0;
     self.label.dataDetectorTypes = UIDataDetectorTypeAll;
+    self.label.asyncDataDetector = YES;
     
     // UILabel
     label.preferredMaxLayoutWidth = self.label.preferredMaxLayoutWidth;
@@ -143,11 +136,11 @@
 #pragma mark - MDLLabelDelegate
 
 - (void)label:(MDLLabel *)label didTapHighlight:(MDLHighlightAttributeValue *)highlight inRange:(NSRange)characterRange {
-    NSLog(@"%@, range:%@", NSStringFromSelector(_cmd), NSStringFromRange(characterRange));
+    NSLog(@"%@, range:%@", NSStringFromSelector(_cmd), [label.text substringWithRange:characterRange]);
 }
 
 - (void)label:(MDLLabel *)label didLongPressHighlight:(MDLHighlightAttributeValue *)highlight inRange:(NSRange)characterRange {
-    NSLog(@"%@, range:%@", NSStringFromSelector(_cmd), NSStringFromRange(characterRange));
+    NSLog(@"%@, range:%@", NSStringFromSelector(_cmd), [label.text substringWithRange:characterRange]);
 }
 
 @end
