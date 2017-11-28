@@ -171,6 +171,7 @@
 		A7DAFF9E1DDB0CEB002DE7CC /* AnimationKeyboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7DAFF9D1DDB0CEB002DE7CC /* AnimationKeyboardViewController.m */; };
 		A7F807DB1E00DFE300219F91 /* JJViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7F807DA1E00DFE300219F91 /* JJViewController.m */; };
 		A7F807DD1E0119C300219F91 /* CCUserSettingsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A7F807DC1E0119C300219F91 /* CCUserSettingsTests.m */; };
+		BD1E6A6E1FCDA54A00346BE7 /* image_source.gif in Resources */ = {isa = PBXBuildFile; fileRef = BD1E6A6D1FCDA54900346BE7 /* image_source.gif */; };
 		C2A2338348DC45A0392EBD6F /* libPods-CCKitDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A12A33A4C2B2306B6B058EED /* libPods-CCKitDemo.a */; };
 /* End PBXBuildFile section */
 
@@ -542,6 +543,7 @@
 		A7F807D91E00DFE300219F91 /* JJViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJViewController.h; sourceTree = "<group>"; };
 		A7F807DA1E00DFE300219F91 /* JJViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJViewController.m; sourceTree = "<group>"; };
 		A7F807DC1E0119C300219F91 /* CCUserSettingsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCUserSettingsTests.m; sourceTree = "<group>"; };
+		BD1E6A6D1FCDA54900346BE7 /* image_source.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = image_source.gif; sourceTree = "<group>"; };
 		E980066609E82FAF1D30D77A /* Pods-CCKitDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CCKitDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CCKitDemo/Pods-CCKitDemo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1082,6 +1084,7 @@
 				A773BD771D671395008E53C1 /* AppDelegate.h */,
 				A773BD781D671395008E53C1 /* AppDelegate.m */,
 				A7076F8B1EAC4CB400822202 /* chat.plist */,
+				BD1E6A6D1FCDA54900346BE7 /* image_source.gif */,
 				A70563361D6EBA9100652E03 /* html_parser.html */,
 				A773BD7D1D671395008E53C1 /* Main.storyboard */,
 				A773BD801D671395008E53C1 /* Assets.xcassets */,
@@ -1395,6 +1398,7 @@
 				A773BD811D671395008E53C1 /* Assets.xcassets in Resources */,
 				A76F9E3E1E0CB7D8009ACD1C /* 3264_2448.jpg in Resources */,
 				A773BD7F1D671395008E53C1 /* Main.storyboard in Resources */,
+				BD1E6A6E1FCDA54A00346BE7 /* image_source.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

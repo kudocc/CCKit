@@ -11,6 +11,7 @@
 #import "MDLLabel.h"
 #import <YYLabel.h>
 #import <NSAttributedString+YYText.h>
+#import "UIImage+CCKit.h"
 
 // 测试发现
 // numberOfLines = 1时，设置很长的文本
@@ -27,12 +28,51 @@
 
 @implementation TextKitLabelDemoViewController
 
+- (UIImage *)imageToViewWithURL:(NSURL *)url {
+    CGImageSourceRef imageSource = CGImageSourceCreateWithURL((__bridge CFURLRef)url, NULL);
+    if (imageSource) {
+        CFDictionaryRef property = CGImageSourceCopyProperties(imageSource, NULL);
+        NSDictionary *dictProperty = (__bridge_transfer id)property;
+        NSLog(@"container property:%@", dictProperty);
+        
+        property = CGImageSourceCopyPropertiesAtIndex(imageSource, 0, NULL);
+        dictProperty = (__bridge_transfer id)property;
+        NSLog(@"image at index 0 property:%@", dictProperty);
+        
+        UIImageOrientation orientation = UIImageOrientationUp;
+        int exifOrientation;
+        CFTypeRef val = CFDictionaryGetValue(property, kCGImagePropertyOrientation);
+        if (val) {
+            CFNumberGetValue(val, kCFNumberIntType, &exifOrientation);
+            orientation = [UIImage cc_exifOrientationToiOSOrientation:exifOrientation];
+        }
+        
+        size_t count = CGImageSourceGetCount(imageSource);
+        NSLog(@"image count:%zu", count);
+        
+        NSMutableArray *mutableArray = [NSMutableArray array];
+        for (size_t i = 0; i < count; ++i) {
+            CGImageRef img = CGImageSourceCreateImageAtIndex(imageSource, i, NULL);
+            if (img) {
+                UIImage *image = [UIImage imageWithCGImage:img scale:[UIScreen mainScreen].scale orientation:orientation];
+                [mutableArray addObject:image];
+                CGImageRelease(img);
+            }
+        }
+        CFRelease(imageSource);
+        
+        UIImage *result = [UIImage animatedImageWithImages:[mutableArray copy] duration:0.2];
+        return result;
+    }
+    return nil;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
 //    NSString *str = @"02345678901234\n567890123456789012345678901234567890123456789001234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345";
-    NSString *str = @"Hello everyone, this label is enhancement of UILabe. It can also detect url and email. For example: This link is https://www.baidu.com, try to email me at rui.yuan@musical.ly. Join two http://www.google.comhttps://www.github.com";
+    NSString *str = @"Hello everyone, this label is enhancement of UILabel. It can also detect url and email. For example: This link is https://www.baidu.com, try to email me at rui.yuan@musical.ly. Join two http://www.google.comhttps://www.github.com";
 //    NSString *str = @"👩‍👧‍👦🎒👖🎒🎒👔🎒🎒🎒🎒👔👩‍👧‍👦🎒🎒🎒👔👨‍👧‍👦🎒🎒🎒👔👨‍👧‍👦🎒🎒🎒🎒👨‍👦‍👦🎒🎒🎒🎒🎒🎒👔👨‍👧‍👦🐌🐌🙊🐌🐌🐌🙊🐌🙉🐌🐌🐌🐌🐷🐌🙉🐌🐌🐌🐌🐷🐌🙊🐌🐂🐁🐁🐄🐇🐇🐂🐇🐄🐁🐋🐁🐁🐄🐂🐂🦏🐁🐂🐁🐋🐁🐁🐂🐄🌗🎍🌗🌖🌖🎋🎋🌘🌗🌴🌗🌗";
     NSMutableAttributedString *mAttr = [[NSMutableAttributedString alloc] initWithString:str];
     [mAttr cc_setColor:[UIColor blackColor]];
@@ -49,12 +89,23 @@
     
 
     {// attachment
-//        NSTextAttachment *imageAttachment = [[NSTextAttachment alloc] initWithData:nil ofType:nil];
-//        UIImage *image = [UIImage imageNamed:@"avatar_ori"];
-//        imageAttachment.image = image;
-//        imageAttachment.bounds = CGRectMake(0, [UIFont systemFontOfSize:14].descender, 50, 50);
-//        NSAttributedString *attachment = [NSAttributedString attributedStringWithAttachment:imageAttachment];
-//        [mAttr insertAttributedString:attachment atIndex:1];
+        NSTextAttachment *imageAttachment = [[NSTextAttachment alloc] initWithData:nil ofType:nil];
+        UIImage *image = [UIImage imageNamed:@"avatar_ori"];
+        imageAttachment.image = image;
+        NSLog(@"%f", [UIFont systemFontOfSize:14].descender);
+        imageAttachment.bounds = CGRectMake(0, 10, 50, 50);
+        NSAttributedString *attachment = [NSAttributedString attributedStringWithAttachment:imageAttachment];
+        [mAttr insertAttributedString:attachment atIndex:1];
+    }
+    
+    {// gif attachment
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"image_source" ofType:@"gif"];
+        NSURL *url = [NSURL fileURLWithPath:path];
+        UIImage *image = [self imageToViewWithURL:url];
+        UIFont *font = [mAttr cc_font];
+        MDLTextAttachment *imageAttachment = [MDLTextAttachment imageAttachmentWithImage:image size:CGSizeMake(60, 80) alignFont:font];
+        NSAttributedString *attachment = [NSAttributedString attributedStringWithAttachment:imageAttachment];
+        [mAttr insertAttributedString:attachment atIndex:4];
     }
     
     self.mString = mAttr;

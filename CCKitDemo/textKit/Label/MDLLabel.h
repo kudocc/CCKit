@@ -36,6 +36,13 @@ UIKIT_EXTERN NSAttributedStringKey MDLHighlightAttributeName;
 @end
 
 
+@interface MDLTextAttachment : NSTextAttachment
+
++ (instancetype)imageAttachmentWithImage:(UIImage *)image size:(CGSize)size alignFont:(UIFont *)font;
+
+@end
+
+
 /**
  shadow没有为offset.x留出空间，考虑要不要支持shadow
  */

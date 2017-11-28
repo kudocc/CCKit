@@ -68,6 +68,40 @@ NSAttributedStringKey MDLHighlightAttributeName = @"MDLHighlightAttributeName";
 @end
 
 
+@interface MDLTextAttachment ()
+
+@property (nonatomic) UIImageView *imageView;
+@property (nonatomic) CGSize size;
+
+@end
+
+@implementation MDLTextAttachment
+
++ (instancetype)imageAttachmentWithImage:(UIImage *)image size:(CGSize)size alignFont:(UIFont *)font {
+    MDLTextAttachment *at = [[MDLTextAttachment alloc] initWithImage:image size:size alignFont:font];
+    return at;
+}
+
+- (instancetype)initWithImage:(UIImage *)image size:(CGSize)size alignFont:(UIFont *)font {
+    self = [super init];
+    if (self) {
+        self.size = size;
+        if (image.images.count > 1) {
+            // gif
+            self.imageView = [[UIImageView alloc] initWithImage:image];
+            self.imageView.contentMode = UIViewContentModeScaleAspectFill;
+            self.imageView.frame = CGRectMake(0, 0, size.width, size.height);
+        } else {
+            self.image = image;
+        }
+        self.bounds = CGRectMake(0, font.descender, size.width, size.height);
+    }
+    return self;
+}
+
+@end
+
+
 @interface MDLLabelLayoutManager : NSLayoutManager
 
 @end
@@ -601,6 +635,29 @@ const CGFloat MDLLabelMaxHeight = 9999;
     CGPoint pos = CGPointMake(0, 0);
     [_layoutManager drawBackgroundForGlyphRange:range atPoint:pos];
     [_layoutManager drawGlyphsForGlyphRange:range atPoint:pos];
+    
+    // place text attatchment
+    for (UIView *v in [self subviews]) {
+        if ([v isKindOfClass:[UIImageView class]]) {
+            [v removeFromSuperview];
+        }
+    }
+    [_textStorage enumerateAttribute:NSAttachmentAttributeName
+                            inRange:NSMakeRange(0, _textStorage.length)
+                            options:0
+                         usingBlock:^(id value, NSRange range, BOOL *stop) {
+                             if (![value isKindOfClass:[MDLTextAttachment class]]) {
+                                 return;
+                             }
+                             MDLTextAttachment* attachment = (MDLTextAttachment*)value;
+                             if (attachment.imageView) {
+                                 NSRange glyphRange = [_layoutManager glyphRangeForCharacterRange:range actualCharacterRange:NULL];
+                                 CGRect frame = [_layoutManager boundingRectForGlyphRange:glyphRange inTextContainer:_textContainer];
+                                 attachment.imageView.frame = frame;
+                                 [self addSubview:attachment.imageView];
+                                 [attachment.imageView startAnimating];
+                             }
+                         }];
     
 #ifdef DEBUG
 //    CGContextRef ctx = UIGraphicsGetCurrentContext();
