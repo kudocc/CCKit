@@ -530,7 +530,7 @@ const CGFloat MDLLabelMaxHeight = 9999;
     CGSize size = CGSizeZero;
     NSAttributedString *attr = _innerAttributedString;
     if (self.numberOfLines != 1) {
-        if (self.preferredMaxLayoutWidth == 0) {
+        if (self.preferredMaxLayoutWidth <= 0) {
             size = CGSizeMake(MDLLabelMaxWidth, MDLLabelMaxHeight);
         } else {
             size = CGSizeMake(self.preferredMaxLayoutWidth, MDLLabelMaxHeight);
