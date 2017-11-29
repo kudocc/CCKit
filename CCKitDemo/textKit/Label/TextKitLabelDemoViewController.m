@@ -28,7 +28,7 @@
 
 @implementation TextKitLabelDemoViewController
 
-- (UIImage *)imageToViewWithURL:(NSURL *)url {
+- (UIImage *)imageWithLocalFileURL:(NSURL *)url {
     CGImageSourceRef imageSource = CGImageSourceCreateWithURL((__bridge CFURLRef)url, NULL);
     if (imageSource) {
         CFDictionaryRef property = CGImageSourceCopyProperties(imageSource, NULL);
@@ -101,7 +101,7 @@
     {// gif attachment
         NSString *path = [[NSBundle mainBundle] pathForResource:@"image_source" ofType:@"gif"];
         NSURL *url = [NSURL fileURLWithPath:path];
-        UIImage *image = [self imageToViewWithURL:url];
+        UIImage *image = [self imageWithLocalFileURL:url];
         UIFont *font = [mAttr cc_font];
         MDLTextAttachment *imageAttachment = [MDLTextAttachment imageAttachmentWithImage:image size:CGSizeMake(60, 80) alignFont:font];
         NSAttributedString *attachment = [NSAttributedString attributedStringWithAttachment:imageAttachment];
