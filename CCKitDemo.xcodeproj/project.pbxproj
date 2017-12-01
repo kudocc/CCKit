@@ -172,6 +172,7 @@
 		A7F807DB1E00DFE300219F91 /* JJViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7F807DA1E00DFE300219F91 /* JJViewController.m */; };
 		A7F807DD1E0119C300219F91 /* CCUserSettingsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A7F807DC1E0119C300219F91 /* CCUserSettingsTests.m */; };
 		BD1E6A6E1FCDA54A00346BE7 /* image_source.gif in Resources */ = {isa = PBXBuildFile; fileRef = BD1E6A6D1FCDA54900346BE7 /* image_source.gif */; };
+		BDFE81201FD04476000AA87E /* CCKitRunloopResearchManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BDFE811F1FD04476000AA87E /* CCKitRunloopResearchManager.m */; };
 		C2A2338348DC45A0392EBD6F /* libPods-CCKitDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A12A33A4C2B2306B6B058EED /* libPods-CCKitDemo.a */; };
 /* End PBXBuildFile section */
 
@@ -544,6 +545,8 @@
 		A7F807DA1E00DFE300219F91 /* JJViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJViewController.m; sourceTree = "<group>"; };
 		A7F807DC1E0119C300219F91 /* CCUserSettingsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCUserSettingsTests.m; sourceTree = "<group>"; };
 		BD1E6A6D1FCDA54900346BE7 /* image_source.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = image_source.gif; sourceTree = "<group>"; };
+		BDFE811E1FD04476000AA87E /* CCKitRunloopResearchManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCKitRunloopResearchManager.h; sourceTree = "<group>"; };
+		BDFE811F1FD04476000AA87E /* CCKitRunloopResearchManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCKitRunloopResearchManager.m; sourceTree = "<group>"; };
 		E980066609E82FAF1D30D77A /* Pods-CCKitDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CCKitDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CCKitDemo/Pods-CCKitDemo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1080,6 +1083,7 @@
 				A70562CF1D6EBA7000652E03 /* webView */,
 				A77694D51F79F46B00FC0397 /* iOS11 */,
 				A705623D1D6EBA7000652E03 /* block */,
+				BDFE811D1FD0444D000AA87E /* runloop */,
 				A70562821D6EBA7000652E03 /* other */,
 				A773BD771D671395008E53C1 /* AppDelegate.h */,
 				A773BD781D671395008E53C1 /* AppDelegate.m */,
@@ -1265,6 +1269,15 @@
 				A7BBD27F1F91E563000C942F /* TextKit1Storage2ContainerViewController.m */,
 			);
 			path = Construct;
+			sourceTree = "<group>";
+		};
+		BDFE811D1FD0444D000AA87E /* runloop */ = {
+			isa = PBXGroup;
+			children = (
+				BDFE811E1FD04476000AA87E /* CCKitRunloopResearchManager.h */,
+				BDFE811F1FD04476000AA87E /* CCKitRunloopResearchManager.m */,
+			);
+			path = runloop;
 			sourceTree = "<group>";
 		};
 		CEC423076637D83C671E6BF0 /* Frameworks */ = {
@@ -1497,6 +1510,7 @@
 				A773BDE91D671475008E53C1 /* CCTextLayout.m in Sources */,
 				A70563321D6EBA7000652E03 /* URLSessionCacheViewController.m in Sources */,
 				A77E7EEE1F3991520065F656 /* AudioConvertViewController.m in Sources */,
+				BDFE81201FD04476000AA87E /* CCKitRunloopResearchManager.m in Sources */,
 				A70563221D6EBA7000652E03 /* ShadowGradientsViewController.m in Sources */,
 				A73B52261D79618C0035D336 /* CIFaceAnimateFilter.m in Sources */,
 				A70562F01D6EBA7000652E03 /* BuiltinFilterChainViewController.m in Sources */,

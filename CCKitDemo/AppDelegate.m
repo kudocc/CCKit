@@ -32,6 +32,8 @@
 #import <AFNetworking/AFNetworkReachabilityManager.h>
 #import "iOS11ViewController.h"
 
+#import "CCKitRunloopResearchManager.h"
+
 @interface AppDelegate ()
 
 @end
@@ -46,6 +48,8 @@
     if ([obj respondsToSelector:sel]) {
         [obj performSelector:sel withObject:nil];
     }*/
+    
+    [[CCKitRunloopResearchManager sharedManager] startMonitorRunloop];
     
     HomeTableViewController *vc = [[HomeTableViewController alloc] init];
     
