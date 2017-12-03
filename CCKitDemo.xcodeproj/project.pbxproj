@@ -171,6 +171,7 @@
 		A7DAFF9E1DDB0CEB002DE7CC /* AnimationKeyboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7DAFF9D1DDB0CEB002DE7CC /* AnimationKeyboardViewController.m */; };
 		A7F807DB1E00DFE300219F91 /* JJViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7F807DA1E00DFE300219F91 /* JJViewController.m */; };
 		A7F807DD1E0119C300219F91 /* CCUserSettingsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A7F807DC1E0119C300219F91 /* CCUserSettingsTests.m */; };
+		BD1D7A521FD3750100FD17BD /* TextKitLabelDragViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD1D7A511FD3750100FD17BD /* TextKitLabelDragViewController.m */; };
 		BD1E6A6E1FCDA54A00346BE7 /* image_source.gif in Resources */ = {isa = PBXBuildFile; fileRef = BD1E6A6D1FCDA54900346BE7 /* image_source.gif */; };
 		BDFE81201FD04476000AA87E /* CCKitRunloopResearchManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BDFE811F1FD04476000AA87E /* CCKitRunloopResearchManager.m */; };
 		C2A2338348DC45A0392EBD6F /* libPods-CCKitDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A12A33A4C2B2306B6B058EED /* libPods-CCKitDemo.a */; };
@@ -544,6 +545,8 @@
 		A7F807D91E00DFE300219F91 /* JJViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJViewController.h; sourceTree = "<group>"; };
 		A7F807DA1E00DFE300219F91 /* JJViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJViewController.m; sourceTree = "<group>"; };
 		A7F807DC1E0119C300219F91 /* CCUserSettingsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCUserSettingsTests.m; sourceTree = "<group>"; };
+		BD1D7A501FD3750100FD17BD /* TextKitLabelDragViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextKitLabelDragViewController.h; sourceTree = "<group>"; };
+		BD1D7A511FD3750100FD17BD /* TextKitLabelDragViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextKitLabelDragViewController.m; sourceTree = "<group>"; };
 		BD1E6A6D1FCDA54900346BE7 /* image_source.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = image_source.gif; sourceTree = "<group>"; };
 		BDFE811E1FD04476000AA87E /* CCKitRunloopResearchManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCKitRunloopResearchManager.h; sourceTree = "<group>"; };
 		BDFE811F1FD04476000AA87E /* CCKitRunloopResearchManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCKitRunloopResearchManager.m; sourceTree = "<group>"; };
@@ -945,6 +948,8 @@
 			children = (
 				A71EF7661FB691A600C296F2 /* TextKitLabelDemoViewController.h */,
 				A71EF7671FB691A600C296F2 /* TextKitLabelDemoViewController.m */,
+				BD1D7A501FD3750100FD17BD /* TextKitLabelDragViewController.h */,
+				BD1D7A511FD3750100FD17BD /* TextKitLabelDragViewController.m */,
 				A7A8CB6A1F95F39A007EBE52 /* MDLLabel.h */,
 				A7A8CB6B1F95F39A007EBE52 /* MDLLabel.m */,
 			);
@@ -1574,6 +1579,7 @@
 				A773BDED1D671475008E53C1 /* NSDictionary+CCKit.m in Sources */,
 				A70562FE1D6EBA7000652E03 /* ImageDestinationViewController.m in Sources */,
 				A70562DF1D6EBA7000652E03 /* ImplicityAnimationViewController.m in Sources */,
+				BD1D7A521FD3750100FD17BD /* TextKitLabelDragViewController.m in Sources */,
 				A70562FF1D6EBA7000652E03 /* ImageIO.m in Sources */,
 				A705630D1D6EBA7000652E03 /* KVOPeople.m in Sources */,
 				A7073E1F1DC05A230049175A /* Teacher.m in Sources */,

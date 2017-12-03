@@ -43,8 +43,22 @@ UIKIT_EXTERN NSAttributedStringKey MDLHighlightAttributeName;
 @end
 
 
+@interface MDLLabelLayout : NSObject
+
+@property (nonatomic, readonly) NSLayoutManager *layoutManager;
+@property (nonatomic, readonly) NSTextContainer *textContainer;
+@property (nonatomic, readonly) NSTextStorage *textStorage;
+
+@property (nonatomic, readonly) CGSize bounds;
+
++ (instancetype)labelLayoutWithAttributedText:(NSAttributedString *)text maxSize:(CGSize)size;
+
+@end
+
+
 /**
- shadow没有为offset.x留出空间，考虑要不要支持shadow
+ TODO:
+ 1. 支持传入Layout
  */
 
 @protocol MDLLabelDelegate;
@@ -81,7 +95,6 @@ UIKIT_EXTERN NSAttributedStringKey MDLHighlightAttributeName;
 
 
 @property (nonatomic, weak) id<MDLLabelDelegate> delegate;
-
 
 /*
 // these next 3 properties allow the label to be autosized to fit a certain width by scaling the font size(s) by a scaling factor >= the minimum scaling factor

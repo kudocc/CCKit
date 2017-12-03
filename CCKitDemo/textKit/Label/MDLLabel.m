@@ -106,6 +106,95 @@ NSAttributedStringKey MDLHighlightAttributeName = @"MDLHighlightAttributeName";
 
 @end
 
+
+@interface MDLLabelLayout () <NSLayoutManagerDelegate>
+
+@property (nonatomic) MDLLabelLayoutManager *layoutManager;
+@property (nonatomic) NSTextContainer *textContainer;
+@property (nonatomic) NSTextStorage *textStorage;
+
+@end
+
+@implementation MDLLabelLayout
+
++ (instancetype)labelLayoutWithAttributedText:(NSAttributedString *)text textContainer:(NSTextContainer *)textContainer {
+    NSTextStorage *textStorage = [[NSTextStorage alloc] initWithAttributedString:text];
+    
+    MDLLabelLayoutManager *layoutManager = [[MDLLabelLayoutManager alloc] init];
+    [layoutManager addTextContainer:textContainer];
+    [textStorage addLayoutManager:layoutManager];
+    
+    MDLLabelLayout *layout = [[MDLLabelLayout alloc] init];
+    layout.layoutManager = layoutManager;
+    layout.textContainer = textContainer;
+    layout.textStorage = textStorage;
+    layoutManager.delegate = layout;
+    return layout;
+}
+
++ (instancetype)labelLayoutWithAttributedText:(NSAttributedString *)text maxSize:(CGSize)size {
+    NSTextStorage *textStorage = [[NSTextStorage alloc] initWithAttributedString:text];
+    
+    NSTextContainer *textContainer = [[NSTextContainer alloc] initWithSize:size];
+    textContainer.lineFragmentPadding = 0;
+    textContainer.maximumNumberOfLines = 0;
+    
+    MDLLabelLayoutManager *layoutManager = [[MDLLabelLayoutManager alloc] init];
+    [layoutManager addTextContainer:textContainer];
+    [textStorage addLayoutManager:layoutManager];
+    
+    MDLLabelLayout *layout = [[MDLLabelLayout alloc] init];
+    layout.layoutManager = layoutManager;
+    layout.textContainer = textContainer;
+    layout.textStorage = textStorage;
+    layoutManager.delegate = layout;
+    return layout;
+}
+
+- (CGSize)bounds {
+    CGRect bounds = [self.layoutManager usedRectForTextContainer:self.textContainer];
+    return CGSizeMake(self.textContainer.lineFragmentPadding * 2 + ceil(bounds.size.width), ceil(bounds.size.height));
+}
+
+#pragma mark - NSLayoutManagerDelegate
+
+//- (BOOL)layoutManager:(NSLayoutManager *)layoutManager shouldBreakLineByHyphenatingBeforeCharacterAtIndex:(NSUInteger)charIndex {
+//    NSString *text = [layoutManager.textStorage attributedSubstringFromRange:NSMakeRange(charIndex, 1)].string;
+//    static int i = 0;
+//    ++i;
+//    if (i%100 != 0) {
+//        NSLog(@"%@ index %@, text %@, YES", NSStringFromSelector(_cmd), @(charIndex), text);
+//        return YES;
+//    } else {
+//        NSLog(@"%@ index %@, text %@, NO", NSStringFromSelector(_cmd), @(charIndex), text);
+//        return NO;
+//    }
+//}
+
+//- (BOOL)layoutManager:(NSLayoutManager *)layoutManager shouldBreakLineByWordBeforeCharacterAtIndex:(NSUInteger)charIndex {
+//    NSString *text = [layoutManager.textStorage attributedSubstringFromRange:NSMakeRange(charIndex, 1)].string;
+//    static int i = 0;
+//    ++i;
+//    if (i%100 != 0) {
+//        NSLog(@"%@ index %@, text %@, YES", NSStringFromSelector(_cmd), @(charIndex), text);
+//        return YES;
+//    } else {
+//        NSLog(@"%@ index %@, text %@, NO", NSStringFromSelector(_cmd), @(charIndex), text);
+//        return NO;
+//    }
+//}
+
+//- (NSControlCharacterAction)layoutManager:(NSLayoutManager *)layoutManager shouldUseAction:(NSControlCharacterAction)action forControlCharacterAtIndex:(NSUInteger)charIndex {
+//    NSLog(@"%@, index:%@", NSStringFromSelector(_cmd), @(charIndex));
+//    return NSControlCharacterActionZeroAdvancement;
+//}
+
+- (void)layoutManager:(NSLayoutManager *)layoutManager didCompleteLayoutForTextContainer:(nullable NSTextContainer *)textContainer atEnd:(BOOL)layoutFinishedFlag {
+    NSLog(@"%@, layoutFinishedFlag:%@", NSStringFromSelector(_cmd), @(layoutFinishedFlag));
+}
+
+@end
+
 typedef void(^MDLDataDetectorCallback)(NSArray *matchResults);
 @interface MDLDataDetectorOperation : NSOperation
 @property (nonatomic) UIDataDetectorTypes types;
@@ -158,40 +247,51 @@ const CGFloat MDLLabelMaxHeight = 9999;
 
 // data detector
 @property (nonatomic) BOOL needReDetectLink;
+@property (nonatomic) int dataDetectorRefreshSessionID;
 @property (nonatomic) NSArray<NSTextCheckingResult *> *dataDetectorMatchResults;
 @property (nonatomic) NSOperationQueue *dataDetectQueue;
 
 // layout
 @property (nonatomic) BOOL needLayout;
-@property (nonatomic) NSTextStorage *textStorage;
-@property (nonatomic) MDLLabelLayoutManager *layoutManager;
-@property (nonatomic) NSTextContainer *textContainer;
+@property (nonatomic) MDLLabelLayout *layout;
 
 @end
 
 @implementation MDLLabel
 
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self _commonInit];
+    }
+    return self;
+}
+
 - (instancetype)init {
     self = [super init];
     if (self) {
-        // default value
-        self.backgroundColor = [UIColor clearColor];
-        
-        _numberOfLines = 1;
-        _font = [UIFont systemFontOfSize:17];
-        _textColor = [UIColor blackColor];
-        _textAlignment = NSTextAlignmentLeft;
-        _lineBreakMode = NSLineBreakByWordWrapping;
-        
-        
-        MDLHighlightAttributeValue *highlightValue = [MDLHighlightAttributeValue new];
-        highlightValue.highlightTextColor = [UIColor blueColor];
-        highlightValue.highlightBackgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
-        _linkTextAttributes = @{ NSForegroundColorAttributeName : [UIColor blueColor],
-                                 MDLHighlightAttributeName : highlightValue,
-                                 };
+        [self _commonInit];
     }
     return self;
+}
+
+- (void)_commonInit {
+    // default value
+    self.backgroundColor = [UIColor clearColor];
+    
+    _numberOfLines = 1;
+    _font = [UIFont systemFontOfSize:17];
+    _textColor = [UIColor blackColor];
+    _textAlignment = NSTextAlignmentLeft;
+    _lineBreakMode = NSLineBreakByWordWrapping;
+    
+    
+    MDLHighlightAttributeValue *highlightValue = [MDLHighlightAttributeValue new];
+    highlightValue.highlightTextColor = [UIColor blueColor];
+    highlightValue.highlightBackgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+    _linkTextAttributes = @{ NSForegroundColorAttributeName : [UIColor blueColor],
+                             MDLHighlightAttributeName : highlightValue,
+                             };
 }
 
 #pragma mark - Touch
@@ -223,18 +323,33 @@ const CGFloat MDLLabelMaxHeight = 9999;
     _longPressTimer = nil;
 }
 
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    [super touchesBegan:touches withEvent:event];
-    
-    if (!_layoutManager || !_textContainer) {
-        return;
+- (MDLHighlightAttributeValue *)_getHighlightAttributeValueAtPosition:(CGPoint)pos exffectiveRange:(NSRange *)pRange {
+    if (!_layout) {
+        return nil;
     }
+    NSLayoutManager *_layoutManager = _layout.layoutManager;
+    NSTextContainer *_textContainer = _layout.textContainer;
+    NSTextStorage *_textStorage = _layout.textStorage;
     
-    CGPoint pos = [[touches anyObject] locationInView:self];
     NSUInteger glyphIndex = [_layoutManager glyphIndexForPoint:pos inTextContainer:_textContainer];
     NSUInteger characterIndex = [_layoutManager characterIndexForGlyphAtIndex:glyphIndex];
     NSRange range;
     MDLHighlightAttributeValue *highlight = [_textStorage mdl_highlightAttributeValueAtIndex:characterIndex effectiveRange:&range];
+    if (!highlight || range.location == NSNotFound || range.length == 0) {
+        return nil;
+    }
+    if (pRange) {
+        *pRange = range;
+    }
+    return highlight;
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [super touchesBegan:touches withEvent:event];
+    
+    CGPoint pos = [[touches anyObject] locationInView:self];
+    NSRange range;
+    MDLHighlightAttributeValue *highlight = [self _getHighlightAttributeValueAtPosition:pos exffectiveRange:&range];
     if (!highlight || range.location == NSNotFound || range.length == 0) {
         return;
     }
@@ -273,6 +388,9 @@ const CGFloat MDLLabelMaxHeight = 9999;
         }];
         [self _setNeedsLayout];
         [self _setNeedRedraw];
+        
+        NSLayoutManager *_layoutManager = _layout.layoutManager;
+        NSTextContainer *_textContainer = _layout.textContainer;
         
         BOOL touchUpInside = NO;
         CGPoint pos = [[touches anyObject] locationInView:self];
@@ -494,6 +612,7 @@ const CGFloat MDLLabelMaxHeight = 9999;
     // clear results because they maybe not valid any more
     self.dataDetectorMatchResults = nil;
     self.needReDetectLink = YES;
+    ++self.dataDetectorRefreshSessionID;
 }
 
 - (void)setDataDetectorTypes:(UIDataDetectorTypes)dataDetectorTypes {
@@ -526,6 +645,14 @@ const CGFloat MDLLabelMaxHeight = 9999;
 
 #pragma mark - layout & draw
 
+- (void)setFrame:(CGRect)frame {
+    [super setFrame:frame];
+    
+    [self _setNeedsLayout];
+    [self _setNeedRedraw];
+}
+
+// If you don't use autolayout (set frame explicitly), `intrinsicContentSize` won't be called.
 - (CGSize)intrinsicContentSize {
     CGSize size = CGSizeZero;
     NSAttributedString *attr = _innerAttributedString;
@@ -539,19 +666,12 @@ const CGFloat MDLLabelMaxHeight = 9999;
         size = CGSizeMake(MDLLabelMaxWidth, MDLLabelMaxHeight);
     }
     
-    NSTextStorage *textStorage = [[NSTextStorage alloc] initWithAttributedString:attr];
+    NSTextContainer *_textContainer = [[NSTextContainer alloc] initWithSize:size];
+    _textContainer.lineFragmentPadding = 0;
+    _textContainer.maximumNumberOfLines = self.numberOfLines;
     
-    NSTextContainer *textContainer = [[NSTextContainer alloc] initWithSize:size];
-    textContainer.lineFragmentPadding = 0;
-    textContainer.maximumNumberOfLines = self.numberOfLines;
-    
-    MDLLabelLayoutManager *layoutManager = [[MDLLabelLayoutManager alloc] init];
-    [layoutManager setDelegate:self];
-    [layoutManager addTextContainer:textContainer];
-    [textStorage addLayoutManager:layoutManager];
-    
-    CGRect bounds = [layoutManager usedRectForTextContainer:textContainer];
-    return CGSizeMake(textContainer.lineFragmentPadding * 2 + ceil(bounds.size.width), ceil(bounds.size.height));
+    MDLLabelLayout *layout = [MDLLabelLayout labelLayoutWithAttributedText:attr textContainer:_textContainer];
+    return layout.bounds;
 }
 
 - (void)drawRect:(CGRect)rect {
@@ -559,33 +679,42 @@ const CGFloat MDLLabelMaxHeight = 9999;
     
     if (_needReDetectLink) {
         _dataDetectorMatchResults = nil;
-        
-        if (_asyncDataDetector) {
-            __weak typeof(self) wself = self;
-            MDLDataDetectorOperation *operation = [[MDLDataDetectorOperation alloc] init];
-            operation.string = self.text;
-            operation.types = self.dataDetectorTypes;
-            operation.callback = ^(NSArray *matchResults) {
-                if (!wself) {
-                    return;
-                }
-                typeof(wself) sself = wself;
-                sself.dataDetectorMatchResults = matchResults;
-                [sself _setNeedsLayout];
-                [sself _setNeedRedraw];
-            };
-            [self.dataDetectQueue cancelAllOperations];
-            [self.dataDetectQueue addOperation:operation];
-            
+        if (_dataDetectorTypes == UIDataDetectorTypeNone) {
             _needReDetectLink = NO;
         } else {
-            NSDataDetector *detector = [NSDataDetector dataDetectorWithTypes:_dataDetectorTypes error:nil];
-            NSString *string = [_innerAttributedString string];
-            NSArray *matches = [detector matchesInString:string
-                                                 options:0
-                                                   range:NSMakeRange(0, [string length])];
-            _dataDetectorMatchResults = [matches copy];
-            _needReDetectLink = NO;
+            if (_asyncDataDetector) {
+                __weak typeof(self) wself = self;
+                int sessionID = self.dataDetectorRefreshSessionID;
+                MDLDataDetectorOperation *operation = [[MDLDataDetectorOperation alloc] init];
+                operation.string = self.text;
+                operation.types = self.dataDetectorTypes;
+                operation.callback = ^(NSArray *matchResults) {
+                    if (!wself || wself.dataDetectorRefreshSessionID != sessionID) {
+#ifdef DEBUG
+                        if (wself.dataDetectorRefreshSessionID != sessionID) {
+                            NSLog(@"data detector refresh session id is not equal, maybe you have modify the text again");
+                        }
+#endif
+                        return;
+                    }
+                    typeof(wself) sself = wself;
+                    sself.dataDetectorMatchResults = matchResults;
+                    [sself _setNeedsLayout];
+                    [sself _setNeedRedraw];
+                };
+                [self.dataDetectQueue cancelAllOperations];
+                [self.dataDetectQueue addOperation:operation];
+                
+                _needReDetectLink = NO;
+            } else {
+                NSDataDetector *detector = [NSDataDetector dataDetectorWithTypes:_dataDetectorTypes error:nil];
+                NSString *string = [_innerAttributedString string];
+                NSArray *matches = [detector matchesInString:string
+                                                     options:0
+                                                       range:NSMakeRange(0, [string length])];
+                _dataDetectorMatchResults = [matches copy];
+                _needReDetectLink = NO;
+            }
         }
     }
     
@@ -614,27 +743,19 @@ const CGFloat MDLLabelMaxHeight = 9999;
             }
         }
         
-        _textStorage = [[NSTextStorage alloc] initWithAttributedString:mutableAttributedText];
-        
-        _textContainer = [[NSTextContainer alloc] initWithSize:size];
+        NSTextContainer *_textContainer = [[NSTextContainer alloc] initWithSize:size];
         _textContainer.lineFragmentPadding = 0;
         _textContainer.maximumNumberOfLines = self.numberOfLines;
         
-        _layoutManager = [[MDLLabelLayoutManager alloc] init];
-        [_layoutManager setDelegate:self];
-        [_layoutManager addTextContainer:_textContainer];
-        [_layoutManager setTextStorage:_textStorage];
-        
-        NSRange range = [_layoutManager glyphRangeForTextContainer:_textContainer];
-        [_layoutManager boundingRectForGlyphRange:range inTextContainer:_textContainer];
+        _layout = [MDLLabelLayout labelLayoutWithAttributedText:mutableAttributedText textContainer:_textContainer];
     }
     
-    NSRange range = [_layoutManager glyphRangeForTextContainer:_textContainer];
+    NSRange range = [_layout.layoutManager glyphRangeForTextContainer:_layout.textContainer];
     NSLog(@"%@, range:%@, bounds:%@", NSStringFromSelector(_cmd), NSStringFromRange(range), NSStringFromCGRect(rect));
     
     CGPoint pos = CGPointMake(0, 0);
-    [_layoutManager drawBackgroundForGlyphRange:range atPoint:pos];
-    [_layoutManager drawGlyphsForGlyphRange:range atPoint:pos];
+    [_layout.layoutManager drawBackgroundForGlyphRange:range atPoint:pos];
+    [_layout.layoutManager drawGlyphsForGlyphRange:range atPoint:pos];
     
     // place text attatchment
     for (UIView *v in [self subviews]) {
@@ -642,6 +763,7 @@ const CGFloat MDLLabelMaxHeight = 9999;
             [v removeFromSuperview];
         }
     }
+    NSTextStorage *_textStorage = _layout.textStorage;
     [_textStorage enumerateAttribute:NSAttachmentAttributeName
                             inRange:NSMakeRange(0, _textStorage.length)
                             options:0
@@ -651,30 +773,15 @@ const CGFloat MDLLabelMaxHeight = 9999;
                              }
                              MDLTextAttachment* attachment = (MDLTextAttachment*)value;
                              if (attachment.imageView) {
-                                 NSRange glyphRange = [_layoutManager glyphRangeForCharacterRange:range actualCharacterRange:NULL];
-                                 CGRect frame = [_layoutManager boundingRectForGlyphRange:glyphRange inTextContainer:_textContainer];
+                                 NSRange glyphRange = [_layout.layoutManager glyphRangeForCharacterRange:range
+                                                                                    actualCharacterRange:NULL];
+                                 CGRect frame = [_layout.layoutManager boundingRectForGlyphRange:glyphRange
+                                                                                 inTextContainer:_layout.textContainer];
                                  attachment.imageView.frame = frame;
                                  [self addSubview:attachment.imageView];
                                  [attachment.imageView startAnimating];
                              }
                          }];
-    
-#ifdef DEBUG
-//    CGContextRef ctx = UIGraphicsGetCurrentContext();
-//    CGContextSetStrokeColorWithColor(ctx, [UIColor greenColor].CGColor);
-//    CGContextSetLineWidth(ctx, 1);
-//    for (NSInteger i = range.location; i < range.location + range.length; ++i) {
-//        CGRect subRect = [_layoutManager boundingRectForGlyphRange:NSMakeRange(range.location+i, 1)
-//                                                   inTextContainer:_textContainer];
-//        if (!CGRectContainsRect(rect, subRect)) {
-//            NSLog(@"!CGRectContainsRect(rect, subRect)");
-//        }
-//        NSInteger charIndex = [_layoutManager characterIndexForGlyphAtIndex:range.location+i];
-//        NSString *sub = [_layoutManager.textStorage.string substringWithRange:NSMakeRange(charIndex, 1)];
-//        NSLog(@"sub %@, %@, %@", NSStringFromCGRect(rect), @(charIndex), sub);
-//        CGContextStrokeRect(ctx, subRect);
-//    }
-#endif
 }
 
 - (NSTextCheckingTypes)dataDetectorTypesToTextCheckingTypes:(UIDataDetectorTypes)dataDetectorTypes {
@@ -684,43 +791,6 @@ const CGFloat MDLLabelMaxHeight = 9999;
     result |= ((dataDetectorTypes & UIDataDetectorTypeAddress) > 0) ? NSTextCheckingTypeAddress : 0;
     result |= ((dataDetectorTypes & UIDataDetectorTypeCalendarEvent) > 0) ? NSTextCheckingTypeDate : 0;
     return result;
-}
-
-#pragma mark - NSLayoutManagerDelegate
-
-//- (BOOL)layoutManager:(NSLayoutManager *)layoutManager shouldBreakLineByHyphenatingBeforeCharacterAtIndex:(NSUInteger)charIndex {
-//    NSString *text = [layoutManager.textStorage attributedSubstringFromRange:NSMakeRange(charIndex, 1)].string;
-//    static int i = 0;
-//    ++i;
-//    if (i%100 != 0) {
-//        NSLog(@"%@ index %@, text %@, YES", NSStringFromSelector(_cmd), @(charIndex), text);
-//        return YES;
-//    } else {
-//        NSLog(@"%@ index %@, text %@, NO", NSStringFromSelector(_cmd), @(charIndex), text);
-//        return NO;
-//    }
-//}
-
-//- (BOOL)layoutManager:(NSLayoutManager *)layoutManager shouldBreakLineByWordBeforeCharacterAtIndex:(NSUInteger)charIndex {
-//    NSString *text = [layoutManager.textStorage attributedSubstringFromRange:NSMakeRange(charIndex, 1)].string;
-//    static int i = 0;
-//    ++i;
-//    if (i%100 != 0) {
-//        NSLog(@"%@ index %@, text %@, YES", NSStringFromSelector(_cmd), @(charIndex), text);
-//        return YES;
-//    } else {
-//        NSLog(@"%@ index %@, text %@, NO", NSStringFromSelector(_cmd), @(charIndex), text);
-//        return NO;
-//    }
-//}
-
-//- (NSControlCharacterAction)layoutManager:(NSLayoutManager *)layoutManager shouldUseAction:(NSControlCharacterAction)action forControlCharacterAtIndex:(NSUInteger)charIndex {
-//    NSLog(@"%@, index:%@", NSStringFromSelector(_cmd), @(charIndex));
-//    return NSControlCharacterActionZeroAdvancement;
-//}
-
-- (void)layoutManager:(NSLayoutManager *)layoutManager didCompleteLayoutForTextContainer:(nullable NSTextContainer *)textContainer atEnd:(BOOL)layoutFinishedFlag {
-    NSLog(@"%@, layoutFinishedFlag:%@", NSStringFromSelector(_cmd), @(layoutFinishedFlag));
 }
 
 @end
@@ -734,26 +804,36 @@ const CGFloat MDLLabelMaxHeight = 9999;
 
 @implementation MDLLabelLayoutManager
 
-/*
 - (void)fillBackgroundRectArray:(const CGRect *)rectArray count:(NSUInteger)rectCount forCharacterRange:(NSRange)charRange color:(UIColor *)color {
-    NSDictionary *attr = [self.textStorage attributesAtIndex:charRange.location effectiveRange:NULL];
-    NSParagraphStyle *paragraph = attr[NSParagraphStyleAttributeName];
-    CGFloat lineSpacing = 0;
-    if (paragraph) {
-        lineSpacing = paragraph.lineSpacing;
-    }
-//    NSLog(@"range %@", NSStringFromRange(charRange));
+    // Fill used rect only
+    
+    NSRange glyphRange = [self glyphRangeForCharacterRange:charRange actualCharacterRange:NULL];
+    __block NSUInteger rectIndex = 0;
+    NSMutableArray *mutableRects = [NSMutableArray array];
+    [self enumerateLineFragmentsForGlyphRange:glyphRange usingBlock:^(CGRect rect, CGRect usedRect, NSTextContainer * _Nonnull textContainer, NSRange glyphRange, BOOL * _Nonnull stop) {
+        
+        if (rectIndex >= rectCount) {
+            NSAssert(NO, @"Amazing order to enumerate line fragment");
+            *stop = YES;
+            return;
+        }
+        
+        CGRect rectOri = rectArray[rectIndex];
+        CGRect rectResult = CGRectIntersection(rectOri, usedRect);
+        if (!CGRectEqualToRect(rectResult, CGRectZero)) {
+            [mutableRects addObject:[NSValue valueWithCGRect:rectResult]];
+        }
+        ++rectIndex;
+    }];
     
     CGContextRef ctx = UIGraphicsGetCurrentContext();
-    for (NSUInteger i = 0; i < rectCount; ++i) {
-//        NSLog(@"fill rect %@", NSStringFromCGRect(*(rectArray+i)));
-        
-        CGRect rect = *(rectArray+i);
-        rect.size.height -= lineSpacing;
-        CGContextFillRect(ctx, rect);
+    CGContextSaveGState(ctx);
+    CGContextSetFillColorWithColor(ctx, color.CGColor);
+    for (NSValue *valueRect in mutableRects) {
+        CGContextFillRect(ctx, [valueRect CGRectValue]);
     }
-    
-}*/
+    CGContextRestoreGState(ctx);
+}
 
 @end
 

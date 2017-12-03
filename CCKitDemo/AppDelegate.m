@@ -49,7 +49,7 @@
         [obj performSelector:sel withObject:nil];
     }*/
     
-    [[CCKitRunloopResearchManager sharedManager] startMonitorRunloop];
+//    [[CCKitRunloopResearchManager sharedManager] startMonitorRunloop];
     
     HomeTableViewController *vc = [[HomeTableViewController alloc] init];
     

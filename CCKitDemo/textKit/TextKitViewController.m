@@ -12,6 +12,7 @@
 #import "TextKit1Storage2ContainerViewController.h"
 #import "TextKitLayoutManagerViewController.h"
 #import "TextKitLabelDemoViewController.h"
+#import "TextKitLabelDragViewController.h"
 
 
 @interface TextKitViewController ()
@@ -29,8 +30,9 @@
     UIFont *f3 = [UIFont fontWithName:@"Avenir Next" size:20];
     NSLog(@"%f, %f, %f, %f", f0.leading, f1.leading, f2.leading, f3.leading);
     
-    self.arrayTitle = @[@"TextKit label", @"Construct TextKit", @"One storage with 2 layout manager", @"One storage with 2 container", @"LayoutManager"];
+    self.arrayTitle = @[@"TextKit label", @"TextKit label drag", @"Construct TextKit", @"One storage with 2 layout manager", @"One storage with 2 container", @"LayoutManager"];
     self.arrayClass = @[[TextKitLabelDemoViewController class],
+                        [TextKitLabelDragViewController class],
                         [TextKit_ConstructViewController class],
                         [TextKit1Storage2LayoutManagerViewController class],
                         [TextKit1Storage2ContainerViewController class],

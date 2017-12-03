@@ -24,6 +24,8 @@
 @property (nonatomic) MDLLabel *label;
 @property (nonatomic) YYLabel *yyLabel;
 
+@property (nonatomic) NSString *str;
+
 @end
 
 @implementation TextKitLabelDemoViewController
@@ -47,8 +49,17 @@
             orientation = [UIImage cc_exifOrientationToiOSOrientation:exifOrientation];
         }
         
+        CFDictionaryRef gifDict = CFDictionaryGetValue(property, kCGImagePropertyGIFDictionary);
+        CGFloat dur = 0.2;
+        if (gifDict) {
+            CFStringRef val = CFDictionaryGetValue(gifDict, kCGImagePropertyGIFDelayTime);
+            NSString *delay = (__bridge NSString *)val;
+            dur = [delay doubleValue];
+        }
+        
         size_t count = CGImageSourceGetCount(imageSource);
         NSLog(@"image count:%zu", count);
+        dur = dur * count;
         
         NSMutableArray *mutableArray = [NSMutableArray array];
         for (size_t i = 0; i < count; ++i) {
@@ -61,7 +72,7 @@
         }
         CFRelease(imageSource);
         
-        UIImage *result = [UIImage animatedImageWithImages:[mutableArray copy] duration:0.2];
+        UIImage *result = [UIImage animatedImageWithImages:[mutableArray copy] duration:dur];
         return result;
     }
     return nil;
@@ -89,11 +100,9 @@
     
 
     {// attachment
-        NSTextAttachment *imageAttachment = [[NSTextAttachment alloc] initWithData:nil ofType:nil];
+        UIFont *font = [mAttr cc_font];
         UIImage *image = [UIImage imageNamed:@"avatar_ori"];
-        imageAttachment.image = image;
-        NSLog(@"%f", [UIFont systemFontOfSize:14].descender);
-        imageAttachment.bounds = CGRectMake(0, 10, 50, 50);
+        MDLTextAttachment *imageAttachment = [MDLTextAttachment imageAttachmentWithImage:image size:CGSizeMake(50, 50) alignFont:font];
         NSAttributedString *attachment = [NSAttributedString attributedStringWithAttachment:imageAttachment];
         [mAttr insertAttributedString:attachment atIndex:1];
     }
@@ -182,6 +191,20 @@
     [self.mString deleteCharactersInRange:NSMakeRange(0, 1)];
     self.uilabel.attributedText = self.mString;
     self.label.attributedText = self.mString;
+    
+    void *pp = (__bridge void *)self.str;
+    long long l = (long long)&pp;
+    NSLog(@"%p, %p, %lld", self.str, &(pp), l);
+    self.str = [self.mString.string copy];
+    void *pp1 = (__bridge void *)self.str;
+    long long l1 = (long long)&pp1;
+    NSLog(@"%p, %p, %lld", self.str, &(pp1), l1);
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        void *pp1 = (__bridge void *)self.str;
+        long long l1 = (long long)&pp1;
+        NSLog(@"%p, %p, %lld", self.str, &(pp1), l1);
+    });
 }
 
 #pragma mark - MDLLabelDelegate
