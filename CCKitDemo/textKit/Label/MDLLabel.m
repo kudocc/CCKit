@@ -7,7 +7,7 @@
 //
 
 #import "MDLLabel.h"
-#import "NSAttributedString+CCKit.h"
+#import "NSAttributedString+MDLUtil.h"
 
 NSAttributedStringKey MDLHighlightAttributeName = @"MDLHighlightAttributeName";
 
@@ -267,8 +267,8 @@ const CGFloat MDLLabelMaxHeight = 9999;
     return self;
 }
 
-- (instancetype)init {
-    self = [super init];
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
     if (self) {
         [self _commonInit];
     }
@@ -472,19 +472,19 @@ const CGFloat MDLLabelMaxHeight = 9999;
     _innerAttributedString = [[NSMutableAttributedString alloc] initWithString:_text];
     
     if (_font) {
-        [_innerAttributedString cc_setFont:_font];
+        [_innerAttributedString mdl_setFont:_font];
     }
     if (_textColor) {
-        [_innerAttributedString cc_setColor:_textColor];
+        [_innerAttributedString mdl_setColor:_textColor];
     }
     if (_shadowColor) {
         NSShadow *shadow = [[NSShadow alloc] init];
         shadow.shadowColor = _shadowColor;
         shadow.shadowOffset = _shadowOffset;
-        [_innerAttributedString cc_addAttributes:@{ NSShadowAttributeName : shadow }];
+        [_innerAttributedString mdl_addAttributes:@{ NSShadowAttributeName : shadow }];
     }
-    [_innerAttributedString cc_setAlignment:_textAlignment];
-    [_innerAttributedString cc_setLineBreakModel:_lineBreakMode];
+    [_innerAttributedString mdl_setAlignment:_textAlignment];
+    [_innerAttributedString mdl_setLineBreakModel:_lineBreakMode];
     
     [self _didModifyTextAttribute];
     [self _didModifyTextContent];
@@ -494,7 +494,7 @@ const CGFloat MDLLabelMaxHeight = 9999;
     _font = font;
     
     if (_innerAttributedString) {
-        [_innerAttributedString cc_setFont:font];
+        [_innerAttributedString mdl_setFont:font];
     }
     
     [self _didModifyTextAttribute];
@@ -506,7 +506,7 @@ const CGFloat MDLLabelMaxHeight = 9999;
     _textColor = textColor;
     
     if (_innerAttributedString) {
-        [_innerAttributedString cc_setColor:textColor];
+        [_innerAttributedString mdl_setColor:textColor];
     }
     
     [self _didModifyTextAttribute];
@@ -524,7 +524,7 @@ const CGFloat MDLLabelMaxHeight = 9999;
             shadow = [[NSShadow alloc] init];
         }
         shadow.shadowColor = shadowColor;
-        [_innerAttributedString cc_addAttributes:@{ NSShadowAttributeName : shadow }];
+        [_innerAttributedString mdl_addAttributes:@{ NSShadowAttributeName : shadow }];
     }
     
     [self _didModifyTextAttribute];
@@ -542,7 +542,7 @@ const CGFloat MDLLabelMaxHeight = 9999;
             shadow = [[NSShadow alloc] init];
         }
         shadow.shadowOffset = shadowOffset;
-        [_innerAttributedString cc_addAttributes:@{ NSShadowAttributeName : shadow }];
+        [_innerAttributedString mdl_addAttributes:@{ NSShadowAttributeName : shadow }];
     }
     
     [self _didModifyTextAttribute];
@@ -554,7 +554,7 @@ const CGFloat MDLLabelMaxHeight = 9999;
     _textAlignment = textAlignment;
     
     if (_innerAttributedString) {
-        [_innerAttributedString cc_setAlignment:textAlignment];
+        [_innerAttributedString mdl_setAlignment:textAlignment];
     }
     
     [self _didModifyTextAttribute];
@@ -566,7 +566,7 @@ const CGFloat MDLLabelMaxHeight = 9999;
     _lineBreakMode = lineBreakMode;
     
     if (_innerAttributedString) {
-        [_innerAttributedString cc_setLineBreakModel:lineBreakMode];
+        [_innerAttributedString mdl_setLineBreakModel:lineBreakMode];
     }
     
     [self _didModifyTextAttribute];
@@ -578,8 +578,8 @@ const CGFloat MDLLabelMaxHeight = 9999;
     _innerAttributedString = [attributedText mutableCopy];
     
     _text = [_innerAttributedString string];
-    _textColor = [_innerAttributedString cc_color];
-    _font = [_innerAttributedString cc_font];
+    _textColor = [_innerAttributedString mdl_color];
+    _font = [_innerAttributedString mdl_font];
     
     NSDictionary *attr = [_innerAttributedString attributesAtIndex:0 effectiveRange:NULL];
     NSParagraphStyle *paragraph = attr[NSParagraphStyleAttributeName];
@@ -737,9 +737,9 @@ const CGFloat MDLLabelMaxHeight = 9999;
                         [linkAttr setObject:obj forKey:key];
                     }
                 }];
-                [mutableAttributedText cc_addAttributes:linkAttr
-                                                  range:matchRange
-                                   overrideOldAttribute:YES];
+                [mutableAttributedText mdl_addAttributes:linkAttr
+                                                   range:matchRange
+                                    overrideOldAttribute:YES];
             }
         }
         

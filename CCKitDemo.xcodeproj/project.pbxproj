@@ -172,6 +172,7 @@
 		A7F807DB1E00DFE300219F91 /* JJViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7F807DA1E00DFE300219F91 /* JJViewController.m */; };
 		A7F807DD1E0119C300219F91 /* CCUserSettingsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A7F807DC1E0119C300219F91 /* CCUserSettingsTests.m */; };
 		BD1D7A521FD3750100FD17BD /* TextKitLabelDragViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD1D7A511FD3750100FD17BD /* TextKitLabelDragViewController.m */; };
+		BD1D7A581FD394A100FD17BD /* NSAttributedString+MDLUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = BD1D7A571FD394A100FD17BD /* NSAttributedString+MDLUtil.m */; };
 		BD1E6A6E1FCDA54A00346BE7 /* image_source.gif in Resources */ = {isa = PBXBuildFile; fileRef = BD1E6A6D1FCDA54900346BE7 /* image_source.gif */; };
 		BDFE81201FD04476000AA87E /* CCKitRunloopResearchManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BDFE811F1FD04476000AA87E /* CCKitRunloopResearchManager.m */; };
 		C2A2338348DC45A0392EBD6F /* libPods-CCKitDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A12A33A4C2B2306B6B058EED /* libPods-CCKitDemo.a */; };
@@ -547,6 +548,8 @@
 		A7F807DC1E0119C300219F91 /* CCUserSettingsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCUserSettingsTests.m; sourceTree = "<group>"; };
 		BD1D7A501FD3750100FD17BD /* TextKitLabelDragViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextKitLabelDragViewController.h; sourceTree = "<group>"; };
 		BD1D7A511FD3750100FD17BD /* TextKitLabelDragViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextKitLabelDragViewController.m; sourceTree = "<group>"; };
+		BD1D7A561FD394A100FD17BD /* NSAttributedString+MDLUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+MDLUtil.h"; sourceTree = "<group>"; };
+		BD1D7A571FD394A100FD17BD /* NSAttributedString+MDLUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+MDLUtil.m"; sourceTree = "<group>"; };
 		BD1E6A6D1FCDA54900346BE7 /* image_source.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = image_source.gif; sourceTree = "<group>"; };
 		BDFE811E1FD04476000AA87E /* CCKitRunloopResearchManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCKitRunloopResearchManager.h; sourceTree = "<group>"; };
 		BDFE811F1FD04476000AA87E /* CCKitRunloopResearchManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCKitRunloopResearchManager.m; sourceTree = "<group>"; };
@@ -950,6 +953,8 @@
 				A71EF7671FB691A600C296F2 /* TextKitLabelDemoViewController.m */,
 				BD1D7A501FD3750100FD17BD /* TextKitLabelDragViewController.h */,
 				BD1D7A511FD3750100FD17BD /* TextKitLabelDragViewController.m */,
+				BD1D7A561FD394A100FD17BD /* NSAttributedString+MDLUtil.h */,
+				BD1D7A571FD394A100FD17BD /* NSAttributedString+MDLUtil.m */,
 				A7A8CB6A1F95F39A007EBE52 /* MDLLabel.h */,
 				A7A8CB6B1F95F39A007EBE52 /* MDLLabel.m */,
 			);
@@ -1509,6 +1514,7 @@
 				A73DD1C61DF9076000BE797F /* AudioFileManager.m in Sources */,
 				A70562E81D6EBA7000652E03 /* ImagePickerViewControllerHelper.m in Sources */,
 				A70563031D6EBA7000652E03 /* JsonObjectAndModelViewController.m in Sources */,
+				BD1D7A581FD394A100FD17BD /* NSAttributedString+MDLUtil.m in Sources */,
 				A705631C1D6EBA7000652E03 /* ImageBlendViewController.m in Sources */,
 				A7073E221DC05A4D0049175A /* School.m in Sources */,
 				A73DD1C91DF926FD00BE797F /* NSDate+CCKit.m in Sources */,
