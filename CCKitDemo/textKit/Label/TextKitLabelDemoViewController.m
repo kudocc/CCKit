@@ -13,9 +13,17 @@
 #import <NSAttributedString+YYText.h>
 #import "UIImage+CCKit.h"
 
-// 测试发现
-// numberOfLines = 1时，设置很长的文本
-// preferredMaxLayoutWidth 固定很小，设置很长的文本，观察高度变化, 高度会增长，但是超过一定数值就UILabe中内容就是空，至少3000多是显示的
+@interface MDLDataDetector : NSDataDetector
+@end
+
+@implementation MDLDataDetector
+
+- (void)enumerateMatchesInString:(NSString *)string options:(NSMatchingOptions)options range:(NSRange)range usingBlock:(void (NS_NOESCAPE ^)(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL *stop))block {
+    [super enumerateMatchesInString:string options:options range:range usingBlock:block];
+}
+
+@end
+
 
 @interface TextKitLabelDemoViewController () <MDLLabelDelegate>
 
@@ -154,11 +162,13 @@
     yyLabel.layer.borderWidth = 1;
     
     
+    MDLDataDetector *detector = [[MDLDataDetector alloc] initWithTypes:UIDataDetectorTypeAll error:nil];
     
     // MDLLabel
     self.label.preferredMaxLayoutWidth = [UIScreen mainScreen].bounds.size.width * 0.675 - 20;
     self.label.attributedText = mAttr;
     self.label.numberOfLines = 0;
+    self.label.customDataDetector = detector;
     self.label.dataDetectorTypes = UIDataDetectorTypeAll;
     self.label.asyncDataDetector = YES;
     

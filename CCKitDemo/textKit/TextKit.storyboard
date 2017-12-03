@@ -49,7 +49,10 @@
                                     <constraint firstAttribute="height" constant="128" id="v0f-sN-V60"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="text" value="aaa"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="text" value="hello world"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                        <color key="value" red="0.69411764705882351" green="0.27058823529411763" blue="0.8666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
@@ -72,6 +75,7 @@
                     <connections>
                         <outlet property="container1" destination="IpC-Ax-tHl" id="3WL-ZE-1YT"/>
                         <outlet property="container2" destination="Fa2-tc-3P7" id="cSs-ym-orh"/>
+                        <outlet property="label" destination="eWV-Y1-y2p" id="3Zh-la-rjE"/>
                         <outlet property="textView" destination="Uho-KR-eHr" id="lHy-Ej-kWR"/>
                     </connections>
                 </viewController>

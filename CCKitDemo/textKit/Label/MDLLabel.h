@@ -65,11 +65,11 @@ UIKIT_EXTERN NSAttributedStringKey MDLHighlightAttributeName;
 
 @interface MDLLabel : UIView
 
-@property (nonatomic, copy) NSString *text;
+@property (nonatomic, copy) IBInspectable NSString *text;
 
 @property (nonatomic, strong) UIFont *font;
 
-@property (nonatomic, strong) UIColor *textColor;
+@property (nonatomic, strong) IBInspectable UIColor *textColor;
 
 @property (nonatomic, strong) UIColor *shadowColor;
 
@@ -89,6 +89,7 @@ UIKIT_EXTERN NSAttributedStringKey MDLHighlightAttributeName;
 
 // Default is `UIDataDetectorTypeNone`
 @property (nonatomic) UIDataDetectorTypes dataDetectorTypes;
+@property (nonatomic) NSDataDetector *customDataDetector;
 
 /// Attributes which apply to link string
 @property (nonatomic, strong) NSDictionary<NSString *, id> *linkTextAttributes;

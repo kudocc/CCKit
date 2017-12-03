@@ -199,17 +199,19 @@ typedef void(^MDLDataDetectorCallback)(NSArray *matchResults);
 @interface MDLDataDetectorOperation : NSOperation
 @property (nonatomic) UIDataDetectorTypes types;
 @property (nonatomic) NSString *string;
+@property (nonatomic) NSDataDetector *customDetector;
 @property (nonatomic) MDLDataDetectorCallback callback;
 @end
 
 @implementation MDLDataDetectorOperation
 
 - (NSArray<NSTextCheckingResult *> *)matchResultsInString:(NSString *)string withDataDetector:(UIDataDetectorTypes)types {
-    NSDataDetector *detector = [NSDataDetector dataDetectorWithTypes:types error:nil];
-    NSArray *matches = [detector matchesInString:string
-                                         options:0
-                                           range:NSMakeRange(0, [string length])];
-    return matches;
+    NSDataDetector *detector = self.customDetector ?: [NSDataDetector dataDetectorWithTypes:types error:nil];
+    NSMutableArray<NSTextCheckingResult *> *matches = [NSMutableArray array];
+    [detector enumerateMatchesInString:string options:kNilOptions range:NSMakeRange(0, string.length) usingBlock:^(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
+        [matches addObject:result];
+    }];
+    return [matches copy];
 }
 
 - (void)main {
@@ -636,11 +638,12 @@ const CGFloat MDLLabelMaxHeight = 9999;
 }
 
 - (NSArray<NSTextCheckingResult *> *)matchResultsInString:(NSString *)string withDataDetector:(UIDataDetectorTypes)types {
-    NSDataDetector *detector = [NSDataDetector dataDetectorWithTypes:types error:nil];
-    NSArray *matches = [detector matchesInString:string
-                                         options:0
-                                           range:NSMakeRange(0, [string length])];
-    return matches;
+    NSDataDetector *detector = self.customDataDetector ?: [NSDataDetector dataDetectorWithTypes:types error:nil];
+    NSMutableArray<NSTextCheckingResult *> *matches = [NSMutableArray array];
+    [detector enumerateMatchesInString:string options:kNilOptions range:NSMakeRange(0, string.length) usingBlock:^(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
+        [matches addObject:result];
+    }];
+    return [matches copy];
 }
 
 #pragma mark - layout & draw
@@ -686,6 +689,7 @@ const CGFloat MDLLabelMaxHeight = 9999;
                 __weak typeof(self) wself = self;
                 int sessionID = self.dataDetectorRefreshSessionID;
                 MDLDataDetectorOperation *operation = [[MDLDataDetectorOperation alloc] init];
+                operation.customDetector = self.customDataDetector;
                 operation.string = self.text;
                 operation.types = self.dataDetectorTypes;
                 operation.callback = ^(NSArray *matchResults) {
@@ -707,11 +711,8 @@ const CGFloat MDLLabelMaxHeight = 9999;
                 
                 _needReDetectLink = NO;
             } else {
-                NSDataDetector *detector = [NSDataDetector dataDetectorWithTypes:_dataDetectorTypes error:nil];
                 NSString *string = [_innerAttributedString string];
-                NSArray *matches = [detector matchesInString:string
-                                                     options:0
-                                                       range:NSMakeRange(0, [string length])];
+                NSArray *matches = [self matchResultsInString:string withDataDetector:_dataDetectorTypes];
                 _dataDetectorMatchResults = [matches copy];
                 _needReDetectLink = NO;
             }

@@ -8,6 +8,10 @@
 
 #import "BaseViewController.h"
 
+#import "MDLLabel.h"
+
 @interface TextKit_ConstructViewController : UIViewController
+
+@property (nonatomic) IBOutlet MDLLabel *label;
 
 @end
