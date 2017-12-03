@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CCBuildDate</key>
-	<string>2017-12-03 10:38:43</string>
+	<string>2017-12-03 14:10:01</string>
 	<key>CCGIT</key>
-	<string>72</string>
+	<string>73</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -44,6 +44,8 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>I need your authorization to use camera</string>
+	<key>NSContactsUsageDescription</key>
+	<string>I need your authorization to access contacts</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>I need your microphone to record</string>
 	<key>NSPhotoLibraryUsageDescription</key>

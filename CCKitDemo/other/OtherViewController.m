@@ -10,14 +10,15 @@
 #import "KVOViewController.h"
 #import "ScaleScrollViewController.h"
 #import "PresentViewController.h"
+#import "ContactViewController.h"
 
 @implementation OtherViewController
 
 - (void)initView {
     [super initView];
     
-    self.arrayTitle = @[@"KVO", @"Scroll", @"Present"];
-    self.arrayClass = @[[KVOViewController class], [ScaleScrollViewController class], [PresentViewController class]];
+    self.arrayTitle = @[@"Contact", @"KVO", @"Scroll", @"Present"];
+    self.arrayClass = @[[ContactViewController class], [KVOViewController class], [ScaleScrollViewController class], [PresentViewController class]];
 }
 
 @end

@@ -173,6 +173,7 @@
 		A7F807DD1E0119C300219F91 /* CCUserSettingsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A7F807DC1E0119C300219F91 /* CCUserSettingsTests.m */; };
 		BD1D7A521FD3750100FD17BD /* TextKitLabelDragViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD1D7A511FD3750100FD17BD /* TextKitLabelDragViewController.m */; };
 		BD1D7A581FD394A100FD17BD /* NSAttributedString+MDLUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = BD1D7A571FD394A100FD17BD /* NSAttributedString+MDLUtil.m */; };
+		BD1D7A5C1FD3C3A200FD17BD /* ContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD1D7A5B1FD3C3A200FD17BD /* ContactViewController.m */; };
 		BD1E6A6E1FCDA54A00346BE7 /* image_source.gif in Resources */ = {isa = PBXBuildFile; fileRef = BD1E6A6D1FCDA54900346BE7 /* image_source.gif */; };
 		BDFE81201FD04476000AA87E /* CCKitRunloopResearchManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BDFE811F1FD04476000AA87E /* CCKitRunloopResearchManager.m */; };
 		C2A2338348DC45A0392EBD6F /* libPods-CCKitDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A12A33A4C2B2306B6B058EED /* libPods-CCKitDemo.a */; };
@@ -550,6 +551,8 @@
 		BD1D7A511FD3750100FD17BD /* TextKitLabelDragViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextKitLabelDragViewController.m; sourceTree = "<group>"; };
 		BD1D7A561FD394A100FD17BD /* NSAttributedString+MDLUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+MDLUtil.h"; sourceTree = "<group>"; };
 		BD1D7A571FD394A100FD17BD /* NSAttributedString+MDLUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+MDLUtil.m"; sourceTree = "<group>"; };
+		BD1D7A5A1FD3C3A200FD17BD /* ContactViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactViewController.h; sourceTree = "<group>"; };
+		BD1D7A5B1FD3C3A200FD17BD /* ContactViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContactViewController.m; sourceTree = "<group>"; };
 		BD1E6A6D1FCDA54900346BE7 /* image_source.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = image_source.gif; sourceTree = "<group>"; };
 		BDFE811E1FD04476000AA87E /* CCKitRunloopResearchManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCKitRunloopResearchManager.h; sourceTree = "<group>"; };
 		BDFE811F1FD04476000AA87E /* CCKitRunloopResearchManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCKitRunloopResearchManager.m; sourceTree = "<group>"; };
@@ -812,6 +815,7 @@
 		A70562821D6EBA7000652E03 /* other */ = {
 			isa = PBXGroup;
 			children = (
+				BD1D7A591FD3C37A00FD17BD /* contact */,
 				A728AA841F7B7890001489B6 /* present */,
 				A70562831D6EBA7000652E03 /* kvo */,
 				A705628C1D6EBA7000652E03 /* OtherViewController.h */,
@@ -1281,6 +1285,15 @@
 			path = Construct;
 			sourceTree = "<group>";
 		};
+		BD1D7A591FD3C37A00FD17BD /* contact */ = {
+			isa = PBXGroup;
+			children = (
+				BD1D7A5A1FD3C3A200FD17BD /* ContactViewController.h */,
+				BD1D7A5B1FD3C3A200FD17BD /* ContactViewController.m */,
+			);
+			path = contact;
+			sourceTree = "<group>";
+		};
 		BDFE811D1FD0444D000AA87E /* runloop */ = {
 			isa = PBXGroup;
 			children = (
@@ -1619,6 +1632,7 @@
 				A773BDF31D671475008E53C1 /* UIView+CCKit.m in Sources */,
 				A773BDF21D671475008E53C1 /* UIImage+CCKit.m in Sources */,
 				A77694DB1F79F4E100FC0397 /* UISearchControllerTestViewController.m in Sources */,
+				BD1D7A5C1FD3C3A200FD17BD /* ContactViewController.m in Sources */,
 				A7073E1C1DC059F10049175A /* Student.m in Sources */,
 				A70563281D6EBA7000652E03 /* UrlSessionViewController.m in Sources */,
 				A70562F81D6EBA7000652E03 /* CoreTextExclusivePathViewController.m in Sources */,
