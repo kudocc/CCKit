@@ -104,6 +104,8 @@ NSAttributedStringKey MDLHighlightAttributeName = @"MDLHighlightAttributeName";
 
 @interface MDLLabelLayoutManager : NSLayoutManager
 
+@property (nonatomic) CGPoint  drawPosition;
+
 @end
 
 
@@ -112,6 +114,7 @@ NSAttributedStringKey MDLHighlightAttributeName = @"MDLHighlightAttributeName";
 @property (nonatomic) MDLLabelLayoutManager *layoutManager;
 @property (nonatomic) NSTextContainer *textContainer;
 @property (nonatomic) NSTextStorage *textStorage;
+@property (nonatomic) CGPoint drawPosition;
 
 @end
 
@@ -149,6 +152,10 @@ NSAttributedStringKey MDLHighlightAttributeName = @"MDLHighlightAttributeName";
     layout.textStorage = textStorage;
     layoutManager.delegate = layout;
     return layout;
+}
+
+- (void)setDrawPosition:(CGPoint)drawPosition {
+    _layoutManager.drawPosition = drawPosition;
 }
 
 - (CGSize)bounds {
@@ -648,6 +655,14 @@ const CGFloat MDLLabelMaxHeight = 9999;
 
 #pragma mark - layout & draw
 
+- (void)setTextContainerInset:(UIEdgeInsets)textContainerInset {
+    _textContainerInset = textContainerInset;
+    
+    [self invalidateIntrinsicContentSize];
+    [self _setNeedsLayout];
+    [self _setNeedRedraw];
+}
+
 - (void)setFrame:(CGRect)frame {
     [super setFrame:frame];
     
@@ -674,11 +689,16 @@ const CGFloat MDLLabelMaxHeight = 9999;
     _textContainer.maximumNumberOfLines = self.numberOfLines;
     
     MDLLabelLayout *layout = [MDLLabelLayout labelLayoutWithAttributedText:attr textContainer:_textContainer];
-    return layout.bounds;
+    CGSize layoutBounds = layout.bounds;
+    return CGSizeMake(layoutBounds.width + self.textContainerInset.left + self.textContainerInset.right,
+                      layoutBounds.height + self.textContainerInset.top + self.textContainerInset.bottom);
 }
 
 - (void)drawRect:(CGRect)rect {
-    CGSize size = self.bounds.size;
+    CGSize boundsSize = self.bounds.size;
+    CGSize size = CGSizeMake(boundsSize.width - self.textContainerInset.left - self.textContainerInset.right,
+                             boundsSize.height - self.textContainerInset.top - self.textContainerInset.bottom);
+    CGPoint pos = CGPointMake(self.textContainerInset.left, self.textContainerInset.top);
     
     if (_needReDetectLink) {
         _dataDetectorMatchResults = nil;
@@ -733,6 +753,7 @@ const CGFloat MDLLabelMaxHeight = 9999;
                     if ([key isEqualToString:MDLHighlightAttributeName]) {
                         MDLHighlightAttributeValue *value = [obj copy];
                         value.effectRange = matchRange;
+                        value.userInfo = @{@"NSTextCheckingResult" : match };
                         [linkAttr setObject:value forKey:key];
                     } else {
                         [linkAttr setObject:obj forKey:key];
@@ -747,14 +768,15 @@ const CGFloat MDLLabelMaxHeight = 9999;
         NSTextContainer *_textContainer = [[NSTextContainer alloc] initWithSize:size];
         _textContainer.lineFragmentPadding = 0;
         _textContainer.maximumNumberOfLines = self.numberOfLines;
+        _textContainer.lineBreakMode = self.lineBreakMode;
         
         _layout = [MDLLabelLayout labelLayoutWithAttributedText:mutableAttributedText textContainer:_textContainer];
+        _layout.drawPosition = pos;
     }
     
     NSRange range = [_layout.layoutManager glyphRangeForTextContainer:_layout.textContainer];
-    NSLog(@"%@, range:%@, bounds:%@", NSStringFromSelector(_cmd), NSStringFromRange(range), NSStringFromCGRect(rect));
+//    NSLog(@"%@, range:%@, bounds:%@, %@", NSStringFromSelector(_cmd), NSStringFromRange(range), NSStringFromCGRect(rect), NSStringFromCGSize(_layout.bounds));
     
-    CGPoint pos = CGPointMake(0, 0);
     [_layout.layoutManager drawBackgroundForGlyphRange:range atPoint:pos];
     [_layout.layoutManager drawGlyphsForGlyphRange:range atPoint:pos];
     
@@ -778,7 +800,7 @@ const CGFloat MDLLabelMaxHeight = 9999;
                                                                                     actualCharacterRange:NULL];
                                  CGRect frame = [_layout.layoutManager boundingRectForGlyphRange:glyphRange
                                                                                  inTextContainer:_layout.textContainer];
-                                 attachment.imageView.frame = frame;
+                                 attachment.imageView.frame = CGRectOffset(frame, pos.x, pos.y);
                                  [self addSubview:attachment.imageView];
                                  [attachment.imageView startAnimating];
                              }
@@ -820,7 +842,8 @@ const CGFloat MDLLabelMaxHeight = 9999;
         }
         
         CGRect rectOri = rectArray[rectIndex];
-        CGRect rectResult = CGRectIntersection(rectOri, usedRect);
+        CGRect usedRectAfterApplyEdgeInsert = CGRectOffset(usedRect, self.drawPosition.x, self.drawPosition.y);
+        CGRect rectResult = CGRectIntersection(rectOri, usedRectAfterApplyEdgeInsert);
         if (!CGRectEqualToRect(rectResult, CGRectZero)) {
             [mutableRects addObject:[NSValue valueWithCGRect:rectResult]];
         }

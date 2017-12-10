@@ -80,7 +80,7 @@
     [mAttr cc_setColor:[UIColor blackColor]];
     [mAttr cc_setFont:[UIFont systemFontOfSize:14]];
     [mAttr cc_addAttributes:@{NSForegroundColorAttributeName:[UIColor yellowColor] ,
-                              NSBackgroundColorAttributeName:[UIColor redColor]/*, NSBaselineOffsetAttributeName: @0*/} range:NSMakeRange(20, 30) overrideOldAttribute:YES];
+                              NSBackgroundColorAttributeName:[UIColor redColor]/*, NSBaselineOffsetAttributeName: @0*/} range:NSMakeRange(0, 30) overrideOldAttribute:YES];
     
     {// paragraph
         [mAttr cc_setLineSpacing:1];
@@ -107,7 +107,8 @@
         [mAttr insertAttributedString:attachment atIndex:4];
     }
     
-    label = [[MDLLabel alloc] initWithFrame:CGRectMake(10, 100, 300, 200)];
+    label = [[MDLLabel alloc] initWithFrame:CGRectMake(0, 100, 300, 200)];
+    label.textContainerInset = UIEdgeInsetsMake(20, 20, 20, 20);
     label.layer.borderColor = [UIColor greenColor].CGColor;
     label.layer.borderWidth = PixelToPoint(1);
     [self.view addSubview:label];
@@ -115,6 +116,7 @@
     label.preferredMaxLayoutWidth = [UIScreen mainScreen].bounds.size.width * 0.675 - 20;
     label.attributedText = mAttr;
     label.numberOfLines = 0;
+//    label.lineBreakMode = NSLineBreakByTruncatingTail;
     label.dataDetectorTypes = UIDataDetectorTypeAll;
     label.asyncDataDetector = YES;
     

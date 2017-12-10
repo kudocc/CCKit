@@ -16,6 +16,8 @@ UIKIT_EXTERN NSAttributedStringKey MDLHighlightAttributeName;
 @property (nonatomic) UIColor *highlightBackgroundColor;
 @property (nonatomic) NSRange effectRange;
 
+@property (nonatomic) NSDictionary *userInfo;
+
 @property (nonatomic, readonly) NSDictionary *attributes;
 
 @end
@@ -82,6 +84,8 @@ UIKIT_EXTERN NSAttributedStringKey MDLHighlightAttributeName;
 @property (nonatomic, copy) NSAttributedString *attributedText;
 
 @property (nonatomic) NSInteger numberOfLines;
+
+@property (nonatomic) UIEdgeInsets textContainerInset;
 
 
 // By default, we detect dataDetectorTypes synchronize on main thread, if this property is YES, we do it in background
