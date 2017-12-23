@@ -834,8 +834,6 @@ const CGFloat MDLLabelMaxHeight = 9999;
     }
     
     NSRange range = [_layout.layoutManager glyphRangeForTextContainer:_layout.textContainer];
-//    NSLog(@"%@, range:%@, bounds:%@, %@", NSStringFromSelector(_cmd), NSStringFromRange(range), NSStringFromCGRect(rect), NSStringFromCGSize(_layout.bounds));
-    
     [_layout.layoutManager drawBackgroundForGlyphRange:range atPoint:pos];
     [_layout.layoutManager drawGlyphsForGlyphRange:range atPoint:pos];
     
@@ -850,36 +848,11 @@ const CGFloat MDLLabelMaxHeight = 9999;
                             inRange:NSMakeRange(0, _textStorage.length)
                             options:0
                          usingBlock:^(id value, NSRange range, BOOL *stop) {
-                             if (![value isKindOfClass:[MDLTextAttachment class]] && [value isKindOfClass:[NSTextAttachment class]]) {
-                                 NSRange glyphRange = [_layout.layoutManager glyphRangeForCharacterRange:range
-                                                                                    actualCharacterRange:NULL];
-                                 CGSize size = [_layout.layoutManager attachmentSizeForGlyphAtIndex:glyphRange.location];
-                                 CGRect frame = [_layout.layoutManager boundingRectForGlyphRange:glyphRange
-                                                                                 inTextContainer:_layout.textContainer];
-                                 frame = CGRectOffset(frame, pos.x, pos.y);
-                                 NSLog(@"attachment else %@, %@", NSStringFromCGSize(size), NSStringFromCGRect(frame));
+                             if (![value isKindOfClass:[MDLTextAttachment class]]) {
                                  return;
                              }
-                             
                              MDLTextAttachment* attachment = (MDLTextAttachment*)value;
-                             if (attachment.imageView) {
-                                 NSParagraphStyle *paragraphStyle = [_layout.textStorage mdl_paragraphStyleAtIndex:range.location];
-                                 CGFloat lineSpacing = paragraphStyle.lineSpacing;
-                                 
-                                 NSRange glyphRange = [_layout.layoutManager glyphRangeForCharacterRange:range
-                                                                                    actualCharacterRange:NULL];
-                                 CGRect frame = [_layout.layoutManager boundingRectForGlyphRange:glyphRange
-                                                                                 inTextContainer:_layout.textContainer];
-                                 CGSize size = [_layout.layoutManager attachmentSizeForGlyphAtIndex:glyphRange.location];
-                                 
-                                 frame = CGRectOffset(frame, pos.x, pos.y);
-                                 frame.origin.y += frame.size.height - size.height - lineSpacing;
-                                 frame.size = size;
-                                 attachment.imageView.frame = frame;
-                                 [self addSubview:attachment.imageView];
-                                 [attachment.imageView startAnimating];
-                                 NSLog(@"attachment image view %@, %@", NSStringFromCGSize(size), NSStringFromCGRect(frame));
-                             } else if (attachment.customImage) {
+                             if (attachment.imageView || attachment.customImage) {
                                  NSParagraphStyle *paragraphStyle = [_layout.textStorage mdl_paragraphStyleAtIndex:range.location];
                                  CGFloat lineSpacing = paragraphStyle.lineSpacing;
                                  
@@ -888,12 +861,18 @@ const CGFloat MDLLabelMaxHeight = 9999;
                                  CGSize size = [_layout.layoutManager attachmentSizeForGlyphAtIndex:glyphRange.location];
                                  CGRect frame = [_layout.layoutManager boundingRectForGlyphRange:glyphRange
                                                                                  inTextContainer:_layout.textContainer];
+                                 
                                  frame = CGRectOffset(frame, pos.x, pos.y);
                                  frame.origin.y += frame.size.height - size.height - lineSpacing;
                                  frame.size = size;
-                                 [attachment.customImage drawInRect:frame];
                                  
-                                 NSLog(@"attachment draw by Self %@, %@", NSStringFromCGSize(size), NSStringFromCGRect(frame));
+                                 if (attachment.imageView) {
+                                     attachment.imageView.frame = frame;
+                                     [self addSubview:attachment.imageView];
+                                     [attachment.imageView startAnimating];
+                                 } else {
+                                     [attachment.customImage drawInRect:frame];
+                                 }
                              }
                          }];
 }
@@ -922,36 +901,34 @@ const CGFloat MDLLabelMaxHeight = 9999;
     // Fill used rect only or background color will beyond the trailing (when lineBreakMode is NSLineBreakByWordWrapping)
     
     NSRange glyphRange = [self glyphRangeForCharacterRange:charRange actualCharacterRange:NULL];
-#ifdef DEBUG1
+#ifdef DEBUG
     NSLog(@"text %@ in range %@ count:%@", [self.textStorage attributedSubstringFromRange:charRange].string, NSStringFromRange(charRange), @(rectCount));
 #endif
     __block NSUInteger rectIndex = 0;
     NSMutableArray *mutableRects = [NSMutableArray array];
     [self enumerateLineFragmentsForGlyphRange:glyphRange usingBlock:^(CGRect rect, CGRect usedRect, NSTextContainer * _Nonnull textContainer, NSRange glyphRange, BOOL * _Nonnull stop) {
-        if (rectIndex >= rectCount) {
-#ifdef DEBUG1
-            NSLog(@"glyphRange:%@, string:%@", NSStringFromRange(glyphRange), [self.textStorage attributedSubstringFromRange:glyphRange].string);
-#endif
-            NSAssert(NO, @"Amazing order to enumerate line fragment");
-            *stop = YES;
-            return;
-        }
-        
-        CGRect rectOri = rectArray[rectIndex];
         CGRect usedRectAfterApplyEdgeInset = CGRectOffset(usedRect, self.drawPosition.x, self.drawPosition.y);
-        CGRect rectResult = CGRectIntersection(rectOri, usedRectAfterApplyEdgeInset);
-#ifdef DEBUG1
-        NSRange actualGlyphRange;
-        NSRange debugLineCharRange = [self characterRangeForGlyphRange:glyphRange actualGlyphRange:&actualGlyphRange];
-        NSAssert(NSEqualRanges(actualGlyphRange, glyphRange), @"");
-        NSString *currentLineStr = [self.textStorage attributedSubstringFromRange:debugLineCharRange].string;
-        NSLog(@"index %@, line string:%@, rect:%@, usedRect:%@", @(rectIndex), currentLineStr, NSStringFromCGRect(rect), NSStringFromCGRect(usedRect));
-        NSLog(@"usedRectAfterApplyEdgeInset:%@, result:%@",  NSStringFromCGRect(usedRectAfterApplyEdgeInset), NSStringFromCGRect(rectResult));
+        while (rectIndex < rectCount) {
+            CGRect rectOri = rectArray[rectIndex];
+            CGRect rectResult = CGRectIntersection(rectOri, usedRectAfterApplyEdgeInset);
+#ifdef DEBUG
+            NSRange actualGlyphRange;
+            NSRange debugLineCharRange = [self characterRangeForGlyphRange:glyphRange actualGlyphRange:&actualGlyphRange];
+            NSAssert(NSEqualRanges(actualGlyphRange, glyphRange), @"");
+            NSString *currentLineStr = [self.textStorage attributedSubstringFromRange:debugLineCharRange].string;
+            NSLog(@"index %@, line string:%@, rect:%@, usedRect:%@", @(rectIndex), currentLineStr, NSStringFromCGRect(rect), NSStringFromCGRect(usedRect));
+            NSLog(@"usedRectAfterApplyEdgeInset:%@, ori:%@, result:%@", NSStringFromCGRect(usedRectAfterApplyEdgeInset), NSStringFromCGRect(rectOri), NSStringFromCGRect(rectResult));
 #endif
-        if (!CGRectEqualToRect(rectResult, CGRectZero)) {
-            [mutableRects addObject:[NSValue valueWithCGRect:rectResult]];
+            if (rectResult.size.width == 0 ||
+                rectResult.size.height == 0) {
+                // This line doesn't contain rect result, get next result
+                ++rectIndex;
+            } else {
+                // This line contains rect result, get next line fragments. Don't move forward rectIndex because the rectIndex may contain multiple lines
+                [mutableRects addObject:[NSValue valueWithCGRect:rectResult]];
+                break;
+            }
         }
-        ++rectIndex;
     }];
     
     CGContextRef ctx = UIGraphicsGetCurrentContext();
