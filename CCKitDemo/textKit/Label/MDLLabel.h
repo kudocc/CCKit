@@ -37,10 +37,14 @@ UIKIT_EXTERN NSAttributedStringKey MDLHighlightAttributeName;
 
 @end
 
+@interface NSAttributedString (MDLTextAttachment)
++ (NSAttributedString *)mdl_attachmentStringWithEmojiImage:(UIImage *)image fontSize:(CGFloat)fontSize;
+@end
 
 @interface MDLTextAttachment : NSTextAttachment
 
 + (instancetype)imageAttachmentWithImage:(UIImage *)image size:(CGSize)size alignFont:(UIFont *)font;
++ (instancetype)imageAttachmentWithImage:(UIImage *)image bounds:(CGRect)bounds contentInsets:(UIEdgeInsets)contentInsets;
 
 @end
 
@@ -52,6 +56,8 @@ UIKIT_EXTERN NSAttributedStringKey MDLHighlightAttributeName;
 @property (nonatomic, readonly) NSTextStorage *textStorage;
 
 @property (nonatomic, readonly) CGSize bounds;
+
+- (CGPoint)layoutPositionFromLabelPosition:(CGPoint)pos;
 
 + (instancetype)labelLayoutWithAttributedText:(NSAttributedString *)text maxSize:(CGSize)size;
 

@@ -175,6 +175,8 @@
 		BD1D7A581FD394A100FD17BD /* NSAttributedString+MDLUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = BD1D7A571FD394A100FD17BD /* NSAttributedString+MDLUtil.m */; };
 		BD1D7A5C1FD3C3A200FD17BD /* ContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD1D7A5B1FD3C3A200FD17BD /* ContactViewController.m */; };
 		BD1E6A6E1FCDA54A00346BE7 /* image_source.gif in Resources */ = {isa = PBXBuildFile; fileRef = BD1E6A6D1FCDA54900346BE7 /* image_source.gif */; };
+		BD9284AB1FEAA6370062E93E /* TextKitTextViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD9284AA1FEAA6370062E93E /* TextKitTextViewViewController.m */; };
+		BD9284AE1FEAA69F0062E93E /* TextKitTextViewChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD9284AD1FEAA69F0062E93E /* TextKitTextViewChildViewController.m */; };
 		BDFE81201FD04476000AA87E /* CCKitRunloopResearchManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BDFE811F1FD04476000AA87E /* CCKitRunloopResearchManager.m */; };
 		C2A2338348DC45A0392EBD6F /* libPods-CCKitDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A12A33A4C2B2306B6B058EED /* libPods-CCKitDemo.a */; };
 /* End PBXBuildFile section */
@@ -554,6 +556,10 @@
 		BD1D7A5A1FD3C3A200FD17BD /* ContactViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactViewController.h; sourceTree = "<group>"; };
 		BD1D7A5B1FD3C3A200FD17BD /* ContactViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContactViewController.m; sourceTree = "<group>"; };
 		BD1E6A6D1FCDA54900346BE7 /* image_source.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = image_source.gif; sourceTree = "<group>"; };
+		BD9284A91FEAA6370062E93E /* TextKitTextViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextKitTextViewViewController.h; sourceTree = "<group>"; };
+		BD9284AA1FEAA6370062E93E /* TextKitTextViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextKitTextViewViewController.m; sourceTree = "<group>"; };
+		BD9284AC1FEAA69F0062E93E /* TextKitTextViewChildViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextKitTextViewChildViewController.h; sourceTree = "<group>"; };
+		BD9284AD1FEAA69F0062E93E /* TextKitTextViewChildViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextKitTextViewChildViewController.m; sourceTree = "<group>"; };
 		BDFE811E1FD04476000AA87E /* CCKitRunloopResearchManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCKitRunloopResearchManager.h; sourceTree = "<group>"; };
 		BDFE811F1FD04476000AA87E /* CCKitRunloopResearchManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCKitRunloopResearchManager.m; sourceTree = "<group>"; };
 		E980066609E82FAF1D30D77A /* Pods-CCKitDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CCKitDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CCKitDemo/Pods-CCKitDemo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1266,6 +1272,7 @@
 				A7081E4A1F94AA5A00392105 /* MDLMessageTextStorage.m */,
 				A7BBD2821F91EE99000C942F /* TextKit.storyboard */,
 				A71EF7651FB6915300C296F2 /* Label */,
+				BD9284A81FEAA6270062E93E /* TextView */,
 				A7BBD2811F91E759000C942F /* Construct */,
 				A7081E3C1F945A6500392105 /* LayoutManager */,
 			);
@@ -1292,6 +1299,17 @@
 				BD1D7A5B1FD3C3A200FD17BD /* ContactViewController.m */,
 			);
 			path = contact;
+			sourceTree = "<group>";
+		};
+		BD9284A81FEAA6270062E93E /* TextView */ = {
+			isa = PBXGroup;
+			children = (
+				BD9284A91FEAA6370062E93E /* TextKitTextViewViewController.h */,
+				BD9284AA1FEAA6370062E93E /* TextKitTextViewViewController.m */,
+				BD9284AC1FEAA69F0062E93E /* TextKitTextViewChildViewController.h */,
+				BD9284AD1FEAA69F0062E93E /* TextKitTextViewChildViewController.m */,
+			);
+			path = TextView;
 			sourceTree = "<group>";
 		};
 		BDFE811D1FD0444D000AA87E /* runloop */ = {
@@ -1575,6 +1593,7 @@
 				A70562F21D6EBA7000652E03 /* CoreImageViewController.m in Sources */,
 				A705631D1D6EBA7000652E03 /* ImageMaskViewController.m in Sources */,
 				A76038321DFA9A6500205E1B /* ImageViewPerformanceViewController.m in Sources */,
+				BD9284AB1FEAA6370062E93E /* TextKitTextViewViewController.m in Sources */,
 				A70562FC1D6EBA7000652E03 /* HTMLWebViewController.m in Sources */,
 				A728AA871F7B78A5001489B6 /* PresentViewController.m in Sources */,
 				A70563071D6EBA7000652E03 /* HttpAsyncRequestsViewController.m in Sources */,
@@ -1615,6 +1634,7 @@
 				A73DD1C01DF8F96400BE797F /* VideoTableViewController.m in Sources */,
 				A70563241D6EBA7000652E03 /* DataTaskHttpsServerAuthViewController.m in Sources */,
 				A71EF7681FB691A600C296F2 /* TextKitLabelDemoViewController.m in Sources */,
+				BD9284AE1FEAA69F0062E93E /* TextKitTextViewChildViewController.m in Sources */,
 				A729CF021F330F9100CF9A75 /* AudioRecordAudioQueueToFileViewController.m in Sources */,
 				A70563051D6EBA7000652E03 /* CCHttpSessionManager.m in Sources */,
 				A70563001D6EBA7000652E03 /* ImageIOViewController.m in Sources */,

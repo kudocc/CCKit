@@ -69,6 +69,7 @@ typedef NS_ENUM(NSInteger, AVCamSetupResult) {
 @property (strong, nonatomic) AVCaptureSession *session;
 
 @property (strong, nonatomic) dispatch_queue_t sessionQueue;
+@property (strong, nonatomic) dispatch_queue_t delegateQueue;
 @property (nonatomic) AVCamSetupResult setupResult;
 @property (nonatomic) CoreImageView *coreImageView;
 
@@ -133,6 +134,7 @@ typedef NS_ENUM(NSInteger, AVCamSetupResult) {
     
     // Communicate with the session and other session objects on this queue.
     self.sessionQueue = dispatch_queue_create("AVCaptureSession.queue", DISPATCH_QUEUE_SERIAL);
+    self.delegateQueue = dispatch_queue_create("AVCaptureOutput.delegate.queue", DISPATCH_QUEUE_SERIAL);
     
     self.setupResult = AVCamSetupResultSuccess;
     
@@ -173,8 +175,9 @@ typedef NS_ENUM(NSInteger, AVCamSetupResult) {
         if (self.setupResult != AVCamSetupResultSuccess) {
             if (self.setupResult == AVCamSetupResultCameraNotAuthorized) {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"相机不可用" message:@"请在iOS的“设置”-“隐私”-“相机”到店中，允许到店访问你的相机。" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
-                    [alertView show];
+                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"相机不可用" message:@"请在iOS的“设置”-“隐私”-“相机”Demo中，允许Demo访问你的相机。" preferredStyle:UIAlertControllerStyleAlert];
+                    [alert addAction:[UIAlertAction actionWithTitle:@"Sorry for that" style:UIAlertActionStyleCancel handler:nil]];
+                    [self presentViewController:alert animated:YES completion:nil];
                 });
             }
             return;
@@ -189,8 +192,8 @@ typedef NS_ENUM(NSInteger, AVCamSetupResult) {
         }
         
         _output = [[AVCaptureVideoDataOutput alloc] init];
-        [_output setSampleBufferDelegate:self queue:dispatch_get_main_queue()];
-        _output.alwaysDiscardsLateVideoFrames = YES;
+        [_output setSampleBufferDelegate:self queue:self.delegateQueue];
+//        _output.alwaysDiscardsLateVideoFrames = YES;
         _output.videoSettings = @{(__bridge id)kCVPixelBufferPixelFormatTypeKey:@(kCVPixelFormatType_420YpCbCr8BiPlanarFullRange)};
 //        _output.videoSettings = @{(__bridge id)kCVPixelBufferPixelFormatTypeKey:@(kCVPixelFormatType_32BGRA)};
         
@@ -260,14 +263,21 @@ typedef NS_ENUM(NSInteger, AVCamSetupResult) {
     CVImageBufferRef imageBufferRef = CMSampleBufferGetImageBuffer(sampleBuffer);
     CIImage *ciImage = [CIImage imageWithCVPixelBuffer:imageBufferRef];
     ciImage = [ciImage imageByApplyingTransform:CGAffineTransformMakeRotation(-M_PI/2)];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
 #if 0
-    [_ciFilter setValue:ciImage forKey:kCIInputImageKey];
-    CIImage *ciOutputImage = [_ciFilter outputImage];
-    _coreImageView.image = ciOutputImage;
+        [_ciFilter setValue:ciImage forKey:kCIInputImageKey];
+        CIImage *ciOutputImage = [_ciFilter outputImage];
+        _coreImageView.image = ciOutputImage;
 #else
-    // no filter used
-    _coreImageView.image = ciImage;
+        // no filter used
+        _coreImageView.image = ciImage;
 #endif
+    });
+}
+
+- (void)captureOutput:(AVCaptureOutput *)output didDropSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection {
+    NSLog(@"%@", NSStringFromSelector(_cmd));
 }
 
 @end

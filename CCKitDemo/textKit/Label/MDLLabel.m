@@ -11,6 +11,62 @@
 
 NSAttributedStringKey MDLHighlightAttributeName = @"MDLHighlightAttributeName";
 
+/**
+ Get the `AppleColorEmoji` font's ascent with a specified font size.
+ It may used to create custom emoji.
+ 
+ @param fontSize  The specified font size.
+ @return The font ascent.
+ */
+static inline CGFloat MDLTextEmojiGetAscentWithFontSize(CGFloat fontSize) {
+    if (fontSize < 16) {
+        return 1.25 * fontSize;
+    } else if (16 <= fontSize && fontSize <= 24) {
+        return 0.5 * fontSize + 12;
+    } else {
+        return fontSize;
+    }
+}
+
+/**
+ Get the `AppleColorEmoji` font's descent with a specified font size.
+ It may used to create custom emoji.
+ 
+ @param fontSize  The specified font size.
+ @return The font descent.
+ */
+static inline CGFloat MDLTextEmojiGetDescentWithFontSize(CGFloat fontSize) {
+    if (fontSize < 16) {
+        return 0.390625 * fontSize;
+    } else if (16 <= fontSize && fontSize <= 24) {
+        return 0.15625 * fontSize + 3.75;
+    } else {
+        return 0.3125 * fontSize;
+    }
+    return 0;
+}
+
+/**
+ Get the `AppleColorEmoji` font's glyph bounding rect with a specified font size.
+ It may used to create custom emoji.
+ 
+ @param fontSize  The specified font size.
+ @return The font glyph bounding rect.
+ */
+static inline CGRect MDLTextEmojiGetGlyphBoundingRectWithFontSize(CGFloat fontSize) {
+    CGRect rect;
+    rect.origin.x = 0.75;
+    rect.size.width = rect.size.height = MDLTextEmojiGetAscentWithFontSize(fontSize);
+    if (fontSize < 16) {
+        rect.origin.y = -0.2525 * fontSize;
+    } else if (16 <= fontSize && fontSize <= 24) {
+        rect.origin.y = 0.1225 * fontSize -6;
+    } else {
+        rect.origin.y = -0.1275 * fontSize;
+    }
+    return rect;
+}
+
 @implementation MDLHighlightAttributeValue
 
 - (id)copyWithZone:(nullable NSZone *)zone {
@@ -68,33 +124,60 @@ NSAttributedStringKey MDLHighlightAttributeName = @"MDLHighlightAttributeName";
 @end
 
 
+@implementation NSAttributedString (MDLTextAttachment)
++ (NSAttributedString *)mdl_attachmentStringWithEmojiImage:(UIImage *)image fontSize:(CGFloat)fontSize {
+    CGFloat ascent = MDLTextEmojiGetAscentWithFontSize(fontSize);
+    CGFloat descent = MDLTextEmojiGetDescentWithFontSize(fontSize);
+    CGRect bounding = MDLTextEmojiGetGlyphBoundingRectWithFontSize(fontSize);
+    
+    CGRect bounds = CGRectMake(0, -descent, bounding.size.width + 2 * bounding.origin.x, bounding.size.height);
+    
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(ascent - (bounding.size.height + bounding.origin.y), bounding.origin.x, descent + bounding.origin.y, bounding.origin.x);
+    MDLTextAttachment *textAttachment = [MDLTextAttachment imageAttachmentWithImage:image bounds:bounds contentInsets:contentInsets];
+    NSAttributedString *attr = [NSAttributedString attributedStringWithAttachment:textAttachment];
+    return attr;
+}
+@end
+
+
 @interface MDLTextAttachment ()
 
+// for GIF image
 @property (nonatomic) UIImageView *imageView;
-@property (nonatomic) CGSize size;
+
+// for non-animate image but has non-zero contentInsets, we must draw byourselves
+@property (nonatomic) UIImage *customImage;
+
+@property (nonatomic) UIEdgeInsets contentInsets;
 
 @end
 
 @implementation MDLTextAttachment
 
 + (instancetype)imageAttachmentWithImage:(UIImage *)image size:(CGSize)size alignFont:(UIFont *)font {
-    MDLTextAttachment *at = [[MDLTextAttachment alloc] initWithImage:image size:size alignFont:font];
+    CGRect bounds = CGRectMake(0, font.descender, size.width, size.height);
+    return [MDLTextAttachment imageAttachmentWithImage:image bounds:bounds contentInsets:UIEdgeInsetsZero];
+}
+
++ (instancetype)imageAttachmentWithImage:(UIImage *)image bounds:(CGRect)bounds contentInsets:(UIEdgeInsets)contentInsets {
+    MDLTextAttachment *at = [[MDLTextAttachment alloc] initWithImage:image bounds:bounds contentInsets:contentInsets];
     return at;
 }
 
-- (instancetype)initWithImage:(UIImage *)image size:(CGSize)size alignFont:(UIFont *)font {
+- (instancetype)initWithImage:(UIImage *)image bounds:(CGRect)bounds contentInsets:(UIEdgeInsets)contentInsets {
     self = [super init];
     if (self) {
-        self.size = size;
         if (image.images.count > 1) {
-            // gif
             self.imageView = [[UIImageView alloc] initWithImage:image];
             self.imageView.contentMode = UIViewContentModeScaleAspectFill;
-            self.imageView.frame = CGRectMake(0, 0, size.width, size.height);
-        } else {
+            CGRect frame = UIEdgeInsetsInsetRect(CGRectMake(0, 0, bounds.size.width, bounds.size.height), contentInsets);
+            self.imageView.frame = frame;
+        } else if (UIEdgeInsetsEqualToEdgeInsets(contentInsets, UIEdgeInsetsZero)) {
             self.image = image;
+        } else {
+            self.customImage = image;
         }
-        self.bounds = CGRectMake(0, font.descender, size.width, size.height);
+        self.bounds = bounds;
     }
     return self;
 }
@@ -154,6 +237,10 @@ NSAttributedStringKey MDLHighlightAttributeName = @"MDLHighlightAttributeName";
     return layout;
 }
 
+- (CGPoint)layoutPositionFromLabelPosition:(CGPoint)pos {
+    return CGPointMake(pos.x - _layoutManager.drawPosition.x, pos.y - _layoutManager.drawPosition.y);
+}
+
 - (void)setDrawPosition:(CGPoint)drawPosition {
     _layoutManager.drawPosition = drawPosition;
 }
@@ -165,40 +252,11 @@ NSAttributedStringKey MDLHighlightAttributeName = @"MDLHighlightAttributeName";
 
 #pragma mark - NSLayoutManagerDelegate
 
-//- (BOOL)layoutManager:(NSLayoutManager *)layoutManager shouldBreakLineByHyphenatingBeforeCharacterAtIndex:(NSUInteger)charIndex {
-//    NSString *text = [layoutManager.textStorage attributedSubstringFromRange:NSMakeRange(charIndex, 1)].string;
-//    static int i = 0;
-//    ++i;
-//    if (i%100 != 0) {
-//        NSLog(@"%@ index %@, text %@, YES", NSStringFromSelector(_cmd), @(charIndex), text);
-//        return YES;
-//    } else {
-//        NSLog(@"%@ index %@, text %@, NO", NSStringFromSelector(_cmd), @(charIndex), text);
-//        return NO;
-//    }
-//}
-
-//- (BOOL)layoutManager:(NSLayoutManager *)layoutManager shouldBreakLineByWordBeforeCharacterAtIndex:(NSUInteger)charIndex {
-//    NSString *text = [layoutManager.textStorage attributedSubstringFromRange:NSMakeRange(charIndex, 1)].string;
-//    static int i = 0;
-//    ++i;
-//    if (i%100 != 0) {
-//        NSLog(@"%@ index %@, text %@, YES", NSStringFromSelector(_cmd), @(charIndex), text);
-//        return YES;
-//    } else {
-//        NSLog(@"%@ index %@, text %@, NO", NSStringFromSelector(_cmd), @(charIndex), text);
-//        return NO;
-//    }
-//}
-
-//- (NSControlCharacterAction)layoutManager:(NSLayoutManager *)layoutManager shouldUseAction:(NSControlCharacterAction)action forControlCharacterAtIndex:(NSUInteger)charIndex {
-//    NSLog(@"%@, index:%@", NSStringFromSelector(_cmd), @(charIndex));
-//    return NSControlCharacterActionZeroAdvancement;
-//}
-
+#ifdef DEBUG
 - (void)layoutManager:(NSLayoutManager *)layoutManager didCompleteLayoutForTextContainer:(nullable NSTextContainer *)textContainer atEnd:(BOOL)layoutFinishedFlag {
     NSLog(@"%@, layoutFinishedFlag:%@", NSStringFromSelector(_cmd), @(layoutFinishedFlag));
 }
+#endif
 
 @end
 
@@ -297,7 +355,7 @@ const CGFloat MDLLabelMaxHeight = 9999;
     
     MDLHighlightAttributeValue *highlightValue = [MDLHighlightAttributeValue new];
     highlightValue.highlightTextColor = [UIColor blueColor];
-    highlightValue.highlightBackgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+    highlightValue.highlightBackgroundColor = [UIColor colorWithWhite:0.1 alpha:0.2];
     _linkTextAttributes = @{ NSForegroundColorAttributeName : [UIColor blueColor],
                              MDLHighlightAttributeName : highlightValue,
                              };
@@ -336,6 +394,7 @@ const CGFloat MDLLabelMaxHeight = 9999;
     if (!_layout) {
         return nil;
     }
+    pos = [_layout layoutPositionFromLabelPosition:pos];
     NSLayoutManager *_layoutManager = _layout.layoutManager;
     NSTextContainer *_textContainer = _layout.textContainer;
     NSTextStorage *_textStorage = _layout.textStorage;
@@ -791,18 +850,50 @@ const CGFloat MDLLabelMaxHeight = 9999;
                             inRange:NSMakeRange(0, _textStorage.length)
                             options:0
                          usingBlock:^(id value, NSRange range, BOOL *stop) {
-                             if (![value isKindOfClass:[MDLTextAttachment class]]) {
+                             if (![value isKindOfClass:[MDLTextAttachment class]] && [value isKindOfClass:[NSTextAttachment class]]) {
+                                 NSRange glyphRange = [_layout.layoutManager glyphRangeForCharacterRange:range
+                                                                                    actualCharacterRange:NULL];
+                                 CGSize size = [_layout.layoutManager attachmentSizeForGlyphAtIndex:glyphRange.location];
+                                 CGRect frame = [_layout.layoutManager boundingRectForGlyphRange:glyphRange
+                                                                                 inTextContainer:_layout.textContainer];
+                                 frame = CGRectOffset(frame, pos.x, pos.y);
+                                 NSLog(@"attachment else %@, %@", NSStringFromCGSize(size), NSStringFromCGRect(frame));
                                  return;
                              }
+                             
                              MDLTextAttachment* attachment = (MDLTextAttachment*)value;
                              if (attachment.imageView) {
+                                 NSParagraphStyle *paragraphStyle = [_layout.textStorage mdl_paragraphStyleAtIndex:range.location];
+                                 CGFloat lineSpacing = paragraphStyle.lineSpacing;
+                                 
                                  NSRange glyphRange = [_layout.layoutManager glyphRangeForCharacterRange:range
                                                                                     actualCharacterRange:NULL];
                                  CGRect frame = [_layout.layoutManager boundingRectForGlyphRange:glyphRange
                                                                                  inTextContainer:_layout.textContainer];
-                                 attachment.imageView.frame = CGRectOffset(frame, pos.x, pos.y);
+                                 CGSize size = [_layout.layoutManager attachmentSizeForGlyphAtIndex:glyphRange.location];
+                                 
+                                 frame = CGRectOffset(frame, pos.x, pos.y);
+                                 frame.origin.y += frame.size.height - size.height - lineSpacing;
+                                 frame.size = size;
+                                 attachment.imageView.frame = frame;
                                  [self addSubview:attachment.imageView];
                                  [attachment.imageView startAnimating];
+                                 NSLog(@"attachment image view %@, %@", NSStringFromCGSize(size), NSStringFromCGRect(frame));
+                             } else if (attachment.customImage) {
+                                 NSParagraphStyle *paragraphStyle = [_layout.textStorage mdl_paragraphStyleAtIndex:range.location];
+                                 CGFloat lineSpacing = paragraphStyle.lineSpacing;
+                                 
+                                 NSRange glyphRange = [_layout.layoutManager glyphRangeForCharacterRange:range
+                                                                                    actualCharacterRange:NULL];
+                                 CGSize size = [_layout.layoutManager attachmentSizeForGlyphAtIndex:glyphRange.location];
+                                 CGRect frame = [_layout.layoutManager boundingRectForGlyphRange:glyphRange
+                                                                                 inTextContainer:_layout.textContainer];
+                                 frame = CGRectOffset(frame, pos.x, pos.y);
+                                 frame.origin.y += frame.size.height - size.height - lineSpacing;
+                                 frame.size = size;
+                                 [attachment.customImage drawInRect:frame];
+                                 
+                                 NSLog(@"attachment draw by Self %@, %@", NSStringFromCGSize(size), NSStringFromCGRect(frame));
                              }
                          }];
 }
@@ -828,22 +919,35 @@ const CGFloat MDLLabelMaxHeight = 9999;
 @implementation MDLLabelLayoutManager
 
 - (void)fillBackgroundRectArray:(const CGRect *)rectArray count:(NSUInteger)rectCount forCharacterRange:(NSRange)charRange color:(UIColor *)color {
-    // Fill used rect only
+    // Fill used rect only or background color will beyond the trailing (when lineBreakMode is NSLineBreakByWordWrapping)
     
     NSRange glyphRange = [self glyphRangeForCharacterRange:charRange actualCharacterRange:NULL];
+#ifdef DEBUG1
+    NSLog(@"text %@ in range %@ count:%@", [self.textStorage attributedSubstringFromRange:charRange].string, NSStringFromRange(charRange), @(rectCount));
+#endif
     __block NSUInteger rectIndex = 0;
     NSMutableArray *mutableRects = [NSMutableArray array];
     [self enumerateLineFragmentsForGlyphRange:glyphRange usingBlock:^(CGRect rect, CGRect usedRect, NSTextContainer * _Nonnull textContainer, NSRange glyphRange, BOOL * _Nonnull stop) {
-        
         if (rectIndex >= rectCount) {
+#ifdef DEBUG1
+            NSLog(@"glyphRange:%@, string:%@", NSStringFromRange(glyphRange), [self.textStorage attributedSubstringFromRange:glyphRange].string);
+#endif
             NSAssert(NO, @"Amazing order to enumerate line fragment");
             *stop = YES;
             return;
         }
         
         CGRect rectOri = rectArray[rectIndex];
-        CGRect usedRectAfterApplyEdgeInsert = CGRectOffset(usedRect, self.drawPosition.x, self.drawPosition.y);
-        CGRect rectResult = CGRectIntersection(rectOri, usedRectAfterApplyEdgeInsert);
+        CGRect usedRectAfterApplyEdgeInset = CGRectOffset(usedRect, self.drawPosition.x, self.drawPosition.y);
+        CGRect rectResult = CGRectIntersection(rectOri, usedRectAfterApplyEdgeInset);
+#ifdef DEBUG1
+        NSRange actualGlyphRange;
+        NSRange debugLineCharRange = [self characterRangeForGlyphRange:glyphRange actualGlyphRange:&actualGlyphRange];
+        NSAssert(NSEqualRanges(actualGlyphRange, glyphRange), @"");
+        NSString *currentLineStr = [self.textStorage attributedSubstringFromRange:debugLineCharRange].string;
+        NSLog(@"index %@, line string:%@, rect:%@, usedRect:%@", @(rectIndex), currentLineStr, NSStringFromCGRect(rect), NSStringFromCGRect(usedRect));
+        NSLog(@"usedRectAfterApplyEdgeInset:%@, result:%@",  NSStringFromCGRect(usedRectAfterApplyEdgeInset), NSStringFromCGRect(rectResult));
+#endif
         if (!CGRectEqualToRect(rectResult, CGRectZero)) {
             [mutableRects addObject:[NSValue valueWithCGRect:rectResult]];
         }
@@ -851,12 +955,9 @@ const CGFloat MDLLabelMaxHeight = 9999;
     }];
     
     CGContextRef ctx = UIGraphicsGetCurrentContext();
-    CGContextSaveGState(ctx);
-    CGContextSetFillColorWithColor(ctx, color.CGColor);
     for (NSValue *valueRect in mutableRects) {
         CGContextFillRect(ctx, [valueRect CGRectValue]);
     }
-    CGContextRestoreGState(ctx);
 }
 
 @end

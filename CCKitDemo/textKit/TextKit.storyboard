@@ -10,6 +10,36 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Text Kit Text View Child View Controller-->
+        <scene sceneID="k5l-z0-ux1">
+            <objects>
+                <viewController storyboardIdentifier="child" id="6Dj-8x-MFw" customClass="TextKitTextViewChildViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rZY-Uo-977">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="exw-Ha-Vx1">
+                                <rect key="frame" x="0.0" y="120" width="375" height="247"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="exw-Ha-Vx1" firstAttribute="top" secondItem="WQE-Gp-lLj" secondAttribute="top" constant="100" id="SNY-uh-Yg7"/>
+                            <constraint firstItem="WQE-Gp-lLj" firstAttribute="trailing" secondItem="exw-Ha-Vx1" secondAttribute="trailing" id="aUx-gA-UJk"/>
+                            <constraint firstItem="exw-Ha-Vx1" firstAttribute="leading" secondItem="WQE-Gp-lLj" secondAttribute="leading" id="p6k-o8-jLN"/>
+                            <constraint firstItem="WQE-Gp-lLj" firstAttribute="bottom" secondItem="exw-Ha-Vx1" secondAttribute="bottom" constant="300" id="xgi-uw-KR9"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="WQE-Gp-lLj"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hB8-DD-tKx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-890" y="811"/>
+        </scene>
         <!--Text Kit Construct View Controller-->
         <scene sceneID="IKE-yR-DgC">
             <objects>

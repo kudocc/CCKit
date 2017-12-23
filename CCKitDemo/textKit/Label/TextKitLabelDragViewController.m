@@ -83,16 +83,22 @@
                               NSBackgroundColorAttributeName:[UIColor redColor]/*, NSBaselineOffsetAttributeName: @0*/} range:NSMakeRange(0, 30) overrideOldAttribute:YES];
     
     {// paragraph
-        [mAttr cc_setLineSpacing:1];
+        [mAttr cc_setLineSpacing:2];
     }
     
     
     {// attachment
-        NSTextAttachment *imageAttachment = [[NSTextAttachment alloc] initWithData:nil ofType:nil];
+        UIFont *font = [mAttr cc_font];
         UIImage *image = [UIImage imageNamed:@"avatar_ori"];
-        imageAttachment.image = image;
-        NSLog(@"%f", [UIFont systemFontOfSize:14].descender);
-        imageAttachment.bounds = CGRectMake(0, [UIFont systemFontOfSize:14].descender, 50, 50);
+        MDLTextAttachment *imageAttachment = [MDLTextAttachment imageAttachmentWithImage:image size:CGSizeMake(50, 50) alignFont:font];
+        NSAttributedString *attachment = [NSAttributedString attributedStringWithAttachment:imageAttachment];
+        [mAttr insertAttributedString:attachment atIndex:1];
+    }
+    
+    {// attachment
+        UIFont *font = [mAttr cc_font];
+        UIImage *image = [UIImage imageNamed:@"avatar_ori"];
+        MDLTextAttachment *imageAttachment = [MDLTextAttachment imageAttachmentWithImage:image size:CGSizeMake(100, 100) alignFont:font];
         NSAttributedString *attachment = [NSAttributedString attributedStringWithAttachment:imageAttachment];
         [mAttr insertAttributedString:attachment atIndex:1];
     }
@@ -101,10 +107,20 @@
         NSString *path = [[NSBundle mainBundle] pathForResource:@"image_source" ofType:@"gif"];
         NSURL *url = [NSURL fileURLWithPath:path];
         UIImage *image = [self imageWithLocalFileURL:url];
-        UIFont *font = [mAttr cc_font];
+        UIFont *font = [UIFont systemFontOfSize:14];
         MDLTextAttachment *imageAttachment = [MDLTextAttachment imageAttachmentWithImage:image size:CGSizeMake(60, 80) alignFont:font];
         NSAttributedString *attachment = [NSAttributedString attributedStringWithAttachment:imageAttachment];
         [mAttr insertAttributedString:attachment atIndex:4];
+    }
+    
+    {
+        UIImage *image = [UIImage imageNamed:@"dl_emoji_angry_big"];
+        NSAttributedString *attr = [NSAttributedString mdl_attachmentStringWithEmojiImage:image fontSize:14];
+        [mAttr insertAttributedString:attr atIndex:5];
+
+        UIImage *image1 = [UIImage imageNamed:@"dl_emoji_complacent_big"];
+        NSAttributedString *attr1 = [NSAttributedString mdl_attachmentStringWithEmojiImage:image1 fontSize:14];
+        [mAttr insertAttributedString:attr1 atIndex:6];
     }
     
     label = [[MDLLabel alloc] initWithFrame:CGRectMake(0, 100, 300, 200)];
@@ -116,7 +132,7 @@
     label.preferredMaxLayoutWidth = [UIScreen mainScreen].bounds.size.width * 0.675 - 20;
     label.attributedText = mAttr;
     label.numberOfLines = 0;
-//    label.lineBreakMode = NSLineBreakByTruncatingTail;
+    label.lineBreakMode = NSLineBreakByWordWrapping;
     label.dataDetectorTypes = UIDataDetectorTypeAll;
     label.asyncDataDetector = YES;
     

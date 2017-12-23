@@ -115,6 +115,14 @@
         [mAttr insertAttributedString:attachment atIndex:1];
     }
     
+    {// attachment
+        UIFont *font = [mAttr cc_font];
+        UIImage *image = [UIImage imageNamed:@"avatar_ori"];
+        MDLTextAttachment *imageAttachment = [MDLTextAttachment imageAttachmentWithImage:image size:CGSizeMake(100, 100) alignFont:font];
+        NSAttributedString *attachment = [NSAttributedString attributedStringWithAttachment:imageAttachment];
+        [mAttr insertAttributedString:attachment atIndex:1];
+    }
+    
     {// gif attachment
         NSString *path = [[NSBundle mainBundle] pathForResource:@"image_source" ofType:@"gif"];
         NSURL *url = [NSURL fileURLWithPath:path];
