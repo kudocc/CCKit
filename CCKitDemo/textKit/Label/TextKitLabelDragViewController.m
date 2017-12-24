@@ -123,7 +123,7 @@
         [mAttr insertAttributedString:attr1 atIndex:6];
     }
     
-    label = [[MDLLabel alloc] initWithFrame:CGRectMake(0, 100, 300, 200)];
+    label = [[MDLLabel alloc] initWithFrame:CGRectMake(0, 100, 320, 0)];
     label.textContainerInset = UIEdgeInsetsMake(20, 20, 20, 20);
     label.layer.borderColor = [UIColor greenColor].CGColor;
     label.layer.borderWidth = PixelToPoint(1);
@@ -142,6 +142,12 @@
     pan.maximumNumberOfTouches = 1;
     [viewDrag addGestureRecognizer:pan];
     [self.view addSubview:viewDrag];
+
+    [self showRightBarButtonItemWithName:@"size to fit"];
+}
+
+- (void)rightBarButtonItemClick:(UIBarButtonItem *)rightBarButtonItem {
+    [label sizeToFit];
 }
 
 - (void)dragGesture:(UIPanGestureRecognizer *)pan {

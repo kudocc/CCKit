@@ -729,6 +729,19 @@ const CGFloat MDLLabelMaxHeight = 9999;
     [self _setNeedRedraw];
 }
 
+- (CGSize)sizeThatFits:(CGSize)size {
+    size = CGSizeMake(size.width, MDLLabelMaxHeight);
+    NSAttributedString *attr = _innerAttributedString;
+    NSTextContainer *_textContainer = [[NSTextContainer alloc] initWithSize:size];
+    _textContainer.lineFragmentPadding = 0;
+    _textContainer.maximumNumberOfLines = self.numberOfLines;
+    
+    MDLLabelLayout *layout = [MDLLabelLayout labelLayoutWithAttributedText:attr textContainer:_textContainer];
+    CGSize layoutBounds = layout.bounds;
+    return CGSizeMake(layoutBounds.width + self.textContainerInset.left + self.textContainerInset.right,
+                      layoutBounds.height + self.textContainerInset.top + self.textContainerInset.bottom);
+}
+
 // If you don't use autolayout (set frame explicitly), `intrinsicContentSize` won't be called.
 - (CGSize)intrinsicContentSize {
     CGSize size = CGSizeZero;
