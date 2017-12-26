@@ -1,0 +1,3 @@
+language: objective-c
+xcode_workspace: CCKitDemo.xcworkspace
+xcode_scheme: CCKitDemo
