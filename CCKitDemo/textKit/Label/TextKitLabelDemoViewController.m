@@ -100,7 +100,7 @@
                               NSBackgroundColorAttributeName:[UIColor redColor]/*, NSBaselineOffsetAttributeName: @0*/} range:NSMakeRange(20, 30) overrideOldAttribute:YES];
     
     {// paragraph
-        [mAttr cc_setLineSpacing:1];
+        [mAttr cc_setLineSpacing:15];
 //        NSMutableParagraphStyle *pa = [[NSMutableParagraphStyle alloc] init];
 //        pa.lineBreakMode = NSLineBreakByCharWrapping;
 //        [mAttr cc_addAttributes:@{ NSParagraphStyleAttributeName : pa }];
@@ -191,8 +191,8 @@
     // YYLabel
     {
         YYTextHighlight *hi = [YYTextHighlight highlightWithBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.5]];
-        [hi setColor:[UIColor blueColor]];
-        [mAttr setTextHighlight:hi range:NSMakeRange(30, 10)];
+        [hi setColor:[UIColor colorWithWhite:0.1 alpha:0.2]];
+        [mAttr setTextHighlight:hi range:NSMakeRange(0, 50)];
     }
     
     yyLabel.preferredMaxLayoutWidth = self.label.preferredMaxLayoutWidth;

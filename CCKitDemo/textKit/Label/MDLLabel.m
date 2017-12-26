@@ -938,6 +938,11 @@ const CGFloat MDLLabelMaxHeight = 9999;
                 ++rectIndex;
             } else {
                 // This line contains rect result, get next line fragments. Don't move forward rectIndex because the rectIndex may contain multiple lines
+                NSRange charRange = [self characterRangeForGlyphRange:glyphRange actualGlyphRange:NULL];
+                if (charRange.location + charRange.length + 1 < self.textStorage.length) {
+                    NSParagraphStyle *par = [self.textStorage mdl_paragraphStyleAtIndex:charRange.location];
+                    rectResult.size.height -= par.lineSpacing;
+                }
                 [mutableRects addObject:[NSValue valueWithCGRect:rectResult]];
                 break;
             }
@@ -946,8 +951,25 @@ const CGFloat MDLLabelMaxHeight = 9999;
     
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     for (NSValue *valueRect in mutableRects) {
-        CGContextFillRect(ctx, [valueRect CGRectValue]);
+        CGRect rect = [valueRect CGRectValue];
+        CGRect rectAfter = [self normalizeRect:rect];
+        NSLog(@"fill rect : %@, after :%@", NSStringFromCGRect(rect), NSStringFromCGRect(rectAfter));
+        CGContextFillRect(ctx, rectAfter);
     }
+}
+
+- (CGRect)normalizeRect:(CGRect)rect {
+    CGFloat scale = 2;
+    CGFloat fBottom = rect.origin.y + rect.size.height;
+    // top
+    long long top = (long long)((rect.origin.y + 1/scale) * scale);
+    CGFloat f = top/scale;
+    rect.origin.y = f;
+    // bottom
+    long long bottom = (fBottom + 1/scale) * scale;
+    f = bottom/scale;
+    rect.size.height = f - rect.origin.y;
+    return rect;
 }
 
 @end

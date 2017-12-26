@@ -83,7 +83,7 @@
                               NSBackgroundColorAttributeName:[UIColor redColor]/*, NSBaselineOffsetAttributeName: @0*/} range:NSMakeRange(0, 30) overrideOldAttribute:YES];
     
     {// paragraph
-        [mAttr cc_setLineSpacing:2];
+        [mAttr cc_setLineSpacing:10];
     }
     
     
