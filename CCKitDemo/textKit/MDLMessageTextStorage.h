@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-extern NSAttributedStringKey MDLMessagetextHighlightedAttributeName;
-extern NSAttributedStringKey MDLMessageTextBackgroundColorAttributeName;
+extern NSString *MDLMessagetextHighlightedAttributeName;
+extern NSString *MDLMessageTextBackgroundColorAttributeName;
 
 typedef void(^MDLMessageTextHighlightedTapBlock)(NSRange range);
 

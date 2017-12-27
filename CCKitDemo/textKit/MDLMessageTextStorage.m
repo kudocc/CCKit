@@ -8,8 +8,8 @@
 
 #import "MDLMessageTextStorage.h"
 
-NSAttributedStringKey MDLMessagetextHighlightedAttributeName = @"MDLMessagetextHighlightedAttributeName";
-NSAttributedStringKey MDLMessageTextBackgroundColorAttributeName = @"MDLMessageTextBackgroundColorAttributeName";
+NSString *MDLMessagetextHighlightedAttributeName = @"MDLMessagetextHighlightedAttributeName";
+NSString *MDLMessageTextBackgroundColorAttributeName = @"MDLMessageTextBackgroundColorAttributeName";
 
 
 @implementation MDLMessageTextHighlightedValue

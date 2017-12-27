@@ -9,7 +9,7 @@
 #import "MDLLabel.h"
 #import "NSAttributedString+MDLUtil.h"
 
-NSAttributedStringKey MDLHighlightAttributeName = @"MDLHighlightAttributeName";
+NSString *MDLHighlightAttributeName = @"MDLHighlightAttributeName";
 
 /**
  Get the `AppleColorEmoji` font's ascent with a specified font size.

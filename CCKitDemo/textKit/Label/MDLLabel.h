@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-UIKIT_EXTERN NSAttributedStringKey MDLHighlightAttributeName;
+UIKIT_EXTERN NSString *MDLHighlightAttributeName;
 
 @interface MDLHighlightAttributeValue : NSObject <NSCopying>
 
