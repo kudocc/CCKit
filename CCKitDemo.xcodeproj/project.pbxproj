@@ -169,6 +169,7 @@
 		A7BBD2801F91E563000C942F /* TextKit1Storage2ContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7BBD27F1F91E563000C942F /* TextKit1Storage2ContainerViewController.m */; };
 		A7BBD2831F91EE99000C942F /* TextKit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7BBD2821F91EE99000C942F /* TextKit.storyboard */; };
 		A7DAFF9E1DDB0CEB002DE7CC /* AnimationKeyboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7DAFF9D1DDB0CEB002DE7CC /* AnimationKeyboardViewController.m */; };
+		A7E540022016E00D00A4D9F5 /* TextKitCustomTextViewLayoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7E540012016E00D00A4D9F5 /* TextKitCustomTextViewLayoutViewController.m */; };
 		A7F807DB1E00DFE300219F91 /* JJViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7F807DA1E00DFE300219F91 /* JJViewController.m */; };
 		A7F807DD1E0119C300219F91 /* CCUserSettingsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A7F807DC1E0119C300219F91 /* CCUserSettingsTests.m */; };
 		BD1D7A521FD3750100FD17BD /* TextKitLabelDragViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD1D7A511FD3750100FD17BD /* TextKitLabelDragViewController.m */; };
@@ -546,6 +547,8 @@
 		A7BBD2821F91EE99000C942F /* TextKit.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TextKit.storyboard; sourceTree = "<group>"; };
 		A7DAFF9C1DDB0CEB002DE7CC /* AnimationKeyboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationKeyboardViewController.h; sourceTree = "<group>"; };
 		A7DAFF9D1DDB0CEB002DE7CC /* AnimationKeyboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimationKeyboardViewController.m; sourceTree = "<group>"; };
+		A7E540002016E00D00A4D9F5 /* TextKitCustomTextViewLayoutViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextKitCustomTextViewLayoutViewController.h; sourceTree = "<group>"; };
+		A7E540012016E00D00A4D9F5 /* TextKitCustomTextViewLayoutViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextKitCustomTextViewLayoutViewController.m; sourceTree = "<group>"; };
 		A7F807D91E00DFE300219F91 /* JJViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJViewController.h; sourceTree = "<group>"; };
 		A7F807DA1E00DFE300219F91 /* JJViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJViewController.m; sourceTree = "<group>"; };
 		A7F807DC1E0119C300219F91 /* CCUserSettingsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCUserSettingsTests.m; sourceTree = "<group>"; };
@@ -1308,6 +1311,8 @@
 				BD9284AA1FEAA6370062E93E /* TextKitTextViewViewController.m */,
 				BD9284AC1FEAA69F0062E93E /* TextKitTextViewChildViewController.h */,
 				BD9284AD1FEAA69F0062E93E /* TextKitTextViewChildViewController.m */,
+				A7E540002016E00D00A4D9F5 /* TextKitCustomTextViewLayoutViewController.h */,
+				A7E540012016E00D00A4D9F5 /* TextKitCustomTextViewLayoutViewController.m */,
 			);
 			path = TextView;
 			sourceTree = "<group>";
@@ -1670,6 +1675,7 @@
 				A75B10F81D754E66003F4242 /* CoreImageFilterOnCameralViewController.m in Sources */,
 				A76038301DFA9A6500205E1B /* DrawViewContainer.m in Sources */,
 				A76038311DFA9A6500205E1B /* ImageViewContainer.m in Sources */,
+				A7E540022016E00D00A4D9F5 /* TextKitCustomTextViewLayoutViewController.m in Sources */,
 				A70563211D6EBA7000652E03 /* Quartz2DViewController.m in Sources */,
 				A76038351DFA9A6500205E1B /* TestMissalignedViewController.m in Sources */,
 				A705632A1D6EBA7000652E03 /* CustomNavigationChildViewController.m in Sources */,
