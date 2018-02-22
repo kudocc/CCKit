@@ -108,6 +108,7 @@
 		A73DD1CC1DF934A100BE797F /* AVFoundationVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A73DD1CB1DF934A100BE797F /* AVFoundationVideoViewController.m */; };
 		A74687021E028F3C005A5316 /* CCUserDefaultsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A74687011E028F3C005A5316 /* CCUserDefaultsTests.m */; };
 		A758AFFC1F4C35BD00E627B5 /* BezierPathVSCGPathViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A758AFFB1F4C35BD00E627B5 /* BezierPathVSCGPathViewController.m */; };
+		A75AF8AF203025F300EC641D /* TransitionFakePushPopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A75AF8AE203025F300EC641D /* TransitionFakePushPopViewController.m */; };
 		A75B10EE1D743EF5003F4242 /* CoreImageSubclassCIFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A75B10ED1D743EF5003F4242 /* CoreImageSubclassCIFilterViewController.m */; };
 		A75B10F41D744487003F4242 /* CIFacePixelFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = A75B10F31D744487003F4242 /* CIFacePixelFilter.m */; };
 		A75B10F81D754E66003F4242 /* CoreImageFilterOnCameralViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A75B10F71D754E66003F4242 /* CoreImageFilterOnCameralViewController.m */; };
@@ -159,6 +160,7 @@
 		A773BDF61D671475008E53C1 /* CCStack.m in Sources */ = {isa = PBXBuildFile; fileRef = A773BDDE1D671475008E53C1 /* CCStack.m */; };
 		A77694D81F79F4A700FC0397 /* iOS11ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A77694D71F79F4A700FC0397 /* iOS11ViewController.m */; };
 		A77694DB1F79F4E100FC0397 /* UISearchControllerTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A77694DA1F79F4E100FC0397 /* UISearchControllerTestViewController.m */; };
+		A77AEE79203EC2DF00E2A2F9 /* TransitionFakeInteractivePushPopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A77AEE78203EC2DF00E2A2F9 /* TransitionFakeInteractivePushPopViewController.m */; };
 		A77E7EEE1F3991520065F656 /* AudioConvertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A77E7EED1F3991520065F656 /* AudioConvertViewController.m */; };
 		A77E7EF11F3991710065F656 /* AudioConvertListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A77E7EF01F3991710065F656 /* AudioConvertListViewController.m */; };
 		A7A8CB6C1F95F39A007EBE52 /* MDLLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A7A8CB6B1F95F39A007EBE52 /* MDLLabel.m */; };
@@ -423,6 +425,8 @@
 		A74687011E028F3C005A5316 /* CCUserDefaultsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCUserDefaultsTests.m; sourceTree = "<group>"; };
 		A758AFFA1F4C35BD00E627B5 /* BezierPathVSCGPathViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BezierPathVSCGPathViewController.h; sourceTree = "<group>"; };
 		A758AFFB1F4C35BD00E627B5 /* BezierPathVSCGPathViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BezierPathVSCGPathViewController.m; sourceTree = "<group>"; };
+		A75AF8AD203025F300EC641D /* TransitionFakePushPopViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransitionFakePushPopViewController.h; sourceTree = "<group>"; };
+		A75AF8AE203025F300EC641D /* TransitionFakePushPopViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransitionFakePushPopViewController.m; sourceTree = "<group>"; };
 		A75B10EC1D743EF5003F4242 /* CoreImageSubclassCIFilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreImageSubclassCIFilterViewController.h; sourceTree = "<group>"; };
 		A75B10ED1D743EF5003F4242 /* CoreImageSubclassCIFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreImageSubclassCIFilterViewController.m; sourceTree = "<group>"; };
 		A75B10F21D744487003F4242 /* CIFacePixelFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIFacePixelFilter.h; sourceTree = "<group>"; };
@@ -528,6 +532,8 @@
 		A77694D71F79F4A700FC0397 /* iOS11ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iOS11ViewController.m; sourceTree = "<group>"; };
 		A77694D91F79F4E100FC0397 /* UISearchControllerTestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UISearchControllerTestViewController.h; sourceTree = "<group>"; };
 		A77694DA1F79F4E100FC0397 /* UISearchControllerTestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UISearchControllerTestViewController.m; sourceTree = "<group>"; };
+		A77AEE77203EC2DF00E2A2F9 /* TransitionFakeInteractivePushPopViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransitionFakeInteractivePushPopViewController.h; sourceTree = "<group>"; };
+		A77AEE78203EC2DF00E2A2F9 /* TransitionFakeInteractivePushPopViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransitionFakeInteractivePushPopViewController.m; sourceTree = "<group>"; };
 		A77E7EEC1F3991520065F656 /* AudioConvertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioConvertViewController.h; sourceTree = "<group>"; };
 		A77E7EED1F3991520065F656 /* AudioConvertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioConvertViewController.m; sourceTree = "<group>"; };
 		A77E7EEF1F3991710065F656 /* AudioConvertListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioConvertListViewController.h; sourceTree = "<group>"; };
@@ -909,6 +915,10 @@
 		A70562C01D6EBA7000652E03 /* view_controller_transition */ = {
 			isa = PBXGroup;
 			children = (
+				A75AF8AD203025F300EC641D /* TransitionFakePushPopViewController.h */,
+				A75AF8AE203025F300EC641D /* TransitionFakePushPopViewController.m */,
+				A77AEE77203EC2DF00E2A2F9 /* TransitionFakeInteractivePushPopViewController.h */,
+				A77AEE78203EC2DF00E2A2F9 /* TransitionFakeInteractivePushPopViewController.m */,
 				A70562C11D6EBA7000652E03 /* CustomAnimator.h */,
 				A70562C21D6EBA7000652E03 /* CustomAnimator.m */,
 				A70562C31D6EBA7000652E03 /* CustomNavigationChildViewController.h */,
@@ -1569,6 +1579,7 @@
 				A70562F41D6EBA7000652E03 /* QRCodeViewController.m in Sources */,
 				A70563301D6EBA7000652E03 /* UIWebViewCacheViewController.m in Sources */,
 				A773BDE11D671475008E53C1 /* ModelClass.m in Sources */,
+				A75AF8AF203025F300EC641D /* TransitionFakePushPopViewController.m in Sources */,
 				A773BDE71D671475008E53C1 /* CCTextContainer.m in Sources */,
 				A773BDF11D671475008E53C1 /* UIFont+CCKit.m in Sources */,
 				A70562E11D6EBA7000652E03 /* AudioPlayAudioQueueFromFileViewController.m in Sources */,
@@ -1684,6 +1695,7 @@
 				A70562E71D6EBA7000652E03 /* AutoLayoutViewController.m in Sources */,
 				A70563331D6EBA7000652E03 /* WebViewController.m in Sources */,
 				A70562E21D6EBA7000652E03 /* AudioPlaybackViewController.m in Sources */,
+				A77AEE79203EC2DF00E2A2F9 /* TransitionFakeInteractivePushPopViewController.m in Sources */,
 				A76F9DA81E07D8EF009ACD1C /* CCUserDefaults.m in Sources */,
 				A70562DC1D6EBA7000652E03 /* CABasicAnimationTestViewController.m in Sources */,
 				A70562E01D6EBA7000652E03 /* AudioListViewController.m in Sources */,

@@ -7,59 +7,21 @@
 //
 
 #import "VCTransitionViewController.h"
-#import "CustomNavigationChildViewController.h"
-#import "SimpleNavigationDelegate.h"
-#import "InteractiveNavigationDelegate.h"
-#import "ImageTransitionViewController.h"
+#import "TransitionFakePushPopViewController.h"
+#import "TransitionFakeInteractivePushPopViewController.h"
 
 @interface VCTransitionViewController ()
 
-@property (nonatomic) NSArray *arrayDelegate;
-
-@property (nonatomic) SimpleNavigationDelegate *delegateSimple;
-@property (nonatomic) InteractiveNavigationDelegate *delegateInteractive;
-
 @end
 
-@implementation VCTransitionViewController {
-    NSArray *_arrayDelegate;
-}
+@implementation VCTransitionViewController
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+- (void)viewDidLoad {
+    [super viewDidLoad];
     
-    self.navigationController.delegate = nil;
-    self.delegateSimple = nil;
-    self.delegateInteractive = nil;
-}
-
-- (void)initView {
-    self.arrayTitle = @[@"Custom NavigationController", @"Interactive NavigationController", @"Image Transition"];
-    
-    __weak typeof(self) wself = self;
-    self.cellSelectedBlock = ^(NSIndexPath *path) {
-        if (path.row == 0) {
-            wself.delegateSimple = [SimpleNavigationDelegate new];
-            wself.delegateSimple.navigationController = wself.navigationController;
-            wself.navigationController.delegate = wself.delegateSimple;
-            
-            CustomNavigationChildViewController *vc = [[CustomNavigationChildViewController alloc] init];
-            vc.enableTap = YES;
-            [wself.navigationController pushViewController:vc animated:YES];
-        } else if (path.row == 1) {
-            wself.delegateInteractive = [[InteractiveNavigationDelegate alloc] initWithNavigationController:wself.navigationController];
-            wself.navigationController.delegate = wself.delegateInteractive;
-            
-            CustomNavigationChildViewController *vc = [[CustomNavigationChildViewController alloc] init];
-            vc.enableTap = YES;
-            [wself.navigationController pushViewController:vc animated:YES];
-        } else {
-            ImageTransitionViewController *vc = [[ImageTransitionViewController alloc] init];
-            [wself.navigationController pushViewController:vc animated:YES];
-        }
-    };
-    
-    [super initView];
+    self.arrayTitle = @[@"Present&Dismiss with Push&Pop", @"Dismiss with interactive pop"];
+    self.arrayClass = @[[TransitionFakePushPopViewController class],
+                        [TransitionFakeInteractivePushPopViewController class]];
 }
 
 @end
