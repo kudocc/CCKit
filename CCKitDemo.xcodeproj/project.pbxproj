@@ -177,6 +177,8 @@
 		BD1E6A6E1FCDA54A00346BE7 /* image_source.gif in Resources */ = {isa = PBXBuildFile; fileRef = BD1E6A6D1FCDA54900346BE7 /* image_source.gif */; };
 		BD9284AB1FEAA6370062E93E /* TextKitTextViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD9284AA1FEAA6370062E93E /* TextKitTextViewViewController.m */; };
 		BD9284AE1FEAA69F0062E93E /* TextKitTextViewChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD9284AD1FEAA69F0062E93E /* TextKitTextViewChildViewController.m */; };
+		BDAA1FD22320870E00DF0632 /* PerformanceContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BDAA1FD12320870E00DF0632 /* PerformanceContainerViewController.m */; };
+		BDAA1FD623208AD900DF0632 /* CCUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = BDAA1FD523208AD900DF0632 /* CCUtility.m */; };
 		BDFE81201FD04476000AA87E /* CCKitRunloopResearchManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BDFE811F1FD04476000AA87E /* CCKitRunloopResearchManager.m */; };
 		C2A2338348DC45A0392EBD6F /* libPods-CCKitDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A12A33A4C2B2306B6B058EED /* libPods-CCKitDemo.a */; };
 /* End PBXBuildFile section */
@@ -560,6 +562,10 @@
 		BD9284AA1FEAA6370062E93E /* TextKitTextViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextKitTextViewViewController.m; sourceTree = "<group>"; };
 		BD9284AC1FEAA69F0062E93E /* TextKitTextViewChildViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextKitTextViewChildViewController.h; sourceTree = "<group>"; };
 		BD9284AD1FEAA69F0062E93E /* TextKitTextViewChildViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextKitTextViewChildViewController.m; sourceTree = "<group>"; };
+		BDAA1FD02320870E00DF0632 /* PerformanceContainerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PerformanceContainerViewController.h; sourceTree = "<group>"; };
+		BDAA1FD12320870E00DF0632 /* PerformanceContainerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PerformanceContainerViewController.m; sourceTree = "<group>"; };
+		BDAA1FD423208AD900DF0632 /* CCUtility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCUtility.h; sourceTree = "<group>"; };
+		BDAA1FD523208AD900DF0632 /* CCUtility.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCUtility.m; sourceTree = "<group>"; };
 		BDFE811E1FD04476000AA87E /* CCKitRunloopResearchManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCKitRunloopResearchManager.h; sourceTree = "<group>"; };
 		BDFE811F1FD04476000AA87E /* CCKitRunloopResearchManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCKitRunloopResearchManager.m; sourceTree = "<group>"; };
 		E980066609E82FAF1D30D77A /* Pods-CCKitDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CCKitDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CCKitDemo/Pods-CCKitDemo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -852,6 +858,7 @@
 		A705628E1D6EBA7000652E03 /* performance */ = {
 			isa = PBXGroup;
 			children = (
+				BDAA1FCF232086E700DF0632 /* container */,
 				A76038191DFA9A6500205E1B /* image */,
 				A76038291DFA9A6500205E1B /* store */,
 				A76038221DFA9A6500205E1B /* old */,
@@ -1105,6 +1112,7 @@
 				A705623D1D6EBA7000652E03 /* block */,
 				BDFE811D1FD0444D000AA87E /* runloop */,
 				A70562821D6EBA7000652E03 /* other */,
+				BDAA1FD323208AB500DF0632 /* util */,
 				A773BD771D671395008E53C1 /* AppDelegate.h */,
 				A773BD781D671395008E53C1 /* AppDelegate.m */,
 				A7076F8B1EAC4CB400822202 /* chat.plist */,
@@ -1312,6 +1320,24 @@
 			path = TextView;
 			sourceTree = "<group>";
 		};
+		BDAA1FCF232086E700DF0632 /* container */ = {
+			isa = PBXGroup;
+			children = (
+				BDAA1FD02320870E00DF0632 /* PerformanceContainerViewController.h */,
+				BDAA1FD12320870E00DF0632 /* PerformanceContainerViewController.m */,
+			);
+			path = container;
+			sourceTree = "<group>";
+		};
+		BDAA1FD323208AB500DF0632 /* util */ = {
+			isa = PBXGroup;
+			children = (
+				BDAA1FD423208AD900DF0632 /* CCUtility.h */,
+				BDAA1FD523208AD900DF0632 /* CCUtility.m */,
+			);
+			path = util;
+			sourceTree = "<group>";
+		};
 		BDFE811D1FD0444D000AA87E /* runloop */ = {
 			isa = PBXGroup;
 			children = (
@@ -1342,8 +1368,6 @@
 				A773BD6D1D671395008E53C1 /* Sources */,
 				A773BD6E1D671395008E53C1 /* Frameworks */,
 				A773BD6F1D671395008E53C1 /* Resources */,
-				8ABFF58E91577E8D97E39591 /* [CP] Embed Pods Frameworks */,
-				AE5A7621662DF3075205FA5B /* [CP] Copy Pods Resources */,
 				A7B6C6C21DFEC48400A2F1E1 /* ShellScript */,
 				A7CF73A41F58FB8B0079ECC9 /* Embed Frameworks */,
 			);
@@ -1425,8 +1449,10 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = A773BD681D671395008E53C1;
 			productRefGroup = A773BD721D671395008E53C1 /* Products */;
@@ -1473,21 +1499,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		8ABFF58E91577E8D97E39591 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CCKitDemo/Pods-CCKitDemo-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		A7B6C6C21DFEC48400A2F1E1 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1500,21 +1511,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
 			shellScript = "buildDate=$(/bin/date +\"%Y-%m-%d %H:%M:%S\")\n/usr/libexec/PlistBuddy -c \"Set :CCBuildDate $buildDate\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\n\ngitCommitCount=$(git rev-list --count HEAD)\n/usr/libexec/PlistBuddy -c \"Set :CCGIT $gitCommitCount\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\n";
-		};
-		AE5A7621662DF3075205FA5B /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CCKitDemo/Pods-CCKitDemo-resources.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 		C2766B960B913DCC493181EE /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1605,6 +1601,7 @@
 				A76F9D9D1E07D378009ACD1C /* CCMmapUserSettings.m in Sources */,
 				A70563101D6EBA7000652E03 /* OtherViewController.m in Sources */,
 				A75B10F41D744487003F4242 /* CIFacePixelFilter.m in Sources */,
+				BDAA1FD623208AD900DF0632 /* CCUtility.m in Sources */,
 				A76F9D9E1E07D378009ACD1C /* CCUserSettings.m in Sources */,
 				A76038331DFA9A6500205E1B /* TestBlendViewController.m in Sources */,
 				A773BDDF1D671475008E53C1 /* AudioQueuePlayer.m in Sources */,
@@ -1659,6 +1656,7 @@
 				A705630B1D6EBA7000652E03 /* NetworkViewController.m in Sources */,
 				A7BBD27A1F91B7E2000C942F /* TextKit_ConstructViewController.m in Sources */,
 				A773BDEE1D671475008E53C1 /* NSObject+CCKit.m in Sources */,
+				BDAA1FD22320870E00DF0632 /* PerformanceContainerViewController.m in Sources */,
 				A76F9DA51E07D8D2009ACD1C /* CCMmapUserDefaultsViewController.m in Sources */,
 				A70562FD1D6EBA7000652E03 /* SimpleChatViewController.m in Sources */,
 				A70562DE1D6EBA7000652E03 /* CAShapeLayerTestViewController.m in Sources */,

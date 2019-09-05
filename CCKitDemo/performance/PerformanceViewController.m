@@ -10,6 +10,7 @@
 #import "PerformanceStoreViewController.h"
 #import "ImageViewContainer.h"
 #import "DrawViewContainer.h"
+#import "PerformanceContainerViewController.h"
 
 @interface PerformanceViewController ()
 
@@ -24,10 +25,13 @@
     
     self.arrayTitle = @[@"Performance Store",
                         @"Performance with container as UImageView",
-                        @"Performance with container as UIView"];
+                        @"Performance with container as UIView",
+                        @"Container"];
     self.arrayClass = @[[PerformanceStoreViewController class],
                         [ImageViewContainer class],
-                        [DrawViewContainer class]];
+                        [DrawViewContainer class],
+                        [PerformanceContainerViewController class]
+                        ];
 }
 
 @end
